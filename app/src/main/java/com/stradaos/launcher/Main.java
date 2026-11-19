@@ -124,6 +124,10 @@ public class Main extends Activity {
     private View carCard;
     /** Columnas: x de la tarjeta del vehículo, del mapa y del reproductor, y anchos del mapa y del reproductor. */
     private float carX = 16, mapX = 328, mapW = 420, audX = 760, audW = 248;
+    /** Ancho de la tarjeta del vehículo (300 de siempre; 2.24: más ancha con el editor táctil, contenido centrado). */
+    private float carW = 300;
+    /** Límites del editor táctil del inicio, en unidades del lienzo (iguales en cualquier resolución). */
+    static final float CAR_MIN = 300, CAR_MAX = 440, PLAYER_MIN = 248, PLAYER_MAX = 460, CENTER_MIN = 300;
     private TextView topSpeedTv, topOilTv;
     private Gauge carGauge, mapGauge;
     private View mapGaugeBox;   // velocímetro del mapa en una esquina de abajo: baja junto con el panel
@@ -201,6 +205,9 @@ public class Main extends Activity {
         testHook(getIntent());
         applyTheme();
         applyAccent();
+        if (prefs.getBoolean("obd_autostart", false) && !Obd.running()) {
+            try { ObdService.start(this); } catch (Throwable ignored) { }
+        }
 
         root = new FrameLayout(this) {
             @Override
@@ -685,6 +692,10 @@ public class Main extends Activity {
                 else if (v.startsWith("boton:")) dockMenu(Integer.parseInt(v.substring(6)), null);
                 else if (v.startsWith("elegir:")) pickDock(Integer.parseInt(v.substring(7)), null);
                 else if ("cajon".equals(v)) openDrawer();
+                else if ("obd".equals(v) || "obd-demo".equals(v)) {
+                    if ("obd-demo".equals(v)) { prefs.edit().putString("obd_addr", "demo").apply(); ObdService.start(Main.this); }
+                    openObd();
+                }
                 else if ("ocultas".equals(v)) manageHidden(null);
                 else if ("salir-fabrica".equals(v)) openFactoryLauncher();
                 else if (v.startsWith("aa-simular:")) {
@@ -1214,6 +1225,12 @@ public class Main extends Activity {
         int fs = prefs.getInt("font_size", 1);
         FONT = fs == 0 ? 0.9f : fs == 2 ? 1.12f : fs == 3 ? 1.25f : 1f;
         playerLeft = "left".equals(prefs.getString("player_side", "right"));
+        // 2.24: orden elegido moviendo las tarjetas (presión larga → Mover); el reproductor «a la izquierda» se deduce
+        // de ese orden para que lo que depende del lado del conductor (barra lateral, botón del navegador) siga igual
+        if (prefs.contains("card_order")) {
+            List<String> o = cardOrder();
+            playerLeft = o.indexOf("player") < o.indexOf("map");
+        }
         showCar = prefs.getBoolean("show_car", true);
         showMap = true;   // «ocultar el mapa» del PR #35 queda para más adelante
         if (Nav.active != null && !"internal".equals(prefs.getString("nav_app", null))) {
@@ -1263,6 +1280,7 @@ public class Main extends Activity {
         if (shortVertical && !noDock) compactDock = true;
         float dw = 1024 + (sideDock ? RAIL + 8 : 0), dh = sideDock ? 460 : 600;
         s = Math.min(W / dw, H / dh);
+        stripOn = false;
         if (vertical) buildVerticalMetrics(W, H);
         else {
         // pantallas más anchas que el lienzo (p. ej. 12,3" 1920x720): el mapa del centro se queda con el espacio extra
@@ -1279,6 +1297,12 @@ public class Main extends Activity {
         cardH = sideDock ? dh - 80 : dockTop - 76;
         mapY = rowY = 64;
         mapH = cardH;
+        // 2.24: franja de widgets debajo de la tarjeta del centro (altitud, viaje, dato del escáner, apps)
+        stripOn = prefs.getBoolean("home_strip", false) && showMap;
+        if (stripOn) {
+            stripH = Math.max(HomeStrip.H_MIN, Math.min(Math.min(HomeStrip.H_MAX, cardH - 12 - HomeStrip.MAP_MIN_H), prefs.getFloat("strip_h", HomeStrip.H)));
+            mapH = cardH - stripH - 12;
+        }
         insL = insR = 0;
         }
         if (vertical) dh = boardH;
@@ -1312,6 +1336,8 @@ public class Main extends Activity {
             buildCarCard();
             buildAaCard();
             buildAudioCard();
+            applySlots();
+            if (stripOn && mapW > 0) buildStrip();
             if (!noDock) buildDock();
         }
         if (!showMap) updateNavHud();
@@ -1392,6 +1418,7 @@ public class Main extends Activity {
     }
 
     private void layoutColumns() {
+        carW = 300;
         if (!showMap) {
             mapX = 16; mapW = 0;
             if (vertical) {
@@ -1439,16 +1466,64 @@ public class Main extends Activity {
             return;
         }
         float content = 1024 + ex;
-        audW = showCar ? 248 : 300;
-        float carW = showCar ? 300 : 0;
-        float audSlot = showPlayer ? audW : 0;
-        float leftW = playerLeft ? audSlot : carW, rightW = playerLeft ? carW : audSlot;
         float x0 = ox + 16;
-        mapX = x0 + (leftW > 0 ? leftW + 12 : 0);
-        mapW = content - 32 - leftW - rightW - (leftW > 0 ? 12 : 0) - (rightW > 0 ? 12 : 0);
-        float rightX = mapX + mapW + 12;
-        carX = playerLeft ? rightX : x0;
-        audX = playerLeft ? x0 : rightX;
+        // 2.24: anchos elegidos con el editor táctil (o el menú), dentro de sus límites; el centro absorbe el resto
+        // y nunca baja de CENTER_MIN: si no cabe, se achican primero el reproductor y después el vehículo.
+        float[] wd = colWidths(content, prefs.getFloat("car_w", 300), prefs.getFloat("player_w", showCar ? 248 : 300));
+        carW = showCar ? wd[0] : 300;
+        audW = wd[1];
+        float cw = showCar ? carW : 0, audSlot = showPlayer ? audW : 0;
+        mapW = content - 32 - cw - audSlot - (cw > 0 ? 12 : 0) - (audSlot > 0 ? 12 : 0);
+        float x = x0;
+        for (String col : cardOrder()) {
+            float w = "car".equals(col) ? cw : "player".equals(col) ? audSlot : mapW;
+            if (w <= 0) continue;
+            if ("car".equals(col)) carX = x; else if ("player".equals(col)) audX = x; else mapX = x;
+            x += w + 12;
+        }
+    }
+
+    /** Anchos {vehículo, reproductor} dentro de sus límites, dejando al centro al menos CENTER_MIN. */
+    float[] colWidths(float content, float car, float player) {
+        float c = showCar ? Math.max(CAR_MIN, Math.min(CAR_MAX, car)) : 0;
+        float pMin = showCar ? PLAYER_MIN : 300;
+        float p = showPlayer ? Math.max(pMin, Math.min(PLAYER_MAX, player)) : 0;
+        float gaps = (c > 0 ? 12 : 0) + (p > 0 ? 12 : 0);
+        float over = c + p + gaps + CENTER_MIN - (content - 32);
+        if (over > 0 && p > 0) { float cut = Math.min(over, p - pMin); p -= cut; over -= cut; }
+        if (over > 0 && c > 0) { float cut = Math.min(over, c - CAR_MIN); c -= cut; }
+        return new float[]{showCar ? c : 300, showPlayer ? p : (showCar ? 248 : 300)};
+    }
+
+    /** Orden de las tres columnas del inicio, de izquierda a derecha (lo de siempre si nunca se movieron). */
+    private List<String> cardOrder() {
+        List<String> o = new ArrayList<String>();
+        String saved = prefs.getString("card_order", null);
+        if (saved != null) for (String c : saved.split(",")) if (("car".equals(c) || "map".equals(c) || "player".equals(c)) && !o.contains(c)) o.add(c);
+        if (o.size() != 3) {
+            o.clear();
+            boolean left = "left".equals(prefs.getString("player_side", "right"));
+            o.add(left ? "player" : "car"); o.add("map"); o.add(left ? "car" : "player");
+        }
+        return o;
+    }
+
+    private boolean colShown(String c) {
+        return "car".equals(c) ? showCar : "player".equals(c) ? showPlayer : showMap && !vertical;
+    }
+
+    /** Mueve una columna un lugar (dir = -1 izquierda, +1 derecha) saltando las ocultas. */
+    private void moveCard(String col, int dir) {
+        List<String> o = cardOrder();
+        int i = o.indexOf(col), j = i + dir;
+        while (j >= 0 && j < o.size() && !colShown(o.get(j))) j += dir;
+        if (j < 0 || j >= o.size()) { toast(dir < 0 ? "Ya está a la izquierda" : "Ya está a la derecha"); return; }
+        o.set(i, o.get(j));
+        o.set(j, col);
+        StringBuilder b = new StringBuilder();
+        for (String c : o) b.append(b.length() > 0 ? "," : "").append(c);
+        prefs.edit().putString("card_order", b.toString()).apply();
+        rebuild();
     }
 
     private void buildTop() {
@@ -1698,8 +1773,17 @@ public class Main extends Activity {
     }
 
     private void buildCarCard() {
-        final FrameLayout card = card(carX, rowY, 300, cardH, CARD);
-        carCard = card;
+        final FrameLayout outer = card(carX, rowY, carW, cardH, CARD);
+        carCard = outer;
+        outer.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View v) { cardMenu("car", null, null); return true; }
+        });
+        // el contenido mide 300 de ancho como siempre y queda centrado si la tarjeta es más ancha
+        final FrameLayout card = new FrameLayout(this);
+        place(outer, card, (carW - 300) / 2, 0, 300, cardH);
+        card.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View v) { cardMenu("car", null, null); return true; }
+        });
         // barra de abajo compacta: la foto crece y la velocidad baja; sin velocidad (carros sin GPS) la foto llena el resto
         // 2.20: velocímetro analógico o mixto: el recuadro de la velocidad crece 70 y la foto se achica lo mismo
         final int speedo = carSpeed ? prefs.getInt("speedo", 0) : 0;
@@ -1750,9 +1834,19 @@ public class Main extends Activity {
             });
         }
 
+        // monitor OBD encendido: en lugar de la foto, los datos del motor y las alertas (toque = pantalla Vehículo)
+        ObdMini mini = new ObdMini(this, s);
+        place(card, mini, 18, 78, 264, 160 + dy);
+        mini.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) { openObd(); }
+        });
+
         FrameLayout box = new FrameLayout(this);
         box.setBackground(round(INNER, 16));
         place(card, box, 12, 250 + dy, 276, 118 + gx);
+        box.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View v) { slotMenu("speed"); return true; }
+        });
         if (!carSpeed) box.setVisibility(View.GONE);   // se arma igual: setGps y el kilometraje siguen funcionando
 
         LinearLayout lbl = new LinearLayout(this);
@@ -1804,8 +1898,15 @@ public class Main extends Activity {
         }
         if (oilHome && speedo == 0) buildOilBadge(box, 0, 0);
         if (!oilHome) { oilValTv = null; oilBar = null; oilBarBg = null; oilLblTv = null; oilIc = null; }
+        // 2.24: el recuadro de la velocidad puede mostrar en grande un dato del escáner OBD (refrigerante, batería…)
+        Obd.Sensor slotSensor = obdSensor(prefs.getString("slot_speed", "speed"));
+        if (carSpeed && slotSensor != null) {
+            ObdValue ov = new ObdValue(this, slotSensor, s);
+            place(card, ov, 12, 250 + dy, 276, 118 + gx);
+            slotTouch(ov, "speed");
+        }
         // Oculta: se arma igual (la velocidad y el aceite siguen actualizándose sin fallar) pero no se muestra.
-        if (!showCar) board.removeView(card);
+        if (!showCar) board.removeView(outer);
         setGps(false, 0);
     }
 
@@ -2706,6 +2807,9 @@ public class Main extends Activity {
             mapClipView = clip;
         } else place(board, card, mapX, mapY, mapW, mapH);
         mapCardView = card;
+        card.setOnLongClickListener(new View.OnLongClickListener() {
+            public boolean onLongClick(View v) { cardMenu("map", null, null); return true; }
+        });
         // fondo decorativo mientras no hay GPS; encima, el mapa en vivo (Faro: sin dibujo de relleno, el área queda limpia)
         if (!(premium && Prem.faro())) card.addView(new MapView(this, s, 20 * s), new FrameLayout.LayoutParams(-1, -1));
         if (!prefs.getBoolean("map_live", true)) { liveMap = null; seedLastLocation(); buildAaCardRest(card); return; }
@@ -2722,7 +2826,7 @@ public class Main extends Activity {
         });
         liveMap.setOnLongClickListener(new View.OnLongClickListener() {
             public boolean onLongClick(View v) {
-                showMapDiag();
+                holdMenu("map", "Diagnóstico del mapa", new Runnable() { public void run() { showMapDiag(); } });
                 return true;
             }
         });
@@ -3263,6 +3367,7 @@ public class Main extends Activity {
 
     private void feedMap(Location l) {
         if (l != null && !validLoc(l)) return;
+        if (l != null) Trip.onLocation(l);
         if (l != null) {
             wLat = l.getLatitude(); wLon = l.getLongitude();
             if (Nav.active != null) {
@@ -3282,7 +3387,7 @@ public class Main extends Activity {
         if (liveMap == null || l == null) return;
         float kmh = l.hasSpeed() ? l.getSpeed() * 3.6f : 0;
         liveMap.setPosition(l.getLatitude(), l.getLongitude(), l.hasBearing() && kmh > 4 ? l.getBearing() : Float.NaN, kmh);
-        liveMap.setVisibility(View.VISIBLE);
+        if (!mapReplaced) liveMap.setVisibility(View.VISIBLE);
         updateMapTag();
     }
 
@@ -3577,7 +3682,10 @@ public class Main extends Activity {
             }
         });
         card.setOnLongClickListener(new View.OnLongClickListener() {
-            public boolean onLongClick(View v) { showPlayerDiag(); return true; }
+            public boolean onLongClick(View v) {
+                holdMenu("player", "Diagnóstico del reproductor", new Runnable() { public void run() { showPlayerDiag(); } });
+                return true;
+            }
         });
         card.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) { openMusicApp(); }
@@ -3619,6 +3727,7 @@ public class Main extends Activity {
         {"music", "Música", "music_note"}, {"nav", "Navegación", "map"}, {"aa", "Android Auto", "navigation"},
         {"carplay", "CarPlay", "phone_iphone"}, {"web", "Navegador web", "public"}, {"files", "Archivos", "folder"},
         {"nav_home", "Ir a Casa", "location_on"}, {"nav_work", "Ir a Trabajo", "directions_car"},
+        {"obd", "Vehículo", "car_repair"},
         {"settings", "Ajustes", "settings"}, {"apps", "Apps", "apps"},
     };
 
@@ -5483,7 +5592,354 @@ public class Main extends Activity {
         else if ("carplay".equals(id)) openCarPlay();
         else if ("nav_home".equals(id)) navigateSavedSlot("nav_home", "Casa");
         else if ("nav_work".equals(id)) navigateSavedSlot("nav_work", "Trabajo");
+        else if ("obd".equals(id)) openObd();
         else openDrawer();
+    }
+
+    // ───────────────────────── tarjetas a medida (2.24) ─────────────────────────
+    // La tarjeta del reproductor y la del mapa pueden mostrar el monitor del vehículo o un gráfico en vivo de un dato
+    // del escáner OBD; el recuadro de la velocidad, otro dato en grande. Sin nada elegido, todo queda como siempre.
+
+    private boolean stripOn;
+    private float stripH = HomeStrip.H;
+
+    private void buildStrip() {
+        HomeStrip strip = new HomeStrip(this, s, mapW, stripH, prefs, new HomeStrip.Host() {
+            public void openApp(String comp) { launchComponent(comp); }
+            public void pickApp(final int i) {
+                List<String[]> extra = new ArrayList<String[]>();
+                if (prefs.getString("strip_app" + (i + 1), "").length() > 0) extra.add(new String[]{"none", "Quitar este acceso", "apps"});
+                Main.this.pickApp("Acceso directo " + (i + 1), extra, null, true, new TargetCb() { public void on(String t) {
+                    if ("none".equals(t)) prefs.edit().remove("strip_app" + (i + 1)).apply();
+                    else if (t.startsWith("app:")) prefs.edit().putString("strip_app" + (i + 1), t.substring(4)).apply();
+                    rebuild();
+                }});
+            }
+            public Drawable icon(String comp) { return appIcon(comp); }
+            public void openObd() { Main.this.openObd(); }
+            public void menu() { stripMenu(); }
+            public String[] music() {
+                AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
+                boolean on = playingState != null ? playingState : am != null && am.isMusicActive();
+                return new String[]{curTitle, curArtist, curSource, on ? "1" : "0"};
+            }
+            public void media(int which) {
+                mediaClick(which < 0 ? KeyEvent.KEYCODE_MEDIA_PREVIOUS : which > 0 ? KeyEvent.KEYCODE_MEDIA_NEXT : KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE).onClick(null);
+            }
+            public Bitmap asset(String name) { return Main.this.asset(name); }
+        });
+        place(board, strip, mapX, mapY + mapH + 12, mapW, stripH);
+    }
+
+    private void launchComponent(String comp) {
+        try {
+            Intent it = new Intent(Intent.ACTION_MAIN);
+            it.addCategory(Intent.CATEGORY_LAUNCHER);
+            it.setComponent(ComponentName.unflattenFromString(comp));
+            it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+            startActivity(it);
+        } catch (Throwable e) { toast("No se pudo abrir la app"); }
+    }
+
+    private static final String[] STRIP_KINDS = {"alt", "trip", "obd", "apps", "music"};
+    private static final String[] STRIP_NAMES = {"Altitud, pendiente y rumbo", "Viaje (km, tiempo, consumo)", "Dato del vehículo…", "Accesos directos (apps)", "Música (canción y controles)"};
+
+    private String stripName(String kind) {
+        if (kind.startsWith("obd:")) {
+            Obd.Sensor x = obdSensor(kind.substring(4));
+            return I18n.t("Dato del vehículo") + ": " + I18n.t(x != null ? x.label : "Refrigerante");
+        }
+        int i = java.util.Arrays.asList(STRIP_KINDS).indexOf(kind);
+        return I18n.t(i >= 0 ? STRIP_NAMES[i] : kind);
+    }
+
+    /** Presión larga en la franja: qué muestra cada widget, reiniciar el viaje o quitar la franja. */
+    private void stripMenu() {
+        final List<String> ks = HomeStrip.kinds(prefs);
+        final int n = HomeStrip.fit(mapW, ks.size());
+        List<String> items = new ArrayList<String>();
+        for (int i = 0; i < n; i++) items.add(I18n.t("Widget") + " " + (i + 1) + ": " + stripName(ks.get(i)));
+        final boolean room = ks.size() < HomeStrip.MAX && HomeStrip.fit(mapW, ks.size() + 1) == ks.size() + 1;
+        if (room) items.add("+  " + I18n.t("Agregar un widget"));
+        items.add("✋  " + I18n.t("Ajustar tamaños con el dedo"));
+        items.add(I18n.t("Reiniciar el viaje"));
+        items.add(I18n.t("Quitar la franja"));
+        final int base = n + (room ? 1 : 0);
+        new TB(this, dlg()).raw().wide().setTitle(I18n.t("Franja de widgets"))
+            .setItems(items.toArray(new String[0]), new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) {
+                if (w < n) pickStripWidget(w, ks.get(w), ks.size() > 1, new HomeEditor.WidgetCb() { public void on(String kind) { setStripWidget(w, kind); } });
+                else if (room && w == n) pickStripWidget(ks.size(), null, false, new HomeEditor.WidgetCb() { public void on(String kind) { if (kind != null) setStripWidget(ks.size(), kind); } });
+                else if (w == base) openHomeEditor();
+                else if (w == base + 1) { Trip.reset(); toast("Viaje reiniciado"); }
+                else { prefs.edit().putBoolean("home_strip", false).apply(); rebuild(); }
+            }})
+            .setNegativeButton(I18n.t("Cerrar"), null).show();
+    }
+
+    /** Cambia (kind), agrega (i = cantidad actual) o quita (kind = null) un widget de la franja. */
+    private void setStripWidget(int i, String kind) {
+        List<String> ks = HomeStrip.kinds(prefs);
+        float[] w = HomeStrip.weights(prefs, ks.size());
+        List<Float> wl = new ArrayList<Float>();
+        for (float x : w) wl.add(x);
+        if (kind == null) { if (i < ks.size() && ks.size() > 1) { ks.remove(i); wl.remove(i); } }
+        else if (i >= ks.size()) { ks.add(kind); wl.add(1f); }
+        else ks.set(i, kind);
+        float[] out = new float[wl.size()];
+        for (int j = 0; j < out.length; j++) out[j] = wl.get(j);
+        HomeStrip.save(prefs, ks, out);
+        rebuild();
+    }
+
+    /** Elegir qué muestra un widget (o quitarlo). */
+    private void pickStripWidget(int i, String cur, boolean canRemove, final HomeEditor.WidgetCb cb) {
+        final List<String> opts = new ArrayList<String>();
+        for (String nm : STRIP_NAMES) opts.add(I18n.t(nm));
+        if (canRemove) opts.add(I18n.t("Quitar este widget"));
+        int sel = cur == null ? -1 : java.util.Arrays.asList(STRIP_KINDS).indexOf(cur.startsWith("obd:") ? "obd" : cur);
+        new TB(this, dlg()).raw().wide().setTitle(I18n.t("Widget") + " " + (i + 1))
+            .setSingleChoiceItems(opts.toArray(new String[0]), sel, new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) {
+                d.dismiss();
+                if (w >= STRIP_KINDS.length) { cb.on(null); return; }
+                if (!"obd".equals(STRIP_KINDS[w])) { cb.on(STRIP_KINDS[w]); return; }
+                final String[] names = new String[Obd.ALL.length];
+                for (int j = 0; j < names.length; j++) names[j] = I18n.t(Obd.ALL[j].label);
+                new TB(Main.this, dlg()).raw().wide().setTitle(I18n.t("¿Qué dato mostrar?"))
+                    .setSingleChoiceItems(names, -1, new DialogInterface.OnClickListener() { public void onClick(DialogInterface d2, int w2) {
+                        d2.dismiss();
+                        cb.on("obd:" + Obd.ALL[w2].key);
+                    }})
+                    .setNegativeButton(I18n.t("Cancelar"), null).show();
+            }})
+            .setNegativeButton(I18n.t("Cancelar"), null).show();
+    }
+
+    /** El mapa quedó tapado por otra tarjeta: no se dibuja (ahorra procesador). */
+    private boolean mapReplaced;
+
+    private void applySlots() {
+        mapReplaced = false;
+        String pl = prefs.getString("slot_player", "audio");
+        if (showPlayer && !"audio".equals(pl)) slotCard("player", pl, prefs.getString("slot_player_chart", "coolant"), audX, rowY, audW, cardH);
+        String mp = prefs.getString("slot_map", "map");
+        if (showMap && mapW > 0 && !"map".equals(mp)) {
+            slotCard("map", mp, prefs.getString("slot_map_chart", "coolant"), mapX, mapY, mapW, mapH);
+            mapReplaced = true;
+            if (liveMap != null) liveMap.setVisibility(View.GONE);
+        }
+    }
+
+    /** Tarjeta encima de la de siempre (que se sigue actualizando debajo): «obd» = monitor, «chart» = gráfico. */
+    private void slotCard(String slot, String kind, String chartKey, float x, float y, float w, float h) {
+        FrameLayout card = card(x, y, w, h, CARD);
+        if ("chart".equals(kind)) {
+            Obd.Sensor sensor = obdSensor(chartKey);
+            if (sensor == null) sensor = Obd.COOLANT;
+            ObdChart chart = new ObdChart(this, sensor, 300000, s, false);
+            place(card, chart, 0, 0, w, h);
+            slotTouch(chart, slot);
+        } else if ("data".equals(kind)) {
+            ObdPanel panel = new ObdPanel(this, s);
+            place(card, panel, 0, 0, w, h);
+            slotTouch(panel, slot);
+        } else {
+            placeWrap(card, tv("VEHÍCULO", 11, MUTED, true), 18, 14);
+            ObdMini mini = new ObdMini(this, s, true);
+            place(card, mini, 12, 38, w - 24, h - 50);
+            slotTouch(mini, slot);
+        }
+        slotTouch(card, slot);
+    }
+
+    /** Toque: pantalla Vehículo. Presión larga: elegir qué muestra esta tarjeta. */
+    private void slotTouch(View v, final String slot) {
+        v.setOnClickListener(new View.OnClickListener() { public void onClick(View x) { openObd(); } });
+        v.setOnLongClickListener(new View.OnLongClickListener() { public boolean onLongClick(View x) {
+            if ("speed".equals(slot)) slotMenu(slot); else cardMenu(slot, null, null);
+            return true;
+        }});
+    }
+
+    /** Presión larga en una tarjeta de siempre: el menú de la tarjeta más lo que hacía antes (su diagnóstico). */
+    private void holdMenu(final String slot, String other, final Runnable otherAction) { cardMenu(slot, other, otherAction); }
+
+    /**
+     * Menú de una tarjeta del inicio («car», «map» o «player»): qué muestra, moverla a la izquierda o a la derecha,
+     * el ancho (reproductor) y, si había, la acción de antes de la presión larga.
+     */
+    private void cardMenu(final String col, String other, final Runnable otherAction) {
+        final List<String> items = new ArrayList<String>();
+        final List<Runnable> acts = new ArrayList<Runnable>();
+        if (!"car".equals(col)) { items.add("Cambiar qué muestra…"); acts.add(new Runnable() { public void run() { slotMenu(col); } }); }
+        if (!vertical || !"map".equals(col)) {
+            items.add("◀  Mover a la izquierda"); acts.add(new Runnable() { public void run() { moveCard(col, -1); } });
+            items.add("Mover a la derecha  ▶"); acts.add(new Runnable() { public void run() { moveCard(col, 1); } });
+        }
+        if ("map".equals(col) && !vertical) {
+            final boolean on = prefs.getBoolean("home_strip", false);
+            items.add(on ? "Quitar la franja de widgets de abajo" : "Franja de widgets debajo (altitud, viaje, apps…)");
+            acts.add(new Runnable() { public void run() { prefs.edit().putBoolean("home_strip", !on).apply(); rebuild(); } });
+        }
+        if ("player".equals(col) && !vertical && showMap) { items.add("Ancho de la tarjeta…"); acts.add(new Runnable() { public void run() { pickPlayerWidth(); } }); }
+        if (!vertical && showMap) { items.add(0, "✋  Ajustar con el dedo (mover y cambiar tamaño)"); acts.add(0, new Runnable() { public void run() { openHomeEditor(); } }); }
+        if (prefs.contains("card_order") || prefs.contains("player_w") || prefs.contains("car_w")) {
+            items.add("Volver al orden y tamaño de siempre");
+            acts.add(new Runnable() { public void run() { prefs.edit().remove("card_order").remove("player_w").remove("car_w").apply(); rebuild(); } });
+        }
+        if (!"map".equals(col)) {
+            items.add("car".equals(col) ? "Ocultar la tarjeta del vehículo" : "Ocultar la tarjeta de música");
+            acts.add(new Runnable() { public void run() { prefs.edit().putBoolean("car".equals(col) ? "show_car" : "show_player", false).apply(); rebuild(); } });
+        }
+        if (!showCar) { items.add("Mostrar la tarjeta del vehículo"); acts.add(new Runnable() { public void run() { prefs.edit().putBoolean("show_car", true).apply(); rebuild(); } }); }
+        if (!showPlayer) { items.add("Mostrar la tarjeta de música"); acts.add(new Runnable() { public void run() { prefs.edit().putBoolean("show_player", true).apply(); rebuild(); } }); }
+        if (other != null) { items.add(other); acts.add(otherAction); }
+        new TB(this, dlg()).setTitle("car".equals(col) ? "Tarjeta del vehículo" : "map".equals(col) ? "Tarjeta del centro" : "Tarjeta del reproductor")
+            .setItems(items.toArray(new String[0]), new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) { acts.get(w).run(); } })
+            .setNegativeButton("Cerrar", null).show();
+    }
+
+    /** Editor táctil del inicio: mover columnas y cambiar anchos con el dedo (horizontal, con la tarjeta del centro). */
+    private void openHomeEditor() {
+        final List<String> full = cardOrder();
+        List<String> vis = new ArrayList<String>();
+        for (String c : full) if (colShown(c)) vis.add(c);
+        HashMap<String, String> names = new HashMap<String, String>();
+        names.put("car", I18n.t("Vehículo"));
+        String sm = prefs.getString("slot_map", "map"), sp = prefs.getString("slot_player", "audio");
+        names.put("map", I18n.t("obd".equals(sm) ? "Monitor del vehículo" : "chart".equals(sm) ? "Gráfico en vivo" : "Mapa"));
+        names.put("player", I18n.t("obd".equals(sp) ? "Monitor del vehículo" : "chart".equals(sp) ? "Gráfico en vivo" : "Música"));
+        final View[] holder = new View[1];
+        List<String> ks = HomeStrip.kinds(prefs);
+        HomeEditor ed = new HomeEditor(this, s, ox + 16, 1024 + ex - 32, rowY, cardH, vis, showCar ? carW : 0, showPlayer ? audW : 0, showCar, names,
+            stripOn, stripH, ks, HomeStrip.weights(prefs, ks.size()),
+            new HomeEditor.Cb() {
+                public void pickWidget(int i, String current, boolean canRemove, HomeEditor.WidgetCb cb) { pickStripWidget(i, current, canRemove, cb); }
+                public String widgetName(String kind) { return stripName(kind); }
+                public void onDone(List<String> order, float car, float player, boolean strip, float sh, List<String> kinds, float[] weights) {
+                    prefs.edit().putBoolean("home_strip", strip).putFloat("strip_h", sh).apply();
+                    if (!kinds.isEmpty()) HomeStrip.save(prefs, kinds, weights);
+                    // orden nuevo de las visibles; las que quedaron ocultas van al final (al mostrarlas vuelven ahí)
+                    List<String> all = new ArrayList<String>(order);
+                    for (String c : full) if (!all.contains(c)) all.add(c);
+                    StringBuilder b = new StringBuilder();
+                    for (String c : all) b.append(b.length() > 0 ? "," : "").append(c);
+                    boolean sc = order.contains("car"), sp = order.contains("player");
+                    SharedPreferences.Editor e = prefs.edit().putString("card_order", b.toString())
+                        .putBoolean("show_car", sc).putBoolean("show_player", sp);
+                    if (sc) e.putFloat("car_w", car);
+                    if (sp) e.putFloat("player_w", player);
+                    e.apply();
+                    board.removeView(holder[0]);
+                    rebuild();
+                }
+                public void onReset() {
+                    prefs.edit().remove("card_order").remove("car_w").remove("player_w").remove("strip_h").remove("strip_wr").apply();
+                    board.removeView(holder[0]);
+                    rebuild();
+                }
+                public void onCancel() { board.removeView(holder[0]); }
+            });
+        holder[0] = ed;
+        board.addView(ed, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+    }
+
+    private void pickPlayerWidth() {
+        final int base = showCar ? 248 : 300;
+        final int[] ext = {0, 80, 160};
+        float cur = prefs.getFloat("player_w", base) - base;
+        int sel = cur >= 160 ? 2 : cur >= 80 ? 1 : 0;
+        new TB(this, dlg()).setTitle("Ancho de la tarjeta")
+            .setSingleChoiceItems(new String[]{"Normal", "Ancha", "Muy ancha"}, sel, new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) {
+                d.dismiss();
+                prefs.edit().putFloat("player_w", base + ext[w]).apply();
+                rebuild();
+            }})
+            .setNegativeButton("Cancelar", null).show();
+    }
+
+    /**
+     * Qué muestra una tarjeta: «player» (la del reproductor), «map» (la del centro) o «speed» (el recuadro de la
+     * velocidad). Con «Gráfico en vivo» se elige después el dato.
+     */
+    private void slotMenu(final String slot) {
+        final String[] names = new String[Obd.ALL.length], keys = new String[Obd.ALL.length];
+        for (int i = 0; i < Obd.ALL.length; i++) { names[i] = I18n.t(Obd.ALL[i].label); keys[i] = Obd.ALL[i].key; }
+        if ("speed".equals(slot)) {
+            final String cur = prefs.getString("slot_speed", "speed");
+            String[] opts = new String[keys.length + 1];
+            opts[0] = I18n.t("Velocidad (GPS)");
+            int sel = 0;
+            for (int i = 0; i < keys.length; i++) { opts[i + 1] = names[i]; if (keys[i].equals(cur)) sel = i + 1; }
+            new TB(this, dlg()).raw().wide().setTitle(I18n.t("Recuadro de la velocidad"))
+                .setSingleChoiceItems(opts, sel, new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) {
+                    d.dismiss();
+                    prefs.edit().putString("slot_speed", w == 0 ? "speed" : keys[w - 1]).apply();
+                    rebuild();
+                }})
+                .setNegativeButton(I18n.t("Cancelar"), null).show();
+            return;
+        }
+        final boolean player = "player".equals(slot);
+        final String key = player ? "slot_player" : "slot_map", chartKey = key + "_chart";
+        final String[] kinds = {player ? "audio" : "map", "obd", "data", "chart"};
+        final String cur = prefs.getString(key, kinds[0]);
+        String chartName = I18n.t(Obd.COOLANT.label);
+        for (int i = 0; i < keys.length; i++) if (keys[i].equals(prefs.getString(chartKey, "coolant"))) chartName = names[i];
+        String[] opts = {I18n.t(player ? "Música" : "Mapa"), I18n.t("Monitor del vehículo"), I18n.t("Panel de datos"),
+            I18n.t("Gráfico en vivo") + ("chart".equals(cur) ? " · " + chartName : "") + "…"};
+        new TB(this, dlg()).raw().wide().setTitle(I18n.t(player ? "Tarjeta del reproductor" : "Tarjeta del centro"))
+            .setSingleChoiceItems(opts, Math.max(0, java.util.Arrays.asList(kinds).indexOf(cur)), new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) {
+                d.dismiss();
+                if (w < 3) {
+                    prefs.edit().putString(key, kinds[w]).apply();
+                    rebuild();
+                    if (w == 2) pickPanelSensors();
+                    return;
+                }
+                int sel = Math.max(0, java.util.Arrays.asList(keys).indexOf(prefs.getString(chartKey, "coolant")));
+                new TB(Main.this, dlg()).raw().wide().setTitle(I18n.t("¿Qué dato graficar?"))
+                    .setSingleChoiceItems(names, sel, new DialogInterface.OnClickListener() { public void onClick(DialogInterface d2, int w2) {
+                        d2.dismiss();
+                        prefs.edit().putString(key, "chart").putString(chartKey, keys[w2]).apply();
+                        rebuild();
+                    }})
+                    .setNegativeButton(I18n.t("Cancelar"), null).show();
+            }})
+            .setNegativeButton(I18n.t("Cancelar"), null).show();
+    }
+
+    /** Elige hasta 6 datos para el panel del inicio (se puede tocar varias veces; «Listo» cierra). */
+    private void pickPanelSensors() {
+        final List<Obd.Sensor> list = new ArrayList<Obd.Sensor>();
+        final List<String> labels = new ArrayList<String>();
+        final java.util.LinkedHashSet<String> chosen = new java.util.LinkedHashSet<String>();
+        for (String k : ObdPanel.keys(prefs)) chosen.add(k);
+        for (Obd.Sensor s : Obd.ALL) {
+            list.add(s);
+            labels.add((chosen.contains(s.key) ? "✓  " : "    ") + I18n.t(s.label));
+        }
+        new TB(this, dlg()).raw().wide().setTitle(I18n.t("Datos del panel"))
+            .setItems(labels.toArray(new String[0]), new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) {
+                String key = list.get(w).key;
+                if (chosen.contains(key)) chosen.remove(key);
+                else if (chosen.size() < ObdPanel.MAX) chosen.add(key);
+                else { toast(I18n.t("Máximo 6 datos")); pickPanelSensors(); return; }
+                if (chosen.isEmpty()) chosen.add("rpm");
+                ObdPanel.saveKeys(prefs, new ArrayList<String>(chosen));
+                rebuild();
+                pickPanelSensors();
+            }})
+            .setNegativeButton(I18n.t("Listo"), null).show();
+    }
+
+    private static Obd.Sensor obdSensor(String key) {
+        for (Obd.Sensor x : Obd.ALL) if (x.key.equals(key)) return x;
+        return null;
+    }
+
+    /** Pantalla del vehículo (OBD-II): sensores en vivo, alertas y códigos de falla. */
+    private void openObd() {
+        try { startActivity(new Intent(this, ObdActivity.class)); } catch (Throwable e) { toast("No se pudo abrir la app"); }
     }
 
     private void navigateSavedSlot(String key, String label) {
@@ -8801,7 +9257,7 @@ public class Main extends Activity {
         segmented(lay, "Reproductor de música", "Ponlo del lado del conductor para tenerlo a la mano", new String[]{"Izquierda", "Derecha"},
             playerLeft ? 0 : 1, new IntCb() { public void on(int i) {
                 // botones en el orden de la pantalla: izquierda, derecha
-                prefs.edit().putString("player_side", i == 0 ? "left" : "right").apply(); rebuild();
+                prefs.edit().putString("player_side", i == 0 ? "left" : "right").remove("card_order").apply(); rebuild();
             }});
         toggle(lay, "Tarjeta del reproductor", "Si la ocultas, el mapa gana espacio", showPlayer, new IntCb() { public void on(int i) {
             prefs.edit().putBoolean("show_player", i == 1).apply(); rebuild();
@@ -8817,6 +9273,47 @@ public class Main extends Activity {
             segmented(lay, "Velocímetro", "En la tarjeta del vehículo. Toma el color de acento", new String[]{"Digital", "Analógico", "Mixto"},
                 prefs.getInt("speedo", 0), new IntCb() { public void on(int i) {
                     prefs.edit().putInt("speedo", i).apply(); rebuild();
+                }});
+        }
+        // 2.24: qué muestra cada tarjeta (con el escáner OBD de la pantalla Vehículo)
+        LinearLayout sl = section(body, "Qué muestra cada tarjeta");
+        final String[] sensorKeys = new String[Obd.ALL.length], sensorNames = new String[Obd.ALL.length];
+        for (int i = 0; i < Obd.ALL.length; i++) { sensorKeys[i] = Obd.ALL[i].key; sensorNames[i] = Obd.ALL[i].label; }
+        if (showPlayer) {
+            final String[] pk = {"audio", "obd", "data", "chart"};
+            final String pv = prefs.getString("slot_player", "audio");
+            choice(sl, "Tarjeta del reproductor", "Música, el monitor del vehículo (temperatura, voltaje, RPM y alertas), un panel de datos o un gráfico en vivo",
+                new String[]{"Música", "Monitor del vehículo", "Panel de datos", "Gráfico en vivo"}, Math.max(0, java.util.Arrays.asList(pk).indexOf(pv)), new IntCb() { public void on(int i) {
+                    prefs.edit().putString("slot_player", pk[i]).apply(); rebuild();
+                }});
+            if ("chart".equals(pv)) choice(sl, "Gráfico del reproductor", "Dato del escáner que se grafica (últimos 5 minutos)", sensorNames,
+                Math.max(0, java.util.Arrays.asList(sensorKeys).indexOf(prefs.getString("slot_player_chart", "coolant"))), new IntCb() { public void on(int i) {
+                    prefs.edit().putString("slot_player_chart", sensorKeys[i]).apply(); rebuild();
+                }});
+        }
+        if (showMap) {
+            final String[] mk = {"map", "obd", "data", "chart"};
+            final String mv = prefs.getString("slot_map", "map");
+            choice(sl, "Tarjeta del centro", "El mapa, el monitor del vehículo, un panel de datos o un gráfico en vivo. Sin el mapa, Android Auto y CarPlay se abren desde la barra de botones",
+                new String[]{"Mapa", "Monitor del vehículo", "Panel de datos", "Gráfico en vivo"}, Math.max(0, java.util.Arrays.asList(mk).indexOf(mv)), new IntCb() { public void on(int i) {
+                    prefs.edit().putString("slot_map", mk[i]).apply(); rebuild();
+                }});
+            if ("chart".equals(mv)) choice(sl, "Gráfico del centro", "Dato del escáner que se grafica (últimos 5 minutos)", sensorNames,
+                Math.max(0, java.util.Arrays.asList(sensorKeys).indexOf(prefs.getString("slot_map_chart", "coolant"))), new IntCb() { public void on(int i) {
+                    prefs.edit().putString("slot_map_chart", sensorKeys[i]).apply(); rebuild();
+                }});
+        }
+        if ("data".equals(prefs.getString("slot_player", "audio")) || "data".equals(prefs.getString("slot_map", "map"))) {
+            row(sl, "Datos del panel", "Hasta 6 datos del escáner, por ejemplo RPM, velocidad, refrigerante y consumo",
+                ObdPanel.keys(prefs).length + " / " + ObdPanel.MAX, new Runnable() { public void run() { pickPanelSensors(); } });
+        }
+        if (carSpeed && showCar) {
+            final String[] vk = new String[Obd.ALL.length + 1], vn = new String[Obd.ALL.length + 1];
+            vk[0] = "speed"; vn[0] = "Velocidad (GPS)";
+            for (int i = 0; i < Obd.ALL.length; i++) { vk[i + 1] = sensorKeys[i]; vn[i + 1] = sensorNames[i]; }
+            choice(sl, "Recuadro de la velocidad", "La velocidad del GPS o, en grande, otro dato del escáner (por ejemplo la temperatura del refrigerante)", vn,
+                Math.max(0, java.util.Arrays.asList(vk).indexOf(prefs.getString("slot_speed", "speed"))), new IntCb() { public void on(int i) {
+                    prefs.edit().putString("slot_speed", vk[i]).apply(); rebuild();
                 }});
         }
         LinearLayout mp = section(body, "Mapa");
