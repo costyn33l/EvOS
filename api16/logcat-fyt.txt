@@ -1,0 +1,2 @@
+W/ActivityManager( 1368): Unable to start service Intent { act=com.syu.ms.toolkit pkg=com.syu.ms }: not found
+W/ActivityManager( 1368): Unable to start service Intent { cmp=com.syu.ms/app.ToolkitService }: not found

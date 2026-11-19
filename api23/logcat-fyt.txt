@@ -1,0 +1,5 @@
+11-19 15:05:52.884  1562  1647 D ConnectivityService: notifyType IP_CHANGED for NetworkAgentInfo [MOBILE (LTE) - 100]
+11-19 15:05:52.896  1562  1647 D ConnectivityService: notifyType PRECHECK for NetworkAgentInfo [MOBILE (LTE) - 100]
+11-19 15:05:52.969  1562  1647 D ConnectivityService: notifyType CAP_CHANGED for NetworkAgentInfo [MOBILE (LTE) - 100]
+11-19 15:08:55.611  1562  2057 W ActivityManager: Unable to start service Intent { act=com.syu.ms.toolkit pkg=com.syu.ms } U=0: not found
+11-19 15:08:55.612  1562  1753 W ActivityManager: Unable to start service Intent { cmp=com.syu.ms/app.ToolkitService } U=0: not found
