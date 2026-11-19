@@ -1,0 +1,40 @@
+D/dalvikvm( 1967): VFY: replacing opcode 0x6e at 0x000c
+W/dalvikvm( 1967): VFY: unable to resolve virtual method 3103: Lcom/stradaos/launcher/Main;.checkSelfPermission (Ljava/lang/String;)I
+D/dalvikvm( 1967): VFY: replacing opcode 0x6e at 0x000e
+W/dalvikvm( 1967): VFY: unable to resolve virtual method 3103: Lcom/stradaos/launcher/Main;.checkSelfPermission (Ljava/lang/String;)I
+D/dalvikvm( 1967): VFY: replacing opcode 0x6e at 0x0018
+W/dalvikvm( 1967): VFY: unable to resolve virtual method 3103: Lcom/stradaos/launcher/Main;.checkSelfPermission (Ljava/lang/String;)I
+D/dalvikvm( 1967): VFY: replacing opcode 0x6e at 0x0008
+W/dalvikvm( 1967): VFY: unable to resolve const-class 906 (Lcom/stradaos/launcher/MediaListener;) in Lcom/stradaos/launcher/Main;
+D/dalvikvm( 1967): VFY: replacing opcode 0x1c at 0x0013
+W/dalvikvm( 1967): VFY: unable to resolve virtual method 3103: Lcom/stradaos/launcher/Main;.checkSelfPermission (Ljava/lang/String;)I
+D/dalvikvm( 1967): VFY: replacing opcode 0x6e at 0x0008
+W/dalvikvm( 1967): VFY: unable to resolve static field 2070 (connected) in Lcom/stradaos/launcher/MediaListener;
+D/dalvikvm( 1967): VFY: replacing opcode 0x63 at 0x0129
+W/dalvikvm( 1967): VFY: unable to resolve static field 2070 (connected) in Lcom/stradaos/launcher/MediaListener;
+D/dalvikvm( 1967): VFY: replacing opcode 0x63 at 0x01f8
+W/dalvikvm( 1967): VFY: unable to resolve static field 2070 (connected) in Lcom/stradaos/launcher/MediaListener;
+D/dalvikvm( 1967): VFY: replacing opcode 0x63 at 0x00ad
+W/dalvikvm( 1967): VFY: unable to resolve virtual method 465: Landroid/os/StatFs;.getAvailableBytes ()J
+D/dalvikvm( 1967): VFY: replacing opcode 0x6e at 0x000f
+W/dalvikvm( 1967): VFY: unable to resolve instance field 9
+D/dalvikvm( 1967): VFY: replacing opcode 0x54 at 0x0007
+W/dalvikvm( 1967): VFY: unable to resolve virtual method 479: Landroid/speech/tts/TextToSpeech;.speak (Ljava/lang/CharSequence;ILandroid/os/Bundle;Ljava/lang/String;)I
+D/dalvikvm( 1967): VFY: replacing opcode 0x6e at 0x0045
+W/dalvikvm( 1967): VFY: unable to resolve virtual method 100: Landroid/content/Context;.getExternalFilesDirs (Ljava/lang/String;)[Ljava/io/File;
+D/dalvikvm( 1967): VFY: replacing opcode 0x6e at 0x0008
+I/dalvikvm( 1967): Could not find method android.app.NotificationManager.getNotificationChannel, referenced from method com.stradaos.launcher.ObdService.build
+W/dalvikvm( 1967): VFY: unable to resolve virtual method 55: Landroid/app/NotificationManager;.getNotificationChannel (Ljava/lang/String;)Landroid/app/NotificationChannel;
+D/dalvikvm( 1967): VFY: replacing opcode 0x6e at 0x0012
+I/dalvikvm( 1967): Could not find method android.content.Context.startForegroundService, referenced from method com.stradaos.launcher.ObdService.start
+W/dalvikvm( 1967): VFY: unable to resolve virtual method 109: Landroid/content/Context;.startForegroundService (Landroid/content/Intent;)Landroid/content/ComponentName;
+D/dalvikvm( 1967): VFY: replacing opcode 0x6e at 0x000d
+D/dalvikvm( 1967): DexOpt: unable to opt direct call 0x0035 at 0x1f in Lcom/stradaos/launcher/ObdService;.build
+D/dalvikvm( 1967): DexOpt: unable to opt direct call 0x002e at 0x27 in Lcom/stradaos/launcher/ObdService;.build
+I/dalvikvm( 1967): Could not find method com.stradaos.launcher.ObdActivity.checkSelfPermission, referenced from method com.stradaos.launcher.ObdActivity.discover
+W/dalvikvm( 1967): VFY: unable to resolve virtual method 4043: Lcom/stradaos/launcher/ObdActivity;.checkSelfPermission (Ljava/lang/String;)I
+D/dalvikvm( 1967): VFY: replacing opcode 0x6e at 0x0035
+I/ActivityManager( 1367): START {cmp=com.stradaos.launcher.debug/com.stradaos.launcher.ObdActivity u=0} from pid 1967
+I/ActivityManager( 1367): Displayed com.stradaos.launcher.debug/com.stradaos.launcher.ObdActivity: +144ms
+I/ActivityManager( 1367): START {cmp=com.stradaos.launcher.debug/com.stradaos.launcher.ObdActivity u=0} from pid 1967
+I/ActivityManager( 1367): Displayed com.stradaos.launcher.debug/com.stradaos.launcher.ObdActivity: +87ms
