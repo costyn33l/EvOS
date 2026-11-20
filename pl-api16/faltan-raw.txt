@@ -1,0 +1,134 @@
+--------- beginning of /dev/log/main
+--------- beginning of /dev/log/system
+pl	mph
+pl	Android Auto
+pl	CarPlay
+pl	Bluetooth
+pl	StradaOS
+pl	Brak
+pl	Nie wykryto marki z własnymi funkcjami
+pl	Skonfiguruj
+pl	Android Auto i CarPlay
+pl	Normalny
+pl	Phone
+pl	Camera
+pl	Warsaw
+pl	Warsaw (GPS)
+pl	Polski
+pl	Rzeczywisty
+pl	StradaOS · Auto Head Unit UI
+pl	2.28.0-prueba
+pl	Android 4.1
+pl	GitHub Releases
+pl	github.com/lordnordic-debug/StradaOS
+pl	GNU General Public License v3.0
+pl	Open-Meteo.com (CC BY 4.0)
+pl	QR Code generator library · Project Nayuki (MIT)
+pl	Material Symbols (Apache 2.0)
+pl	Mozilla CA (certifi, MPL-2.0)
+pl	Aurora
+pl	Faro
+pl	Temperatura odczuwalna -1° · Wilgotność 77% · Wiatr 10 km/h
+pl	Teraz
+pl	Dzisiaj
+pl	Sobota
+pl	Niedziela
+pl	Poniedziałek
+pl	Wtorek
+pl	StradaOS
+pl	‹  Twój pojazd
+pl	Symulowany samochód
+pl	Na żywo · VIN DEMO0STRADAOS0001
+pl	Aktywne: 3
+pl	Nie skonfigurowano
+pl	Aktywne: 4
+pl	‹  Skaner OBD-II
+pl	Wysoka temperatura płynu chłodzącego: 104 °C
+pl	Zwolnij: użyj niższego biegu, wyłącz klimatyzację, a jeśli temperatura dalej rośnie, ustaw ogrzewanie na maksimum i znajdź miejsce na postój.
+pl	Ostrzeżenie
+pl	Uboga mieszanka (Długoterminowa korekta paliwa): +12 %
+pl	Silnik dostaje mniej paliwa, niż potrzebuje: może to być nieszczelność podciśnienia, filtr paliwa lub czujnik MAF. Na podjazdach może tracić moc.
+pl	Płyn chłodzący szybko się nagrzewa: 100 °C
+pl	Zwolnij: użyj niższego biegu, wyłącz klimatyzację i sprawdź, czy włącza się wentylator chłodnicy.
+pl	Kod usterki P0711
+pl	Czujnik temperatury oleju automatycznej skrzyni pokazuje wartości poza zakresem. Zmiany biegów mogą być szarpane lub skrzynia może przejść w tryb awaryjny. Sprawdź poziom i kolor oleju w skrzyni (ciemny kolor lub zapach spalenizny to zły znak) oraz złącze czujnika. Na długich podjazdach używaj niskiego biegu i daj skrzyni odpocząć.
+pl	Płyn chłodniczy
+pl	Akumulator
+pl	Obroty
+pl	5 200 / 6 000 rpm
+pl	Obciążenie silnika
+pl	Powietrze dolotowe
+pl	Paliwo
+pl	Krótkoterminowa korekta paliwa
+pl	Długoterminowa korekta paliwa
+pl	Olej silnikowy
+pl	Przegrzanie silnika: 106 °C
+pl	Zatrzymaj się w bezpiecznym miejscu i wyłącz silnik. Nie otwieraj korka chłodnicy, gdy jest gorący. Poczekaj, aż ostygnie, potem sprawdź poziom płynu chłodzącego, wentylator chłodnicy i pasek.
+pl	Alert
+pl	Czujnik temperatury oleju automatycznej skrzyni pokazuje wartości poza zakresem.
+pl	Do sprawdzenia
+pl	✓ Wypadanie zapłonów\n✓ Układ paliwowy\n✓ Podzespoły\n✓ Katalizator\n✓ Opary paliwa (EVAP)\n✓ Sondy lambda\n✓ Podgrzewanie sondy lambda
+pl	3 491 rpm
+pl	Prędkość
+pl	Przepustnica
+pl	Przepływ powietrza
+pl	Ciśnienie w kolektorze
+pl	Zużycie paliwa (obliczone)
+pl	Zużycie paliwa
+pl	Temperatura na zewnątrz
+pl	Zużycie paliwa przez silnik
+pl	Wyprzedzenie zapłonu
+pl	Sonda lambda bank 1 czujnik 2
+pl	Czas pracy
+pl	Dystans z zapaloną kontrolką silnika
+pl	Rozgrzania od usunięcia kodów
+pl	Dystans od usunięcia kodów
+pl	Ciśnienie atmosferyczne
+pl	Katalizator bank 1
+pl	Obciążenie bezwzględne
+pl	Zadany współczynnik lambda
+pl	Claude (Anthropic)
+pl	Nie ustawiono
+pl	claude-opus-5-5
+pl	Automatycznie
+pl	‹  Przewodnik po skanerze
+pl	Android Auto
+pl	CarPlay
+pl	Bluetooth
+pl	mph
+pl	Aurora
+pl	Faro
+pl	Zastosowano motyw: Aurora
+pl	Zastosowano motyw: Kobalt
+pl	Zastosowano motyw: Klasyczny
+pl	1. Przekaż 4 USD na Ko-fi: zeskanuj kod telefonem lub wejdź na ko-fi.com/stradaos.
+pl	Odblokuj Faro
+pl	1. Przekaż na Ko-fi 4 USD za jeden motyw lub 6 USD za dwa: zeskanuj kod telefonem lub wejdź na ko-fi.com/stradaos.
+en	mph
+en	Android Auto
+en	CarPlay
+en	Bluetooth
+en	1. Donate on Ko-fi, 4 USD for one theme or 6 USD for two: scan the code with your phone or go to ko-fi.com/stradaos.
+en	Unlock Faro
+hu	mph
+hu	Android Auto
+hu	CarPlay
+hu	Bluetooth
+hu	1. Adományozz a Ko-fin 4 USD-t egy témáért vagy 6 USD-t kettőért: olvasd be a kódot a telefonoddal, vagy nyisd meg: ko-fi.com/stradaos.
+hu	Faro feloldása
+ar	mph
+ar	Android Auto
+ar	CarPlay
+ar	Bluetooth
+ar	1. تبرّع على Ko-fi بـ 4 دولارات لسمة واحدة أو 6 دولارات لسمتين: امسح الرمز بهاتفك أو ادخل إلى ko-fi.com/stradaos.
+ar	فتح Faro
+hu	mph
+hu	Android Auto
+hu	CarPlay
+hu	Bluetooth
+pl	mph
+pl	Android Auto
+pl	CarPlay
+pl	Bluetooth
+pl	Calle 53
+pl	Aleje Jerozolimskie
