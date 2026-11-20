@@ -1,0 +1,501 @@
+ar	1,885 rpm
+ar	5,200 / 6,000 rpm
+ar	Android Auto
+ar	Bluetooth
+ar	CarPlay
+ar	Claude (Anthropic)
+ar	StradaOS
+ar	claude-opus-5-5
+ar	mph
+de	1.956 rpm
+de	5 aktiv
+de	5.200 / 6.000 rpm
+de	Absolute Last
+de	Alarm
+de	Android Auto
+de	Ansaugluft
+de	Automatisch
+de	Außentemperatur
+de	Batterie
+de	Bluetooth
+de	CarPlay
+de	Claude (Anthropic)
+de	Der Getriebeöl-Temperatursensor (Automatik) zeigt unplausible Werte.
+de	Der Getriebeöl-Temperatursensor (Automatik) zeigt unplausible Werte. Das Getriebe kann hart schalten oder in den Notlauf gehen. Stand und Farbe des Getriebeöls (dunkel oder verbrannter Geruch ist ein schlechtes Zeichen) und den Stecker des Sensors prüfen. An langen Steigungen einen kleinen Gang nutzen und das Getriebe schonen.
+de	Der Motor bekommt weniger Kraftstoff als nötig: Falschluft, Kraftstofffilter oder MAF-Sensor. Er kann am Berg Leistung verlieren.
+de	Die Lichtmaschine lädt nicht richtig: schalte Unnötiges aus (Klimaanlage, Zusatzlicht) und fahre in eine Werkstatt, bevor die Batterie leer ist. Prüfe den Riemen.
+de	Drehzahl
+de	Drosselklappe
+de	Fehlercode P0711
+de	Geschwindigkeit
+de	Katalysator Bank 1
+de	Keine
+de	Keine Marke mit eigenen Funktionen erkannt
+de	Kraftstoff
+de	Kurzzeit-Gemischkorrektur
+de	Kühlmittel
+de	Kühlmittel hoch: 100 °C
+de	Kühlmittel steigt schnell: 100 °C
+de	Lambdasonde Bank 1 Sensor 2
+de	Langzeit-Gemischkorrektur
+de	Laufzeit
+de	Live · VIN DEMO0STRADAOS0001
+de	Luftdruck
+de	Luftmasse
+de	Mageres Gemisch (Langzeit-Gemischkorrektur): +12 %
+de	Motorlast
+de	Motorverbrauch
+de	Motoröl
+de	Nicht eingerichtet
+de	Nicht gesetzt
+de	Prüfen
+de	Saugrohrdruck
+de	Simuliertes Auto
+de	Simuliertes Auto · Live · VIN DEMO0STRADAOS0001
+de	Soll-Lambda
+de	Spannung niedrig: 11,6 V
+de	StradaOS
+de	Strecke mit Motorkontrollleuchte
+de	Strecke seit dem Löschen
+de	Verbrauch (berechnet)
+de	Verbrauch pro Stunde
+de	Warmläufe seit dem Löschen
+de	Warnung
+de	Weniger Last: niedrigeren Gang nutzen, Klimaanlage aus und prüfen, ob der Lüfter anspringt.
+de	Weniger Last: niedrigeren Gang nutzen, Klimaanlage aus und, wenn es weiter steigt, Heizung auf Maximum und einen Halteplatz suchen.
+de	Zündzeitpunkt
+de	claude-opus-5-5
+de	mph
+de	‹  Dein Fahrzeug
+de	‹  OBD-II-Scanner
+de	✓ Zündaussetzer\n✓ Kraftstoffsystem\n✓ Bauteile\n✓ Katalysator\n✓ Kraftstoffdampf (EVAP)\n✓ Lambdasonden\n✓ Lambdasondenheizung
+en	1,985 rpm
+en	4 active
+en	5,200 / 6,000 rpm
+en	Absolute load
+en	Air flow
+en	Alert
+en	Android Auto
+en	Automatic
+en	Barometric pressure
+en	Battery
+en	Bluetooth
+en	CarPlay
+en	Catalyst bank 1
+en	Check
+en	Claude (Anthropic)
+en	Commanded equivalence ratio
+en	Coolant
+en	Coolant rising fast: 100 °C
+en	Distance since codes cleared
+en	Distance with check engine light
+en	Ease off: use a lower gear, turn off the A/C and check that the radiator fan turns on.
+en	Engine fuel rate
+en	Engine load
+en	Engine oil
+en	Engine overheating: 110 °C
+en	Fuel
+en	Fuel consumption (calculated)
+en	Fuel rate
+en	Ignition timing
+en	Intake air
+en	Lean mixture (Long fuel trim): +12 %
+en	Live · VIN DEMO0STRADAOS0001
+en	Long fuel trim
+en	Manifold pressure
+en	No brand with its own features was detected
+en	None
+en	Not set
+en	Not set up
+en	O2 sensor bank 1 sensor 2
+en	Outside temperature
+en	Run time
+en	Short fuel trim
+en	Simulated car
+en	Simulated car · Live · VIN DEMO0STRADAOS0001
+en	Speed
+en	Stop somewhere safe and turn off the engine. Don't open the radiator cap while hot. Let it cool, then check the coolant level, the radiator fan and the belt.
+en	StradaOS
+en	The automatic transmission fluid temperature sensor reads out of range.
+en	The automatic transmission fluid temperature sensor reads out of range. Shifts may be harsh or it may go into limp mode. Check the transmission fluid level and color (dark or a burnt smell is a bad sign) and the sensor connector. On long climbs use a low gear and let the transmission rest.
+en	The engine is getting less fuel than it needs: it could be a vacuum leak, the fuel filter or the MAF sensor. It may lose power on climbs.
+en	Throttle
+en	Trouble code P0711
+en	Warm-ups since codes cleared
+en	Warning
+en	claude-opus-5-5
+en	mph
+en	‹  OBD-II scanner
+en	‹  Your vehicle
+en	✓ Misfire\n✓ Fuel system\n✓ Components\n✓ Catalyst\n✓ Fuel vapor (EVAP)\n✓ Oxygen sensors\n✓ Oxygen sensor heater
+fr	1 837 rpm
+fr	5 200 / 6 000 rpm
+fr	6 actives
+fr	Air d'admission
+fr	Alerte
+fr	Android Auto
+fr	Aucune
+fr	Aucune marque avec des fonctions propres n'a été détectée
+fr	Automatique
+fr	Avance à l'allumage
+fr	Avertissement
+fr	Batterie
+fr	Bluetooth
+fr	CarPlay
+fr	Carburant
+fr	Carburant bas : 5 %
+fr	Catalyseur banc 1
+fr	Charge absolue
+fr	Charge moteur
+fr	Claude (Anthropic)
+fr	Code défaut P0711
+fr	Consommation (calculé)
+fr	Consommation horaire
+fr	Consommation moteur
+fr	Correction courte
+fr	Correction longue
+fr	Distance avec voyant moteur
+fr	Distance depuis l'effacement
+fr	Débit d'air
+fr	Faites le plein à la prochaine station. En montagne, il n'y en aura peut-être pas d'autre.
+fr	Huile moteur
+fr	L'alternateur ne charge pas bien : éteignez ce qui n'est pas utile (climatisation, feux additionnels) et allez au garage avant que la batterie ne se vide. Vérifiez la courroie.
+fr	Le capteur de température d'huile de la boîte automatique indique une valeur anormale.
+fr	Le capteur de température d'huile de la boîte automatique indique une valeur anormale. La boîte peut passer les rapports brutalement ou passer en mode dégradé. Vérifiez le niveau et la couleur de l'huile de boîte (foncée ou odeur de brûlé est mauvais signe) et le connecteur du capteur. Dans les longues montées, utilisez un rapport bas et laissez reposer la boîte.
+fr	Le liquide de refroidissement monte vite : 100 °C
+fr	Le moteur reçoit moins de carburant que nécessaire : fuite de dépression, filtre à carburant ou capteur MAF. Il peut perdre de la puissance en côte.
+fr	Liquide de refroidissement
+fr	Liquide de refroidissement élevé : 100 °C
+fr	Montées en température depuis l'effacement
+fr	Mélange pauvre (Correction longue) : +12 %
+fr	Non configurée
+fr	Non définie
+fr	Papillon
+fr	Pression atmosphérique
+fr	Pression collecteur
+fr	Richesse commandée
+fr	Régime
+fr	Sonde O2 banc 1 capteur 2
+fr	Soulagez le moteur : rapport inférieur, climatisation coupée et vérifiez que le ventilateur se déclenche.
+fr	Soulagez le moteur : rapport inférieur, climatisation coupée et, si ça continue de monter, chauffage au maximum et trouvez où vous arrêter.
+fr	StradaOS
+fr	Temps de fonctionnement
+fr	Température extérieure
+fr	Tension basse : 11,6 V
+fr	Vitesse
+fr	Voiture simulée
+fr	Voiture simulée · En direct · VIN DEMO0STRADAOS0001
+fr	claude-opus-5-5
+fr	direct · VIN DEMO0STRADAOS0001
+fr	mph
+fr	À vérifier
+fr	‹  Scanner OBD-II
+fr	‹  Votre véhicule
+fr	✓ Ratés d'allumage\n✓ Système d'alimentation\n✓ Composants\n✓ Catalyseur\n✓ Vapeurs de carburant (EVAP)\n✓ Sondes lambda\n✓ Chauffage des sondes lambda
+hu	1 806 rpm
+hu	5 200 / 6 000 rpm
+hu	6 aktív
+hu	A generátor nem tölt rendesen: kapcsold ki, ami nem kell (klíma, extra lámpák), és menj szervizbe, mielőtt lemerül az akkumulátor. Ellenőrizd a szíjat.
+hu	A hűtőfolyadék gyorsan melegszik: 100 °C
+hu	A motor kevesebb üzemanyagot kap a szükségesnél: vákuumszivárgás, üzemanyagszűrő vagy MAF-szenzor lehet. Emelkedőn veszíthet a teljesítményéből.
+hu	Abszolút terhelés
+hu	Akkumulátor
+hu	Alacsony feszültség: 11,6 V
+hu	Android Auto
+hu	Automatikus
+hu	Az automata váltó olajhőmérséklet-érzékelője a vártól eltérő értéket mutat.
+hu	Az automata váltó olajhőmérséklet-érzékelője a vártól eltérő értéket mutat. A váltó rántva válthat vagy vészüzembe kapcsolhat. Ellenőrizd a váltóolaj szintjét és színét (a sötét szín vagy az égett szag rossz jel), valamint az érzékelő csatlakozóját. Hosszú emelkedőn használj alacsony fokozatot, és pihentesd a váltót.
+hu	Bemelegedések a törlés óta
+hu	Beszívott levegő
+hu	Bluetooth
+hu	CarPlay
+hu	Claude (Anthropic)
+hu	Csökkentsd a terhelést: kapcsolj vissza, kapcsold ki a klímát, és ellenőrizd, hogy bekapcsol-e a hűtőventilátor.
+hu	Csökkentsd a terhelést: kapcsolj vissza, kapcsold ki a klímát, és ha tovább emelkedik, tedd maximumra a fűtést, és keress helyet a megálláshoz.
+hu	Ellenőrizendő
+hu	Figyelmeztetés
+hu	Fogyasztás (számított)
+hu	Fojtószelep
+hu	Fordulatszám
+hu	Gyújtási előgyújtás
+hu	Hibakód: P0711
+hu	Hosszú távú keverékkorrekció
+hu	Hűtőfolyadék
+hu	Katalizátor 1. hengersor
+hu	Kevés üzemanyag: 5 %
+hu	Külső hőmérséklet
+hu	Légköri nyomás
+hu	Légtömegáram
+hu	Magas hűtőfolyadék-hőmérséklet: 100 °C
+hu	Megtett út a törlés óta
+hu	Megtett út égő hibalámpával
+hu	Motor fogyasztása
+hu	Motorolaj
+hu	Motorterhelés
+hu	Nem észlelhető saját funkciókkal rendelkező márka
+hu	Nincs
+hu	Nincs beállítva
+hu	Nincs megadva
+hu	O2-szenzor 1. hengersor 2. szenzor
+hu	Parancsolt légviszony
+hu	Riasztás
+hu	Rövid távú keverékkorrekció
+hu	Sebesség
+hu	StradaOS
+hu	Szegény keverék (Hosszú távú keverékkorrekció): +12 %
+hu	Szimulált autó
+hu	Szimulált autó · Élő · VIN DEMO0STRADAOS0001
+hu	Szívócsőnyomás
+hu	Tankolj a következő kútnál. Hegyekben lehet, hogy nem lesz több.
+hu	claude-opus-5-5
+hu	mph
+hu	Óránkénti fogyasztás
+hu	Üzemanyag
+hu	Üzemidő
+hu	‹  Járműved
+hu	‹  OBD-II szkenner
+hu	✓ Gyújtáskimaradás\n✓ Üzemanyagrendszer\n✓ Alkatrészek\n✓ Katalizátor\n✓ Üzemanyaggőz (EVAP)\n✓ Oxigénérzékelők\n✓ Oxigénérzékelő-fűtés
+it	1.971 rpm
+it	5 attivi
+it	5.200 / 6.000 rpm
+it	Acceleratore
+it	Allarme
+it	Android Auto
+it	Anticipo di accensione
+it	Aria aspirata
+it	Auto simulata
+it	Auto simulata · In diretta · VIN DEMO0STRADAOS0001
+it	Automatico
+it	Avviso
+it	Batteria
+it	Bluetooth
+it	CarPlay
+it	Carburante
+it	Carico assoluto
+it	Carico motore
+it	Catalizzatore bancata 1
+it	Claude (Anthropic)
+it	Codice di guasto P0711
+it	Consumo (calcolato)
+it	Consumo del motore
+it	Consumo orario
+it	Controllare
+it	Correzione breve
+it	Correzione lunga
+it	Distanza con spia motore
+it	Distanza dalla cancellazione
+it	Flusso d'aria
+it	Giri
+it	Il motore riceve meno carburante del necessario: può essere una perdita di vuoto, il filtro del carburante o il sensore MAF. Può perdere potenza in salita.
+it	Il refrigerante sale veloce: 100 °C
+it	Il sensore di temperatura dell'olio del cambio automatico segna fuori dal previsto.
+it	Il sensore di temperatura dell'olio del cambio automatico segna fuori dal previsto. Il cambio può innestare con strappi o entrare in modalità di emergenza. Controlla livello e colore dell'olio del cambio (scuro o con odore di bruciato è un brutto segno) e il connettore del sensore. Nelle salite lunghe usa una marcia bassa e fai riposare il cambio.
+it	In diretta · VIN DEMO0STRADAOS0001
+it	L'alternatore non carica bene: spegni ciò che non serve (aria condizionata, luci extra) e vai in officina prima che la batteria si scarichi. Controlla la cinghia.
+it	Liquido di raffreddamento
+it	Miscela magra (Correzione lunga): +12 %
+it	Nessuna
+it	Non configurata
+it	Non impostata
+it	Non è stata rilevata una marca con funzioni proprie
+it	Olio motore
+it	Pressione barometrica
+it	Pressione collettore
+it	Rapporto di equivalenza comandato
+it	Refrigerante alto: 100 °C
+it	Riduci lo sforzo: usa una marcia più bassa, spegni l'aria condizionata e controlla che la ventola si accenda.
+it	Riduci lo sforzo: usa una marcia più bassa, spegni l'aria condizionata e, se continua a salire, metti il riscaldamento al massimo e cerca dove fermarti.
+it	Riscaldamenti dalla cancellazione
+it	Sonda O2 bancata 1 sensore 2
+it	StradaOS
+it	Temperatura esterna
+it	Tempo di funzionamento
+it	Tensione bassa: 11,6 V
+it	Velocità
+it	claude-opus-5-5
+it	mph
+it	‹  Il tuo veicolo
+it	‹  Scanner OBD-II
+it	✓ Mancate accensioni\n✓ Sistema di alimentazione\n✓ Componenti\n✓ Catalizzatore\n✓ Vapori di carburante (EVAP)\n✓ Sensori di ossigeno\n✓ Riscaldatore dei sensori di ossigeno
+ms	1,905 rpm
+ms	5 aktif
+ms	5,200 / 6,000 rpm
+ms	Aliran udara
+ms	Alternator tidak mengecas dengan baik: matikan yang tidak perlu (penghawa dingin, lampu tambahan) dan pergi ke bengkel sebelum bateri habis. Periksa tali sawat.
+ms	Amaran
+ms	Android Auto
+ms	Automatik
+ms	Bahan api
+ms	Bateri
+ms	Beban enjin
+ms	Beban mutlak
+ms	Belum disediakan
+ms	Belum ditetapkan
+ms	Bluetooth
+ms	Campuran cair (Pembetulan campuran panjang): +12 %
+ms	CarPlay
+ms	Claude (Anthropic)
+ms	Enjin menerima kurang bahan api daripada yang perlu: mungkin kebocoran vakum, penapis bahan api atau sensor MAF. Kuasa boleh berkurang semasa mendaki.
+ms	Jarak dengan lampu enjin
+ms	Jarak sejak kod dipadam
+ms	Kelajuan
+ms	Kereta simulasi
+ms	Kereta simulasi · Langsung · VIN DEMO0STRADAOS0001
+ms	Kod kerosakan P0711
+ms	Kurangkan beban: guna gear lebih rendah, matikan penghawa dingin dan pastikan kipas radiator hidup.
+ms	Kurangkan beban: guna gear lebih rendah, matikan penghawa dingin dan, jika terus naik, pasang pemanas maksimum dan cari tempat berhenti.
+ms	Langsung · VIN DEMO0STRADAOS0001
+ms	Masa berjalan
+ms	Minyak enjin
+ms	Nisbah kesetaraan diperintah
+ms	Notis
+ms	Pemanasan sejak kod dipadam
+ms	Pemangkin bank 1
+ms	Pemasaan pencucuhan
+ms	Pembetulan campuran panjang
+ms	Pembetulan campuran pendek
+ms	Pendikit
+ms	Penggunaan bahan api (dikira)
+ms	Penggunaan enjin
+ms	Penggunaan sejam
+ms	Penyejuk
+ms	Penyejuk naik dengan cepat: 100 °C
+ms	Penyejuk tinggi: 100 °C
+ms	Semak
+ms	Sensor O2 bank 1 sensor 2
+ms	Sensor suhu minyak transmisi automatik menunjukkan bacaan luar jangkaan.
+ms	Sensor suhu minyak transmisi automatik menunjukkan bacaan luar jangkaan. Transmisi mungkin bertukar gear secara kasar atau masuk mod kecemasan. Periksa paras dan warna minyak transmisi (gelap atau berbau hangus ialah tanda buruk) dan penyambung sensor. Semasa mendaki jauh gunakan gear rendah dan biarkan transmisi berehat.
+ms	StradaOS
+ms	Suhu luar
+ms	Tekanan barometrik
+ms	Tekanan manifold
+ms	Tiada
+ms	Tiada jenama dengan fungsi tersendiri dikesan
+ms	Udara masuk
+ms	Voltan rendah: 11.6 V
+ms	claude-opus-5-5
+ms	mph
+ms	‹  Kenderaan anda
+ms	‹  Pengimbas OBD-II
+ms	✓ Salah nyala\n✓ Sistem bahan api\n✓ Komponen\n✓ Pemangkin\n✓ Wap bahan api (EVAP)\n✓ Sensor oksigen\n✓ Pemanas sensor oksigen
+pt	1.970 rpm
+pt	5 ativos
+pt	5.200 / 6.000 rpm
+pt	A temperatura sobe rápido: 100 °C
+pt	Android Auto
+pt	Ao vivo · VIN DEMO0STRADAOS0001
+pt	Ar de admissão
+pt	Avanço da ignição
+pt	Bateria
+pt	Bluetooth
+pt	CarPlay
+pt	Carga do motor
+pt	Carro simulado
+pt	Carro simulado · Ao vivo · VIN DEMO0STRADAOS0001
+pt	Catalisador banco 1
+pt	Claude (Anthropic)
+pt	Combustível
+pt	Consumo (calculado)
+pt	Consumo do motor
+pt	Código de falha P0711
+pt	Distância com a luz do motor
+pt	Distância desde limpar códigos
+pt	Fluxo de ar
+pt	Líquido de arrefecimento
+pt	Mistura comandada
+pt	Mistura curta
+pt	Mistura longa
+pt	Mistura pobre (Mistura longa): +12 %
+pt	Motor esquentando: 100 °C
+pt	Nenhum
+pt	Não definida
+pt	Não foi detectada uma marca com funções próprias
+pt	O alternador não está carregando bem: desligue o que não precisar (ar, luzes extras) e vá a uma oficina antes que a bateria descarregue. Verifique a correia.
+pt	O motor recebe menos combustível do que precisa: pode ser um vazamento de vácuo, o filtro de combustível ou o sensor MAF. Pode perder força nas subidas.
+pt	O sensor de temperatura do óleo do câmbio automático marca fora do esperado.
+pt	O sensor de temperatura do óleo do câmbio automático marca fora do esperado. O câmbio pode trocar com trancos ou entrar em modo de emergência. Verifique o nível e a cor do óleo do câmbio (escuro ou com cheiro de queimado é mau sinal) e o conector do sensor. Em subidas longas use uma marcha baixa e deixe o câmbio descansar.
+pt	Partidas desde limpar códigos
+pt	Pressão barométrica
+pt	Pressão do coletor
+pt	Reduza a exigência: use uma marcha mais baixa, desligue o ar-condicionado e verifique se o eletroventilador liga.
+pt	Reduza a exigência: use uma marcha mais baixa, desligue o ar-condicionado e, se continuar subindo, ligue o aquecimento no máximo e procure onde parar.
+pt	Sem configurar
+pt	StradaOS
+pt	Tempo de funcionamento
+pt	Tensão baixa: 11,6 V
+pt	Velocidade
+pt	Verificar
+pt	claude-opus-5-5
+pt	mph
+pt	Óleo do motor
+pt	‹  Scanner OBD-II
+pt	‹  Seu veículo
+pt	✓ Falhas de ignição\n✓ Sistema de combustível\n✓ Componentes\n✓ Catalisador\n✓ Vapores de combustível (EVAP)\n✓ Sensores de oxigênio\n✓ Aquecedor dos sensores de oxigênio
+tr	1.852 rpm
+tr	5.200 / 6.000 rpm
+tr	6 etkin
+tr	Alarm
+tr	Alternatör düzgün şarj etmiyor: gereksiz olanları kapatın (klima, ek farlar) ve akü bitmeden servise gidin. Kayışı kontrol edin.
+tr	Android Auto
+tr	Antifriz
+tr	Arıza kodu P0711
+tr	Arıza lambasıyla mesafe
+tr	Ateşleme avansı
+tr	Ayarlanmadı
+tr	Barometrik basınç
+tr	Bir sonraki istasyonda yakıt alın. Dağlık bölgede başka istasyon olmayabilir.
+tr	Bluetooth
+tr	Canlı · VIN DEMO0STRADAOS0001
+tr	CarPlay
+tr	Claude (Anthropic)
+tr	Devir
+tr	Dış sıcaklık
+tr	Emme havası
+tr	Fakir karışım (Uzun yakıt düzeltmesi): +12 %
+tr	Gaz kelebeği
+tr	Hava akışı
+tr	Hiçbiri
+tr	Katalizör sıra 1
+tr	Kendi işlevleri olan bir marka algılanmadı
+tr	Komut edilen eşdeğerlik oranı
+tr	Kontrol et
+tr	Kısa yakıt düzeltmesi
+tr	Manifold basıncı
+tr	Motor gerekenden az yakıt alıyor: vakum kaçağı, yakıt filtresi veya MAF sensörü olabilir. Yokuşlarda güç kaybedebilir.
+tr	Motor tüketimi
+tr	Motor yağı
+tr	Motor yükü
+tr	Mutlak yük
+tr	O2 sensörü sıra 1 sensör 2
+tr	Otomatik
+tr	Otomatik şanzıman yağ sıcaklık sensörü beklenmeyen değer gösteriyor.
+tr	Otomatik şanzıman yağ sıcaklık sensörü beklenmeyen değer gösteriyor. Şanzıman sert vites değiştirebilir veya acil durum moduna geçebilir. Şanzıman yağının seviyesini ve rengini (koyu renk veya yanık kokusu kötüye işarettir) ve sensör soketini kontrol edin. Uzun yokuşlarda düşük vites kullanın ve şanzımanı dinlendirin.
+tr	Saatlik tüketim
+tr	Sanal araç
+tr	Sanal araç · Canlı · VIN DEMO0STRADAOS0001
+tr	Silmeden beri mesafe
+tr	Silmeden beri ısınma sayısı
+tr	Soğutma suyu hızla yükseliyor: 100 °C
+tr	Soğutma suyu yüksek: 100 °C
+tr	StradaOS
+tr	Uyarı
+tr	Uzun yakıt düzeltmesi
+tr	Voltaj düşük: 11,6 V
+tr	Yakıt tüketimi (hesaplanan)
+tr	Yükü azaltın: daha düşük vites kullanın, klimayı kapatın ve radyatör fanının çalıştığını kontrol edin.
+tr	Yükü azaltın: daha düşük vites kullanın, klimayı kapatın ve yükselmeye devam ederse kaloriferi sonuna açıp duracak yer arayın.
+tr	claude-opus-5-5
+tr	mph
+tr	Çalışma süresi
+tr	‹  Aracınız
+tr	‹  OBD-II tarayıcı
+tr	✓ Ateşleme hatası\n✓ Yakıt sistemi\n✓ Bileşenler\n✓ Katalizör\n✓ Yakıt buharı (EVAP)\n✓ Oksijen sensörleri\n✓ Oksijen sensörü ısıtıcısı
+zh	1,815 rpm
+zh	5,200 / 6,000 rpm
+zh	Android Auto
+zh	Bluetooth
+zh	CarPlay
+zh	Claude (Anthropic)
+zh	StradaOS
+zh	claude-opus-5-5
+zh	mph

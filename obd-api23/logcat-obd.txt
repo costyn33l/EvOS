@@ -1,0 +1,3 @@
+11-20 13:47:53.043  1559  2071 I ActivityManager: START u0 {cmp=com.stradaos.launcher.debug/com.stradaos.launcher.ObdActivity (has extras)} from uid 10055 on display 0
+11-20 13:49:08.289  1559  1701 I ActivityManager: START u0 {cmp=com.stradaos.launcher.debug/com.stradaos.launcher.ObdActivity (has extras)} from uid 10055 on display 0
+11-20 13:49:08.349  1559  1578 I ActivityManager: Displayed com.stradaos.launcher.debug/com.stradaos.launcher.ObdActivity: +55ms

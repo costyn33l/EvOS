@@ -1,0 +1,1 @@
+I/ActivityManager( 1368): START {cmp=com.stradaos.launcher.debug/com.stradaos.launcher.ObdActivity (has extras) u=0} from pid 1959
