@@ -1,0 +1,6 @@
+FALLO (en la pantalla real se cerraría): Prueba «diag-reproductor» falló: java.lang.NoClassDefFoundError: com.stradaos.launcher.MediaListener
+FALLO (en la pantalla real se cerraría): Prueba «diag-reproductor» falló: java.lang.NoClassDefFoundError: com.stradaos.launcher.MediaListener
+FALLO (en la pantalla real se cerraría): Prueba «diag-reproductor» falló: java.lang.NoClassDefFoundError: com.stradaos.launcher.MediaListener
+FALLO (en la pantalla real se cerraría): Prueba «diag-reproductor» falló: java.lang.NoClassDefFoundError: com.stradaos.launcher.MediaListener
+FALLO (en la pantalla real se cerraría): Prueba «diag-reproductor» falló: java.lang.NoClassDefFoundError: com.stradaos.launcher.MediaListener
+FALLO (en la pantalla real se cerraría): Prueba «diag-reproductor» falló: java.lang.NoClassDefFoundError: com.stradaos.launcher.MediaListener

@@ -1,0 +1,18 @@
+2026-11-21 16:25:34 · v2.30.0-prueba · Android 4.1.2 (API 16) · unknown Android SDK built for x86
+Prueba «diag-reproductor» falló: java.lang.NoClassDefFoundError: com.stradaos.launcher.MediaListener
+
+2026-11-21 16:27:06 · v2.30.0-prueba · Android 4.1.2 (API 16) · unknown Android SDK built for x86
+Prueba «diag-reproductor» falló: java.lang.NoClassDefFoundError: com.stradaos.launcher.MediaListener
+
+2026-11-21 16:27:20 · v2.30.0-prueba · Android 4.1.2 (API 16) · unknown Android SDK built for x86
+Prueba «diag-reproductor» falló: java.lang.NoClassDefFoundError: com.stradaos.launcher.MediaListener
+
+2026-11-21 16:27:34 · v2.30.0-prueba · Android 4.1.2 (API 16) · unknown Android SDK built for x86
+Prueba «diag-reproductor» falló: java.lang.NoClassDefFoundError: com.stradaos.launcher.MediaListener
+
+2026-11-21 16:27:48 · v2.30.0-prueba · Android 4.1.2 (API 16) · unknown Android SDK built for x86
+Prueba «diag-reproductor» falló: java.lang.NoClassDefFoundError: com.stradaos.launcher.MediaListener
+
+2026-11-21 16:28:06 · v2.30.0-prueba · Android 4.1.2 (API 16) · unknown Android SDK built for x86
+Prueba «diag-reproductor» falló: java.lang.NoClassDefFoundError: com.stradaos.launcher.MediaListener
+
