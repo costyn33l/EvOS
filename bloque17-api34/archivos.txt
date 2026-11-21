@@ -1,0 +1,2 @@
+total 12
+-rw-rw---- 1 u0_a141 u0_a141 5046 2026-11-21 17:28 weather_cache.json
