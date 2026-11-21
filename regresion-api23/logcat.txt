@@ -1,0 +1,300 @@
+F/libc    ( 1275): Fatal signal 6 (SIGABRT), code -6 in tid 1631 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 1275, tid: 1631, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269):     eax 00000000  ebx 000004fb  ecx 0000065f  edx 00000006
+F/DEBUG   ( 1269):     esi b41ff980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6f4b8d6  ebp 0000065f  esp b41fee80  flags 00200202
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+--
+F/libc    ( 5454): Fatal signal 6 (SIGABRT), code -6 in tid 5460 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 5454, tid: 5460, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+F/DEBUG   ( 1269):     eax 00000000  ebx 0000154e  ecx 00001554  edx 00000006
+F/DEBUG   ( 1269):     esi b41ff980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6f388d6  ebp 00001554  esp b41fee80  flags 00200206
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+--
+F/libc    ( 5499): Fatal signal 6 (SIGABRT), code -6 in tid 5505 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 5499, tid: 5505, name: FastMixer  >>> /system/bin/mediaserver <<<
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+F/DEBUG   ( 1269):     eax 00000000  ebx 0000157b  ecx 00001581  edx 00000006
+F/DEBUG   ( 1269):     esi b42bf980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b70098d6  ebp 00001581  esp b42bee80  flags 00200206
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+--
+F/libc    ( 5539): Fatal signal 6 (SIGABRT), code -6 in tid 5545 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 5539, tid: 5545, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269):     eax 00000000  ebx 000015a3  ecx 000015a9  edx 00000006
+F/DEBUG   ( 1269):     esi b423f980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6f988d6  ebp 000015a9  esp b423ee80  flags 00200206
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+--
+F/libc    ( 5583): Fatal signal 6 (SIGABRT), code -6 in tid 5589 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 5583, tid: 5589, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+F/DEBUG   ( 1269):     eax 00000000  ebx 000015cf  ecx 000015d5  edx 00000006
+F/DEBUG   ( 1269):     esi b42bf980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6ff48d6  ebp 000015d5  esp b42bee80  flags 00200206
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+--
+F/libc    ( 5621): Fatal signal 6 (SIGABRT), code -6 in tid 5627 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 5621, tid: 5627, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269):     eax 00000000  ebx 000015f5  ecx 000015fb  edx 00000006
+F/DEBUG   ( 1269):     esi b42bf980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b70098d6  ebp 000015fb  esp b42bee80  flags 00200206
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+--
+F/libc    ( 5664): Fatal signal 6 (SIGABRT), code -6 in tid 5670 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 5664, tid: 5670, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+F/DEBUG   ( 1269):     eax 00000000  ebx 00001620  ecx 00001626  edx 00000006
+F/DEBUG   ( 1269):     esi b423f980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6f5d8d6  ebp 00001626  esp b423ee80  flags 00200202
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+--
+F/libc    ( 5702): Fatal signal 6 (SIGABRT), code -6 in tid 5708 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 5702, tid: 5708, name: FastMixer  >>> /system/bin/mediaserver <<<
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+F/DEBUG   ( 1269):     eax 00000000  ebx 00001646  ecx 0000164c  edx 00000006
+F/DEBUG   ( 1269):     esi b427f980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6f9e8d6  ebp 0000164c  esp b427ee80  flags 00200202
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+--
+F/libc    ( 5744): Fatal signal 6 (SIGABRT), code -6 in tid 5750 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 5744, tid: 5750, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+F/DEBUG   ( 1269):     eax 00000000  ebx 00001670  ecx 00001676  edx 00000006
+F/DEBUG   ( 1269):     esi b41bf980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6f168d6  ebp 00001676  esp b41bee80  flags 00200202
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+--
+F/libc    ( 5782): Fatal signal 6 (SIGABRT), code -6 in tid 5788 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 5782, tid: 5788, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+F/DEBUG   ( 1269):     eax 00000000  ebx 00001696  ecx 0000169c  edx 00000006
+F/DEBUG   ( 1269):     esi b42bf980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6fec8d6  ebp 0000169c  esp b42bee80  flags 00200206
