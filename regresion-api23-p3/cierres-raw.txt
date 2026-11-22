@@ -1,0 +1,1752 @@
+--------- beginning of main
+--------- beginning of system
+E/libEGL  ( 1260): load_driver(/system/lib/egl/libGLES_emulation.so): dlopen failed: library "/system/lib/egl/libGLES_emulation.so" not found
+E/eglCodecCommon( 1260): glUtilsParamSize: unknow param 0x00008cdf
+E/eglCodecCommon( 1260): glUtilsParamSize: unknow param 0x00008824
+E/cutils  ( 1274): Failed to read /data/.layout_version: No such file or directory
+E/        ( 1273): batterystats service unavailable!
+E/        ( 1273): batterystats service unavailable!
+E/        ( 1273): batterystats service unavailable!
+E/        ( 1273): batterystats service unavailable!
+E/EmulatedCamera_Factory( 1273): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 1273): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/perfprofd( 1280): unable to open configuration file /data/data/com.google.android.gms/files/perfprofd.conf
+E/Netd    ( 1267): exec() res=0, status=768 for /system/bin/iptables -w -t nat -N oem_nat_pre 
+E/Netd    ( 1267): exec() res=0, status=768 for /system/bin/iptables -w -t nat -A PREROUTING -j oem_nat_pre 
+E/Netd    ( 1267): exec() res=0, status=768 for /system/bin/iptables -w -t nat -N natctrl_nat_POSTROUTING 
+E/Netd    ( 1267): exec() res=0, status=768 for /system/bin/iptables -w -t nat -A POSTROUTING -j natctrl_nat_POSTROUTING 
+E/memtrack( 1276): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 1276): failed to load memtrack module: -2
+E/Minikin ( 1276): addFont failed to create font /system/fonts/NanumGothic.ttf
+E/Minikin ( 1276): addFont failed to create font /system/fonts/DroidSansFallback.ttf
+E/Minikin ( 1276): addFont failed to create font /system/fonts/MTLmr3m.ttf
+E/EmojiFactory_jni( 1276): Failed to load libemoji.so: dlopen failed: library "libemoji.so" not found
+E/Netd    ( 1267): cannot find interface dummy0
+E/libEGL  ( 1276): load_driver(/system/lib/egl/libGLES_emulation.so): dlopen failed: library "/system/lib/egl/libGLES_emulation.so" not found
+E/Hyphenator( 1276): error loading hyphenation /system/usr/hyphen-data/hyph-en-us.pat.txt
+E/Hyphenator( 1276): java.io.FileNotFoundException: /system/usr/hyphen-data/hyph-en-us.pat.txt: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1276): 	at libcore.io.IoBridge.open(IoBridge.java:452)
+E/Hyphenator( 1276): 	at libcore.io.IoUtils$FileReader.<init>(IoUtils.java:207)
+E/Hyphenator( 1276): 	at libcore.io.IoUtils.readFileAsString(IoUtils.java:114)
+E/Hyphenator( 1276): 	at android.text.Hyphenator.loadHyphenator(Hyphenator.java:96)
+E/Hyphenator( 1276): 	at android.text.Hyphenator.init(Hyphenator.java:154)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.preloadTextResources(ZygoteInit.java:207)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.preload(ZygoteInit.java:186)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:593)
+E/Hyphenator( 1276): Caused by: android.system.ErrnoException: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1276): 	at libcore.io.Posix.open(Native Method)
+E/Hyphenator( 1276): 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:186)
+E/Hyphenator( 1276): 	at libcore.io.IoBridge.open(IoBridge.java:438)
+E/Hyphenator( 1276): 	... 7 more
+E/Hyphenator( 1276): error loading hyphenation /system/usr/hyphen-data/hyph-eu.pat.txt
+E/Hyphenator( 1276): java.io.FileNotFoundException: /system/usr/hyphen-data/hyph-eu.pat.txt: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1276): 	at libcore.io.IoBridge.open(IoBridge.java:452)
+E/Hyphenator( 1276): 	at libcore.io.IoUtils$FileReader.<init>(IoUtils.java:207)
+E/Hyphenator( 1276): 	at libcore.io.IoUtils.readFileAsString(IoUtils.java:114)
+E/Hyphenator( 1276): 	at android.text.Hyphenator.loadHyphenator(Hyphenator.java:96)
+E/Hyphenator( 1276): 	at android.text.Hyphenator.init(Hyphenator.java:154)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.preloadTextResources(ZygoteInit.java:207)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.preload(ZygoteInit.java:186)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:593)
+E/Hyphenator( 1276): Caused by: android.system.ErrnoException: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1276): 	at libcore.io.Posix.open(Native Method)
+E/Hyphenator( 1276): 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:186)
+E/Hyphenator( 1276): 	at libcore.io.IoBridge.open(IoBridge.java:438)
+E/Hyphenator( 1276): 	... 7 more
+E/Hyphenator( 1276): error loading hyphenation /system/usr/hyphen-data/hyph-hu.pat.txt
+E/Hyphenator( 1276): java.io.FileNotFoundException: /system/usr/hyphen-data/hyph-hu.pat.txt: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1276): 	at libcore.io.IoBridge.open(IoBridge.java:452)
+E/Hyphenator( 1276): 	at libcore.io.IoUtils$FileReader.<init>(IoUtils.java:207)
+E/Hyphenator( 1276): 	at libcore.io.IoUtils.readFileAsString(IoUtils.java:114)
+E/Hyphenator( 1276): 	at android.text.Hyphenator.loadHyphenator(Hyphenator.java:96)
+E/Hyphenator( 1276): 	at android.text.Hyphenator.init(Hyphenator.java:154)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.preloadTextResources(ZygoteInit.java:207)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.preload(ZygoteInit.java:186)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:593)
+E/Hyphenator( 1276): Caused by: android.system.ErrnoException: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1276): 	at libcore.io.Posix.open(Native Method)
+E/Hyphenator( 1276): 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:186)
+E/Hyphenator( 1276): 	at libcore.io.IoBridge.open(IoBridge.java:438)
+E/Hyphenator( 1276): 	... 7 more
+E/Hyphenator( 1276): error loading hyphenation /system/usr/hyphen-data/hyph-hy.pat.txt
+E/Hyphenator( 1276): java.io.FileNotFoundException: /system/usr/hyphen-data/hyph-hy.pat.txt: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1276): 	at libcore.io.IoBridge.open(IoBridge.java:452)
+E/Hyphenator( 1276): 	at libcore.io.IoUtils$FileReader.<init>(IoUtils.java:207)
+E/Hyphenator( 1276): 	at libcore.io.IoUtils.readFileAsString(IoUtils.java:114)
+E/Hyphenator( 1276): 	at android.text.Hyphenator.loadHyphenator(Hyphenator.java:96)
+E/Hyphenator( 1276): 	at android.text.Hyphenator.init(Hyphenator.java:154)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.preloadTextResources(ZygoteInit.java:207)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.preload(ZygoteInit.java:186)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:593)
+E/Hyphenator( 1276): Caused by: android.system.ErrnoException: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1276): 	at libcore.io.Posix.open(Native Method)
+E/Hyphenator( 1276): 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:186)
+E/Hyphenator( 1276): 	at libcore.io.IoBridge.open(IoBridge.java:438)
+E/Hyphenator( 1276): 	... 7 more
+E/Hyphenator( 1276): error loading hyphenation /system/usr/hyphen-data/hyph-nb.pat.txt
+E/Hyphenator( 1276): java.io.FileNotFoundException: /system/usr/hyphen-data/hyph-nb.pat.txt: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1276): 	at libcore.io.IoBridge.open(IoBridge.java:452)
+E/Hyphenator( 1276): 	at libcore.io.IoUtils$FileReader.<init>(IoUtils.java:207)
+E/Hyphenator( 1276): 	at libcore.io.IoUtils.readFileAsString(IoUtils.java:114)
+E/Hyphenator( 1276): 	at android.text.Hyphenator.loadHyphenator(Hyphenator.java:96)
+E/Hyphenator( 1276): 	at android.text.Hyphenator.init(Hyphenator.java:154)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.preloadTextResources(ZygoteInit.java:207)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.preload(ZygoteInit.java:186)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:593)
+E/Hyphenator( 1276): Caused by: android.system.ErrnoException: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1276): 	at libcore.io.Posix.open(Native Method)
+E/Hyphenator( 1276): 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:186)
+E/Hyphenator( 1276): 	at libcore.io.IoBridge.open(IoBridge.java:438)
+E/Hyphenator( 1276): 	... 7 more
+E/Hyphenator( 1276): error loading hyphenation /system/usr/hyphen-data/hyph-nn.pat.txt
+E/Hyphenator( 1276): java.io.FileNotFoundException: /system/usr/hyphen-data/hyph-nn.pat.txt: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1276): 	at libcore.io.IoBridge.open(IoBridge.java:452)
+E/Hyphenator( 1276): 	at libcore.io.IoUtils$FileReader.<init>(IoUtils.java:207)
+E/Hyphenator( 1276): 	at libcore.io.IoUtils.readFileAsString(IoUtils.java:114)
+E/Hyphenator( 1276): 	at android.text.Hyphenator.loadHyphenator(Hyphenator.java:96)
+E/Hyphenator( 1276): 	at android.text.Hyphenator.init(Hyphenator.java:154)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.preloadTextResources(ZygoteInit.java:207)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.preload(ZygoteInit.java:186)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:593)
+E/Hyphenator( 1276): Caused by: android.system.ErrnoException: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1276): 	at libcore.io.Posix.open(Native Method)
+E/Hyphenator( 1276): 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:186)
+E/Hyphenator( 1276): 	at libcore.io.IoBridge.open(IoBridge.java:438)
+E/Hyphenator( 1276): 	... 7 more
+E/Hyphenator( 1276): error loading hyphenation /system/usr/hyphen-data/hyph-sa.pat.txt
+E/Hyphenator( 1276): java.io.FileNotFoundException: /system/usr/hyphen-data/hyph-sa.pat.txt: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1276): 	at libcore.io.IoBridge.open(IoBridge.java:452)
+E/Hyphenator( 1276): 	at libcore.io.IoUtils$FileReader.<init>(IoUtils.java:207)
+E/Hyphenator( 1276): 	at libcore.io.IoUtils.readFileAsString(IoUtils.java:114)
+E/Hyphenator( 1276): 	at android.text.Hyphenator.loadHyphenator(Hyphenator.java:96)
+E/Hyphenator( 1276): 	at android.text.Hyphenator.init(Hyphenator.java:154)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.preloadTextResources(ZygoteInit.java:207)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.preload(ZygoteInit.java:186)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:593)
+E/Hyphenator( 1276): Caused by: android.system.ErrnoException: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1276): 	at libcore.io.Posix.open(Native Method)
+E/Hyphenator( 1276): 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:186)
+E/Hyphenator( 1276): 	at libcore.io.IoBridge.open(IoBridge.java:438)
+E/Hyphenator( 1276): 	... 7 more
+E/Hyphenator( 1276): error loading hyphenation /system/usr/hyphen-data/hyph-und-ethi.pat.txt
+E/Hyphenator( 1276): java.io.FileNotFoundException: /system/usr/hyphen-data/hyph-und-ethi.pat.txt: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1276): 	at libcore.io.IoBridge.open(IoBridge.java:452)
+E/Hyphenator( 1276): 	at libcore.io.IoUtils$FileReader.<init>(IoUtils.java:207)
+E/Hyphenator( 1276): 	at libcore.io.IoUtils.readFileAsString(IoUtils.java:114)
+E/Hyphenator( 1276): 	at android.text.Hyphenator.loadHyphenator(Hyphenator.java:96)
+E/Hyphenator( 1276): 	at android.text.Hyphenator.init(Hyphenator.java:154)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.preloadTextResources(ZygoteInit.java:207)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.preload(ZygoteInit.java:186)
+E/Hyphenator( 1276): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:593)
+E/Hyphenator( 1276): Caused by: android.system.ErrnoException: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1276): 	at libcore.io.Posix.open(Native Method)
+E/Hyphenator( 1276): 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:186)
+E/Hyphenator( 1276): 	at libcore.io.IoBridge.open(IoBridge.java:438)
+E/Hyphenator( 1276): 	... 7 more
+E/installd( 1274): eof
+E/installd( 1274): failed to read size
+E/PowerManagerService-JNI( 1559): Couldn't load power module (No such file or directory)
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/art     ( 1559): DexFile_getDexOptNeeded file '/system/framework/org.apache.http.legacy.jar' does not exist
+E/ConsumerIrService( 1559): Can't open consumer IR HW Module, error: -2
+E/EventHub( 1559): could not get driver version for /dev/input/mouse0, Not a typewriter
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/VoldConnector( 1559): Error handling '662 /cache -1 -1': java.lang.NullPointerException: Attempt to invoke virtual method 'void android.os.DropBoxManager.addText(java.lang.String, java.lang.String)' on a null object reference
+E/VoldConnector( 1559): Error handling '662 /data -1 -1': java.lang.NullPointerException: Attempt to invoke virtual method 'void android.os.DropBoxManager.addText(java.lang.String, java.lang.String)' on a null object reference
+E/EventHub( 1559): could not get driver version for /dev/input/mice, Not a typewriter
+E/MonoPipe( 1273): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 1273): no wake lock to update!
+E/AudioFlinger( 1273): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 1273): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 1273): couldn't load radio module radio.primary (No such file or directory)
+E/UsbDeviceManager( 1559): failed to write to /sys/class/android_usb/android0/f_rndis/ethaddr
+E/UsbDeviceManagerJNI( 1559): could not open /dev/usb_accessory
+E/eglCodecCommon( 1559): glUtilsParamSize: unknow param 0x00008cdf
+E/eglCodecCommon( 1559): glUtilsParamSize: unknow param 0x00008824
+E/FingerprintHal( 1281): Could not load fingerprints from storage at /data/system/users/0/fpdata/emulator_fingerprint_storage.bin; it has not yet been created.
+E/SQLiteLog( 1559): (1) no such table: locksettings
+E/LockSettingsStorage( 1559): Cannot read file java.io.FileNotFoundException: /data/system/gatekeeper.password.key: open failed: ENOENT (No such file or directory)
+E/LockSettingsStorage( 1559): Cannot read file java.io.FileNotFoundException: /data/system/password.key: open failed: ENOENT (No such file or directory)
+E/LockSettingsStorage( 1559): Cannot read file java.io.FileNotFoundException: /data/system/gatekeeper.pattern.key: open failed: ENOENT (No such file or directory)
+E/LockSettingsStorage( 1559): Cannot read file java.io.FileNotFoundException: /data/system/gatekeeper.gesture.key: open failed: ENOENT (No such file or directory)
+E/LockSettingsStorage( 1559): Cannot read file java.io.FileNotFoundException: /data/system/gesture.key: open failed: ENOENT (No such file or directory)
+I/AndroidRuntime( 1751): VM exiting with result code 0, cleanup skipped.
+E/BluetoothAdapter( 1559): Bluetooth binder is null
+E/BluetoothAdapter( 1559): Bluetooth binder is null
+E/BluetoothAdapter( 1559): Bluetooth binder is null
+E/WVMExtractor( 1764): Failed to open libwvm.so: dlopen failed: library "libwvm.so" not found
+E/Netd    ( 1267): exec() res=0, status=256 for /system/bin/iptables -w -F st_penalty_log 
+E/Netd    ( 1267): exec() res=0, status=256 for /system/bin/ip6tables -w -F st_penalty_log 
+E/Netd    ( 1267): exec() res=0, status=256 for /system/bin/iptables -w -F st_penalty_reject 
+E/Netd    ( 1267): exec() res=0, status=256 for /system/bin/ip6tables -w -F st_penalty_reject 
+E/Netd    ( 1267): exec() res=0, status=256 for /system/bin/iptables -w -F st_clear_caught 
+E/Netd    ( 1267): exec() res=0, status=256 for /system/bin/ip6tables -w -F st_clear_caught 
+E/Netd    ( 1267): exec() res=0, status=256 for /system/bin/iptables -w -F st_clear_detect 
+E/Netd    ( 1267): exec() res=0, status=256 for /system/bin/ip6tables -w -F st_clear_detect 
+E/Netd    ( 1267): exec() res=0, status=256 for /system/bin/iptables -w -X st_penalty_log 
+E/Netd    ( 1267): exec() res=0, status=256 for /system/bin/ip6tables -w -X st_penalty_log 
+E/Netd    ( 1267): exec() res=0, status=256 for /system/bin/iptables -w -X st_penalty_reject 
+E/Netd    ( 1267): exec() res=0, status=256 for /system/bin/ip6tables -w -X st_penalty_reject 
+E/Netd    ( 1267): exec() res=0, status=256 for /system/bin/iptables -w -X st_clear_caught 
+E/Netd    ( 1267): exec() res=0, status=256 for /system/bin/ip6tables -w -X st_clear_caught 
+E/Netd    ( 1267): exec() res=0, status=256 for /system/bin/iptables -w -X st_clear_detect 
+E/Netd    ( 1267): exec() res=0, status=256 for /system/bin/ip6tables -w -X st_clear_detect 
+E/BluetoothAdapter( 1559): Bluetooth binder is null
+E/BluetoothAdapter( 1559): Bluetooth binder is null
+E/InputMethodManagerService( 1559): Ignoring updateSystemUiLocked due to an invalid token. uid:1000 token:null
+E/WVMExtractor( 1559): Failed to open libwvm.so: dlopen failed: library "libwvm.so" not found
+E/LocationManagerService( 1559): no geocoder provider found
+E/FlpHardwareProvider( 1559): Error hw_get_module 'flp': -2
+E/LocationManagerService( 1559): FLP HAL not supported
+E/LocationManagerService( 1559): Unable to bind FLP Geofence proxy.
+E/ActivityRecognitionHardware( 1559): Error hw_get_module: -2
+E/LocationManagerService( 1559): Hardware Activity-Recognition not supported.
+E/GpsLocationProvider( 1559): no AGPS interface in set_agps_server
+E/GpsLocationProvider( 1559): no AGPS interface in set_agps_server
+E/BluetoothAdapter( 1764): Bluetooth binder is null
+E/CameraService( 1273): getCameraPriorityFromProcState: Received invalid process state -1 from ActivityManagerService!
+E/WVMExtractor( 1273): Failed to open libwvm.so: dlopen failed: library "libwvm.so" not found
+E/CameraService( 1273): disconnect: Disconnect called on already disconnected client for device 0
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/eglCodecCommon( 1764): glUtilsParamSize: unknow param 0x00008cdf
+E/eglCodecCommon( 1764): glUtilsParamSize: unknow param 0x00008824
+E/SQLiteLog( 2081): (1) no such table: album_info
+E/DcSwitchStateMachine-0( 1986): DctController is not ready
+E/ConnectivityService( 1559): Failed to find Messenger in unregisterNetworkFactory
+E/BluetoothAdapter( 1986): Bluetooth binder is null
+E/PhoneInterfaceManager( 1986): [PhoneIntfMgr] getIccId: No UICC
+E/PhoneInterfaceManager( 1986): [PhoneIntfMgr] getIccId: No UICC
+E/DcSwitchStateMachine-0( 1986): EVENT_DATA_DISALLOWED failed, com.android.internal.telephony.CommandException: REQUEST_NOT_SUPPORTED
+E/PhoneInterfaceManager( 1986): [PhoneIntfMgr] getIccId: No UICC
+E/PhoneInterfaceManager( 1986): [PhoneIntfMgr] getIccId: No UICC
+E/DcSwitchStateMachine-0( 1986): EVENT_DATA_DISALLOWED failed, com.android.internal.telephony.CommandException: REQUEST_NOT_SUPPORTED
+E/GpsLocationProvider( 1559): no AGPS interface in set_agps_server
+E/GpsLocationProvider( 1559): no AGPS interface in set_agps_server
+E/GpsLocationProvider( 1559): no AGPS interface in set_agps_server
+E/GpsLocationProvider( 1559): no AGPS interface in set_agps_server
+E/GpsLocationProvider( 1559): no AGPS interface in set_agps_server
+E/CarrierConfigLoader( 1986): java.io.FileNotFoundException: /data/user/0/com.android.phone/files/carrierconfig-com.android.carrierconfig-89014103211118510720.xml: open failed: ENOENT (No such file or directory)
+E/installd( 1274): Unable to unlink boot marker at /data/dalvik-cache/x86/.booting, error=No such file or directory
+E/ActivityManager( 1559): Unable to mark boot complete for abi: x86
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/eglCodecCommon( 2424): glUtilsParamSize: unknow param 0x00008cdf
+E/eglCodecCommon( 2424): glUtilsParamSize: unknow param 0x00008824
+E/SQLiteLog( 2081): (1) no such table: files
+E/MetadataRetrieverClient( 1273): failed to extract an album art
+E/MetadataRetrieverClient( 1273): failed to extract an album art
+E/MetadataRetrieverClient( 1273): failed to extract an album art
+E/MetadataRetrieverClient( 1273): failed to extract an album art
+E/memtrack( 2542): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2542): failed to load memtrack module: -2
+E/MetadataRetrieverClient( 1273): failed to extract an album art
+E/MetadataRetrieverClient( 1273): failed to extract an album art
+E/memtrack( 2555): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2555): failed to load memtrack module: -2
+E/memtrack( 2564): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2564): failed to load memtrack module: -2
+E/memtrack( 2574): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2574): failed to load memtrack module: -2
+E/memtrack( 2587): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2587): failed to load memtrack module: -2
+I/AndroidRuntime( 2587): VM exiting with result code 0.
+E/memtrack( 2638): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2638): failed to load memtrack module: -2
+E/Surface ( 2424): getSlotFromBufferLocked: unknown buffer: 0xb407d980
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/eglCodecCommon( 2650): glUtilsParamSize: unknow param 0x00008cdf
+E/eglCodecCommon( 2650): glUtilsParamSize: unknow param 0x00008824
+W/StradaI18n( 2650): en	mph
+W/StradaI18n( 2650): en	Android Auto
+W/StradaI18n( 2650): en	CarPlay
+W/StradaI18n( 2650): en	Bluetooth
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/memtrack( 2683): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2683): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 2702): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2702): failed to load memtrack module: -2
+E/memtrack( 2716): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2716): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 2737): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2737): failed to load memtrack module: -2
+E/memtrack( 2750): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2750): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 2764): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2764): failed to load memtrack module: -2
+E/memtrack( 2773): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2773): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/memtrack( 2786): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2786): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 2800): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2800): failed to load memtrack module: -2
+E/memtrack( 2811): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2811): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/memtrack( 2820): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2820): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/memtrack( 2831): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2831): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 2846): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2846): failed to load memtrack module: -2
+E/memtrack( 2857): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2857): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/memtrack( 2866): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2866): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/memtrack( 2877): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2877): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 2891): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2891): failed to load memtrack module: -2
+E/memtrack( 2902): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2902): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/memtrack( 2911): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2911): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/memtrack( 2922): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2922): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 2936): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2936): failed to load memtrack module: -2
+E/memtrack( 2947): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2947): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/memtrack( 2957): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2957): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/memtrack( 2968): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2968): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+F/AudioTrackShared( 1273): Assertion failed: buffer == NULL || buffer->mFrameCount == 0
+--------- beginning of crash
+F/libc    ( 1273): Fatal signal 6 (SIGABRT), code -6 in tid 1617 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 1273, tid: 1617, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269):     eax 00000000  ebx 000004f9  ecx 00000651  edx 00000006
+F/DEBUG   ( 1269):     esi b427f980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6fb78d6  ebp 00000651  esp b427ee80  flags 00200206
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+F/DEBUG   ( 1269):     #16 pc 00021952  /system/lib/libc.so (__start_thread+25)
+F/DEBUG   ( 1269):     #17 pc 000170b6  /system/lib/libc.so (__bionic_clone+70)
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): Tombstone written to: /data/tombstones/tombstone_00
+E/AudioService( 1559): Media server died.
+E/EmulatedCamera_Factory( 2983): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 2983): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/MonoPipe( 2983): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 2983): no wake lock to update!
+E/AudioFlinger( 2983): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 2983): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 2983): couldn't load radio module radio.primary (No such file or directory)
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioService( 1559): Media server started.
+E/AudioFlinger( 2983): no wake lock to update!
+E/AudioFlinger( 2983): no wake lock to update!
+F/AudioTrackShared( 2983): Assertion failed: buffer == NULL || buffer->mFrameCount == 0
+F/libc    ( 2983): Fatal signal 6 (SIGABRT), code -6 in tid 2989 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 2983, tid: 2989, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+F/DEBUG   ( 1269):     eax 00000000  ebx 00000ba7  ecx 00000bad  edx 00000006
+F/DEBUG   ( 1269):     esi b42bf980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b70028d6  ebp 00000bad  esp b42bee80  flags 00200202
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+F/DEBUG   ( 1269):     #16 pc 00021952  /system/lib/libc.so (__start_thread+25)
+F/DEBUG   ( 1269):     #17 pc 000170b6  /system/lib/libc.so (__bionic_clone+70)
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): Tombstone written to: /data/tombstones/tombstone_01
+E/AudioService( 1559): Media server died.
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/AudioService( 1559): Media server died.
+E/memtrack( 3009): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3009): failed to load memtrack module: -2
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/memtrack( 3020): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3020): failed to load memtrack module: -2
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/EmulatedCamera_Factory( 3029): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 3029): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/MonoPipe( 3029): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 3029): no wake lock to update!
+E/AudioFlinger( 3029): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 3029): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 3029): couldn't load radio module radio.primary (No such file or directory)
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioService( 1559): Media server started.
+E/memtrack( 3040): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3040): failed to load memtrack module: -2
+E/AudioFlinger( 3029): no wake lock to update!
+F/AudioTrackShared( 3029): Assertion failed: buffer == NULL || buffer->mFrameCount == 0
+F/libc    ( 3029): Fatal signal 6 (SIGABRT), code -6 in tid 3035 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 3029, tid: 3035, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+F/DEBUG   ( 1269):     eax 00000000  ebx 00000bd5  ecx 00000bdb  edx 00000006
+F/DEBUG   ( 1269):     esi b41ff980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6f4c8d6  ebp 00000bdb  esp b41fee80  flags 00200202
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+F/DEBUG   ( 1269):     #16 pc 00021952  /system/lib/libc.so (__start_thread+25)
+F/DEBUG   ( 1269):     #17 pc 000170b6  /system/lib/libc.so (__bionic_clone+70)
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): Tombstone written to: /data/tombstones/tombstone_02
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/memtrack( 3057): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3057): failed to load memtrack module: -2
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/EmulatedCamera_Factory( 3066): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 3066): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/MonoPipe( 3066): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 3066): no wake lock to update!
+E/AudioFlinger( 3066): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 3066): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 3066): couldn't load radio module radio.primary (No such file or directory)
+E/AudioService( 1559): Media server started.
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioFlinger( 3066): no wake lock to update!
+F/AudioTrackShared( 3066): Assertion failed: buffer == NULL || buffer->mFrameCount == 0
+F/libc    ( 3066): Fatal signal 6 (SIGABRT), code -6 in tid 3072 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 3066, tid: 3072, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269):     eax 00000000  ebx 00000bfa  ecx 00000c00  edx 00000006
+F/DEBUG   ( 1269):     esi b423f980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6f818d6  ebp 00000c00  esp b423ee80  flags 00200206
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+F/DEBUG   ( 1269):     #16 pc 00021952  /system/lib/libc.so (__start_thread+25)
+F/DEBUG   ( 1269):     #17 pc 000170b6  /system/lib/libc.so (__bionic_clone+70)
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): Tombstone written to: /data/tombstones/tombstone_03
+E/AudioService( 1559): Media server died.
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3091): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3091): failed to load memtrack module: -2
+E/AudioService( 1559): Media server died.
+E/memtrack( 3102): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3102): failed to load memtrack module: -2
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/memtrack( 3112): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3112): failed to load memtrack module: -2
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/EmulatedCamera_Factory( 3121): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 3121): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/MonoPipe( 3121): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 3121): no wake lock to update!
+E/AudioFlinger( 3121): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 3121): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 3121): couldn't load radio module radio.primary (No such file or directory)
+E/AudioService( 1559): Media server started.
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioFlinger( 3121): no wake lock to update!
+E/AudioFlinger( 3121): no wake lock to update!
+F/AudioTrackShared( 3121): Assertion failed: buffer == NULL || buffer->mFrameCount == 0
+F/libc    ( 3121): Fatal signal 6 (SIGABRT), code -6 in tid 3127 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 3121, tid: 3127, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269):     eax 00000000  ebx 00000c31  ecx 00000c37  edx 00000006
+F/DEBUG   ( 1269):     esi b42bf980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b70058d6  ebp 00000c37  esp b42bee80  flags 00200202
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+F/DEBUG   ( 1269):     #16 pc 00021952  /system/lib/libc.so (__start_thread+25)
+F/DEBUG   ( 1269):     #17 pc 000170b6  /system/lib/libc.so (__bionic_clone+70)
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): Tombstone written to: /data/tombstones/tombstone_04
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/memtrack( 3143): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3143): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/EmulatedCamera_Factory( 3152): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 3152): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/MonoPipe( 3152): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 3152): no wake lock to update!
+E/AudioFlinger( 3152): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 3152): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 3152): couldn't load radio module radio.primary (No such file or directory)
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/Surface ( 2650): getSlotFromBufferLocked: unknown buffer: 0xadc96380
+E/AudioService( 1559): Media server started.
+E/AudioFlinger( 3152): no wake lock to update!
+E/FastThread( 3152): did not receive expected priority boost
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/AudioFlinger( 3152): no wake lock to update!
+F/AudioTrackShared( 3152): Assertion failed: buffer == NULL || buffer->mFrameCount == 0
+F/libc    ( 3152): Fatal signal 6 (SIGABRT), code -6 in tid 3158 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269): pid: 3152, tid: 3158, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+F/DEBUG   ( 1269):     eax 00000000  ebx 00000c50  ecx 00000c56  edx 00000006
+F/DEBUG   ( 1269):     esi b42bf980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6fef8d6  ebp 00000c56  esp b42bee80  flags 00200206
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+F/DEBUG   ( 1269):     #16 pc 00021952  /system/lib/libc.so (__start_thread+25)
+F/DEBUG   ( 1269):     #17 pc 000170b6  /system/lib/libc.so (__bionic_clone+70)
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): Tombstone written to: /data/tombstones/tombstone_05
+E/AudioService( 1559): Media server died.
+E/memtrack( 3173): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3173): failed to load memtrack module: -2
+E/memtrack( 3188): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3188): failed to load memtrack module: -2
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/EmulatedCamera_Factory( 3197): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 3197): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/MonoPipe( 3197): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 3197): no wake lock to update!
+E/AudioFlinger( 3197): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 3197): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 3197): couldn't load radio module radio.primary (No such file or directory)
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioService( 1559): Media server started.
+E/AudioFlinger( 3197): no wake lock to update!
+E/AudioFlinger( 3197): no wake lock to update!
+F/AudioTrackShared( 3197): Assertion failed: buffer == NULL || buffer->mFrameCount == 0
+F/libc    ( 3197): Fatal signal 6 (SIGABRT), code -6 in tid 3203 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 3197, tid: 3203, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269):     eax 00000000  ebx 00000c7d  ecx 00000c83  edx 00000006
+F/DEBUG   ( 1269):     esi b42bf980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6fe08d6  ebp 00000c83  esp b42bee80  flags 00200206
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+F/DEBUG   ( 1269):     #16 pc 00021952  /system/lib/libc.so (__start_thread+25)
+F/DEBUG   ( 1269):     #17 pc 000170b6  /system/lib/libc.so (__bionic_clone+70)
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): Tombstone written to: /data/tombstones/tombstone_06
+E/memtrack( 3217): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3217): failed to load memtrack module: -2
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/memtrack( 3228): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3228): failed to load memtrack module: -2
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/EmulatedCamera_Factory( 3237): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 3237): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/MonoPipe( 3237): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 3237): no wake lock to update!
+E/AudioFlinger( 3237): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 3237): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 3237): couldn't load radio module radio.primary (No such file or directory)
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioService( 1559): Media server started.
+E/AudioFlinger( 3237): no wake lock to update!
+E/FastThread( 3237): did not receive expected priority boost
+E/AudioFlinger( 3237): no wake lock to update!
+F/AudioTrackShared( 3237): Assertion failed: buffer == NULL || buffer->mFrameCount == 0
+F/libc    ( 3237): Fatal signal 6 (SIGABRT), code -6 in tid 3243 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 3237, tid: 3243, name: FastMixer  >>> /system/bin/mediaserver <<<
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+F/DEBUG   ( 1269):     eax 00000000  ebx 00000ca5  ecx 00000cab  edx 00000006
+F/DEBUG   ( 1269):     esi b41ff980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6f2a8d6  ebp 00000cab  esp b41fee80  flags 00200206
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+F/DEBUG   ( 1269):     #16 pc 00021952  /system/lib/libc.so (__start_thread+25)
+F/DEBUG   ( 1269):     #17 pc 000170b6  /system/lib/libc.so (__bionic_clone+70)
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): Tombstone written to: /data/tombstones/tombstone_07
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3262): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3262): failed to load memtrack module: -2
+E/AudioService( 1559): Media server died.
+E/memtrack( 3273): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3273): failed to load memtrack module: -2
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/EmulatedCamera_Factory( 3282): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 3282): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/MonoPipe( 3282): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 3282): no wake lock to update!
+E/AudioFlinger( 3282): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 3282): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 3282): couldn't load radio module radio.primary (No such file or directory)
+E/AudioService( 1559): Media server started.
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioFlinger( 3282): no wake lock to update!
+F/AudioTrackShared( 3282): Assertion failed: buffer == NULL || buffer->mFrameCount == 0
+F/libc    ( 3282): Fatal signal 6 (SIGABRT), code -6 in tid 3288 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 3282, tid: 3288, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269):     eax 00000000  ebx 00000cd2  ecx 00000cd8  edx 00000006
+F/DEBUG   ( 1269):     esi b427f980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6fc68d6  ebp 00000cd8  esp b427ee80  flags 00200206
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+F/DEBUG   ( 1269):     #16 pc 00021952  /system/lib/libc.so (__start_thread+25)
+F/DEBUG   ( 1269):     #17 pc 000170b6  /system/lib/libc.so (__bionic_clone+70)
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): Tombstone written to: /data/tombstones/tombstone_08
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/memtrack( 3299): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3299): failed to load memtrack module: -2
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/memtrack( 3310): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3310): failed to load memtrack module: -2
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/EmulatedCamera_Factory( 3319): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 3319): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/MonoPipe( 3319): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 3319): no wake lock to update!
+E/AudioFlinger( 3319): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 3319): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 3319): couldn't load radio module radio.primary (No such file or directory)
+E/AudioService( 1559): Media server started.
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioFlinger( 3319): no wake lock to update!
+F/AudioTrackShared( 3319): Assertion failed: buffer == NULL || buffer->mFrameCount == 0
+F/libc    ( 3319): Fatal signal 6 (SIGABRT), code -6 in tid 3325 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 3319, tid: 3325, name: FastMixer  >>> /system/bin/mediaserver <<<
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+F/DEBUG   ( 1269):     eax 00000000  ebx 00000cf7  ecx 00000cfd  edx 00000006
+F/DEBUG   ( 1269):     esi b423f980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6f778d6  ebp 00000cfd  esp b423ee80  flags 00200202
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+F/DEBUG   ( 1269):     #16 pc 00021952  /system/lib/libc.so (__start_thread+25)
+F/DEBUG   ( 1269):     #17 pc 000170b6  /system/lib/libc.so (__bionic_clone+70)
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): Tombstone written to: /data/tombstones/tombstone_09
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/AudioService( 1559): Media server died.
+E/memtrack( 3341): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3341): failed to load memtrack module: -2
+E/memtrack( 3354): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3354): failed to load memtrack module: -2
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/EmulatedCamera_Factory( 3363): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 3363): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/MonoPipe( 3363): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 3363): no wake lock to update!
+E/AudioFlinger( 3363): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 3363): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 3363): couldn't load radio module radio.primary (No such file or directory)
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioService( 1559): Media server started.
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioFlinger( 3363): no wake lock to update!
+F/AudioTrackShared( 3363): Assertion failed: buffer == NULL || buffer->mFrameCount == 0
+F/libc    ( 3363): Fatal signal 6 (SIGABRT), code -6 in tid 3369 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 3363, tid: 3369, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+F/DEBUG   ( 1269):     eax 00000000  ebx 00000d23  ecx 00000d29  edx 00000006
+F/DEBUG   ( 1269):     esi b423f980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6f638d6  ebp 00000d29  esp b423ee80  flags 00200202
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+F/DEBUG   ( 1269):     #16 pc 00021952  /system/lib/libc.so (__start_thread+25)
+F/DEBUG   ( 1269):     #17 pc 000170b6  /system/lib/libc.so (__bionic_clone+70)
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): Tombstone written to: /data/tombstones/tombstone_00
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3386): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3386): failed to load memtrack module: -2
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/memtrack( 3399): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3399): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/EmulatedCamera_Factory( 3408): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 3408): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/MonoPipe( 3408): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 3408): no wake lock to update!
+E/AudioFlinger( 3408): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 3408): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 3408): couldn't load radio module radio.primary (No such file or directory)
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioService( 1559): Media server started.
+E/AudioFlinger( 3408): no wake lock to update!
+F/AudioTrackShared( 3408): Assertion failed: buffer == NULL || buffer->mFrameCount == 0
+F/libc    ( 3408): Fatal signal 6 (SIGABRT), code -6 in tid 3414 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 3408, tid: 3414, name: FastMixer  >>> /system/bin/mediaserver <<<
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+F/DEBUG   ( 1269):     eax 00000000  ebx 00000d50  ecx 00000d56  edx 00000006
+F/DEBUG   ( 1269):     esi b42bf980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6fde8d6  ebp 00000d56  esp b42bee80  flags 00200206
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+F/DEBUG   ( 1269):     #16 pc 00021952  /system/lib/libc.so (__start_thread+25)
+F/DEBUG   ( 1269):     #17 pc 000170b6  /system/lib/libc.so (__bionic_clone+70)
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): Tombstone written to: /data/tombstones/tombstone_01
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/AudioService( 1559): Media server died.
+E/memtrack( 3431): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3431): failed to load memtrack module: -2
+E/memtrack( 3444): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3444): failed to load memtrack module: -2
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/EmulatedCamera_Factory( 3453): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 3453): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/MonoPipe( 3453): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 3453): no wake lock to update!
+E/AudioFlinger( 3453): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 3453): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 3453): couldn't load radio module radio.primary (No such file or directory)
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioService( 1559): Media server started.
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioFlinger( 3453): no wake lock to update!
+F/AudioTrackShared( 3453): Assertion failed: buffer == NULL || buffer->mFrameCount == 0
+F/libc    ( 3453): Fatal signal 6 (SIGABRT), code -6 in tid 3459 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 3453, tid: 3459, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269):     eax 00000000  ebx 00000d7d  ecx 00000d83  edx 00000006
+F/DEBUG   ( 1269):     esi b427f980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6f9e8d6  ebp 00000d83  esp b427ee80  flags 00200206
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+F/DEBUG   ( 1269):     #16 pc 00021952  /system/lib/libc.so (__start_thread+25)
+F/DEBUG   ( 1269):     #17 pc 000170b6  /system/lib/libc.so (__bionic_clone+70)
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): Tombstone written to: /data/tombstones/tombstone_02
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3475): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3475): failed to load memtrack module: -2
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/memtrack( 3488): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3488): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/EmulatedCamera_Factory( 3497): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 3497): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/MonoPipe( 3497): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 3497): no wake lock to update!
+E/AudioFlinger( 3497): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 3497): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 3497): couldn't load radio module radio.primary (No such file or directory)
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioService( 1559): Media server started.
+E/AudioFlinger( 3497): no wake lock to update!
+F/AudioTrackShared( 3497): Assertion failed: buffer == NULL || buffer->mFrameCount == 0
+F/libc    ( 3497): Fatal signal 6 (SIGABRT), code -6 in tid 3503 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 3497, tid: 3503, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+F/DEBUG   ( 1269):     eax 00000000  ebx 00000da9  ecx 00000daf  edx 00000006
+F/DEBUG   ( 1269):     esi b42bf980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6ff18d6  ebp 00000daf  esp b42bee80  flags 00200206
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+F/DEBUG   ( 1269):     #16 pc 00021952  /system/lib/libc.so (__start_thread+25)
+F/DEBUG   ( 1269):     #17 pc 000170b6  /system/lib/libc.so (__bionic_clone+70)
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): Tombstone written to: /data/tombstones/tombstone_03
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3520): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3520): failed to load memtrack module: -2
+E/AudioService( 1559): Media server died.
+E/memtrack( 3533): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3533): failed to load memtrack module: -2
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/EmulatedCamera_Factory( 3542): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 3542): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/MonoPipe( 3542): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 3542): no wake lock to update!
+E/AudioFlinger( 3542): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 3542): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 3542): couldn't load radio module radio.primary (No such file or directory)
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioService( 1559): Media server started.
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioFlinger( 3542): no wake lock to update!
+F/AudioTrackShared( 3542): Assertion failed: buffer == NULL || buffer->mFrameCount == 0
+F/libc    ( 3542): Fatal signal 6 (SIGABRT), code -6 in tid 3548 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 3542, tid: 3548, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+F/DEBUG   ( 1269):     eax 00000000  ebx 00000dd6  ecx 00000ddc  edx 00000006
+F/DEBUG   ( 1269):     esi b42bf980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b700d8d6  ebp 00000ddc  esp b42bee80  flags 00200202
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+F/DEBUG   ( 1269):     #16 pc 00021952  /system/lib/libc.so (__start_thread+25)
+F/DEBUG   ( 1269):     #17 pc 000170b6  /system/lib/libc.so (__bionic_clone+70)
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): Tombstone written to: /data/tombstones/tombstone_04
+E/AudioService( 1559): Media server died.
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/AudioService( 1559): Media server died.
+E/memtrack( 3567): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3567): failed to load memtrack module: -2
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/memtrack( 3580): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3580): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/EmulatedCamera_Factory( 3589): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 3589): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/MonoPipe( 3589): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 3589): no wake lock to update!
+E/AudioFlinger( 3589): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 3589): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 3589): couldn't load radio module radio.primary (No such file or directory)
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioService( 1559): Media server started.
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3606): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3606): failed to load memtrack module: -2
+E/AudioFlinger( 3589): no wake lock to update!
+F/AudioTrackShared( 3589): Assertion failed: buffer == NULL || buffer->mFrameCount == 0
+F/libc    ( 3589): Fatal signal 6 (SIGABRT), code -6 in tid 3595 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 3589, tid: 3595, name: FastMixer  >>> /system/bin/mediaserver <<<
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+F/DEBUG   ( 1269):     eax 00000000  ebx 00000e05  ecx 00000e0b  edx 00000006
+F/DEBUG   ( 1269):     esi b427f980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6fbe8d6  ebp 00000e0b  esp b427ee80  flags 00200206
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+F/DEBUG   ( 1269):     #16 pc 00021952  /system/lib/libc.so (__start_thread+25)
+F/DEBUG   ( 1269):     #17 pc 000170b6  /system/lib/libc.so (__bionic_clone+70)
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): Tombstone written to: /data/tombstones/tombstone_05
+E/AudioService( 1559): Media server died.
+E/memtrack( 3625): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3625): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/EmulatedCamera_Factory( 3634): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 3634): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/MonoPipe( 3634): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 3634): no wake lock to update!
+E/AudioFlinger( 3634): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 3634): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 3634): couldn't load radio module radio.primary (No such file or directory)
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioService( 1559): Media server started.
+E/AudioFlinger( 3634): no wake lock to update!
+F/AudioTrackShared( 3634): Assertion failed: buffer == NULL || buffer->mFrameCount == 0
+F/libc    ( 3634): Fatal signal 6 (SIGABRT), code -6 in tid 3640 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 3634, tid: 3640, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269):     eax 00000000  ebx 00000e32  ecx 00000e38  edx 00000006
+F/DEBUG   ( 1269):     esi b42bf980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6ffd8d6  ebp 00000e38  esp b42bee80  flags 00200202
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+F/DEBUG   ( 1269):     #16 pc 00021952  /system/lib/libc.so (__start_thread+25)
+F/DEBUG   ( 1269):     #17 pc 000170b6  /system/lib/libc.so (__bionic_clone+70)
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): Tombstone written to: /data/tombstones/tombstone_06
+E/AudioService( 1559): Media server died.
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/AudioService( 1559): Media server died.
+E/memtrack( 3658): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3658): failed to load memtrack module: -2
+E/memtrack( 3671): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3671): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/EmulatedCamera_Factory( 3680): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 3680): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/MonoPipe( 3680): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 3680): no wake lock to update!
+E/AudioFlinger( 3680): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 3680): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 3680): couldn't load radio module radio.primary (No such file or directory)
+E/AudioService( 1559): Media server started.
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3697): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3697): failed to load memtrack module: -2
+E/AudioFlinger( 3680): no wake lock to update!
+F/AudioTrackShared( 3680): Assertion failed: buffer == NULL || buffer->mFrameCount == 0
+F/libc    ( 3680): Fatal signal 6 (SIGABRT), code -6 in tid 3686 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 3680, tid: 3686, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+F/DEBUG   ( 1269):     eax 00000000  ebx 00000e60  ecx 00000e66  edx 00000006
+F/DEBUG   ( 1269):     esi b42bf980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6fea8d6  ebp 00000e66  esp b42bee80  flags 00200206
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+F/DEBUG   ( 1269):     #16 pc 00021952  /system/lib/libc.so (__start_thread+25)
+F/DEBUG   ( 1269):     #17 pc 000170b6  /system/lib/libc.so (__bionic_clone+70)
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): Tombstone written to: /data/tombstones/tombstone_07
+E/AudioService( 1559): Media server died.
+E/memtrack( 3712): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3712): failed to load memtrack module: -2
+E/Surface ( 2650): getSlotFromBufferLocked: unknown buffer: 0xadc96e20
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/memtrack( 3725): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3725): failed to load memtrack module: -2
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/EmulatedCamera_Factory( 3734): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 3734): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/MonoPipe( 3734): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 3734): no wake lock to update!
+E/AudioFlinger( 3734): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 3734): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 3734): couldn't load radio module radio.primary (No such file or directory)
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioService( 1559): Media server started.
+E/AudioFlinger( 3734): no wake lock to update!
+F/AudioTrackShared( 3734): Assertion failed: buffer == NULL || buffer->mFrameCount == 0
+F/libc    ( 3734): Fatal signal 6 (SIGABRT), code -6 in tid 3740 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 3734, tid: 3740, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269):     eax 00000000  ebx 00000e96  ecx 00000e9c  edx 00000006
+F/DEBUG   ( 1269):     esi b423f980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6f7f8d6  ebp 00000e9c  esp b423ee80  flags 00200206
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+F/DEBUG   ( 1269):     #16 pc 00021952  /system/lib/libc.so (__start_thread+25)
+F/DEBUG   ( 1269):     #17 pc 000170b6  /system/lib/libc.so (__bionic_clone+70)
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): Tombstone written to: /data/tombstones/tombstone_08
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3758): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3758): failed to load memtrack module: -2
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/memtrack( 3767): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3767): failed to load memtrack module: -2
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/EmulatedCamera_Factory( 3776): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 3776): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/MonoPipe( 3776): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 3776): no wake lock to update!
+E/AudioFlinger( 3776): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 3776): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 3776): couldn't load radio module radio.primary (No such file or directory)
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioService( 1559): Media server started.
+E/AudioFlinger( 3776): no wake lock to update!
+F/AudioTrackShared( 3776): Assertion failed: buffer == NULL || buffer->mFrameCount == 0
+F/libc    ( 3776): Fatal signal 6 (SIGABRT), code -6 in tid 3782 (FastMixer)
+F/DEBUG   ( 1269): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 1269): Build fingerprint: 'Android/sdk_phone_x86/generic_x86:6.0/MASTER/4174734:userdebug/test-keys'
+F/DEBUG   ( 1269): Revision: '0'
+F/DEBUG   ( 1269): ABI: 'x86'
+F/DEBUG   ( 1269): pid: 3776, tid: 3782, name: FastMixer  >>> /system/bin/mediaserver <<<
+F/DEBUG   ( 1269): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+F/DEBUG   ( 1269): Abort message: 'Assertion failed: buffer == NULL || buffer->mFrameCount == 0'
+E/DEBUG   ( 1269): AM write failed: Broken pipe
+F/DEBUG   ( 1269):     eax 00000000  ebx 00000ec0  ecx 00000ec6  edx 00000006
+F/DEBUG   ( 1269):     esi b423f980  edi 00000000
+F/DEBUG   ( 1269):     xcs 00000073  xds 0000007b  xes 0000007b  xfs 00000000  xss 0000007b
+F/DEBUG   ( 1269):     eip b6f578d6  ebp 00000ec6  esp b423ee80  flags 00200206
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): backtrace:
+F/DEBUG   ( 1269):     #00 pc 000838d6  /system/lib/libc.so (tgkill+22)
+F/DEBUG   ( 1269):     #01 pc 000815f8  /system/lib/libc.so (pthread_kill+70)
+F/DEBUG   ( 1269):     #02 pc 00027205  /system/lib/libc.so (raise+36)
+F/DEBUG   ( 1269):     #03 pc 000209e4  /system/lib/libc.so (abort+80)
+F/DEBUG   ( 1269):     #04 pc 0000cbc3  /system/lib/libcutils.so (__android_log_assert+128)
+F/DEBUG   ( 1269):     #05 pc 0008353d  /system/lib/libmedia.so (android::ServerProxy::obtainBuffer(android::Proxy::Buffer*, bool)+669)
+F/DEBUG   ( 1269):     #06 pc 00053af7  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #07 pc 00066155  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #08 pc 0002630a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #09 pc 00026d42  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #10 pc 00025e93  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #11 pc 0006c19a  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #12 pc 0006d88f  /system/lib/libaudioflinger.so
+F/DEBUG   ( 1269):     #13 pc 00014aac  /system/lib/libutils.so (android::Thread::_threadLoop(void*)+418)
+F/DEBUG   ( 1269):     #14 pc 000141cf  /system/lib/libutils.so (thread_data_t::trampoline(thread_data_t const*)+122)
+F/DEBUG   ( 1269):     #15 pc 00080aa3  /system/lib/libc.so (__pthread_start(void*)+56)
+F/DEBUG   ( 1269):     #16 pc 00021952  /system/lib/libc.so (__start_thread+25)
+F/DEBUG   ( 1269):     #17 pc 000170b6  /system/lib/libc.so (__bionic_clone+70)
+F/DEBUG   ( 1269): 
+F/DEBUG   ( 1269): Tombstone written to: /data/tombstones/tombstone_09
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/memtrack( 3798): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3798): failed to load memtrack module: -2
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/AudioService( 1559): Media server died.
+E/CameraManagerGlobal( 1764): Camera service is unavailable
+E/AudioService( 1559): Media server died.
+E/EmulatedCamera_Factory( 3807): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 3807): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/MonoPipe( 3807): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 3807): no wake lock to update!
+E/AudioFlinger( 3807): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 3807): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 3807): couldn't load radio module radio.primary (No such file or directory)
+E/AudioService( 1559): Media server started.
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/ToneGenerator( 2650): --- Delayed start timed out, status -110
+E/AudioFlinger( 3807): no wake lock to update!
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioFlinger( 3807): no wake lock to update!
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioFlinger( 3807): createTrack_l() mismatched strategy; expected 3 but found 0
+E/AudioTrack( 2650): AudioFlinger could not create track, status: -22
+E/ToneGenerator( 2650): AudioTrack->initCheck failed
+E/AudioFlinger( 3807): no wake lock to update!
+E/AudioFlinger( 3807): no wake lock to update!
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3829): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3829): failed to load memtrack module: -2
+E/memtrack( 3842): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3842): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3856): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3856): failed to load memtrack module: -2
+E/memtrack( 3869): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3869): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioFlinger( 3807): no wake lock to update!
+E/AudioFlinger( 3807): no wake lock to update!
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioFlinger( 3807): no wake lock to update!
+E/AudioFlinger( 3807): no wake lock to update!
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioFlinger( 3807): no wake lock to update!
+E/AudioFlinger( 3807): no wake lock to update!
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/AudioFlinger( 3807): no wake lock to update!
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3888): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3888): failed to load memtrack module: -2
+E/art     ( 3888): Thread attaching while runtime is shutting down: Binder_2
+I/AndroidRuntime( 3888): NOTE: attach of thread 'Binder_2' failed
+E/memtrack( 3901): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3901): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3915): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3915): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/memtrack( 3928): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3928): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3942): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3942): failed to load memtrack module: -2
+E/memtrack( 3955): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3955): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3969): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3969): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/memtrack( 3982): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3982): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3996): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3996): failed to load memtrack module: -2
+E/memtrack( 4009): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4009): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4023): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4023): failed to load memtrack module: -2
+E/memtrack( 4032): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4032): failed to load memtrack module: -2
+E/Surface ( 2650): getSlotFromBufferLocked: unknown buffer: 0xadc961a0
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/memtrack( 4045): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4045): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4059): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4059): failed to load memtrack module: -2
+E/memtrack( 4072): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4072): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4086): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4086): failed to load memtrack module: -2
+E/memtrack( 4095): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4095): failed to load memtrack module: -2
+E/Surface ( 2650): getSlotFromBufferLocked: unknown buffer: 0xb407bb80
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/memtrack( 4109): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4109): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4123): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4123): failed to load memtrack module: -2
+E/memtrack( 4136): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4136): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/BluetoothAdapter( 2650): Bluetooth binder is null
+E/SurfaceFlinger( 1260): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4150): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4150): failed to load memtrack module: -2
+E/BluetoothAdapter( 2650): Bluetooth binder is null
