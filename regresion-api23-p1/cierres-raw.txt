@@ -1,0 +1,828 @@
+--------- beginning of main
+--------- beginning of system
+E/perfprofd( 1274): unable to open configuration file /data/data/com.google.android.gms/files/perfprofd.conf
+E/cutils  ( 1270): Failed to read /data/.layout_version: No such file or directory
+E/libEGL  ( 1230): load_driver(/system/lib/egl/libGLES_emulation.so): dlopen failed: library "/system/lib/egl/libGLES_emulation.so" not found
+E/eglCodecCommon( 1230): glUtilsParamSize: unknow param 0x00008cdf
+E/eglCodecCommon( 1230): glUtilsParamSize: unknow param 0x00008824
+E/        ( 1269): batterystats service unavailable!
+E/        ( 1269): batterystats service unavailable!
+E/        ( 1269): batterystats service unavailable!
+E/        ( 1269): batterystats service unavailable!
+E/EmulatedCamera_Factory( 1269): 1 cameras are being emulated. 0 of them are fake cameras.
+E/CameraService( 1269): setUpVendorTags: Vendor tag operations not fully defined. Ignoring definitions.
+E/memtrack( 1272): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 1272): failed to load memtrack module: -2
+E/Netd    ( 1265): exec() res=0, status=768 for /system/bin/iptables -w -t nat -N oem_nat_pre 
+E/Netd    ( 1265): exec() res=0, status=768 for /system/bin/iptables -w -t nat -A PREROUTING -j oem_nat_pre 
+E/Minikin ( 1272): addFont failed to create font /system/fonts/NanumGothic.ttf
+E/Minikin ( 1272): addFont failed to create font /system/fonts/DroidSansFallback.ttf
+E/Minikin ( 1272): addFont failed to create font /system/fonts/MTLmr3m.ttf
+E/Netd    ( 1265): exec() res=0, status=768 for /system/bin/iptables -w -t nat -N natctrl_nat_POSTROUTING 
+E/Netd    ( 1265): exec() res=0, status=768 for /system/bin/iptables -w -t nat -A POSTROUTING -j natctrl_nat_POSTROUTING 
+E/EmojiFactory_jni( 1272): Failed to load libemoji.so: dlopen failed: library "libemoji.so" not found
+E/Netd    ( 1265): cannot find interface dummy0
+E/libEGL  ( 1272): load_driver(/system/lib/egl/libGLES_emulation.so): dlopen failed: library "/system/lib/egl/libGLES_emulation.so" not found
+E/Hyphenator( 1272): error loading hyphenation /system/usr/hyphen-data/hyph-en-us.pat.txt
+E/Hyphenator( 1272): java.io.FileNotFoundException: /system/usr/hyphen-data/hyph-en-us.pat.txt: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1272): 	at libcore.io.IoBridge.open(IoBridge.java:452)
+E/Hyphenator( 1272): 	at libcore.io.IoUtils$FileReader.<init>(IoUtils.java:207)
+E/Hyphenator( 1272): 	at libcore.io.IoUtils.readFileAsString(IoUtils.java:114)
+E/Hyphenator( 1272): 	at android.text.Hyphenator.loadHyphenator(Hyphenator.java:96)
+E/Hyphenator( 1272): 	at android.text.Hyphenator.init(Hyphenator.java:154)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.preloadTextResources(ZygoteInit.java:207)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.preload(ZygoteInit.java:186)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:593)
+E/Hyphenator( 1272): Caused by: android.system.ErrnoException: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1272): 	at libcore.io.Posix.open(Native Method)
+E/Hyphenator( 1272): 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:186)
+E/Hyphenator( 1272): 	at libcore.io.IoBridge.open(IoBridge.java:438)
+E/Hyphenator( 1272): 	... 7 more
+E/Hyphenator( 1272): error loading hyphenation /system/usr/hyphen-data/hyph-eu.pat.txt
+E/Hyphenator( 1272): java.io.FileNotFoundException: /system/usr/hyphen-data/hyph-eu.pat.txt: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1272): 	at libcore.io.IoBridge.open(IoBridge.java:452)
+E/Hyphenator( 1272): 	at libcore.io.IoUtils$FileReader.<init>(IoUtils.java:207)
+E/Hyphenator( 1272): 	at libcore.io.IoUtils.readFileAsString(IoUtils.java:114)
+E/Hyphenator( 1272): 	at android.text.Hyphenator.loadHyphenator(Hyphenator.java:96)
+E/Hyphenator( 1272): 	at android.text.Hyphenator.init(Hyphenator.java:154)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.preloadTextResources(ZygoteInit.java:207)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.preload(ZygoteInit.java:186)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:593)
+E/Hyphenator( 1272): Caused by: android.system.ErrnoException: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1272): 	at libcore.io.Posix.open(Native Method)
+E/Hyphenator( 1272): 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:186)
+E/Hyphenator( 1272): 	at libcore.io.IoBridge.open(IoBridge.java:438)
+E/Hyphenator( 1272): 	... 7 more
+E/Hyphenator( 1272): error loading hyphenation /system/usr/hyphen-data/hyph-hu.pat.txt
+E/Hyphenator( 1272): java.io.FileNotFoundException: /system/usr/hyphen-data/hyph-hu.pat.txt: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1272): 	at libcore.io.IoBridge.open(IoBridge.java:452)
+E/Hyphenator( 1272): 	at libcore.io.IoUtils$FileReader.<init>(IoUtils.java:207)
+E/Hyphenator( 1272): 	at libcore.io.IoUtils.readFileAsString(IoUtils.java:114)
+E/Hyphenator( 1272): 	at android.text.Hyphenator.loadHyphenator(Hyphenator.java:96)
+E/Hyphenator( 1272): 	at android.text.Hyphenator.init(Hyphenator.java:154)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.preloadTextResources(ZygoteInit.java:207)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.preload(ZygoteInit.java:186)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:593)
+E/Hyphenator( 1272): Caused by: android.system.ErrnoException: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1272): 	at libcore.io.Posix.open(Native Method)
+E/Hyphenator( 1272): 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:186)
+E/Hyphenator( 1272): 	at libcore.io.IoBridge.open(IoBridge.java:438)
+E/Hyphenator( 1272): 	... 7 more
+E/Hyphenator( 1272): error loading hyphenation /system/usr/hyphen-data/hyph-hy.pat.txt
+E/Hyphenator( 1272): java.io.FileNotFoundException: /system/usr/hyphen-data/hyph-hy.pat.txt: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1272): 	at libcore.io.IoBridge.open(IoBridge.java:452)
+E/Hyphenator( 1272): 	at libcore.io.IoUtils$FileReader.<init>(IoUtils.java:207)
+E/Hyphenator( 1272): 	at libcore.io.IoUtils.readFileAsString(IoUtils.java:114)
+E/Hyphenator( 1272): 	at android.text.Hyphenator.loadHyphenator(Hyphenator.java:96)
+E/Hyphenator( 1272): 	at android.text.Hyphenator.init(Hyphenator.java:154)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.preloadTextResources(ZygoteInit.java:207)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.preload(ZygoteInit.java:186)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:593)
+E/Hyphenator( 1272): Caused by: android.system.ErrnoException: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1272): 	at libcore.io.Posix.open(Native Method)
+E/Hyphenator( 1272): 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:186)
+E/Hyphenator( 1272): 	at libcore.io.IoBridge.open(IoBridge.java:438)
+E/Hyphenator( 1272): 	... 7 more
+E/Hyphenator( 1272): error loading hyphenation /system/usr/hyphen-data/hyph-nb.pat.txt
+E/Hyphenator( 1272): java.io.FileNotFoundException: /system/usr/hyphen-data/hyph-nb.pat.txt: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1272): 	at libcore.io.IoBridge.open(IoBridge.java:452)
+E/Hyphenator( 1272): 	at libcore.io.IoUtils$FileReader.<init>(IoUtils.java:207)
+E/Hyphenator( 1272): 	at libcore.io.IoUtils.readFileAsString(IoUtils.java:114)
+E/Hyphenator( 1272): 	at android.text.Hyphenator.loadHyphenator(Hyphenator.java:96)
+E/Hyphenator( 1272): 	at android.text.Hyphenator.init(Hyphenator.java:154)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.preloadTextResources(ZygoteInit.java:207)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.preload(ZygoteInit.java:186)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:593)
+E/Hyphenator( 1272): Caused by: android.system.ErrnoException: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1272): 	at libcore.io.Posix.open(Native Method)
+E/Hyphenator( 1272): 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:186)
+E/Hyphenator( 1272): 	at libcore.io.IoBridge.open(IoBridge.java:438)
+E/Hyphenator( 1272): 	... 7 more
+E/Hyphenator( 1272): error loading hyphenation /system/usr/hyphen-data/hyph-nn.pat.txt
+E/Hyphenator( 1272): java.io.FileNotFoundException: /system/usr/hyphen-data/hyph-nn.pat.txt: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1272): 	at libcore.io.IoBridge.open(IoBridge.java:452)
+E/Hyphenator( 1272): 	at libcore.io.IoUtils$FileReader.<init>(IoUtils.java:207)
+E/Hyphenator( 1272): 	at libcore.io.IoUtils.readFileAsString(IoUtils.java:114)
+E/Hyphenator( 1272): 	at android.text.Hyphenator.loadHyphenator(Hyphenator.java:96)
+E/Hyphenator( 1272): 	at android.text.Hyphenator.init(Hyphenator.java:154)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.preloadTextResources(ZygoteInit.java:207)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.preload(ZygoteInit.java:186)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:593)
+E/Hyphenator( 1272): Caused by: android.system.ErrnoException: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1272): 	at libcore.io.Posix.open(Native Method)
+E/Hyphenator( 1272): 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:186)
+E/Hyphenator( 1272): 	at libcore.io.IoBridge.open(IoBridge.java:438)
+E/Hyphenator( 1272): 	... 7 more
+E/Hyphenator( 1272): error loading hyphenation /system/usr/hyphen-data/hyph-sa.pat.txt
+E/Hyphenator( 1272): java.io.FileNotFoundException: /system/usr/hyphen-data/hyph-sa.pat.txt: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1272): 	at libcore.io.IoBridge.open(IoBridge.java:452)
+E/Hyphenator( 1272): 	at libcore.io.IoUtils$FileReader.<init>(IoUtils.java:207)
+E/Hyphenator( 1272): 	at libcore.io.IoUtils.readFileAsString(IoUtils.java:114)
+E/Hyphenator( 1272): 	at android.text.Hyphenator.loadHyphenator(Hyphenator.java:96)
+E/Hyphenator( 1272): 	at android.text.Hyphenator.init(Hyphenator.java:154)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.preloadTextResources(ZygoteInit.java:207)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.preload(ZygoteInit.java:186)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:593)
+E/Hyphenator( 1272): Caused by: android.system.ErrnoException: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1272): 	at libcore.io.Posix.open(Native Method)
+E/Hyphenator( 1272): 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:186)
+E/Hyphenator( 1272): 	at libcore.io.IoBridge.open(IoBridge.java:438)
+E/Hyphenator( 1272): 	... 7 more
+E/Hyphenator( 1272): error loading hyphenation /system/usr/hyphen-data/hyph-und-ethi.pat.txt
+E/Hyphenator( 1272): java.io.FileNotFoundException: /system/usr/hyphen-data/hyph-und-ethi.pat.txt: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1272): 	at libcore.io.IoBridge.open(IoBridge.java:452)
+E/Hyphenator( 1272): 	at libcore.io.IoUtils$FileReader.<init>(IoUtils.java:207)
+E/Hyphenator( 1272): 	at libcore.io.IoUtils.readFileAsString(IoUtils.java:114)
+E/Hyphenator( 1272): 	at android.text.Hyphenator.loadHyphenator(Hyphenator.java:96)
+E/Hyphenator( 1272): 	at android.text.Hyphenator.init(Hyphenator.java:154)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.preloadTextResources(ZygoteInit.java:207)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.preload(ZygoteInit.java:186)
+E/Hyphenator( 1272): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:593)
+E/Hyphenator( 1272): Caused by: android.system.ErrnoException: open failed: ENOENT (No such file or directory)
+E/Hyphenator( 1272): 	at libcore.io.Posix.open(Native Method)
+E/Hyphenator( 1272): 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:186)
+E/Hyphenator( 1272): 	at libcore.io.IoBridge.open(IoBridge.java:438)
+E/Hyphenator( 1272): 	... 7 more
+E/installd( 1270): eof
+E/installd( 1270): failed to read size
+E/PowerManagerService-JNI( 1559): Couldn't load power module (No such file or directory)
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/art     ( 1559): DexFile_getDexOptNeeded file '/system/framework/org.apache.http.legacy.jar' does not exist
+E/ConsumerIrService( 1559): Can't open consumer IR HW Module, error: -2
+E/EventHub( 1559): could not get driver version for /dev/input/mouse0, Not a typewriter
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/VoldConnector( 1559): Error handling '662 /cache -1 -1': java.lang.NullPointerException: Attempt to invoke virtual method 'void android.os.DropBoxManager.addText(java.lang.String, java.lang.String)' on a null object reference
+E/VoldConnector( 1559): Error handling '662 /data -1 -1': java.lang.NullPointerException: Attempt to invoke virtual method 'void android.os.DropBoxManager.addText(java.lang.String, java.lang.String)' on a null object reference
+E/EventHub( 1559): could not get driver version for /dev/input/mice, Not a typewriter
+E/MonoPipe( 1269): Failed to fetch local time frequency when constructing a MonoPipe (res = -32).  getNextWriteTimestamp calls will be non-functional
+E/AudioFlinger( 1269): no wake lock to update!
+E/AudioFlinger( 1269): int android::load_audio_interface(const char*, audio_hw_device_t**) couldn't load audio hw module audio.r_submix (No such file or directory)
+E/SoundTriggerHwService( 1269): couldn't load sound trigger module sound_trigger.primary (No such file or directory)
+E/RadioService( 1269): couldn't load radio module radio.primary (No such file or directory)
+E/UsbDeviceManager( 1559): failed to write to /sys/class/android_usb/android0/f_rndis/ethaddr
+E/UsbDeviceManagerJNI( 1559): could not open /dev/usb_accessory
+E/FingerprintHal( 1275): Could not load fingerprints from storage at /data/system/users/0/fpdata/emulator_fingerprint_storage.bin; it has not yet been created.
+E/eglCodecCommon( 1559): glUtilsParamSize: unknow param 0x00008cdf
+E/eglCodecCommon( 1559): glUtilsParamSize: unknow param 0x00008824
+E/SQLiteLog( 1559): (1) no such table: locksettings
+E/LockSettingsStorage( 1559): Cannot read file java.io.FileNotFoundException: /data/system/gatekeeper.password.key: open failed: ENOENT (No such file or directory)
+E/LockSettingsStorage( 1559): Cannot read file java.io.FileNotFoundException: /data/system/password.key: open failed: ENOENT (No such file or directory)
+E/LockSettingsStorage( 1559): Cannot read file java.io.FileNotFoundException: /data/system/gatekeeper.pattern.key: open failed: ENOENT (No such file or directory)
+E/LockSettingsStorage( 1559): Cannot read file java.io.FileNotFoundException: /data/system/gatekeeper.gesture.key: open failed: ENOENT (No such file or directory)
+E/LockSettingsStorage( 1559): Cannot read file java.io.FileNotFoundException: /data/system/gesture.key: open failed: ENOENT (No such file or directory)
+E/BluetoothAdapter( 1559): Bluetooth binder is null
+I/AndroidRuntime( 1751): VM exiting with result code 0, cleanup skipped.
+E/BluetoothAdapter( 1559): Bluetooth binder is null
+E/BluetoothAdapter( 1559): Bluetooth binder is null
+E/WVMExtractor( 1770): Failed to open libwvm.so: dlopen failed: library "libwvm.so" not found
+E/Netd    ( 1265): exec() res=0, status=256 for /system/bin/iptables -w -F st_penalty_log 
+E/Netd    ( 1265): exec() res=0, status=256 for /system/bin/ip6tables -w -F st_penalty_log 
+E/Netd    ( 1265): exec() res=0, status=256 for /system/bin/iptables -w -F st_penalty_reject 
+E/Netd    ( 1265): exec() res=0, status=256 for /system/bin/ip6tables -w -F st_penalty_reject 
+E/Netd    ( 1265): exec() res=0, status=256 for /system/bin/iptables -w -F st_clear_caught 
+E/Netd    ( 1265): exec() res=0, status=256 for /system/bin/ip6tables -w -F st_clear_caught 
+E/Netd    ( 1265): exec() res=0, status=256 for /system/bin/iptables -w -F st_clear_detect 
+E/Netd    ( 1265): exec() res=0, status=256 for /system/bin/ip6tables -w -F st_clear_detect 
+E/Netd    ( 1265): exec() res=0, status=256 for /system/bin/iptables -w -X st_penalty_log 
+E/Netd    ( 1265): exec() res=0, status=256 for /system/bin/ip6tables -w -X st_penalty_log 
+E/Netd    ( 1265): exec() res=0, status=256 for /system/bin/iptables -w -X st_penalty_reject 
+E/Netd    ( 1265): exec() res=0, status=256 for /system/bin/ip6tables -w -X st_penalty_reject 
+E/Netd    ( 1265): exec() res=0, status=256 for /system/bin/iptables -w -X st_clear_caught 
+E/Netd    ( 1265): exec() res=0, status=256 for /system/bin/ip6tables -w -X st_clear_caught 
+E/Netd    ( 1265): exec() res=0, status=256 for /system/bin/iptables -w -X st_clear_detect 
+E/Netd    ( 1265): exec() res=0, status=256 for /system/bin/ip6tables -w -X st_clear_detect 
+E/BluetoothAdapter( 1559): Bluetooth binder is null
+E/BluetoothAdapter( 1559): Bluetooth binder is null
+E/InputMethodManagerService( 1559): Ignoring updateSystemUiLocked due to an invalid token. uid:1000 token:null
+E/WVMExtractor( 1559): Failed to open libwvm.so: dlopen failed: library "libwvm.so" not found
+E/LocationManagerService( 1559): no geocoder provider found
+E/BluetoothAdapter( 1770): Bluetooth binder is null
+E/FlpHardwareProvider( 1559): Error hw_get_module 'flp': -2
+E/LocationManagerService( 1559): FLP HAL not supported
+E/LocationManagerService( 1559): Unable to bind FLP Geofence proxy.
+E/ActivityRecognitionHardware( 1559): Error hw_get_module: -2
+E/LocationManagerService( 1559): Hardware Activity-Recognition not supported.
+E/GpsLocationProvider( 1559): no AGPS interface in set_agps_server
+E/CameraService( 1269): getCameraPriorityFromProcState: Received invalid process state -1 from ActivityManagerService!
+E/WVMExtractor( 1269): Failed to open libwvm.so: dlopen failed: library "libwvm.so" not found
+E/CameraService( 1269): disconnect: Disconnect called on already disconnected client for device 0
+E/GpsLocationProvider( 1559): no AGPS interface in set_agps_server
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/eglCodecCommon( 1770): glUtilsParamSize: unknow param 0x00008cdf
+E/eglCodecCommon( 1770): glUtilsParamSize: unknow param 0x00008824
+E/DcSwitchStateMachine-0( 1991): DctController is not ready
+E/ConnectivityService( 1559): Failed to find Messenger in unregisterNetworkFactory
+E/BluetoothAdapter( 1991): Bluetooth binder is null
+E/SQLiteLog( 2084): (1) no such table: album_info
+E/PhoneInterfaceManager( 1991): [PhoneIntfMgr] getIccId: No UICC
+E/PhoneInterfaceManager( 1991): [PhoneIntfMgr] getIccId: No UICC
+E/DcSwitchStateMachine-0( 1991): EVENT_DATA_DISALLOWED failed, com.android.internal.telephony.CommandException: REQUEST_NOT_SUPPORTED
+E/DcSwitchStateMachine-0( 1991): EVENT_DATA_DISALLOWED failed, com.android.internal.telephony.CommandException: REQUEST_NOT_SUPPORTED
+E/PhoneInterfaceManager( 1991): [PhoneIntfMgr] getIccId: No UICC
+E/PhoneInterfaceManager( 1991): [PhoneIntfMgr] getIccId: No UICC
+E/DcSwitchStateMachine-0( 1991): EVENT_DATA_DISALLOWED failed, com.android.internal.telephony.CommandException: REQUEST_NOT_SUPPORTED
+E/GpsLocationProvider( 1559): no AGPS interface in set_agps_server
+E/GpsLocationProvider( 1559): no AGPS interface in set_agps_server
+E/GpsLocationProvider( 1559): no AGPS interface in set_agps_server
+E/GpsLocationProvider( 1559): no AGPS interface in set_agps_server
+E/GpsLocationProvider( 1559): no AGPS interface in set_agps_server
+E/GpsLocationProvider( 1559): no AGPS interface in set_agps_server
+E/GpsLocationProvider( 1559): no AGPS interface in set_agps_server
+E/GpsLocationProvider( 1559): no AGPS interface in set_agps_server
+E/CarrierConfigLoader( 1991): java.io.FileNotFoundException: /data/user/0/com.android.phone/files/carrierconfig-com.android.carrierconfig-89014103211118510720.xml: open failed: ENOENT (No such file or directory)
+E/installd( 1270): Unable to unlink boot marker at /data/dalvik-cache/x86/.booting, error=No such file or directory
+E/ActivityManager( 1559): Unable to mark boot complete for abi: x86
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/eglCodecCommon( 2433): glUtilsParamSize: unknow param 0x00008cdf
+E/eglCodecCommon( 2433): glUtilsParamSize: unknow param 0x00008824
+E/SQLiteLog( 2084): (1) no such table: files
+E/MetadataRetrieverClient( 1269): failed to extract an album art
+E/MetadataRetrieverClient( 1269): failed to extract an album art
+E/MetadataRetrieverClient( 1269): failed to extract an album art
+E/MetadataRetrieverClient( 1269): failed to extract an album art
+E/memtrack( 2539): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2539): failed to load memtrack module: -2
+E/MetadataRetrieverClient( 1269): failed to extract an album art
+E/MetadataRetrieverClient( 1269): failed to extract an album art
+E/memtrack( 2557): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2557): failed to load memtrack module: -2
+E/memtrack( 2566): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2566): failed to load memtrack module: -2
+E/memtrack( 2576): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2576): failed to load memtrack module: -2
+E/memtrack( 2589): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2589): failed to load memtrack module: -2
+I/AndroidRuntime( 2589): VM exiting with result code 0.
+E/memtrack( 2639): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2639): failed to load memtrack module: -2
+E/Surface ( 2433): getSlotFromBufferLocked: unknown buffer: 0xb407d980
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/eglCodecCommon( 2651): glUtilsParamSize: unknow param 0x00008cdf
+E/eglCodecCommon( 2651): glUtilsParamSize: unknow param 0x00008824
+W/StradaI18n( 2651): en	mph
+W/StradaI18n( 2651): en	Android Auto
+W/StradaI18n( 2651): en	CarPlay
+W/StradaI18n( 2651): en	Bluetooth
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 2683): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2683): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 2702): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2702): failed to load memtrack module: -2
+E/memtrack( 2716): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2716): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 2733): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2733): failed to load memtrack module: -2
+E/memtrack( 2746): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2746): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 2763): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2763): failed to load memtrack module: -2
+E/memtrack( 2776): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2776): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 2791): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2791): failed to load memtrack module: -2
+E/memtrack( 2804): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2804): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 2819): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2819): failed to load memtrack module: -2
+E/memtrack( 2832): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2832): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/Surface ( 2651): getSlotFromBufferLocked: unknown buffer: 0xb264f7c0
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 2848): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2848): failed to load memtrack module: -2
+E/memtrack( 2861): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2861): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 2875): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2875): failed to load memtrack module: -2
+E/memtrack( 2888): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2888): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/Surface ( 2651): getSlotFromBufferLocked: unknown buffer: 0xb26501c0
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 2903): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2903): failed to load memtrack module: -2
+E/memtrack( 2916): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2916): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 2935): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2935): failed to load memtrack module: -2
+E/memtrack( 2948): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2948): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/Surface ( 2651): getSlotFromBufferLocked: unknown buffer: 0xb264fa40
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 2963): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2963): failed to load memtrack module: -2
+E/memtrack( 2976): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2976): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 2992): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 2992): failed to load memtrack module: -2
+E/memtrack( 3005): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3005): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3021): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3021): failed to load memtrack module: -2
+E/memtrack( 3034): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3034): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/Surface ( 2651): getSlotFromBufferLocked: unknown buffer: 0xb26506c0
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3049): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3049): failed to load memtrack module: -2
+E/memtrack( 3062): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3062): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/Surface ( 2651): getSlotFromBufferLocked: unknown buffer: 0xb2650760
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3079): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3079): failed to load memtrack module: -2
+E/memtrack( 3092): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3092): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/Surface ( 2651): getSlotFromBufferLocked: unknown buffer: 0xb26506c0
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3108): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3108): failed to load memtrack module: -2
+E/memtrack( 3121): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3121): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/Surface ( 2651): getSlotFromBufferLocked: unknown buffer: 0xb2650760
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3137): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3137): failed to load memtrack module: -2
+E/memtrack( 3150): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3150): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3164): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3164): failed to load memtrack module: -2
+E/memtrack( 3177): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3177): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/Surface ( 2651): getSlotFromBufferLocked: unknown buffer: 0xb2650940
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3192): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3192): failed to load memtrack module: -2
+E/memtrack( 3205): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3205): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3219): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3219): failed to load memtrack module: -2
+E/memtrack( 3230): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3230): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3239): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3239): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3254): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3254): failed to load memtrack module: -2
+E/memtrack( 3263): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3263): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3272): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3272): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3281): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3281): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3296): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3296): failed to load memtrack module: -2
+E/memtrack( 3307): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3307): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3321): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3321): failed to load memtrack module: -2
+E/memtrack( 3332): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3332): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3341): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3341): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3355): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3355): failed to load memtrack module: -2
+E/memtrack( 3364): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3364): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3373): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3373): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3382): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3382): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3396): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3396): failed to load memtrack module: -2
+E/memtrack( 3407): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3407): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3421): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3421): failed to load memtrack module: -2
+E/memtrack( 3432): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3432): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3441): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3441): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3455): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3455): failed to load memtrack module: -2
+E/memtrack( 3464): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3464): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3473): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3473): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3482): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3482): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3496): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3496): failed to load memtrack module: -2
+E/memtrack( 3507): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3507): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3521): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3521): failed to load memtrack module: -2
+E/memtrack( 3532): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3532): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3541): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3541): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3556): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3556): failed to load memtrack module: -2
+E/memtrack( 3565): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3565): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3574): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3574): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3583): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3583): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3598): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3598): failed to load memtrack module: -2
+E/memtrack( 3609): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3609): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3623): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3623): failed to load memtrack module: -2
+E/memtrack( 3634): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3634): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3643): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3643): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3657): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3657): failed to load memtrack module: -2
+E/memtrack( 3666): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3666): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3675): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3675): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3684): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3684): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3698): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3698): failed to load memtrack module: -2
+E/memtrack( 3709): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3709): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3724): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3724): failed to load memtrack module: -2
+E/memtrack( 3735): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3735): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3744): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3744): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3758): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3758): failed to load memtrack module: -2
+E/memtrack( 3767): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3767): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3776): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3776): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3785): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3785): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3800): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3800): failed to load memtrack module: -2
+E/memtrack( 3811): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3811): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3826): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3826): failed to load memtrack module: -2
+E/memtrack( 3837): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3837): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3846): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3846): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3860): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3860): failed to load memtrack module: -2
+E/memtrack( 3869): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3869): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3878): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3878): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3887): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3887): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3901): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3901): failed to load memtrack module: -2
+E/memtrack( 3912): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3912): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3926): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3926): failed to load memtrack module: -2
+E/memtrack( 3937): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3937): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3947): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3947): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 3961): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3961): failed to load memtrack module: -2
+E/memtrack( 3970): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3970): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3979): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3979): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 3988): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 3988): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4002): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4002): failed to load memtrack module: -2
+E/memtrack( 4013): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4013): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4028): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4028): failed to load memtrack module: -2
+E/memtrack( 4039): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4039): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 4048): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4048): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4062): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4062): failed to load memtrack module: -2
+E/memtrack( 4071): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4071): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 4080): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4080): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 4089): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4089): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4103): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4103): failed to load memtrack module: -2
+E/memtrack( 4114): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4114): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4128): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4128): failed to load memtrack module: -2
+E/memtrack( 4139): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4139): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 4149): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4149): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4163): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4163): failed to load memtrack module: -2
+E/memtrack( 4172): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4172): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 4181): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4181): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 4190): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4190): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4204): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4204): failed to load memtrack module: -2
+E/memtrack( 4215): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4215): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4230): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4230): failed to load memtrack module: -2
+E/memtrack( 4241): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4241): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 4250): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4250): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4264): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4264): failed to load memtrack module: -2
+E/memtrack( 4273): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4273): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 4282): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4282): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 4291): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4291): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4305): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4305): failed to load memtrack module: -2
+E/memtrack( 4316): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4316): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4330): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4330): failed to load memtrack module: -2
+E/memtrack( 4341): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4341): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 4350): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4350): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4364): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4364): failed to load memtrack module: -2
+E/memtrack( 4373): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4373): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 4382): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4382): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 4391): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4391): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4405): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4405): failed to load memtrack module: -2
+E/memtrack( 4416): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4416): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4430): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4430): failed to load memtrack module: -2
+E/memtrack( 4443): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4443): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/eglCodecCommon( 1970): glUtilsParamSize: unknow param 0x00008cdf
+E/eglCodecCommon( 1970): glUtilsParamSize: unknow param 0x00008824
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4468): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4468): failed to load memtrack module: -2
+E/memtrack( 4477): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4477): failed to load memtrack module: -2
+E/Surface ( 1970): getSlotFromBufferLocked: unknown buffer: 0xb407d7a0
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/memtrack( 4490): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4490): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4505): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4505): failed to load memtrack module: -2
+E/memtrack( 4518): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4518): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4533): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4533): failed to load memtrack module: -2
+E/memtrack( 4546): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4546): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/SurfaceFlinger( 1230): ro.sf.lcd_density must be defined as a build property
+E/memtrack( 4561): Couldn't load memtrack module (No such file or directory)
+E/android.os.Debug( 4561): failed to load memtrack module: -2
+E/BluetoothAdapter( 2651): Bluetooth binder is null
+E/BluetoothAdapter( 2651): Bluetooth binder is null
