@@ -1,0 +1,8 @@
+OK    · multi · 4902 consultas agrupadas (4902 con número de tramas), 24.7 consultas/s
+OK    · odómetro pedido · 44 veces 01A6
+OK    · lose · 20 «ATI» de rescate, 0 reconexiones, 76 consultas en los últimos 10 s
+OK    · nocount · 0 con número de tramas después del «?», 474 agrupadas
+OK    · nomulti · 0 agrupadas y 177 sueltas en los últimos 10 s
+OK    · hang (#77) · 1 conexiones, 3 agrupadas en total, 177 sueltas en los últimos 10 s
+OK    · hang recordado · 512 consultas, 0 agrupadas en la conexión siguiente
+OK    · noodo · 1 conexiones, 0 veces 01A6
