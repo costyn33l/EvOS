@@ -1,0 +1,1440 @@
+--------- beginning of /dev/log/main
+--------- beginning of /dev/log/system
+I/DEBUG   ( 1143): debuggerd: Dec 18 2019 18:32:46
+E/BandwidthController( 1142): runIptablesCmd(): failed /system/bin/iptables -A bw_INPUT -m owner --socket-exists res=256
+E/BandwidthController( 1142): runIptablesCmd(): failed /system/bin/ip6tables -A bw_INPUT -m owner --socket-exists res=256
+E/AudioMixer( 1148): unable to find downmix effect
+E/SurfaceFlinger( 1145): ro.sf.lcd_density must be defined as a build property
+I/dalvikvm( 1146): threadid=1: recursive native library load attempt (/system/lib/libmedia_jni.so)
+I/dalvikvm( 1146): threadid=1: recursive native library load attempt (/system/lib/libmedia_jni.so)
+I/dalvikvm( 1146): threadid=1: recursive native library load attempt (/system/lib/libmedia_jni.so)
+I/dalvikvm( 1146): threadid=1: recursive native library load attempt (/system/lib/libwebcore.so)
+E/PhonePolicy( 1146): Could not preload class for phone policy: com.android.internal.policy.impl.PhoneWindow$ContextMenuCallback
+I/dalvikvm( 1146): System server process 1378 has been created
+E/BatteryService( 1378): usbOnlinePath not found
+E/BatteryService( 1378): batteryVoltagePath not found
+E/BatteryService( 1378): batteryTemperaturePath not found
+E/PowerManagerService-JNI( 1378): Couldn't load power module (No such file or directory)
+E/SQLiteLog( 1378): (1) no such table: secure
+E/libsuspend( 1378): Error opening /sys/power/autosleep: No such file or directory
+E/SoundPool( 1378): error loading /system/media/audio/ui/Lock.ogg
+E/SoundPool( 1378): error loading /system/media/audio/ui/Unlock.ogg
+E/EventHub( 1378): could not get driver version for /dev/input/mouse0, Not a typewriter
+E/Trace   ( 1378): error opening trace file: Permission denied (13)
+E/CommandListener( 1142): Failed to open /proc/sys/net/ipv6/conf/wlan0/disable_ipv6: No such file or directory
+E/WifiStateMachine( 1378): Failed to disable IPv6: java.lang.IllegalStateException: command '1 interface ipv6 wlan0 disable' failed with '400 1 Failed to change IPv6 state (No such file or directory)'
+E/MobileDataStateTracker( 1378): default: Ignoring feature request because could not acquire PhoneService
+E/MobileDataStateTracker( 1378): default: Could not enable APN type "default"
+E/EventHub( 1378): could not get driver version for /dev/input/mice, Not a typewriter
+E/SQLiteLog( 1378): (1) no such table: locksettings
+E/Trace   ( 1437): error opening trace file: Permission denied (13)
+E/Trace   ( 1145): error opening trace file: Permission denied (13)
+E/Trace   ( 1450): error opening trace file: Permission denied (13)
+E/Trace   ( 1464): error opening trace file: Permission denied (13)
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/Trace   ( 1477): error opening trace file: Permission denied (13)
+E/ThrottleService( 1378): Error reading data file
+E/Trace   ( 1491): error opening trace file: Permission denied (13)
+E/Trace   ( 1511): error opening trace file: Permission denied (13)
+E/Trace   ( 1524): error opening trace file: Permission denied (13)
+E/BinaryDictionaryGetter( 1491): Could not find a dictionary pack
+E/ActivityThread( 1491): Failed to find provider info for com.android.inputmethod.latin.dictionarypack
+E/Trace   ( 1542): error opening trace file: Permission denied (13)
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/Trace   ( 1583): error opening trace file: Permission denied (13)
+E/Trace   ( 1578): error opening trace file: Permission denied (13)
+E/Trace   ( 1609): error opening trace file: Permission denied (13)
+E/Trace   ( 1621): error opening trace file: Permission denied (13)
+E/ThrottleService( 1378): problem during onPollAlarm: java.lang.IllegalStateException: problem parsing stats: java.io.FileNotFoundException: /proc/net/xt_qtaguid/iface_stat_all: open failed: ENOENT (No such file or directory)
+E/GoogleSettings( 1578): Can't set key use_location_for_services in content://com.google.settings/partner
+E/GoogleSettings( 1578): java.lang.IllegalArgumentException: Unknown URL content://com.google.settings/partner
+E/GoogleSettings( 1578): 	at android.content.ContentResolver.insert(ContentResolver.java:860)
+E/GoogleSettings( 1578): 	at com.google.android.gsf.GoogleSettingsContract$NameValueTable.putString(GoogleSettingsContract.java:53)
+E/GoogleSettings( 1578): 	at com.google.android.gsf.GoogleSettingsContract$Partner.putString(GoogleSettingsContract.java:124)
+E/GoogleSettings( 1578): 	at com.google.android.gsf.GoogleSettingsContract$Partner.putInt(GoogleSettingsContract.java:136)
+E/GoogleSettings( 1578): 	at com.google.android.gsf.UseLocationForServices.setUseLocationForServices(UseLocationForServices.java:115)
+E/GoogleSettings( 1578): 	at com.android.sdksetup.DefaultActivity.onCreate(DefaultActivity.java:51)
+E/GoogleSettings( 1578): 	at android.app.Activity.performCreate(Activity.java:5008)
+E/GoogleSettings( 1578): 	at android.app.Instrumentation.callActivityOnCreate(Instrumentation.java:1079)
+E/GoogleSettings( 1578): 	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2023)
+E/GoogleSettings( 1578): 	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:2084)
+E/GoogleSettings( 1578): 	at android.app.ActivityThread.access$600(ActivityThread.java:130)
+E/GoogleSettings( 1578): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1195)
+E/GoogleSettings( 1578): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+E/GoogleSettings( 1578): 	at android.os.Looper.loop(Looper.java:137)
+E/GoogleSettings( 1578): 	at android.app.ActivityThread.main(ActivityThread.java:4745)
+E/GoogleSettings( 1578): 	at java.lang.reflect.Method.invokeNative(Native Method)
+E/GoogleSettings( 1578): 	at java.lang.reflect.Method.invoke(Method.java:511)
+E/GoogleSettings( 1578): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:786)
+E/GoogleSettings( 1578): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:553)
+E/GoogleSettings( 1578): 	at dalvik.system.NativeStart.main(Native Method)
+E/ActivityThread( 1578): Failed to find provider info for com.google.settings
+E/ThrottleService( 1378): problem during onPollAlarm: java.lang.IllegalStateException: problem parsing stats: java.io.FileNotFoundException: /proc/net/xt_qtaguid/iface_stat_all: open failed: ENOENT (No such file or directory)
+E/ThrottleService( 1378): Error reading data file
+E/ThrottleService( 1378): problem during onPollAlarm: java.lang.IllegalStateException: problem parsing stats: java.io.FileNotFoundException: /proc/net/xt_qtaguid/iface_stat_all: open failed: ENOENT (No such file or directory)
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/Trace   ( 1684): error opening trace file: Permission denied (13)
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/Trace   ( 1707): error opening trace file: Permission denied (13)
+E/Trace   ( 1731): error opening trace file: Permission denied (13)
+E/Trace   ( 1743): error opening trace file: Permission denied (13)
+E/SoundPool( 1378): error loading /system/media/audio/ui/Effect_Tick.ogg
+E/SoundPool( 1378): error loading /system/media/audio/ui/Effect_Tick.ogg
+E/SoundPool( 1378): error loading /system/media/audio/ui/Effect_Tick.ogg
+E/SoundPool( 1378): error loading /system/media/audio/ui/Effect_Tick.ogg
+E/SoundPool( 1378): error loading /system/media/audio/ui/Effect_Tick.ogg
+E/SoundPool( 1378): error loading /system/media/audio/ui/KeypressStandard.ogg
+E/SoundPool( 1378): error loading /system/media/audio/ui/KeypressSpacebar.ogg
+E/SoundPool( 1378): error loading /system/media/audio/ui/KeypressDelete.ogg
+E/SoundPool( 1378): error loading /system/media/audio/ui/KeypressReturn.ogg
+E/Trace   ( 1774): error opening trace file: Permission denied (13)
+E/Trace   ( 1794): error opening trace file: Permission denied (13)
+E/SQLiteLog( 1707): (1) no such table: files
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MetadataRetrieverClient( 1148): failed to extract an album art
+E/MediaScannerService( 1707): Exception in handleMessage
+E/MediaScannerService( 1707): android.database.sqlite.SQLiteConstraintException: column time is not unique (code 19)
+E/MediaScannerService( 1707): 	at android.database.sqlite.SQLiteConnection.nativeExecuteForChangedRowCount(Native Method)
+E/MediaScannerService( 1707): 	at android.database.sqlite.SQLiteConnection.executeForChangedRowCount(SQLiteConnection.java:727)
+E/MediaScannerService( 1707): 	at android.database.sqlite.SQLiteSession.executeForChangedRowCount(SQLiteSession.java:754)
+E/MediaScannerService( 1707): 	at android.database.sqlite.SQLiteStatement.executeUpdateDelete(SQLiteStatement.java:64)
+E/MediaScannerService( 1707): 	at android.database.sqlite.SQLiteDatabase.executeSql(SQLiteDatabase.java:1665)
+E/MediaScannerService( 1707): 	at android.database.sqlite.SQLiteDatabase.execSQL(SQLiteDatabase.java:1644)
+E/MediaScannerService( 1707): 	at com.android.providers.media.MediaProvider.logToDb(MediaProvider.java:1738)
+E/MediaScannerService( 1707): 	at com.android.providers.media.MediaProvider.delete(MediaProvider.java:3744)
+E/MediaScannerService( 1707): 	at android.content.ContentProvider$Transport.delete(ContentProvider.java:228)
+E/MediaScannerService( 1707): 	at android.content.ContentResolver.delete(ContentResolver.java:956)
+E/MediaScannerService( 1707): 	at com.android.providers.media.MediaScannerService.scan(MediaScannerService.java:109)
+E/MediaScannerService( 1707): 	at com.android.providers.media.MediaScannerService.access$300(MediaScannerService.java:49)
+E/MediaScannerService( 1707): 	at com.android.providers.media.MediaScannerService$ServiceHandler.handleMessage(MediaScannerService.java:261)
+E/MediaScannerService( 1707): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+E/MediaScannerService( 1707): 	at android.os.Looper.loop(Looper.java:137)
+E/MediaScannerService( 1707): 	at com.android.providers.media.MediaScannerService.run(MediaScannerService.java:183)
+E/MediaScannerService( 1707): 	at java.lang.Thread.run(Thread.java:856)
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/Trace   ( 1852): error opening trace file: Permission denied (13)
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SQLiteLog( 1707): (1) no such table: album_info
+E/MediaScannerService( 1707): Exception in handleMessage
+E/MediaScannerService( 1707): android.database.sqlite.SQLiteConstraintException: column time is not unique (code 19)
+E/MediaScannerService( 1707): 	at android.database.sqlite.SQLiteConnection.nativeExecuteForChangedRowCount(Native Method)
+E/MediaScannerService( 1707): 	at android.database.sqlite.SQLiteConnection.executeForChangedRowCount(SQLiteConnection.java:727)
+E/MediaScannerService( 1707): 	at android.database.sqlite.SQLiteSession.executeForChangedRowCount(SQLiteSession.java:754)
+E/MediaScannerService( 1707): 	at android.database.sqlite.SQLiteStatement.executeUpdateDelete(SQLiteStatement.java:64)
+E/MediaScannerService( 1707): 	at android.database.sqlite.SQLiteDatabase.executeSql(SQLiteDatabase.java:1665)
+E/MediaScannerService( 1707): 	at android.database.sqlite.SQLiteDatabase.execSQL(SQLiteDatabase.java:1644)
+E/MediaScannerService( 1707): 	at com.android.providers.media.MediaProvider.logToDb(MediaProvider.java:1738)
+E/MediaScannerService( 1707): 	at com.android.providers.media.MediaProvider.delete(MediaProvider.java:3744)
+E/MediaScannerService( 1707): 	at android.content.ContentProvider$Transport.delete(ContentProvider.java:228)
+E/MediaScannerService( 1707): 	at android.content.ContentResolver.delete(ContentResolver.java:956)
+E/MediaScannerService( 1707): 	at com.android.providers.media.MediaScannerService.scan(MediaScannerService.java:109)
+E/MediaScannerService( 1707): 	at com.android.providers.media.MediaScannerService.access$300(MediaScannerService.java:49)
+E/MediaScannerService( 1707): 	at com.android.providers.media.MediaScannerService$ServiceHandler.handleMessage(MediaScannerService.java:261)
+E/MediaScannerService( 1707): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+E/MediaScannerService( 1707): 	at android.os.Looper.loop(Looper.java:137)
+E/MediaScannerService( 1707): 	at com.android.providers.media.MediaScannerService.run(MediaScannerService.java:183)
+E/MediaScannerService( 1707): 	at java.lang.Thread.run(Thread.java:856)
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 1891): NOTE: attach of thread 'Binder_3' failed
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 1916): NOTE: attach of thread 'Binder_3' failed
+E/Trace   ( 1938): error opening trace file: Permission denied (13)
+I/dalvikvm( 1951): DexOpt: access denied from Lcom/stradaos/launcher/NotifArt; to field Landroid/app/Notification;.extras
+I/AndroidRuntime( 1929): NOTE: attach of thread 'Binder_3' failed
+E/Trace   ( 1952): error opening trace file: Permission denied (13)
+I/AndroidRuntime( 1972): NOTE: attach of thread 'Binder_3' failed
+E/Trace   ( 1982): error opening trace file: Permission denied (13)
+I/dalvikvm( 1982): Could not find method com.stradaos.launcher.Main.checkSelfPermission, referenced from method com.stradaos.launcher.Main.backupRestore
+W/dalvikvm( 1982): VFY: unable to resolve virtual method 3521: Lcom/stradaos/launcher/Main;.checkSelfPermission (Ljava/lang/String;)I
+I/dalvikvm( 1982): Could not find method com.stradaos.launcher.Main.checkSelfPermission, referenced from method com.stradaos.launcher.Main.backupSave
+W/dalvikvm( 1982): VFY: unable to resolve virtual method 3521: Lcom/stradaos/launcher/Main;.checkSelfPermission (Ljava/lang/String;)I
+I/dalvikvm( 1982): Could not find method com.stradaos.launcher.Main.checkSelfPermission, referenced from method com.stradaos.launcher.Main.chooseMapToDownload
+W/dalvikvm( 1982): VFY: unable to resolve virtual method 3521: Lcom/stradaos/launcher/Main;.checkSelfPermission (Ljava/lang/String;)I
+I/dalvikvm( 1982): Could not find method com.stradaos.launcher.Main.checkSelfPermission, referenced from method com.stradaos.launcher.Main.gpsState
+W/dalvikvm( 1982): VFY: unable to resolve virtual method 3521: Lcom/stradaos/launcher/Main;.checkSelfPermission (Ljava/lang/String;)I
+W/dalvikvm( 1982): Unable to resolve superclass of Lcom/stradaos/launcher/MediaListener; (175)
+W/dalvikvm( 1982): Link of class 'Lcom/stradaos/launcher/MediaListener;' failed
+E/dalvikvm( 1982): Could not find class 'com.stradaos.launcher.MediaListener', referenced from method com.stradaos.launcher.Main.notifAccessAdb
+W/dalvikvm( 1982): VFY: unable to resolve const-class 1006 (Lcom/stradaos/launcher/MediaListener;) in Lcom/stradaos/launcher/Main;
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/dalvikvm( 1982): Could not find method com.stradaos.launcher.Main.checkSelfPermission, referenced from method com.stradaos.launcher.Main.pickMapFile
+W/dalvikvm( 1982): VFY: unable to resolve virtual method 3521: Lcom/stradaos/launcher/Main;.checkSelfPermission (Ljava/lang/String;)I
+W/dalvikvm( 1982): Unable to resolve superclass of Lcom/stradaos/launcher/MediaListener; (175)
+W/dalvikvm( 1982): Link of class 'Lcom/stradaos/launcher/MediaListener;' failed
+W/dalvikvm( 1982): VFY: unable to resolve static field 2245 (connected) in Lcom/stradaos/launcher/MediaListener;
+W/dalvikvm( 1982): Unable to resolve superclass of Lcom/stradaos/launcher/MediaListener; (175)
+W/dalvikvm( 1982): Link of class 'Lcom/stradaos/launcher/MediaListener;' failed
+W/dalvikvm( 1982): VFY: unable to resolve static field 2245 (connected) in Lcom/stradaos/launcher/MediaListener;
+I/dalvikvm( 1982): Could not find method android.widget.FrameLayout.setElevation, referenced from method com.stradaos.launcher.Main.videoMode
+W/dalvikvm( 1982): VFY: unable to resolve virtual method 764: Landroid/widget/FrameLayout;.setElevation (F)V
+W/dalvikvm( 1982): Unable to resolve superclass of Lcom/stradaos/launcher/MediaListener; (175)
+W/dalvikvm( 1982): Link of class 'Lcom/stradaos/launcher/MediaListener;' failed
+W/dalvikvm( 1982): VFY: unable to resolve static field 2245 (connected) in Lcom/stradaos/launcher/MediaListener;
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/dalvikvm( 1982): Could not find method android.os.StatFs.getAvailableBytes, referenced from method com.stradaos.launcher.MapDownload.free
+W/dalvikvm( 1982): VFY: unable to resolve virtual method 547: Landroid/os/StatFs;.getAvailableBytes ()J
+I/dalvikvm( 1982): DexOpt: access denied from Lcom/stradaos/launcher/NotifArt; to field Landroid/app/Notification;.extras
+W/dalvikvm( 1982): VFY: unable to resolve instance field 9
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/dalvikvm( 1982): Could not find method android.speech.tts.TextToSpeech.speak, referenced from method com.stradaos.launcher.Nav.doSpeak
+W/dalvikvm( 1982): VFY: unable to resolve virtual method 564: Landroid/speech/tts/TextToSpeech;.speak (Ljava/lang/CharSequence;ILandroid/os/Bundle;Ljava/lang/String;)I
+I/dalvikvm( 1982): Could not find method android.content.Context.getExternalFilesDirs, referenced from method com.stradaos.launcher.Backup.appDirs
+W/dalvikvm( 1982): VFY: unable to resolve virtual method 108: Landroid/content/Context;.getExternalFilesDirs (Ljava/lang/String;)[Ljava/io/File;
+E/SurfaceFlinger( 1145): GL error 0x0502
+W/StradaI18n( 1982): en	mph
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+W/StradaI18n( 1982): en	Android Auto
+W/StradaI18n( 1982): en	CarPlay
+W/StradaI18n( 1982): en	Bluetooth
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 2038): NOTE: attach of thread 'Binder_1' failed
+I/AndroidRuntime( 2059): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 2084): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 2107): NOTE: attach of thread 'Binder_3' failed
+E/ThrottleService( 1378): problem during onPollAlarm: java.lang.IllegalStateException: problem parsing stats: java.io.FileNotFoundException: /proc/net/xt_qtaguid/iface_stat_all: open failed: ENOENT (No such file or directory)
+I/AndroidRuntime( 2130): NOTE: attach of thread 'Binder_1' failed
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 2151): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 2173): NOTE: attach of thread 'Binder_3' failed
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 2221): NOTE: attach of thread 'Binder_3' failed
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 2266): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 2288): NOTE: attach of thread 'Binder_3' failed
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 2311): NOTE: attach of thread 'Binder_3' failed
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 2334): NOTE: attach of thread 'Binder_3' failed
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 2357): NOTE: attach of thread 'Binder_3' failed
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 2380): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 2402): NOTE: attach of thread 'Binder_3' failed
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 2456): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 2484): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 2496): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 2515): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 2559): NOTE: attach of thread 'Binder_2' failed
+I/AndroidRuntime( 2598): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 2617): NOTE: attach of thread 'Binder_2' failed
+I/AndroidRuntime( 2655): NOTE: attach of thread 'Binder_1' failed
+I/AndroidRuntime( 2665): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 2684): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 2737): NOTE: attach of thread 'Binder_1' failed
+I/AndroidRuntime( 2765): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 2833): NOTE: attach of thread 'Binder_1' failed
+I/AndroidRuntime( 2850): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 2934): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 2963): NOTE: attach of thread 'Binder_1' failed
+I/AndroidRuntime( 2987): NOTE: attach of thread 'Binder_2' failed
+I/dalvikvm( 1982): Could not find method com.stradaos.launcher.Main.checkSelfPermission, referenced from method com.stradaos.launcher.Main$384.on
+W/dalvikvm( 1982): VFY: unable to resolve virtual method 3521: Lcom/stradaos/launcher/Main;.checkSelfPermission (Ljava/lang/String;)I
+I/AndroidRuntime( 3100): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 3145): NOTE: attach of thread 'Binder_2' failed
+I/AndroidRuntime( 3184): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 3269): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 3313): NOTE: attach of thread 'Binder_2' failed
+I/AndroidRuntime( 3334): NOTE: attach of thread 'Binder_1' failed
+I/AndroidRuntime( 3351): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 3380): NOTE: attach of thread 'Binder_1' failed
+I/AndroidRuntime( 3433): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 3455): NOTE: attach of thread 'Binder_3' failed
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 3488): NOTE: attach of thread 'Binder_3' failed
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 3528): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 3551): NOTE: attach of thread 'Binder_3' failed
+I/dalvikvm( 1982): Could not find method android.view.TextureView.setLayerPaint, referenced from method com.stradaos.launcher.VideoCard.setHdr
+W/dalvikvm( 1982): VFY: unable to resolve virtual method 614: Landroid/view/TextureView;.setLayerPaint (Landroid/graphics/Paint;)V
+I/dalvikvm( 1982): Could not find method android.view.TextureView.setLayerPaint, referenced from method com.stradaos.launcher.VideoCard.setHdr
+W/dalvikvm( 1982): VFY: unable to resolve virtual method 614: Landroid/view/TextureView;.setLayerPaint (Landroid/graphics/Paint;)V
+I/AndroidRuntime( 3627): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 3653): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 3693): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 3712): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 3734): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 3769): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 3791): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 3876): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 3898): NOTE: attach of thread 'Binder_1' failed
+I/AndroidRuntime( 3918): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1982): Failed to open libwvm.so
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/Trace   ( 1148): error opening trace file: Permission denied (13)
+I/AndroidRuntime( 3984): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/WVMExtractor( 1982): Failed to open libwvm.so
+I/AndroidRuntime( 4023): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/WVMExtractor( 1982): Failed to open libwvm.so
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1982): Failed to open libwvm.so
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+I/AndroidRuntime( 4054): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+I/AndroidRuntime( 4085): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 4107): NOTE: attach of thread 'Binder_1' failed
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 4121): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 4192): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+I/AndroidRuntime( 4222): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 4244): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+F/PowerManager( 1707): WakeLock finalized while still held: MediaScannerService
+E/System  ( 1707): Uncaught exception thrown by finalizer
+E/System  ( 1707): java.lang.IllegalStateException: Binder has been finalized!
+E/System  ( 1707): 	at android.os.BinderProxy.transact(Native Method)
+E/System  ( 1707): 	at android.os.IPowerManager$Stub$Proxy.releaseWakeLock(IPowerManager.java:358)
+E/System  ( 1707): 	at android.os.PowerManager$WakeLock.finalize(PowerManager.java:402)
+E/System  ( 1707): 	at java.lang.Daemons$FinalizerDaemon.doFinalize(Daemons.java:186)
+E/System  ( 1707): 	at java.lang.Daemons$FinalizerDaemon.run(Daemons.java:169)
+E/System  ( 1707): 	at java.lang.Thread.run(Thread.java:856)
+F/PowerManager( 1707): WakeLock finalized while still held: MediaScannerService
+E/System  ( 1707): Uncaught exception thrown by finalizer
+E/System  ( 1707): java.lang.IllegalStateException: Binder has been finalized!
+E/System  ( 1707): 	at android.os.BinderProxy.transact(Native Method)
+E/System  ( 1707): 	at android.os.IPowerManager$Stub$Proxy.releaseWakeLock(IPowerManager.java:358)
+E/System  ( 1707): 	at android.os.PowerManager$WakeLock.finalize(PowerManager.java:402)
+E/System  ( 1707): 	at java.lang.Daemons$FinalizerDaemon.doFinalize(Daemons.java:186)
+E/System  ( 1707): 	at java.lang.Daemons$FinalizerDaemon.run(Daemons.java:169)
+E/System  ( 1707): 	at java.lang.Thread.run(Thread.java:856)
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 4278): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 4305): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 4321): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 4337): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 4405): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 4424): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 4482): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 4622): NOTE: attach of thread 'Binder_3' failed
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 4640): NOTE: attach of thread 'Binder_1' failed
+I/AndroidRuntime( 4691): NOTE: attach of thread 'Binder_3' failed
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 4714): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+I/AndroidRuntime( 4749): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+I/AndroidRuntime( 4835): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 4857): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 4879): NOTE: attach of thread 'Binder_3' failed
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 4902): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+I/AndroidRuntime( 4998): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 5021): NOTE: attach of thread 'Binder_3' failed
+E/ThrottleService( 1378): problem during onPollAlarm: java.lang.IllegalStateException: problem parsing stats: java.io.FileNotFoundException: /proc/net/xt_qtaguid/iface_stat_all: open failed: ENOENT (No such file or directory)
+I/AndroidRuntime( 5043): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 5065): NOTE: attach of thread 'Binder_3' failed
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 5088): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+I/AndroidRuntime( 5123): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+I/AndroidRuntime( 5154): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+I/AndroidRuntime( 5184): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+I/AndroidRuntime( 5251): NOTE: attach of thread 'Binder_3' failed
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 5274): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+I/AndroidRuntime( 5395): NOTE: attach of thread 'Binder_1' failed
+I/AndroidRuntime( 5417): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 5439): NOTE: attach of thread 'Binder_3' failed
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+E/SurfaceFlinger( 1145): GL error 0x0502
+I/AndroidRuntime( 5462): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+I/AndroidRuntime( 5497): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+I/AndroidRuntime( 5556): NOTE: attach of thread 'Binder_3' failed
+E/WVMExtractor( 1148): Failed to open libwvm.so
+E/MediaPlayerService( 1148):   error: -2147483648
+E/MediaPlayer( 1982): Unable to to create media player
+I/AndroidRuntime( 5579): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 5693): NOTE: attach of thread 'Binder_3' failed
+I/AndroidRuntime( 5715): NOTE: attach of thread 'Binder_3' failed
