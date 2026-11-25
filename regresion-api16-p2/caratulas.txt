@@ -1,0 +1,35 @@
+Fuente: —
+Pista: — — —
+Carátula de la fuente: no
+Última búsqueda: —
+
+Android 4.1.2 (API 16)
+Conexión segura: TLS listo (TLSv1.2), 118 raíces
+Fecha de la pantalla: 2026-11-25 19:43 (si está mal, los certificados fallan)
+Sin canción con artista: se prueba con una de ejemplo
+Canción: La Camisa Negra — Juanes
+
+1. MusicBrainz (buscar la canción)
+  musicbrainz.org: SSLHandshakeException: javax.net.ssl.SSLProtocolException: SSL handshake aborted: ssl=0xb85f1c70: Failure in SSL library, usually a protocol error
+error:1407741…
+  → sin cifrar
+  http musicbrainz.org: HTTP 503 (201 ms)
+  http musicbrainz.org: HTTP 503 (203 ms)
+  http musicbrainz.org: HTTP 503 (201 ms)
+  ERROR: Exception: HTTP 503
+2. Cover Art Archive (bajar la portada)
+  no se probó (sin álbum de MusicBrainz)
+3. iTunes (buscar la canción)
+  itunes.apple.com: SSLHandshakeException: javax.net.ssl.SSLProtocolException: SSL handshake aborted: ssl=0xb85f2a58: Failure in SSL library, usually a protocol error
+error:1407741…
+  → sin cifrar
+  http itunes.apple.com: HTTP 302 (104 ms)
+  ERROR: Exception: el servidor exige https y esta pantalla no puede con su cifrado (itunes.apple.com)
+4. iTunes (bajar la portada)
+  no se probó (sin resultado de iTunes)
+5. Deezer (buscar la canción)
+  https api.deezer.com: HTTP 200 (242 ms)
+  encontrada
+6. Deezer (bajar la portada)
+  https cdn-images.dzcdn.net: HTTP 200 (35 ms)
+  imagen: 62 KB, se ve bien
