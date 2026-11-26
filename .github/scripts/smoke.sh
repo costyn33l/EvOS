@@ -169,6 +169,11 @@ go rumbo:0 6
 go demo-barra 10;  shot 11-inicio-barra-cambiada
 go inicio 3
 
+# textos mostrados sin traducción (versión de prueba): todas las categorías de Ajustes y el panel del vehículo
+for c in 1 2 3 4 5 6 7 8 9 10 11; do go ajustes:$c 4; done
+go obd-panel 5
+go i18n-faltan 4
+adb shell "run-as $PKG cat files/i18n-faltan.txt" > "$OUT/i18n-faltan.txt" 2>/dev/null || true
 
 adb logcat -d > "$OUT/logcat.txt"
 adb shell "run-as $PKG cat files/fallos.txt" > "$OUT/fallos.txt" 2>/dev/null || true

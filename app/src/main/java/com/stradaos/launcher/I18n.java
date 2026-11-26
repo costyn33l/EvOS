@@ -124,8 +124,14 @@ public class I18n {
         if (cs == null) return null;
         String s = cs.toString();
         if ("es".equals(lang) || s.length() == 0) return s;
-        return tr(s, 0);
+        String r = tr(s, 0);
+        if (recordMisses && r.equals(s)) synchronized (MISSES) { if (MISSES.size() < 3000) MISSES.add(s); }
+        return r;
     }
+
+    /** Solo en la versión de prueba: textos que se mostraron sin traducción (la prueba de humo los guarda). */
+    static volatile boolean recordMisses;
+    static final java.util.Set<String> MISSES = new java.util.LinkedHashSet<String>();
 
     /** ¿Hay traducción exacta de este texto en el idioma de ahora? (en español, siempre) */
     static synchronized boolean has(String s) {

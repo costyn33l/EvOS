@@ -202,6 +202,7 @@ public class Main extends Activity {
         getWindow().setBackgroundDrawable(new ColorDrawable(BG));
         prefs = getSharedPreferences("launcher", MODE_PRIVATE);
         I18n.init(this, prefs);
+        I18n.recordMisses = getPackageName().endsWith(".debug");
         LiveMapView.headingUp = prefs.getBoolean("map_heading", false);
         LiveMapView.carLow = prefs.getInt("map_car_pos", 0) == 1;
         lm = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -862,6 +863,13 @@ public class Main extends Activity {
                 }
                 else if (v.startsWith("tema-ev:")) applyEv(v.substring(8), false);
                 else if ("ev-datos".equals(v)) openEvObd();
+                // textos mostrados sin traducción en el idioma de ahora → files/i18n-faltan.txt
+                else if ("i18n-faltan".equals(v)) {
+                    StringBuilder sb = new StringBuilder(I18n.lang + "\n");
+                    synchronized (I18n.MISSES) { for (String m : I18n.MISSES) sb.append(m.replace("\n", "\\n")).append('\n'); }
+                    java.io.FileOutputStream fo = openFileOutput("i18n-faltan.txt", MODE_PRIVATE);
+                    fo.write(sb.toString().getBytes("UTF-8")); fo.close();
+                }
                 // Showroom: «sr:3:2» = sección Vehículo › Parámetros; «sr-modelo:suv:blue» = modelo y color
                 else if (v.startsWith("sr:")) {
                     String[] q = v.split(":");
@@ -3608,10 +3616,10 @@ public class Main extends Activity {
                         rebuild();
                         if (done != null) done.run();
                     }})
-                    .setNegativeButton("Cancelar", null)
+                    .setNegativeButton(I18n.t("Cancelar"), null)
                     .show();
             }})
-            .setNegativeButton("Cerrar", null)
+            .setNegativeButton(I18n.t("Cerrar"), null)
             .show();
     }
 
@@ -4327,12 +4335,12 @@ public class Main extends Activity {
                 // las tareas por km necesitan el kilometraje del tablero (el mismo del aceite)
                 if (!prefs.contains("odo_base_km")) {
                     new TB(Main.this, dlg())
-                        .setTitle("Kilometraje del tablero")
-                        .setMessage("EvOS no puede leer el kilometraje del carro. Escríbelo una vez y EvOS le suma lo que recorras con el GPS.")
-                        .setPositiveButton("Escribirlo", new DialogInterface.OnClickListener() { public void onClick(DialogInterface dd, int ww) {
+                        .setTitle(I18n.t("Kilometraje del tablero"))
+                        .setMessage(I18n.t("EvOS no puede leer el kilometraje del carro. Escríbelo una vez y EvOS le suma lo que recorras con el GPS."))
+                        .setPositiveButton(I18n.t("Escribirlo"), new DialogInterface.OnClickListener() { public void onClick(DialogInterface dd, int ww) {
                             askOilUnit(new Runnable() { public void run() { askOdo(askKm); } });
                         }})
-                        .setNegativeButton("Cancelar", null)
+                        .setNegativeButton(I18n.t("Cancelar"), null)
                         .show();
                 } else askKm.run();
             }})
@@ -12950,7 +12958,7 @@ public class Main extends Activity {
             .setPositiveButton(I18n.t("Restaurar"), new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) {
                 String err = Backup.apply(Main.this, json);
                 if (err != null) {
-                    new TB(Main.this, dlg()).setTitle("No se pudo restaurar").setMessage(err).setPositiveButton("OK", null).show();
+                    new TB(Main.this, dlg()).setTitle(I18n.t("No se pudo restaurar")).setMessage(err).setPositiveButton("OK", null).show();
                     return;
                 }
                 reloadAll();
@@ -12963,6 +12971,7 @@ public class Main extends Activity {
     /** Después de restaurar: idioma, tema, color, odómetro y pantalla se vuelven a armar con lo restaurado. */
     private void reloadAll() {
         I18n.init(this, prefs);
+        I18n.recordMisses = getPackageName().endsWith(".debug");
         LiveMapView.headingUp = prefs.getBoolean("map_heading", false);
         LiveMapView.carLow = prefs.getInt("map_car_pos", 0) == 1;
         applyThemeNow();
