@@ -62,7 +62,7 @@ public class VideoCard extends FrameLayout {
     /** La velocidad de ahora en km/h (GPS o escáner); NaN si no se sabe. */
     public interface Speed { float kmh(); }
 
-    /** Quien muestra la tarjeta: la agranda dentro de StradaOS (0 en su lugar, 1 «Solo video», 2 pantalla completa). */
+    /** Quien muestra la tarjeta: la agranda dentro de EvOS (0 en su lugar, 1 «Solo video», 2 pantalla completa). */
     public interface Host {
         void videoMode(VideoCard v, int mode);
         /** Lista para elegir un video ({@link #files()}, {@link #playAt}). */
@@ -197,7 +197,7 @@ public class VideoCard extends FrameLayout {
         fullBtn = fb;
         // «Solo video»: ocupa el inicio entre la hora y el dock, en todos los temas (como el «Solo mapa» de Aurora)
         big.setOnClickListener(new OnClickListener() { public void onClick(View v) { if (host != null) host.videoMode(VideoCard.this, mode == 1 ? 0 : 1); controls(true); } });
-        // toque: pantalla completa dentro de StradaOS (sigue desde el mismo segundo); mantener: abrir en VLC (solo detenido:
+        // toque: pantalla completa dentro de EvOS (sigue desde el mismo segundo); mantener: abrir en VLC (solo detenido:
         // en VLC no hay tapa que valga)
         fb.setOnClickListener(new OnClickListener() { public void onClick(View v) {
             if (host != null) host.videoMode(VideoCard.this, mode == 2 ? 0 : 2); else if (stopped()) fullscreen();
@@ -1035,7 +1035,7 @@ public class VideoCard extends FrameLayout {
 
         @Override protected void dispatchDraw(Canvas c) {
             if (mask == null) { super.dispatchDraw(c); return; }
-            //noinspection deprecation (la versión sin banderas es API 21; StradaOS corre desde 4.1)
+            //noinspection deprecation (la versión sin banderas es API 21; EvOS corre desde 4.1)
             int sc = c.saveLayer(0, 0, getWidth(), getHeight(), null, Canvas.ALL_SAVE_FLAG);
             super.dispatchDraw(c);
             c.drawBitmap(mask, 0, 0, paint);

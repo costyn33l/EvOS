@@ -56,7 +56,7 @@ public class CarPhoto {
 
     /**
      * Rotación del EXIF de un JPEG (0, 90, 180 o 270), leída a mano: ExifInterface con InputStream es de Android 7+
-     * y StradaOS funciona desde Android 4.1. Si no es JPEG o no trae el dato, 0.
+     * y EvOS funciona desde Android 4.1. Si no es JPEG o no trae el dato, 0.
      */
     static int exifRotation(InputStream in) throws Exception {
         java.io.DataInputStream d = new java.io.DataInputStream(new java.io.BufferedInputStream(in, 65536));

@@ -11,12 +11,12 @@ import org.json.JSONObject;
  * Orden: API de GitHub → update.json del repositorio (raw) → update.json por jsDelivr (también http,
  * para pantallas con Android 4.x que no logran el cifrado de GitHub; solo si ninguna fuente cifrada respondió).
  * Seguridad: de las fuentes solo se toma el número de versión. El APK se descarga siempre de los Releases del
- * repositorio y, antes de instalarlo, se comprueba que sea StradaOS firmado con la misma llave (Main.verifyApk).
+ * repositorio y, antes de instalarlo, se comprueba que sea EvOS firmado con la misma llave (Main.verifyApk).
  */
 public class Updates {
 
-    public static final String OWNER = "lordnordic-debug";
-    public static final String REPO = "StradaOS";
+    public static final String OWNER = "costyn33l";
+    public static final String REPO = "EvOS";
     public static final String REPO_URL = "https://github.com/" + OWNER + "/" + REPO;
     public static final String RELEASES_URL = REPO_URL + "/releases/latest";
     public static final String ISSUES_URL = REPO_URL + "/issues";
@@ -149,10 +149,10 @@ public class Updates {
         return v;
     }
 
-    /** Página y APK de la versión, siempre en github.com/lordnordic-debug/StradaOS. */
+    /** Página y APK de la versión, siempre en github.com/costyn33l/EvOS. */
     static void links(Release r) {
         r.pageUrl = REPO_URL + "/releases/tag/v" + r.version;
-        r.apkUrl = APK_PREFIX + r.version + "/StradaOS-" + r.version + ".apk";
+        r.apkUrl = APK_PREFIX + r.version + "/EvOS-" + r.version + ".apk";
     }
 
     static boolean trustedDonate(String u) {
@@ -179,16 +179,16 @@ public class Updates {
 
     /** Notas de la versión sin marcas de Markdown, para mostrarlas en pantalla. */
     /**
-     * Notas en el idioma de la pantalla. changelogs/X.md trae primero el español y después secciones que empiezan con
+     * Notas en el idioma de la pantalla. changelogs/X.md trae primero el rumano (EvOS) y después secciones que empiezan con
      * una línea «[](#lang-en)», «[](#lang-pt)»…: un enlace vacío que GitHub no muestra y que {@link #plain} de las
      * versiones anteriores convierte en una línea en blanco (así a ellas les salen las dos, sin marcas raras). Sin
-     * sección para el idioma elegido, en inglés; en español, la primera. Se quita lo que va después de una línea «---»
+     * sección para el idioma elegido, en inglés; en rumano, la primera. Se quita lo que va después de una línea «---»
      * (las instrucciones de instalación del Release: el aviso ya descarga e instala).
      */
     public static String localNotes(String md) {
         if (md == null) return "";
         java.util.Map<String, StringBuilder> secs = new java.util.LinkedHashMap<String, StringBuilder>();
-        String cur = "es";
+        String cur = "ro";
         secs.put(cur, new StringBuilder());
         boolean cut = false;
         for (String line : md.replace("\r", "").split("\n")) {
@@ -202,10 +202,10 @@ public class Updates {
             if (line.trim().equals("---")) cut = true;
             if (!cut) secs.get(cur).append(line).append('\n');
         }
-        String lang = I18n.lang != null ? I18n.lang : "es";
+        String lang = I18n.lang != null ? I18n.lang : "ro";
         StringBuilder pick = secs.get(lang);
-        if ((pick == null || pick.toString().trim().length() == 0) && !"es".equals(lang)) pick = secs.get("en");
-        if (pick == null || pick.toString().trim().length() == 0) pick = secs.get("es");
+        if ((pick == null || pick.toString().trim().length() == 0) && !"ro".equals(lang)) pick = secs.get("en");
+        if (pick == null || pick.toString().trim().length() == 0) pick = secs.get("ro");
         return pick.toString().trim();
     }
 

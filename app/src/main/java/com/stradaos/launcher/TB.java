@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ListAdapter;
 
 /**
- * Constructor de las ventanas de StradaOS. Se usa igual que AlertDialog.Builder (por eso lo extiende: el resto del
+ * Constructor de las ventanas de EvOS. Se usa igual que AlertDialog.Builder (por eso lo extiende: el resto del
  * código no cambia), pero no arma la ventana del sistema: guarda lo pedido y lo dibuja {@link Dlg} con el estilo
  * del launcher (tarjeta redondeada, colores del tema y botones con el acento). Además traduce títulos, mensajes,
  * botones y listas al idioma elegido (ver I18n).

@@ -1,7 +1,7 @@
-# StradaOS · Panduan pengimbas OBD-II · Melayu. Format: lihat ObdGuide.java.
+# EvOS · Panduan pengimbas OBD-II · Melayu. Format: lihat ObdGuide.java.
 
 == comprar | Pengimbas mana yang patut dibeli | Yang berfungsi dan yang perlu dielakkan
-StradaOS berhubung dengan pengimbas ELM327, jenis yang paling biasa dan murah. Ia bersambung melalui Bluetooth atau Wi-Fi.
+EvOS berhubung dengan pengimbas ELM327, jenis yang paling biasa dan murah. Ia bersambung melalui Bluetooth atau Wi-Fi.
 ### Berfungsi
 - Bluetooth "klasik" (juga ditulis SPP, Bluetooth 2.0 atau 3.0) atau dwi-mod. Disyorkan: Vgate iCar Pro (versi Bluetooth 3.0), Veepeak Mini Bluetooth, OBDLink LX dan OBDLink MX+.
 - Wi-Fi: juga berfungsi, tetapi selagi skrin bersambung ke rangkaian pengimbas, skrin tiada internet (peta dalam talian, cuaca, AI).
@@ -40,8 +40,8 @@ Panel keluar dari sebelah pemandu: bukanya dengan tab di tepi, dengan butang pad
 Di bawahnya ada tiga data kecil (contohnya kelajuan, beban enjin atau bahan api): ketik untuk melihat grafnya. Lebih ke bawah ada amaran aktif dan kod kerosakan.
 >> panel | Buka panel kenderaan
 
-== alertas | Amaran dan hadnya | Bila StradaOS memberi amaran dan cara mengubahnya
-StradaOS memantau data semasa anda memandu dan memberi amaran pada skrin dan melalui suara, walaupun anda sedang guna Waze atau mendengar muzik.
+== alertas | Amaran dan hadnya | Bila EvOS memberi amaran dan cara mengubahnya
+EvOS memantau data semasa anda memandu dan memberi amaran pada skrin dan melalui suara, walaupun anda sedang guna Waze atau mendengar muzik.
 - Notis (ambar): ada sesuatu yang luar biasa; contohnya, penyejuk melebihi 100 °C.
 - Amaran (merah): anda perlu bertindak; contohnya, penyejuk melebihi 106 °C atau bateri yang tidak dicas. Jika diaktifkan, panel akan terbuka sendiri.
 - Ia juga memberi amaran jika penyejuk naik terlalu cepat dan apabila kod kerosakan baharu muncul.
@@ -67,21 +67,21 @@ Ketik satu kod untuk melihat maksudnya, tahap keseriusan dan apa yang perlu dibu
 Dalam Data langsung anda melihat setiap data yang dihantar kereta: kelajuan, beban enjin, pendikit, suhu udara, bahan api, campuran dan lain-lain. Setiap kereta menghantar data berbeza: jika satu tidak muncul, kereta anda tidak memberikannya.
 - Ketik satu data untuk membuka grafnya.
 - Graf memaparkan sehingga 3 data serentak, dari 1 hingga 30 minit.
-- Data bertanda "dikira" dihasilkan oleh StradaOS daripada data lain (contohnya, penggunaan bahan api). Ia anggaran sahaja.
+- Data bertanda "dikira" dihasilkan oleh EvOS daripada data lain (contohnya, penggunaan bahan api). Ia anggaran sahaja.
 Petua: jika enjin anda tiada sensor MAF, masukkan kapasiti enjin dalam Lanjutan supaya penggunaan bahan api lebih tepat.
 >> obd_live | Pergi ke Data langsung
 
 == ia | Mengaktifkan AI, langkah demi langkah | Pilihan: menerangkan kod untuk kereta anda
-AI adalah pilihan: tanpanya, StradaOS sudah menerangkan kod yang paling biasa. Dengan AI, penerangan dibuat untuk kereta anda khususnya. Anda perlukan kunci (API key) sendiri dan internet pada skrin.
+AI adalah pilihan: tanpanya, EvOS sudah menerangkan kod yang paling biasa. Dengan AI, penerangan dibuat untuk kereta anda khususnya. Anda perlukan kunci (API key) sendiri dan internet pada skrin.
 ### Groq (percuma)
 - Pergi ke console.groq.com dan log masuk dengan Google atau e-mel anda. Tiada kad diperlukan.
 - Pergi ke "API Keys" → "Create API Key", beri nama dan salin kunci (bermula dengan gsk_). Ia dipaparkan sekali sahaja.
-- Dalam StradaOS: Kecerdasan buatan → Pembekal: Groq → API key: tampalkan.
+- Dalam EvOS: Kecerdasan buatan → Pembekal: Groq → API key: tampalkan.
 Petua: buat dalam pelayar pada skrin yang sama supaya boleh salin dan tampal kunci. Jika buat di telefon, anda perlu menaipnya dengan teliti.
 ### Claude atau OpenAI (berbayar)
 - Claude: platform.claude.com → Settings → API keys. Beli kredit dalam Billing dahulu.
 - OpenAI: platform.openai.com → API keys. Juga menggunakan kredit prabayar.
-- Dalam StradaOS pilih pembekal, tampal kunci dan, jika diminta, pilih model.
+- Dalam EvOS pilih pembekal, tampal kunci dan, jika diminta, pilih model.
 ### Akhir sekali
 - Isi "Kenderaan anda (untuk AI)": jenama, model, tahun, enjin dan transmisi. Jawapan jadi lebih tepat.
 - Ketik "Cuba AI". Jika ia menjawab, semuanya siap.

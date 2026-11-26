@@ -26,7 +26,7 @@ import java.util.PriorityQueue;
 
 /**
  * Mapa sin conexión: lee un archivo .map de mapsforge (p. ej. colombia.map de download.mapsforge.org) y dibuja
- * teselas de 256 px con el estilo de StradaOS (claro u oscuro), sin internet.
+ * teselas de 256 px con el estilo de EvOS (claro u oscuro), sin internet.
  *
  * El lector sigue la especificación del formato y está adaptado del lector de mapsforge
  * (https://github.com/mapsforge/mapsforge, LGPL-3.0; © mapsforge.org y colaboradores), reducido a lo que el mapa

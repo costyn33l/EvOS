@@ -103,7 +103,7 @@ public class Net {
         if (c instanceof HttpsURLConnection && factory != null) ((HttpsURLConnection) c).setSSLSocketFactory(factory);
         c.setConnectTimeout(timeoutMs);
         c.setReadTimeout(timeoutMs);
-        c.setRequestProperty("User-Agent", "StradaOS (Android head unit launcher; offline maps)");
+        c.setRequestProperty("User-Agent", "EvOS (Android head unit launcher; offline maps)");
         c.setRequestProperty("Accept-Encoding", "identity");
         return c;
     }
@@ -113,7 +113,7 @@ public class Net {
         if (c instanceof HttpsURLConnection && f != null) ((HttpsURLConnection) c).setSSLSocketFactory(f);
         c.setConnectTimeout(timeoutMs);
         c.setReadTimeout(timeoutMs);
-        c.setRequestProperty("User-Agent", "StradaOS/2.1 (Android head unit launcher)");
+        c.setRequestProperty("User-Agent", "EvOS/2.1 (Android head unit launcher)");
         try {
             int code = c.getResponseCode();
             if (code != 200) throw new Exception("HTTP " + code);

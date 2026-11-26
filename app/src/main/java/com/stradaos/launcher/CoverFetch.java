@@ -34,7 +34,7 @@ public class CoverFetch {
 
     public interface Listener { void onCover(String key, Bitmap art); }
 
-    private static final String UA = "StradaOS ( https://github.com/lordnordic-debug/StradaOS )";
+    private static final String UA = "EvOS ( https://github.com/costyn33l/EvOS )";
     private static final int MAX_FILES = 400;
     /** MusicBrainz pide como mucho una consulta por segundo. */
     private static long lastQueryAt;

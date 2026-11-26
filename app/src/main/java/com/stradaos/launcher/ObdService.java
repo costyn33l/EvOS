@@ -31,7 +31,7 @@ public class ObdService extends Service implements Obd.Listener {
     }
 
     @Override public int onStartCommand(Intent intent, int flags, int startId) {
-        I18n.init(this, Obd.prefs(this));          // por si Android reinició el servicio sin abrir StradaOS
+        I18n.init(this, Obd.prefs(this));          // por si Android reinició el servicio sin abrir EvOS
         startForeground(ID, build());
         Obd.addListener(this);
         Obd.start(this);

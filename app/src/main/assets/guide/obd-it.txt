@@ -1,7 +1,7 @@
-# StradaOS · Guida allo scanner OBD-II · italiano. Formato: vedi ObdGuide.java.
+# EvOS · Guida allo scanner OBD-II · italiano. Formato: vedi ObdGuide.java.
 
 == comprar | Quale scanner comprare | Quelli che funzionano e quelli da evitare
-StradaOS comunica con gli scanner ELM327, il tipo più diffuso ed economico. Si collegano via Bluetooth o Wi-Fi.
+EvOS comunica con gli scanner ELM327, il tipo più diffuso ed economico. Si collegano via Bluetooth o Wi-Fi.
 ### Funzionano
 - Bluetooth "classico" (indicato anche come SPP, Bluetooth 2.0 o 3.0) o dual mode. Consigliati: Vgate iCar Pro (versione Bluetooth 3.0), Veepeak Mini Bluetooth, OBDLink LX e OBDLink MX+.
 - Wi-Fi: funzionano anche questi, ma finché lo schermo è collegato alla rete dello scanner resta senza internet (mappa online, meteo, IA).
@@ -40,8 +40,8 @@ Il pannello esce dal lato del guidatore: aprilo con la linguetta sul bordo, con 
 Sotto ci sono tre dati piccoli (per esempio velocità, carico del motore o carburante): toccali per vedere il grafico. Più in basso compaiono gli avvisi attivi e i codici di guasto.
 >> panel | Apri il pannello del veicolo
 
-== alertas | Gli avvisi e i loro limiti | Quando StradaOS avvisa e come cambiarlo
-StradaOS controlla i dati mentre guidi e avvisa sullo schermo e a voce, anche mentre usi Waze o ascolti musica.
+== alertas | Gli avvisi e i loro limiti | Quando EvOS avvisa e come cambiarlo
+EvOS controlla i dati mentre guidi e avvisa sullo schermo e a voce, anche mentre usi Waze o ascolti musica.
 - Avviso (ambra): qualcosa è fuori dal normale; per esempio, il liquido di raffreddamento sopra 100 °C.
 - Allarme (rosso): bisogna intervenire; per esempio, il liquido di raffreddamento sopra 106 °C o la batteria che non si carica. Se è attivo, il pannello si apre da solo.
 - Avvisa anche se il liquido di raffreddamento sale molto in fretta e quando compare un nuovo codice di guasto.
@@ -67,21 +67,21 @@ Tocca un codice per vedere cosa significa, quanto è grave e cosa fare.
 In Dati in diretta vedi ogni dato che fornisce la tua auto: velocità, carico del motore, acceleratore, temperatura dell'aria, carburante, miscela e altro. Ogni auto fornisce dati diversi: se uno non compare, la tua auto non lo dà.
 - Tocca un dato per aprire il suo grafico.
 - Nei grafici vedi fino a 3 dati insieme, da 1 a 30 minuti.
-- Quelli con scritto "calcolato" li ricava StradaOS da altri dati (per esempio, il consumo). Sono approssimativi.
+- Quelli con scritto "calcolato" li ricava EvOS da altri dati (per esempio, il consumo). Sono approssimativi.
 Consiglio: se il tuo motore non ha il sensore MAF, inserisci la cilindrata in Avanzate perché il consumo risulti più preciso.
 >> obd_live | Vai a Dati in diretta
 
 == ia | Attivare l'IA, passo per passo | Facoltativa: spiega i codici per la tua auto
-L'IA è facoltativa: senza, StradaOS spiega già i codici più comuni. Con l'IA la spiegazione è per la tua auto in particolare. Ti serve una chiave (API key) tua e internet sullo schermo.
+L'IA è facoltativa: senza, EvOS spiega già i codici più comuni. Con l'IA la spiegazione è per la tua auto in particolare. Ti serve una chiave (API key) tua e internet sullo schermo.
 ### Groq (gratis)
 - Vai su console.groq.com e accedi con Google o con la tua email. Non chiede la carta.
 - Vai in "API Keys" → "Create API Key", dalle un nome e copia la chiave (inizia con gsk_). Viene mostrata una sola volta.
-- In StradaOS: Intelligenza artificiale → Fornitore: Groq → API key: incollala.
+- In EvOS: Intelligenza artificiale → Fornitore: Groq → API key: incollala.
 Consiglio: fallo nel browser dello stesso schermo per copiare e incollare la chiave. Se lo fai sul telefono, dovrai scriverla con attenzione.
 ### Claude o OpenAI (a pagamento)
 - Claude: platform.claude.com → Settings → API keys. Prima acquista crediti in Billing.
 - OpenAI: platform.openai.com → API keys. Funziona anche con crediti prepagati.
-- In StradaOS scegli il fornitore, incolla la chiave e, se richiesto, scegli il modello.
+- In EvOS scegli il fornitore, incolla la chiave e, se richiesto, scegli il modello.
 ### Per finire
 - Compila "Il tuo veicolo (per l'IA)": marca, modello, anno, motore e cambio. Così la risposta è più precisa.
 - Tocca "Prova l'IA". Se risponde, è fatta.

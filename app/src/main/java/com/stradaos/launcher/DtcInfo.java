@@ -22,7 +22,7 @@ import java.util.HashSet;
  * Qué significa un código de falla (P0711, P0300…), en tres capas:
  * 1. Sin internet: la tabla en español de los códigos más comunes (assets/obd/dtc_es.tsv, con gravedad y qué hacer)
  *    y la lista genérica SAE en inglés (assets/obd/dtc_en.tsv, ~2100 códigos P0/P2/P3).
- * 2. Con internet y una API key (Ajustes del vehículo): una IA lo explica para ese auto en el idioma de StradaOS.
+ * 2. Con internet y una API key (Ajustes del vehículo): una IA lo explica para ese auto en el idioma de EvOS.
  * 3. La respuesta de la IA se guarda en el equipo: la próxima vez sale aunque no haya señal (en la montaña).
  *
  * La IA solo recibe el código, su descripción genérica, el auto que el usuario escribió y los datos del motor en

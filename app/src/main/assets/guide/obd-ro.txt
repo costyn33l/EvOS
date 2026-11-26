@@ -1,0 +1,98 @@
+# EvOS · ghidul scanerului OBD-II · Română. Format: vezi ObdGuide.java.
+
+== comprar | Ce scaner să cumperi | Cele care merg și cele de evitat
+EvOS comunică cu scanerele ELM327, cele mai răspândite și mai ieftine. Se conectează prin Bluetooth sau Wi-Fi.
+### Acestea merg
+- Bluetooth „clasic” (scrie și SPP, Bluetooth 2.0 sau 3.0) sau dual mode. Recomandate: Vgate iCar Pro (varianta Bluetooth 3.0), Veepeak Mini Bluetooth, OBDLink LX și OBDLink MX+.
+- Wi-Fi: merg și ele, dar cât timp ecranul e conectat la rețeaua scanerului rămâne fără internet (hartă online, vreme, IA).
+- Cablu USB (ELM327 USB cu cip CH340, FTDI, PL2303 sau CP2102): cea mai bună variantă dacă Bluetooth-ul ecranului nu vede scanerul. Unele ecrane au nevoie de un adaptor OTG.
+### De evitat
+- Scanerele doar BLE (Bluetooth Low Energy, „Bluetooth 4.0” sau „doar iPhone”), cum e OBDLink CX: Android nu le vede ca scaner și nu se conectează.
+- Clonele foarte ieftine marcate „v2.1”: multe răspund prost sau doar parțial. Dacă ai deja unul, încearcă-l; uneori merge.
+Sfat: pe cutie sau în anunț caută „Android” și „Bluetooth 3.0” sau „SPP”. Dacă scrie doar „iOS” sau „BLE”, nu va merge.
+
+== conector | Unde se conectează și cum îl împerechezi | Mufa OBD și prima conectare
+### Mufa
+Are 16 pini și formă de trapez. Aproape mereu e sub bord, pe partea șoferului, lângă genunchi sau lângă cutia de siguranțe; uneori în spatele unui capac mic. Dacă n-o găsești, uită-te în manualul mașinii.
+### Împerecherea
+- Pune scanerul în mufă și ia contactul (sau pornește motorul). Ar trebui să se aprindă un led pe scaner.
+- Bluetooth: în Conexiune atinge „Caută scanere Bluetooth din apropiere” și alege-l. Dacă cere PIN, aproape mereu e 1234 sau 0000.
+- Wi-Fi: conectează ecranul la rețeaua Wi-Fi a scanerului și scrie IP-ul și portul (de obicei 192.168.0.10:35000).
+- Cablu USB: conectează-l la ecran, alege „Scaner prin cablu USB” în Conexiune și acceptă permisiunea cerută de Android.
+- Gata: conexiunea ar trebui să arate „Live”.
+### Dacă nu se conectează
+- Unele ecrane au Bluetooth doar pentru telefon (mâini libere), iar Android nu-l vede. Pe ele folosește un scaner Wi-Fi.
+- Pe ecranele FYT și pe altele al căror Bluetooth nu e al Android-ului, un scaner pe cablu USB e cea mai bună variantă.
+- În Conexiune → „Jurnalul conexiunii” vezi ce a răspuns scanerul.
+Sfat: dacă mașina stă nefolosită mai multe zile, scoate scanerul din mufă: unele descarcă bateria chiar cu mașina oprită.
+>> obd_conn | Mergi la Conexiune
+
+== panel | Panoul vehiculului | Ce înseamnă fiecare indicator și culoare
+Panoul glisează din partea șoferului: îl deschizi cu fila de pe margine, cu un buton din bară sau din Setări. Funcționează peste orice temă.
+### Cele trei indicatoare
+- Lichid de răcire: temperatura motorului. Cu motorul cald, 80–100 °C e normal.
+- Baterie: cu motorul pornit trebuie să arate 13,5–14,8 V (alternatorul încarcă). Cu motorul oprit, în jur de 12,6 V.
+- RPM: turația motorului.
+### Culorile
+- Verde: normal.
+- Chihlimbar: avertizare. Ceva iese din comun; urmărește-l.
+- Roșu: alertă. Acționează curând; dacă e lichidul de răcire, oprește într-un loc sigur.
+Dedesubt sunt trei valori mici (de exemplu viteza, sarcina motorului sau combustibilul): atinge-le ca să vezi graficul. Mai jos sunt alertele active și codurile de eroare.
+>> panel | Deschide panoul vehiculului
+
+== alertas | Alertele și limitele lor | Când te anunță EvOS și cum schimbi asta
+EvOS urmărește datele cât conduci și te anunță pe ecran și vocal, chiar dacă ești în Waze sau asculți muzică.
+- Avertizare (chihlimbar): ceva iese din comun; de exemplu, lichid de răcire peste 100 °C.
+- Alertă (roșu): trebuie să acționezi; de exemplu, lichid de răcire peste 106 °C sau o baterie care nu se încarcă. Dacă e activat, panoul se deschide singur.
+- Te anunță și dacă lichidul de răcire se încălzește foarte repede și când apare un cod de eroare nou.
+### Schimbarea limitelor
+În Alerte → „Când alertează fiecare valoare”, atinge o valoare ca s-o urmărești sau nu și ca să-i schimbi nivelurile de avertizare și alertă. „Valori din fabrică” le readuce cum erau.
+Valorile din fabrică se potrivesc majorității mașinilor. Schimbă-le doar dacă îți cunoști bine mașina (de exemplu, un motor care merge în mod normal mai cald).
+>> obd_alerts | Mergi la Alerte
+
+== codigos | Codurile de eroare | Ce înseamnă și când să le ștergi
+Când calculatorul motorului detectează un defect, salvează un cod ca P0301. Litera arată sistemul: P motor și cutie, B caroserie, C șasiu, U rețea.
+- În așteptare: defectul a apărut o dată; dacă se repetă, devine confirmat.
+- Confirmat: defectul s-a repetat și poate aprinde martorul motorului.
+Atinge un cod ca să vezi ce înseamnă, cât de grav e și ce ai de făcut.
+### Când să le ștergi
+- Doar după ce ai reparat defectul sau ca să vezi dacă revine.
+- Notează codurile înainte: mecanicul le folosește la diagnosticare.
+- Cu motorul oprit și contactul pus.
+- Ștergerea nu repară nimic: dacă defectul e încă acolo, codul revine.
+- După ștergere, monitoarele de emisii rămân „nepregătite” câteva zile. E normal, dar nu duce mașina la ITP imediat după.
+>> obd_codes | Mergi la Coduri de eroare
+
+== datos | Date live și grafice | Tot ce raportează mașina ta
+În Date live vezi fiecare valoare raportată de mașină: viteză, sarcina motorului, accelerație, temperatura aerului, combustibil, corecțiile de amestec și altele. Fiecare mașină raportează alte date: dacă una nu apare, mașina ta nu o oferă.
+- Atinge o valoare ca să-i deschizi graficul.
+- Graficele arată până la 3 valori deodată, de la 1 la 30 de minute.
+- Valorile marcate „calculat” sunt obținute de EvOS din alte date (de exemplu, consumul). Sunt aproximative.
+Sfat: dacă motorul tău nu are senzor MAF, scrie cilindreea în Avansat ca să iasă mai bine consumul.
+>> obd_live | Mergi la Date live
+
+== ia | Activarea IA, pas cu pas | Opțional: explică codurile pentru mașina ta
+IA e opțională: fără ea, EvOS explică deja cele mai frecvente coduri. Cu ea, explicația e pentru mașina ta. Ai nevoie de o cheie proprie (API key) și de internet pe ecran.
+### Groq (gratuit)
+- Intră pe console.groq.com și autentifică-te cu Google sau cu e-mailul. Nu e nevoie de card.
+- Mergi la „API Keys” → „Create API Key”, dă-i un nume și copiază cheia (începe cu gsk_). Se afișează o singură dată.
+- În EvOS: Inteligență artificială → Furnizor: Groq → Cheie API: lipește-o.
+Sfat: fă asta din browserul de pe același ecran, ca să poți copia și lipi cheia. Dacă o faci pe telefon, va trebui s-o scrii cu atenție.
+### Claude sau OpenAI (cu plată)
+- Claude: platform.claude.com → Settings → API keys. Cumpără mai întâi credit din Billing.
+- OpenAI: platform.openai.com → API keys. Merge și cu credit preplătit.
+- În EvOS alege furnizorul, lipește cheia și, dacă ți se cere, alege modelul.
+### La final
+- Completează „Vehiculul tău (pentru IA)”: marcă, model, an, motor și cutie. Așa răspunsul e mai precis.
+- Atinge „Testează IA”. Dacă răspunde, ai terminat.
+Se trimit doar codul, vehiculul pe care îl scrii și datele motorului din acel moment; niciodată locația ta. Fiecare cerere e taxată de furnizor (la Groq, gratuit în limita lui).
+>> obd_ai | Mergi la Inteligență artificială
+
+== limites | Ce nu se poate citi și mașina simulată | Limitele OBD-II și cum încerci fără scaner
+### Ce nu oferă OBD-II
+- Presiunea în anvelope: aproape nicio mașină nu o raportează prin OBD-II standard. Pentru asta ai nevoie de un kit separat de senzori (TPMS).
+- Kilometrajul din bord, nivelul uleiului și module ca ABS, airbaguri sau cutia automată aproape niciodată nu sunt în standard.
+- Mașinile foarte vechi și unele diesel mai vechi pot să nu aibă OBD-II.
+### Mașina simulată
+Nu ai încă scaner? Alege „Mașină simulată” în Conexiune ca să vezi cum merge totul: indicatoare, alerte vocale, un cod de exemplu și grafice. În câteva minute vei vedea o supraîncălzire de test și o alertă de baterie. Nu se conectează la mașina ta reală.
+>> demo | Încearcă mașina simulată

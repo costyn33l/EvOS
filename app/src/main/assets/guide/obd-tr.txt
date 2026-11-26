@@ -1,7 +1,7 @@
-# StradaOS · OBD-II tarayıcı rehberi · Türkçe. Biçim: ObdGuide.java'ya bakın.
+# EvOS · OBD-II tarayıcı rehberi · Türkçe. Biçim: ObdGuide.java'ya bakın.
 
 == comprar | Hangi tarayıcıyı almalı | Çalışanlar ve kaçınılması gerekenler
-StradaOS, en yaygın ve en ucuz tür olan ELM327 tarayıcılarla çalışır. Bluetooth veya Wi-Fi ile bağlanırlar.
+EvOS, en yaygın ve en ucuz tür olan ELM327 tarayıcılarla çalışır. Bluetooth veya Wi-Fi ile bağlanırlar.
 ### Çalışanlar
 - "Klasik" Bluetooth (SPP, Bluetooth 2.0 veya 3.0 olarak da yazılır) ya da çift mod. Önerilenler: Vgate iCar Pro (Bluetooth 3.0 sürümü), Veepeak Mini Bluetooth, OBDLink LX ve OBDLink MX+.
 - Wi-Fi: bunlar da çalışır, ancak ekran tarayıcının ağına bağlıyken internet olmaz (çevrimiçi harita, hava durumu, yapay zekâ).
@@ -40,8 +40,8 @@ Panel sürücü tarafından açılır: kenardaki sekmeyle, çubuktaki bir düğm
 Altında üç küçük veri vardır (örneğin hız, motor yükü veya yakıt): grafiğini görmek için dokunun. Daha aşağıda etkin uyarılar ve arıza kodları yer alır.
 >> panel | Araç panelini aç
 
-== alertas | Uyarılar ve sınırları | StradaOS ne zaman uyarır ve nasıl değiştirilir
-StradaOS siz sürerken verileri izler; Waze'deyken veya müzik dinlerken bile ekranda ve sesli olarak uyarır.
+== alertas | Uyarılar ve sınırları | EvOS ne zaman uyarır ve nasıl değiştirilir
+EvOS siz sürerken verileri izler; Waze'deyken veya müzik dinlerken bile ekranda ve sesli olarak uyarır.
 - Uyarı (kehribar): bir şey normalin dışında; örneğin antifriz 100 °C'nin üzerinde.
 - Alarm (kırmızı): harekete geçmeniz gerekir; örneğin antifriz 106 °C'nin üzerinde ya da akü şarj olmuyor. Açıksa panel kendiliğinden açılır.
 - Antifriz çok hızlı yükselirse ve yeni bir arıza kodu çıkarsa da uyarır.
@@ -67,21 +67,21 @@ Ne anlama geldiğini, ne kadar ciddi olduğunu ve ne yapılacağını görmek i�
 Canlı veriler bölümünde aracınızın verdiği her değeri görürsünüz: hız, motor yükü, gaz kelebeği, hava sıcaklığı, yakıt, karışım ve daha fazlası. Her araç farklı veri verir: biri görünmüyorsa aracınız onu sağlamıyordur.
 - Grafiğini açmak için bir veriye dokunun.
 - Grafiklerde aynı anda en fazla 3 veri, 1 ile 30 dakika arasında görüntülenir.
-- "hesaplanan" yazanları StradaOS başka verilerden çıkarır (örneğin yakıt tüketimi). Yaklaşık değerlerdir.
+- "hesaplanan" yazanları EvOS başka verilerden çıkarır (örneğin yakıt tüketimi). Yaklaşık değerlerdir.
 İpucu: motorunuzda MAF sensörü yoksa tüketimin daha doğru çıkması için Gelişmiş bölümüne motor hacmini yazın.
 >> obd_live | Canlı veriler'e git
 
 == ia | Yapay zekâyı adım adım açma | İsteğe bağlı: kodları aracınıza göre açıklar
-Yapay zekâ isteğe bağlıdır: o olmadan da StradaOS en yaygın kodları açıklar. Onunla açıklama sizin aracınıza özel olur. Kendinize ait bir anahtar (API key) ve ekranda internet gerekir.
+Yapay zekâ isteğe bağlıdır: o olmadan da EvOS en yaygın kodları açıklar. Onunla açıklama sizin aracınıza özel olur. Kendinize ait bir anahtar (API key) ve ekranda internet gerekir.
 ### Groq (ücretsiz)
 - console.groq.com adresine gidin ve Google ya da e-postanızla giriş yapın. Kart istemez.
 - "API Keys" → "Create API Key" yolunu izleyin, bir ad verin ve anahtarı kopyalayın (gsk_ ile başlar). Yalnızca bir kez gösterilir.
-- StradaOS'ta: Yapay zekâ → Sağlayıcı: Groq → API key: yapıştırın.
+- EvOS'ta: Yapay zekâ → Sağlayıcı: Groq → API key: yapıştırın.
 İpucu: anahtarı kopyalayıp yapıştırabilmek için bunu aynı ekranın tarayıcısında yapın. Telefonda yaparsanız dikkatle yazmanız gerekir.
 ### Claude veya OpenAI (ücretli)
 - Claude: platform.claude.com → Settings → API keys. Önce Billing'den kredi satın alın.
 - OpenAI: platform.openai.com → API keys. Ön ödemeli krediyle çalışır.
-- StradaOS'ta sağlayıcıyı seçin, anahtarı yapıştırın ve istenirse modeli seçin.
+- EvOS'ta sağlayıcıyı seçin, anahtarı yapıştırın ve istenirse modeli seçin.
 ### Son olarak
 - "Aracınız (yapay zekâ için)" alanını doldurun: marka, model, yıl, motor ve şanzıman. Böylece yanıt daha isabetli olur.
 - "Yapay zekâyı dene"ye dokunun. Yanıt verirse hazırsınız.

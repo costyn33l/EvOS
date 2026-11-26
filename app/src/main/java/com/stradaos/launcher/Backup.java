@@ -32,7 +32,7 @@ import java.util.Set;
  * configuración a otra pantalla.
  */
 public class Backup {
-    static final String PREFIX = "StradaOS-backup", EXT = ".json", AUTO = "StradaOS-backup-auto.json";
+    static final String PREFIX = "EvOS-backup", EXT = ".json", AUTO = "EvOS-backup-auto.json";
     static final int FORMAT = 1;
 
     /** Datos que no se copian ni se restauran: son de este equipo o de este momento (descargas, cachés, pruebas). */
@@ -62,7 +62,7 @@ public class Backup {
     static String build(Context c) throws Exception {
         SharedPreferences p = c.getSharedPreferences("launcher", 0);
         JSONObject root = new JSONObject();
-        root.put("app", "StradaOS");
+        root.put("app", "EvOS");
         root.put("format", FORMAT);
         root.put("version", Updates.currentVersion(c));
         root.put("created", System.currentTimeMillis());
@@ -128,7 +128,7 @@ public class Backup {
     /** Memoria de la pantalla (la «tarjeta SD» interna). */
     static File primary() { return Environment.getExternalStorageDirectory(); }
 
-    /** Carpetas propias de StradaOS en cada memoria (Android 4.4+): se puede escribir en ellas sin permisos. */
+    /** Carpetas propias de EvOS en cada memoria (Android 4.4+): se puede escribir en ellas sin permisos. */
     static File[] appDirs(Context c) {
         try {
             if (Build.VERSION.SDK_INT >= 19) {
@@ -195,13 +195,13 @@ public class Backup {
     }
 
     /**
-     * Guarda la copia en una memoria. Primero en la carpeta «StradaOS» a la vista del usuario; si Android no deja
-     * escribir ahí (memorias extraíbles en Android 4.4 a 10), en la carpeta propia de StradaOS dentro de esa memoria.
+     * Guarda la copia en una memoria. Primero en la carpeta «EvOS» a la vista del usuario; si Android no deja
+     * escribir ahí (memorias extraíbles en Android 4.4 a 10), en la carpeta propia de EvOS dentro de esa memoria.
      */
     static File save(Context c, File root, String name, String json) throws Exception {
         Exception first = null;
         try {
-            return writeFile(new File(root, "StradaOS"), name, json);
+            return writeFile(new File(root, "EvOS"), name, json);
         } catch (Exception e) { first = e; }
         String rp = canon(root);
         for (File d : appDirs(c)) {
@@ -263,9 +263,9 @@ public class Backup {
         roots.addAll(removable(c));
         for (File r : roots) {
             dirs.add(r);
-            dirs.add(new File(r, "StradaOS"));
+            dirs.add(new File(r, "EvOS"));
             dirs.add(new File(r, "Download"));
-            dirs.add(new File(r, "Download/StradaOS"));
+            dirs.add(new File(r, "Download/EvOS"));
         }
         for (File d : appDirs(c)) if (d != null) dirs.add(d);
         // y una búsqueda amplia (3 carpetas de profundidad) por si la pantalla monta las USB en otro lado
@@ -314,12 +314,12 @@ public class Backup {
         if (has) dirs.add(d);
     }
 
-    /** Datos de una copia, o null si el texto no es una copia de StradaOS. */
+    /** Datos de una copia, o null si el texto no es una copia de EvOS. */
     static Info peek(String json) {
         try {
             JSONObject root = new JSONObject(json);
             JSONObject pr = root.optJSONObject("prefs");
-            if (!"StradaOS".equals(root.optString("app")) || pr == null) return null;
+            if (!"EvOS".equals(root.optString("app")) || pr == null) return null;
             Info i = new Info();
             i.created = root.optLong("created", 0);
             i.version = root.optString("version", "");
@@ -341,9 +341,9 @@ public class Backup {
         try {
             root = new JSONObject(json);
             pr = root.optJSONObject("prefs");
-        } catch (Throwable e) { return "Este archivo no es una copia de seguridad de StradaOS"; }
-        if (!"StradaOS".equals(root.optString("app")) || pr == null) return "Este archivo no es una copia de seguridad de StradaOS";
-        if (root.optInt("format", 1) > FORMAT) return "Esta copia se hizo con una versión más nueva de StradaOS. Actualiza StradaOS y vuelve a intentarlo";
+        } catch (Throwable e) { return "Este archivo no es una copia de seguridad de EvOS"; }
+        if (!"EvOS".equals(root.optString("app")) || pr == null) return "Este archivo no es una copia de seguridad de EvOS";
+        if (root.optInt("format", 1) > FORMAT) return "Esta copia se hizo con una versión más nueva de EvOS. Actualiza EvOS y vuelve a intentarlo";
         try {
             SharedPreferences p = c.getSharedPreferences("launcher", 0);
             SharedPreferences.Editor e = p.edit();

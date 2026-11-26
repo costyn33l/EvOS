@@ -1,6 +1,6 @@
 {
-  "version": "2.37.0",
-  "notes": "# StradaOS 2.37.0\n\n- **Mapa más suave.** El zoom ya no salta de golpe: se desliza al acercar o alejar, y el zoom automático tiene un margen para no ir y venir justo en el límite de velocidad.\n- **«Navegar hasta aquí».** Con la navegación de StradaOS, mantén presionado cualquier punto del mapa y elige «Navegar». La ventana sale al lado contrario del alfiler para que veas a dónde vas.\n- **Al empezar una ruta,** el mapa vuelve solo a seguir al carro, aunque estuvieras explorando.\n- **Posición del carro: Abajo** (Ajustes → Mapa y clima). Al navegar con el mapa según tu dirección, ves más camino por delante. De fábrica sigue en el centro.\n\nGracias, linorks-maker, por estas mejoras del mapa.\n\n[](#lang-en)\n# StradaOS 2.37.0 (English)\n\n- **Smoother map.** Zoom no longer jumps: it glides in and out, and the automatic zoom has a margin so it doesn't flip back and forth right at a speed threshold.\n- **\"Navigate here\".** With StradaOS navigation, long-press any point on the map and choose \"Navigate\". The window opens on the opposite side of the pin so you can see where you're going.\n- **When a route starts,** the map goes back to following the car, even if you were exploring.\n- **Car position: Bottom** (Settings → Map & weather). While navigating with the map in your direction of travel, you see more road ahead. Center is still the default.\n\nThanks, linorks-maker, for these map improvements.\n",
-  "url": "https://github.com/lordnordic-debug/StradaOS/releases/tag/v2.37.0",
-  "apk": "https://github.com/lordnordic-debug/StradaOS/releases/download/v2.37.0/StradaOS-2.37.0.apk"
+  "version": "1.0.0",
+  "notes": "# EvOS 1.0.0\n\n- Prima versiune EvOS (bazată pe StradaOS 2.37).\n- Limba română, setată implicit.\n\n[](#lang-en)\n# EvOS 1.0.0 (English)\n\n- First EvOS release (based on StradaOS 2.37).\n- Romanian language, set as default.\n",
+  "url": "https://github.com/costyn33l/EvOS/releases/tag/v1.0.0",
+  "apk": "https://github.com/costyn33l/EvOS/releases/download/v1.0.0/EvOS-1.0.0.apk"
 }

@@ -62,18 +62,18 @@ public class Guard {
                     long late = SystemClock.uptimeMillis() - pong;
                     if (late > 8000 && !reported) {
                         reported = true;
-                        StringBuilder sb = new StringBuilder("BLOQUEO: la pantalla de StradaOS no responde hace ")
+                        StringBuilder sb = new StringBuilder("BLOQUEO: la pantalla de EvOS no responde hace ")
                                 .append(late / 1000).append(" s. Estaba en:\n");
                         for (StackTraceElement el : Looper.getMainLooper().getThread().getStackTrace())
                             sb.append("    at ").append(el).append('\n');
                         log(cut(sb.toString(), 6000));
                     } else if (late < 4000 && reported) {
                         reported = false;
-                        log("La pantalla de StradaOS volvió a responder.");
+                        log("La pantalla de EvOS volvió a responder.");
                     }
                 }
             }
-        }, "StradaOS-vigia");
+        }, "EvOS-vigia");
         watchdog.setDaemon(true);
         watchdog.setPriority(Thread.MIN_PRIORITY);
         watchdog.start();

@@ -14,7 +14,7 @@ import android.view.View;
 
 /**
  * Velocímetro del tema Faro (Bloque 16): aro fino abierto abajo con el avance más grueso (grafito en claro, cobre con
- * brillo en oscuro). Tres modos, los mismos de StradaOS: 2 mixto (aro + número grande), 1 analógico (aro con puntos y
+ * brillo en oscuro). Tres modos, los mismos de EvOS: 2 mixto (aro + número grande), 1 analógico (aro con puntos y
  * una aguja fina) y 0 digital (número grande con una línea de avance debajo). El circulito del límite solo aparece
  * cuando la navegación integrada trae el límite real de la vía.
  *

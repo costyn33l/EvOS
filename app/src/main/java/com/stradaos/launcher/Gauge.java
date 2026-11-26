@@ -22,7 +22,7 @@ public class Gauge extends View {
     private static final float START = 150f, SWEEP = 240f;   // de las 8 a las 4 del reloj
     private static final float TAU = 0.42f;                  // segundos: cuanto más alto, más suave
 
-    private final float k;                 // escala del lienzo de StradaOS (px por unidad)
+    private final float k;                 // escala del lienzo de EvOS (px por unidad)
     private int accent, ring, soft;
     private float max = 200, step = 20;
     private String unit = "km/h";

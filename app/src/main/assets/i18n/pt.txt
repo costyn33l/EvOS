@@ -1,4 +1,4 @@
-# StradaOS · traducción pt. Formato: español<TAB>traducción. Ver I18n.java.
+# EvOS · traducción pt. Formato: español<TAB>traducción. Ver I18n.java.
 Radio	Rádio
 Cámara	Câmera
 Archivos	Arquivos
@@ -33,7 +33,7 @@ Restablecer ({})	Restaurar ({})
 Botón restablecido	Botão restaurado
 Cerrar	Fechar
 Cerrar  ✕	Fechar  ✕
-★  Funciones de StradaOS (Música, Navegación, Android Auto…)	★  Funções do StradaOS (Música, Navegação, Android Auto…)
+★  Funciones de EvOS (Música, Navegación, Android Auto…)	★  Funções do EvOS (Música, Navegação, Android Auto…)
 ¿Qué abre el botón {}?	O que o botão {} abre?
 Función del botón {}	Função do botão {}
 Nombre del botón {} (vacío = el de la app)	Nome do botão {} (vazio = o do app)
@@ -49,7 +49,7 @@ Buenas tardes	Boa tarde
 Buenas noches	Boa noite
 Diagnóstico del reproductor	Diagnóstico do player
 Accesibilidad	Acessibilidade
-Activa «Carátula de Android Auto» (StradaOS)	Ative “Capa do Android Auto” (StradaOS)
+Activa «Carátula de Android Auto» (EvOS)	Ative “Capa do Android Auto” (EvOS)
 No se pudo abrir Accesibilidad	Não foi possível abrir Acessibilidade
 Activa «Pista actual de AA» en Open Headunit	Ative “Faixa atual do AA” no Open Headunit
 «Ninguna aplic. funciona con este accesorio USB»	“Nenhum app funciona com este acessório USB”
@@ -58,7 +58,7 @@ Abrir EasyConnection	Abrir EasyConnection
 No hay apps de espejo instaladas	Nenhum app de espelhamento instalado
 Exportando… puede tardar un minuto	Exportando… pode levar um minuto
 Diagnóstico listo	Diagnóstico pronto
-Se guardó en:\n{}\n\nCopia la carpeta StradaDiag a una memoria USB y adjúntala en un «issue» del repositorio de StradaOS en GitHub.	Salvo em:\n{}\n\nCopie a pasta StradaDiag para um pendrive e anexe-a em uma “issue” do repositório do StradaOS no GitHub.
+Se guardó en:\n{}\n\nCopia la carpeta StradaDiag a una memoria USB y adjúntala en un «issue» del repositorio de EvOS en GitHub.	Salvo em:\n{}\n\nCopie a pasta StradaDiag para um pendrive e anexe-a em uma “issue” do repositório do EvOS no GitHub.
 12 horas	12 horas
 24 horas	24 horas
 Automático	Automático
@@ -66,7 +66,7 @@ Automática	Automática
 Auto	Auto
 12 horas (a.m./p.m.)	12 horas (a.m./p.m.)
 Formato de hora	Formato de hora
-Se aplicará al reiniciar StradaOS	Será aplicado ao reiniciar o StradaOS
+Se aplicará al reiniciar EvOS	Será aplicado ao reiniciar o EvOS
 Rojo	Vermelho
 Naranja	Laranja
 Amarillo	Amarelo
@@ -76,7 +76,7 @@ Azul	Azul
 Morado	Roxo
 Rosa	Rosa
 Plata	Prata
-Bienvenido a StradaOS	Bem-vindo ao StradaOS
+Bienvenido a EvOS	Bem-vindo ao EvOS
 Vamos a dejar el launcher a tu gusto: tu nombre, tu vehículo, el color y la foto. Toma menos de un minuto y lo puedes cambiar después en el engranaje ⚙.	Vamos deixar o launcher do seu jeito: seu nome, seu veículo, a cor e a foto. Leva menos de um minuto e você pode mudar depois na engrenagem ⚙.
 Empezar	Começar
 ¿Cómo te llamas?	Qual é o seu nome?
@@ -214,7 +214,7 @@ Audio Bluetooth	Áudio Bluetooth
 Volver al Bluetooth al desconectar Android Auto	Voltar ao Bluetooth ao desconectar o Android Auto
 Al quitar el cable, abre un instante la app de música Bluetooth para que el sonido siga por Bluetooth	Ao tirar o cabo, abre por um instante o app de música Bluetooth para o som continuar pelo Bluetooth
 Escuchar el Bluetooth	Ouvir o Bluetooth
-En esta pantalla, toca ▶ en el inicio: StradaOS pasa el sonido a Bluetooth (por ejemplo, si venías de la radio)	Nesta tela, toque ▶ no início: o StradaOS passa o som para o Bluetooth (por exemplo, se você estava no rádio)
+En esta pantalla, toca ▶ en el inicio: EvOS pasa el sonido a Bluetooth (por ejemplo, si venías de la radio)	Nesta tela, toque ▶ no início: o EvOS passa o som para o Bluetooth (por exemplo, se você estava no rádio)
 Pasar a Bluetooth al dar play en el celular (en prueba)	Passar para o Bluetooth ao dar play no celular (em teste)
 Abre un instante «Audio Bluetooth» y vuelve. En algunas pantallas no detecta el play del celular	Abre por um instante o “Áudio Bluetooth” e volta. Em algumas telas não detecta o play do celular
 Probar ahora	Testar agora
@@ -271,7 +271,7 @@ Si la pantalla lo trae	Se a tela tiver
 no detectado	não detectado
 Pantalla con CarPlay o adaptador USB	Tela com CarPlay ou adaptador USB
 Mapa con internet seguro (TLS 1.2)	Mapa com internet segura (TLS 1.2)
-Android 4.1+ (StradaOS lo activa)	Android 4.1+ (o StradaOS ativa)
+Android 4.1+ (EvOS lo activa)	Android 4.1+ (o EvOS ativa)
 en Android 4.x solo algunos servidores de mapas responden	no Android 4.x só alguns servidores de mapas respondem
 Instalar actualizaciones desde la app	Instalar atualizações pelo app
 pide permiso «Instalar apps desconocidas»	pede a permissão “Instalar apps desconhecidos”
@@ -283,7 +283,7 @@ Gratis y de código abierto. Una nueva vida para las pantallas Android del carro
 Versión	Versão
 Android de la pantalla	Android da tela
 Real: {} · ver qué funciona aquí	Real: {} · ver o que funciona aqui
-Cierres inesperados o bloqueos de StradaOS en esta pantalla	Fechamentos inesperados ou travamentos do StradaOS nesta tela
+Cierres inesperados o bloqueos de EvOS en esta pantalla	Fechamentos inesperados ou travamentos do EvOS nesta tela
 Sin fallos	Sem falhas
 Ver	Ver
 Actualizaciones	Atualizações
@@ -292,9 +292,9 @@ Las actualizaciones llegan por esa app	As atualizações chegam por esse app
 Avisar también de versiones en GitHub	Avisar também das versões no GitHub
 Comprobar actualizaciones automáticamente	Verificar atualizações automaticamente
 Opcional: las descargas de GitHub no pasan por la revisión de la tienda	Opcional: os downloads do GitHub não passam pela revisão da loja
-Al abrir StradaOS con internet, una vez al día	Ao abrir o StradaOS com internet, uma vez por dia
+Al abrir EvOS con internet, una vez al día	Ao abrir o EvOS com internet, uma vez por dia
 Actualizaciones desde GitHub	Atualizações pelo GitHub
-Instalaste StradaOS desde {}. Si activas esto, StradaOS revisará una vez al día las versiones publicadas en github.com/{} y te ofrecerá descargarlas desde ahí.\n\nEsas descargas no pasan por la revisión de la tienda. Puede que GitHub tenga una versión un poco antes que la tienda.	Você instalou o StradaOS pela {}. Se ativar isto, o StradaOS vai verificar uma vez por dia as versões publicadas em github.com/{} e oferecer baixá-las de lá.\n\nEsses downloads não passam pela revisão da loja. O GitHub pode ter uma versão um pouco antes da loja.
+Instalaste EvOS desde {}. Si activas esto, EvOS revisará una vez al día las versiones publicadas en github.com/{} y te ofrecerá descargarlas desde ahí.\n\nEsas descargas no pasan por la revisión de la tienda. Puede que GitHub tenga una versión un poco antes que la tienda.	Você instalou o EvOS pela {}. Se ativar isto, o EvOS vai verificar uma vez por dia as versões publicadas em github.com/{} e oferecer baixá-las de lá.\n\nEsses downloads não passam pela revisão da loja. O GitHub pode ter uma versão um pouco antes da loja.
 Activar	Ativar
 Canal de actualizaciones	Canal de atualizações
 Buscar actualizaciones	Procurar atualizações
@@ -302,13 +302,13 @@ Aún no se ha comprobado	Ainda não verificado
 Última comprobación: {}	Última verificação: {}
 Comunidad	Comunidade
 Dar una estrella en GitHub	Dar uma estrela no GitHub
-Ayuda a que más personas encuentren StradaOS	Ajuda mais pessoas a encontrar o StradaOS
+Ayuda a que más personas encuentren EvOS	Ajuda mais pessoas a encontrar o EvOS
 Dar una estrella ⭐	Dar uma estrela ⭐
 Abre el repositorio y toca «Star». ¡Gracias!	Abra o repositório e toque em “Star”. Obrigado!
 Donar	Doar
-Si StradaOS revivió tu pantalla, invítame un café	Se o StradaOS reviveu sua tela, me pague um café
+Si EvOS revivió tu pantalla, invítame un café	Se o EvOS reviveu sua tela, me pague um café
 Apoya el proyecto ☕	Apoie o projeto ☕
-StradaOS es gratis. Las donaciones ayudan a mantenerlo y a probarlo en más pantallas.	O StradaOS é grátis. As doações ajudam a mantê-lo e a testá-lo em mais telas.
+EvOS es gratis. Las donaciones ayudan a mantenerlo y a probarlo en más pantallas.	O EvOS é grátis. As doações ajudam a mantê-lo e a testá-lo em mais telas.
 Reportar un problema o sugerir algo	Relatar um problema ou sugerir algo
 Crea un «issue» en GitHub (adjunta el diagnóstico)	Crie uma “issue” no GitHub (anexe o diagnóstico)
 Reportar un problema	Relatar um problema
@@ -336,7 +336,7 @@ error de red	erro de rede
 tu tienda de apps	sua loja de apps
 Tienes la {} · nueva: {}	Você tem a {} · nova: {}
 Mejoras y correcciones.	Melhorias e correções.
-Nueva versión de StradaOS	Nova versão do StradaOS
+Nueva versión de EvOS	Nova versão do EvOS
 Tienes la {} · en GitHub: {}\nActualiza desde {} cuando llegue. Descargar de GitHub omite la revisión de la tienda.	Você tem a {} · no GitHub: {}\nAtualize pela {} quando chegar. Baixar do GitHub pula a revisão da loja.
 Ver en GitHub	Ver no GitHub
 Descarga desde GitHub:	Baixe pelo GitHub:
@@ -344,13 +344,13 @@ Descargar e instalar	Baixar e instalar
 Descarga la nueva versión desde:	Baixe a nova versão em:
 Omitir esta versión	Pular esta versão
 Más tarde	Mais tarde
-Descargando StradaOS {}…	Baixando StradaOS {}…
+Descargando EvOS {}…	Baixando EvOS {}…
 Descárgala desde tu celular	Baixe pelo celular
 Esta pantalla no pudo descargar el archivo. Escanea el código, descarga el APK y pásalo por USB.	Esta tela não conseguiu baixar o arquivo. Escaneie o código, baixe o APK e passe por USB.
-¿Disfrutando StradaOS?	Curtindo o StradaOS?
-Si te gusta usar StradaOS, dale una estrella en GitHub. Y si revivió tu pantalla, considera invitarme un café ☕	Se você gosta do StradaOS, dê uma estrela no GitHub. E se ele reviveu sua tela, considere me pagar um café ☕
+¿Disfrutando EvOS?	Curtindo o EvOS?
+Si te gusta usar EvOS, dale una estrella en GitHub. Y si revivió tu pantalla, considera invitarme un café ☕	Se você gosta do EvOS, dê uma estrela no GitHub. E se ele reviveu sua tela, considere me pagar um café ☕
 Dar una estrella	Dar uma estrela
-StradaOS es gratis. Las donaciones ayudan a mantenerlo.	O StradaOS é grátis. As doações ajudam a mantê-lo.
+EvOS es gratis. Las donaciones ayudan a mantenerlo.	O EvOS é grátis. As doações ajudam a mantê-lo.
 Escanéalo con la cámara de tu celular o entra a:	Escaneie com a câmera do celular ou acesse:
 Abrir aquí	Abrir aqui
 No hay navegador disponible	Nenhum navegador disponível
@@ -373,7 +373,7 @@ Conexión: {}. Cámbiala dejando presionado el botón.	Conexão: {}. Mude manten
 el navegador	o navegador
 «{}» necesita un Android más nuevo que el de esta pantalla. Abro el navegador de fábrica.	“{}” precisa de um Android mais novo que o desta tela. Abrindo o navegador de fábrica.
 No encontré un navegador. Déjalo presionado para elegir uno.	Não encontrei um navegador. Mantenha pressionado para escolher um.
-Permite «Instalar apps desconocidas» para StradaOS y vuelve a tocar.	Permita “Instalar apps desconhecidos” para o StradaOS e toque de novo.
+Permite «Instalar apps desconocidas» para EvOS y vuelve a tocar.	Permita “Instalar apps desconhecidos” para o EvOS e toque de novo.
 Activa «Orígenes desconocidos» y vuelve a tocar.	Ative “Fontes desconhecidas” e toque de novo.
 No se pudo preparar {}	Não foi possível preparar {}
 No se pudo abrir el instalador para {}	Não foi possível abrir o instalador para {}
@@ -389,30 +389,30 @@ Tormenta	Tempestade
 Mapa en vivo apagado	Mapa ao vivo desligado
 Rendimiento	Desempenho
 Apágalo si la pantalla va lenta: queda un mapa de adorno y el velocímetro sigue funcionando	Desligue se a tela estiver lenta: fica um mapa decorativo e o velocímetro continua funcionando
-StradaOS aún no es tu pantalla de inicio	O StradaOS ainda não é sua tela inicial
-Por eso al encender el carro o al tocar Inicio aparece el menú de fábrica.\n\nToca «Fijar ahora», elige StradaOS y luego «Siempre».	Por isso o menu de fábrica aparece ao ligar o carro ou ao tocar em Início.\n\nToque em “Definir agora”, escolha o StradaOS e depois “Sempre”.
+EvOS aún no es tu pantalla de inicio	O EvOS ainda não é sua tela inicial
+Por eso al encender el carro o al tocar Inicio aparece el menú de fábrica.\n\nToca «Fijar ahora», elige EvOS y luego «Siempre».	Por isso o menu de fábrica aparece ao ligar o carro ou ao tocar em Início.\n\nToque em “Definir agora”, escolha o EvOS e depois “Sempre”.
 Fijar ahora	Definir agora
 Ahora no	Agora não
 No volver a preguntar	Não perguntar de novo
-Elige StradaOS y toca «Siempre»	Escolha o StradaOS e toque em “Sempre”
-Listo: StradaOS es tu pantalla de inicio	Pronto: o StradaOS é sua tela inicial
-Fijar StradaOS a mano	Definir o StradaOS manualmente
-Algunas pantallas no muestran la lista para elegir. Prueba así:\n\n1. Toca el botón Inicio (la casita) de la pantalla. Si pregunta qué app usar, elige StradaOS → Siempre.\n2. Si no pregunta: en los ajustes de la pantalla busca Aplicaciones → Aplicaciones predeterminadas → Pantalla de inicio (o «App de inicio») y elige StradaOS.\n3. Con Android 10 o más nuevo, no lo elijas desde el modo fábrica de la pantalla («Launcher», «Interfaz» o «UI»): en algunas marcas eso deja las demás apps sin poder abrirse. En Android 4 a 9 sí puedes usar esa opción.\n\nSi tu pantalla siempre vuelve a su menú de fábrica al encender, activa «Abrir StradaOS al encender» en Ajustes → Sistema.	Algumas telas não mostram a lista para escolher. Tente assim:\n\n1. Toque no botão Início (a casinha) da tela. Se perguntar qual app usar, escolha StradaOS → Sempre.\n2. Se não perguntar: nos ajustes da tela procure Aplicativos → Apps padrão → Tela inicial (ou “App de início”) e escolha o StradaOS.\n3. No Android 10 ou mais novo, não escolha pelo modo fábrica da tela (“Launcher”, “Interface” ou “UI”): em algumas marcas isso deixa os outros apps sem abrir. No Android 4 a 9 você pode usar essa opção.\n\nSe a sua tela sempre volta ao menu de fábrica ao ligar, ative “Abrir o StradaOS ao ligar” em Ajustes → Sistema.
+Elige EvOS y toca «Siempre»	Escolha o EvOS e toque em “Sempre”
+Listo: EvOS es tu pantalla de inicio	Pronto: o EvOS é sua tela inicial
+Fijar EvOS a mano	Definir o EvOS manualmente
+Algunas pantallas no muestran la lista para elegir. Prueba así:\n\n1. Toca el botón Inicio (la casita) de la pantalla. Si pregunta qué app usar, elige EvOS → Siempre.\n2. Si no pregunta: en los ajustes de la pantalla busca Aplicaciones → Aplicaciones predeterminadas → Pantalla de inicio (o «App de inicio») y elige EvOS.\n3. Con Android 10 o más nuevo, no lo elijas desde el modo fábrica de la pantalla («Launcher», «Interfaz» o «UI»): en algunas marcas eso deja las demás apps sin poder abrirse. En Android 4 a 9 sí puedes usar esa opción.\n\nSi tu pantalla siempre vuelve a su menú de fábrica al encender, activa «Abrir EvOS al encender» en Ajustes → Sistema.	Algumas telas não mostram a lista para escolher. Tente assim:\n\n1. Toque no botão Início (a casinha) da tela. Se perguntar qual app usar, escolha EvOS → Sempre.\n2. Se não perguntar: nos ajustes da tela procure Aplicativos → Apps padrão → Tela inicial (ou “App de início”) e escolha o EvOS.\n3. No Android 10 ou mais novo, não escolha pelo modo fábrica da tela (“Launcher”, “Interface” ou “UI”): em algumas marcas isso deixa os outros apps sem abrir. No Android 4 a 9 você pode usar essa opção.\n\nSe a sua tela sempre volta ao menu de fábrica ao ligar, ative “Abrir o EvOS ao ligar” em Ajustes → Sistema.
 Pantalla de inicio	Tela inicial
 La que aparece al encender y al tocar Inicio	A que aparece ao ligar e ao tocar em Início
-StradaOS ✓	StradaOS ✓
+EvOS ✓	EvOS ✓
 Otra · toca para cambiar	Outra · toque para mudar
-Abrir StradaOS al encender	Abrir o StradaOS ao ligar
+Abrir EvOS al encender	Abrir o EvOS ao ligar
 Para pantallas que siempre arrancan en su menú de fábrica (Android 4 a 9)	Para telas que sempre iniciam no menu de fábrica (Android 4 a 9)
 ¿La música Bluetooth se corta o no aparece?	A música Bluetooth corta ou não aparece?
 Qué hacer en cada caso	O que fazer em cada caso
-• Se corta al salir de la app Bluetooth: sal con el botón Inicio (la casita), no con Atrás. Atrás cierra la app de fábrica y con ella la música.\n\n• No suena hasta abrir la app Bluetooth: activa «Abrir la app de música Bluetooth al conectar el celular» (aquí mismo). Abre la app un instante y vuelve al inicio.\n\n• La canción no aparece en el inicio (Android 5 o más nuevo): activa «Música de cualquier app» arriba y dale acceso a notificaciones a StradaOS.\n\n• Revisa en Ajustes → Accesos y apps que «Música Bluetooth» sea la app Bluetooth de tu pantalla.	• Corta ao sair do app Bluetooth: saia com o botão Início (a casinha), não com Voltar. Voltar fecha o app de fábrica e a música junto.\n\n• Não toca até abrir o app Bluetooth: ative “Abrir o app de música Bluetooth ao conectar o celular” (aqui mesmo). Ele abre o app por um instante e volta ao início.\n\n• A música não aparece no início (Android 5 ou mais novo): ative “Música de qualquer app” acima e dê acesso às notificações ao StradaOS.\n\n• Confira em Ajustes → Atalhos e apps se “Música Bluetooth” é o app Bluetooth da sua tela.
+• Se corta al salir de la app Bluetooth: sal con el botón Inicio (la casita), no con Atrás. Atrás cierra la app de fábrica y con ella la música.\n\n• No suena hasta abrir la app Bluetooth: activa «Abrir la app de música Bluetooth al conectar el celular» (aquí mismo). Abre la app un instante y vuelve al inicio.\n\n• La canción no aparece en el inicio (Android 5 o más nuevo): activa «Música de cualquier app» arriba y dale acceso a notificaciones a EvOS.\n\n• Revisa en Ajustes → Accesos y apps que «Música Bluetooth» sea la app Bluetooth de tu pantalla.	• Corta ao sair do app Bluetooth: saia com o botão Início (a casinha), não com Voltar. Voltar fecha o app de fábrica e a música junto.\n\n• Não toca até abrir o app Bluetooth: ative “Abrir o app de música Bluetooth ao conectar o celular” (aqui mesmo). Ele abre o app por um instante e volta ao início.\n\n• A música não aparece no início (Android 5 ou mais novo): ative “Música de qualquer app” acima e dê acesso às notificações ao EvOS.\n\n• Confira em Ajustes → Atalhos e apps se “Música Bluetooth” é o app Bluetooth da sua tela.
 Sin permiso	Sem permissão
 GPS apagado	GPS desligado
 Unidades	Unidades
 Automático: mph en EE. UU. y Reino Unido	Automático: mph nos EUA e no Reino Unido
 Permisos → Ubicación → Permitir	Permissões → Localização → Permitir
-Activa la ubicación para StradaOS en los ajustes de la pantalla	Ative a localização para o StradaOS nos ajustes da tela
+Activa la ubicación para EvOS en los ajustes de la pantalla	Ative a localização para o EvOS nos ajustes da tela
 Activa la ubicación (GPS)	Ative a localização (GPS)
 Activa la ubicación (GPS) en los ajustes de la pantalla	Ative a localização (GPS) nos ajustes da tela
 Sin permiso de ubicación · toca aquí	Sem permissão de localização · toque aqui
@@ -435,7 +435,7 @@ Corregir el kilometraje actual	Corrigir a quilometragem atual
 Cambiar cada cuánto se hace	Mudar a frequência da troca
 Desactivar el recordatorio	Desativar o lembrete
 Recordatorio de cambio de aceite	Lembrete de troca de óleo
-StradaOS no puede leer el kilometraje del tablero del carro. Escríbelo una vez y StradaOS le irá sumando lo que recorras con el GPS, para avisarte cuando toque el cambio.\n\nDe vez en cuando puedes corregirlo con el valor real del tablero.	O StradaOS não consegue ler a quilometragem do painel do carro. Digite-a uma vez e o StradaOS vai somando o que você rodar com o GPS, para avisar quando chegar a hora da troca.\n\nDe vez em quando você pode corrigi-la com o valor real do painel.
+EvOS no puede leer el kilometraje del tablero del carro. Escríbelo una vez y EvOS le irá sumando lo que recorras con el GPS, para avisarte cuando toque el cambio.\n\nDe vez en cuando puedes corregirlo con el valor real del tablero.	O EvOS não consegue ler a quilometragem do painel do carro. Digite-a uma vez e o EvOS vai somando o que você rodar com o GPS, para avisar quando chegar a hora da troca.\n\nDe vez em quando você pode corrigi-la com o valor real do painel.
 ¿A cuántos {} fue el último cambio de aceite?	Com quantos {} foi a última troca de óleo?
 Kilometraje actual del tablero	Quilometragem atual do painel
 ¿Cada cuántos {} cambias el aceite?	A cada quantos {} você troca o óleo?
@@ -479,20 +479,20 @@ Se muestran todas las apps	Todos os apps são mostrados
 Apps ocultas: {}	Apps ocultos: {}
 # 2.14: desinstalar desde el cajón
 Desinstalar	Desinstalar
-# 2.14: salir de StradaOS (issue #9)
-Salir de StradaOS	Sair do StradaOS
+# 2.14: salir de EvOS (issue #9)
+Salir de EvOS	Sair do EvOS
 Abrir el launcher de fábrica	Abrir o launcher de fábrica
-Sale de StradaOS sin desinstalarlo	Sai do StradaOS sem desinstalar
-Desactivar StradaOS	Desativar o StradaOS
-Si la pantalla quedó atrapada en StradaOS: se apaga solo, sin ventanas de Android	Se a tela ficou presa no StradaOS: ele se desliga sozinho, sem janelas do Android
-Desinstalar StradaOS	Desinstalar o StradaOS
+Sale de EvOS sin desinstalarlo	Sai do EvOS sem desinstalar
+Desactivar EvOS	Desativar o EvOS
+Si la pantalla quedó atrapada en EvOS: se apaga solo, sin ventanas de Android	Se a tela ficou presa no EvOS: ele se desliga sozinho, sem janelas do Android
+Desinstalar EvOS	Desinstalar o EvOS
 Android pide confirmar	O Android pede confirmação
 No encontré otra pantalla de inicio en este equipo	Não encontrei outra tela inicial neste aparelho
 ¿Cuál es el launcher de fábrica?	Qual é o launcher de fábrica?
 No se pudo abrir	Não foi possível abrir
-No encontré otra pantalla de inicio: StradaOS no se puede desactivar en este equipo	Não encontrei outra tela inicial: o StradaOS não pode ser desativado neste aparelho
-¿Desactivar StradaOS?	Desativar o StradaOS?
-StradaOS deja de ser la pantalla de inicio, ya no se abre al encender y vuelve el launcher de fábrica. No pide confirmaciones de Android, así que sirve aunque la pantalla haya quedado atrapada.\n\nPara volver a usarlo después: desinstálalo desde los ajustes de la pantalla e instálalo de nuevo.	O StradaOS deixa de ser a tela inicial, não abre mais ao ligar e o launcher de fábrica volta. Não pede confirmações do Android, então funciona mesmo se a tela ficou presa.\n\nPara usar de novo depois: desinstale pelos ajustes da tela e instale outra vez.
+No encontré otra pantalla de inicio: EvOS no se puede desactivar en este equipo	Não encontrei outra tela inicial: o EvOS não pode ser desativado neste aparelho
+¿Desactivar EvOS?	Desativar o EvOS?
+EvOS deja de ser la pantalla de inicio, ya no se abre al encender y vuelve el launcher de fábrica. No pide confirmaciones de Android, así que sirve aunque la pantalla haya quedado atrapada.\n\nPara volver a usarlo después: desinstálalo desde los ajustes de la pantalla e instálalo de nuevo.	O EvOS deixa de ser a tela inicial, não abre mais ao ligar e o launcher de fábrica volta. Não pede confirmações do Android, então funciona mesmo se a tela ficou presa.\n\nPara usar de novo depois: desinstale pelos ajustes da tela e instale outra vez.
 Desactivar	Desativar
 # 2.15: diseño del inicio
 Diseño del inicio	Layout do início
@@ -556,7 +556,7 @@ Pausar	Pausar
 Continuar	Continuar
 Cancelar descarga	Cancelar download
 Descarga cancelada	Download cancelado
-Este mapa lo descargó StradaOS. Puedes dejar de usarlo o borrarlo para liberar espacio.	Este mapa foi baixado pelo StradaOS. Você pode deixar de usá-lo ou apagá-lo para liberar espaço.
+Este mapa lo descargó EvOS. Puedes dejar de usarlo o borrarlo para liberar espacio.	Este mapa foi baixado pelo EvOS. Você pode deixar de usá-lo ou apagá-lo para liberar espaço.
 Puedes dejar de usar este mapa (el archivo no se borra).	Você pode deixar de usar este mapa (o arquivo não é apagado).
 Dejar de usarlo	Deixar de usar
 Borrar el archivo	Apagar o arquivo
@@ -609,7 +609,7 @@ apagado	desligado
 encendida	ligada
 apagada	desligada
 Última señal: {}	Último sinal: {}
-ninguna desde que abrió StradaOS	nenhum desde que o StradaOS abriu
+ninguna desde que abrió EvOS	nenhum desde que o EvOS abriu
 hace {} s	há {} s
 hace {} min	há {} min
 Buscando desde hace {} min	Procurando há {} min
@@ -740,7 +740,7 @@ Lo que llegue primero	O que vier primeiro
 ¿A cuántos {} fue la última vez?	Com quantos {} foi a última vez?
 ¿Cuándo fue la última vez?	Quando foi a última vez?
 Kilometraje del tablero	Quilometragem do painel
-StradaOS no puede leer el kilometraje del carro. Escríbelo una vez y StradaOS le suma lo que recorras con el GPS.	O StradaOS não consegue ler a quilometragem do carro. Digite uma vez e o StradaOS soma o que você rodar pelo GPS.
+EvOS no puede leer el kilometraje del carro. Escríbelo una vez y EvOS le suma lo que recorras con el GPS.	O EvOS não consegue ler a quilometragem do carro. Digite uma vez e o EvOS soma o que você rodar pelo GPS.
 Escribirlo	Digitar
 Última vez	Última vez
 Cambiar cada cuánto	Mudar a frequência
@@ -774,7 +774,7 @@ Diseño de la barra	Layout da barra
 Botones (déjalos presionados en el inicio para cambiarlos)	Botões (mantenha pressionado na tela inicial para mudar)
 Texto	Texto
 Kilometraje	Quilometragem
-Escríbelo una vez y StradaOS le suma lo que recorras con el GPS	Digite uma vez e o StradaOS soma o que você rodar pelo GPS
+Escríbelo una vez y EvOS le suma lo que recorras con el GPS	Digite uma vez e o EvOS soma o que você rodar pelo GPS
 Avisa cuando toca el cambio	Avisa quando for hora da troca
 En el inicio	Na tela inicial
 Mantenimiento en el inicio	Manutenção na tela inicial
@@ -808,7 +808,7 @@ ninguna	nenhuma
 {} s, carátula {}, textos {}	{} s, capa {}, textos {}
 Open Headunit corriendo: {} · celular por USB en modo Android Auto: {}	Open Headunit em execução: {} · celular por USB em modo Android Auto: {}
 no se sabe	não se sabe
-Android Auto conectado (para StradaOS): {}	Android Auto conectado (para o StradaOS): {}
+Android Auto conectado (para EvOS): {}	Android Auto conectado (para o EvOS): {}
 App Bluetooth conectada: {}	App Bluetooth conectado: {}
 Audio Bluetooth automático: {}	Áudio Bluetooth automático: {}
 desactivado	desativado
@@ -830,7 +830,7 @@ activar audio falló: {}	falha ao ativar o áudio: {}
 el celular empezó a sonar	o celular começou a tocar
 revisión falló: {}	falha na verificação: {}
 otra fuente al frente: {}	outra fonte em primeiro plano: {}
-no se cambió: StradaOS acaba de arrancar	não mudou: o StradaOS acabou de iniciar
+no se cambió: EvOS acaba de arrancar	não mudou: o EvOS acabou de iniciar
 no se cambió: llamada en curso	não mudou: chamada em andamento
 no se cambió: Android Auto tiene el sonido	não mudou: o Android Auto está com o som
 el sonido ya es Bluetooth	o som já está no Bluetooth
@@ -864,25 +864,25 @@ Al restablecer la pantalla de fábrica también se puede borrar su memoria: guar
 No se pudo leer el archivo	Não foi possível ler o arquivo
 Buscando copias…	Procurando backups…
 No se encontró ninguna copia	Nenhum backup encontrado
-No hay copias de StradaOS en la memoria de la pantalla ni en las USB conectadas. El archivo se llama «StradaOS-backup» y termina en .json.	Não há backups do StradaOS na memória da tela nem nos pendrives conectados. O arquivo se chama «StradaOS-backup» e termina em .json.
+No hay copias de EvOS en la memoria de la pantalla ni en las USB conectadas. El archivo se llama «EvOS-backup» y termina en .json.	Não há backups do EvOS na memória da tela nem nos pendrives conectados. O arquivo se chama «EvOS-backup» e termina em .json.
 automática	automático
 Buscar el archivo…	Procurar o arquivo…
 Elige la copia	Escolha o backup
 No se pudo restaurar	Não foi possível restaurar
-Este archivo no es una copia de seguridad de StradaOS	Este arquivo não é um backup do StradaOS
+Este archivo no es una copia de seguridad de EvOS	Este arquivo não é um backup do EvOS
 Copia del	Backup de
 Pantalla:	Tela:
 Ajustes guardados:	Ajustes salvos:
 con la foto del vehículo	com a foto do veículo
-Se reemplaza toda la configuración actual de StradaOS por la de la copia.	Toda a configuração atual do StradaOS é substituída pela do backup.
+Se reemplaza toda la configuración actual de EvOS por la de la copia.	Toda a configuração atual do EvOS é substituída pela do backup.
 ¿Restaurar esta copia?	Restaurar este backup?
 Restaurar	Restaurar
 Copia restaurada	Backup restaurado
-Esta copia se hizo con una versión más nueva de StradaOS. Actualiza StradaOS y vuelve a intentarlo	Este backup foi feito com uma versão mais nova do StradaOS. Atualize o StradaOS e tente de novo
+Esta copia se hizo con una versión más nueva de EvOS. Actualiza EvOS y vuelve a intentarlo	Este backup foi feito com uma versão mais nova do EvOS. Atualize o EvOS e tente de novo
 No se pudo guardar la configuración	Não foi possível salvar a configuração
 La copia está dañada o incompleta	O backup está danificado ou incompleto
 Abrir una app al encender	Abrir um app ao ligar
-StradaOS la abre un momento al arrancar (por ejemplo la radio, para que empiece a sonar) y vuelve al inicio	O StradaOS abre o app por um momento ao iniciar (por exemplo o rádio, para começar a tocar) e volta ao início
+EvOS la abre un momento al arrancar (por ejemplo la radio, para que empiece a sonar) y vuelve al inicio	O EvOS abre o app por um momento ao iniciar (por exemplo o rádio, para começar a tocar) e volta ao início
 Copia de seguridad en un archivo (pantalla o USB)	Backup em um arquivo (tela ou USB)
 en Android 10+ la carpeta se elige con el selector de archivos	no Android 10+ a pasta é escolhida com o seletor de arquivos
 Diseño vertical	Layout vertical
@@ -934,7 +934,7 @@ Gris suave	Cinza suave
 Ámbar	Âmbar
 Ver ahora	Ver agora
 Toca la pantalla para volver	Toque na tela para voltar
-# 2.23: navegación en el mapa de StradaOS (código base de nothanks91, PR #31/#35)
+# 2.23: navegación en el mapa de EvOS (código base de nothanks91, PR #31/#35)
 Ir a…	Ir para…
 Recalculando…	Recalculando…
 Llegaste a tu destino	Você chegou ao seu destino
@@ -961,11 +961,11 @@ Detener navegación	Parar navegação
 Navegación en el mapa	Navegação no mapa
 Voz activada	Voz ativada
 Voz silenciada	Voz silenciada
-En el mapa de StradaOS	No mapa do StradaOS
+En el mapa de EvOS	No mapa do EvOS
 Se abre con el botón del mapa (Waze, Maps, OsmAnd… o integrada en el mapa)	Abre com o botão do mapa (Waze, Maps, OsmAnd… ou integrada no mapa)
 Voz de navegación	Voz de navegação
 Indicaciones paso a paso habladas durante el recorrido	Instruções faladas passo a passo durante o trajeto
-★  En el mapa de StradaOS (integrada)	★  No mapa do StradaOS (integrada)
+★  En el mapa de EvOS (integrada)	★  No mapa do EvOS (integrada)
 Guardado: Navegación en el mapa	Salvo: Navegação no mapa
 Coordenadas	Coordenadas
 No se encontró ruta	Nenhuma rota encontrada
@@ -1091,7 +1091,7 @@ Cambia el aspecto de la pantalla de inicio con un toque. Puedes seguir ajustando
 Temas gratis	Temas grátis
 Temas premium	Temas premium
 Próximamente	Em breve
-Temas exclusivos para quienes apoyan StradaOS con una donación. Todas las funciones siguen siendo gratis.	Temas exclusivos para quem apoia o StradaOS com uma doação. Todas as funções continuam grátis.
+Temas exclusivos para quienes apoyan EvOS con una donación. Todas las funciones siguen siendo gratis.	Temas exclusivos para quem apoia o EvOS com uma doação. Todas as funções continuam grátis.
 En uso	Em uso
 Tema aplicado:	Tema aplicado:
 Clásico	Clássico
@@ -1155,7 +1155,7 @@ Esta pantalla no informa su brillo	Esta tela não informa o brilho
 Países del Golfo	Países do Golfo
 Irlanda del Norte	Irlanda do Norte
 Islas Canarias	Ilhas Canárias
-Tiempo en StradaOS: {}	Tempo no StradaOS: {}
+Tiempo en EvOS: {}	Tempo no EvOS: {}
 Último tiempo por Bluetooth: {}	Último tempo pelo Bluetooth: {}
 # Bloque 16 (2.25): tema premium Faro
 Fondo carbón (o perla en claro) con un haz de luz diagonal. A la izquierda, el velocímetro y un carro visto desde arriba que enciende los faros de noche; en el centro, el mapa integrado al fondo; a la derecha, el clima por horas y tus próximos mantenimientos, con el reproductor y la barra de apps debajo.	Fundo carvão (ou pérola no modo claro) com um feixe de luz diagonal. À esquerda, o velocímetro e um carro visto de cima que acende os faróis à noite; no centro, o mapa integrado ao fundo; à direita, o clima por hora e suas próximas manutenções, com o player e a barra de apps embaixo.
@@ -1174,7 +1174,7 @@ Navegar	Navegar
 Música sonando	Música tocando
 Toca para ver la canción	Toque para ver a música
 Ver la canción de tus apps	Ver a música dos seus apps
-Para mostrar la canción, el artista y la carátula de Spotify, YouTube Music y otras apps, StradaOS necesita «Acceso a notificaciones». Solo lo usa para leer lo que suena: no guarda ni envía nada.	Para mostrar a música, o artista e a capa do Spotify, YouTube Music e outros apps, o StradaOS precisa de «Acesso a notificações». Ele só usa isso para ler o que está tocando: nada é guardado nem enviado.
+Para mostrar la canción, el artista y la carátula de Spotify, YouTube Music y otras apps, EvOS necesita «Acceso a notificaciones». Solo lo usa para leer lo que suena: no guarda ni envía nada.	Para mostrar a música, o artista e a capa do Spotify, YouTube Music e outros apps, o EvOS precisa de «Acesso a notificações». Ele só usa isso para ler o que está tocando: nada é guardado nem enviado.
 No volver a mostrar	Não mostrar de novo
 Esta pantalla no tiene el ajuste de «Acceso a notificaciones». Se puede activar una sola vez desde una computadora con ADB:	Esta tela não tem o ajuste de «Acesso a notificações». Dá para ativar uma única vez por um computador com ADB:
 Spotify, YouTube Music y otras apps de la pantalla (acceso a notificaciones)	Spotify, YouTube Music e outros apps da tela (acesso a notificações)
@@ -1311,7 +1311,7 @@ Emparejado	Emparelhado
 Emparejando… si pide clave, escribe 1234 o 0000	Emparelhando… se pedir senha, digite 1234 ou 0000
 Emparéjalo en los ajustes de Bluetooth del equipo	Emparelhe-o nos ajustes de Bluetooth do aparelho
 En vivo	Ao vivo
-Encender el monitor al iniciar StradaOS	Ligar o monitor ao iniciar o StradaOS
+Encender el monitor al iniciar EvOS	Ligar o monitor ao iniciar o EvOS
 Enviar el VIN a la IA	Enviar o VIN para a IA
 Escaneando	Escaneando
 Escanear todo lo que entrega el auto	Escanear tudo o que o carro fornece
@@ -1412,7 +1412,7 @@ Estado	Estado
 Abrir el panel del vehículo	Abrir o painel do veículo
 Medidores, alertas y códigos encima del tema que tengas	Medidores, alertas e códigos por cima do seu tema
 Diagnóstico	Diagnóstico
-Qué vigila StradaOS y cuándo avisa por voz	O que o StradaOS vigia e quando avisa por voz
+Qué vigila EvOS y cuándo avisa por voz	O que o EvOS vigia e quando avisa por voz
 Todo normal	Tudo normal
 Qué significan y qué hacer; borrarlos con el motor apagado	O que significam e o que fazer; apague-os com o motor desligado
 Cada dato que entrega tu auto, con gráficos	Cada dado que o seu carro fornece, com gráficos
@@ -1420,9 +1420,9 @@ Más	Mais
 Opcional: explica los códigos para tu auto en particular	Opcional: explica os códigos para o seu carro em particular
 Motor, protocolo, panel y escaneo completo	Motor, protocolo, painel e varredura completa
 Bluetooth emparejado, Wi-Fi (IP y puerto) o un auto simulado para probar	Bluetooth pareado, Wi-Fi (IP e porta) ou um carro simulado para testar
-Empareja el escáner sin salir de StradaOS (clave 1234 o 0000)	Pareie o scanner sem sair do StradaOS (senha 1234 ou 0000)
+Empareja el escáner sin salir de EvOS (clave 1234 o 0000)	Pareie o scanner sem sair do EvOS (senha 1234 ou 0000)
 Reconectar	Reconectar
-Conectar al iniciar StradaOS	Conectar ao iniciar o StradaOS
+Conectar al iniciar EvOS	Conectar ao iniciar o EvOS
 Las alertas funcionan aunque estés en otra app (con una notificación fija)	Os alertas funcionam mesmo em outro app (com uma notificação fixa)
 Cómo conectar el escáner	Como conectar o scanner
 1. Enchufa el escáner ELM327 en el conector OBD (bajo el volante) y pon el contacto.\n2. Bluetooth: emparéjalo con la clave 1234 o 0000. Wi-Fi: conecta la pantalla a la red del escáner y escribe su IP y puerto (casi siempre 192.168.0.10:35000).\n3. Elígelo arriba en «Escáner».	1. Ligue o scanner ELM327 no conector OBD (embaixo do volante) e ligue a ignição.\n2. Bluetooth: pareie com a senha 1234 ou 0000. Wi-Fi: conecte a central à rede do scanner e escreva o IP e a porta (quase sempre 192.168.0.10:35000).\n3. Escolha-o acima em «Scanner».
@@ -1710,7 +1710,7 @@ Guía del escáner	Guia do scanner
 Guía	Guia
 Qué comprar, cómo conectarlo y qué significa cada cosa · sin internet	O que comprar, como conectar e o que significa cada coisa · sem internet
 Desbloquear	Desbloquear
-Se desbloquea con una donación. Todas las funciones de StradaOS siguen siendo gratis.	Desbloqueia com uma doação. Todas as funções do StradaOS continuam grátis.
+Se desbloquea con una donación. Todas las funciones de EvOS siguen siendo gratis.	Desbloqueia com uma doação. Todas as funções do EvOS continuam grátis.
 Desbloqueado en esta pantalla. ¡Gracias por tu donación!	Desbloqueado nesta tela. Obrigado pela sua doação!
 Prueba: volver a aplicar sin código	Teste: voltar a aplicar sem código
 Prueba: desbloquear como en la versión normal	Teste: desbloquear como na versão normal
@@ -1733,11 +1733,11 @@ Buscando la licencia en la pantalla y en las USB…	Procurando a licença na tel
 No encontramos la licencia	Licença não encontrada
 Copia el archivo que te enviamos (stradaos-licencia.txt) en la raíz de una USB, conéctala y vuelve a intentarlo. Tiene que ser para el ID {}.	Copie o arquivo que enviamos (stradaos-licencia.txt) na raiz de um pendrive, conecte-o e tente de novo. Ele precisa ser do ID {}.
 ¡Listo!	Pronto!
-{} quedó desbloqueado en esta pantalla. Gracias por apoyar StradaOS.	{} foi desbloqueado nesta tela. Obrigado por apoiar o StradaOS.
+{} quedó desbloqueado en esta pantalla. Gracias por apoyar EvOS.	{} foi desbloqueado nesta tela. Obrigado por apoiar o EvOS.
 Aplicar ahora	Aplicar agora
 1. Dona en Ko-fi 5 USD por un tema o 8 USD por dos: escanea el código con tu celular o entra a {}.	1. Doe no Ko-fi 5 USD por um tema ou 8 USD por dois: escaneie o código com o celular ou entre em {}.
 2. En el mensaje de la donación escribe el ID de esta pantalla y qué temas quieres:	2. Na mensagem da doação, escreva o ID desta tela e quais temas você quer:
-Se desbloquea con una donación de 5 USD, o 8 USD por dos temas. Todas las funciones de StradaOS siguen siendo gratis.	Desbloqueia com uma doação de 5 USD, ou 8 USD por dois temas. Todas as funções do StradaOS continuam grátis.
+Se desbloquea con una donación de 5 USD, o 8 USD por dos temas. Todas las funciones de EvOS siguen siendo gratis.	Desbloqueia com uma doação de 5 USD, ou 8 USD por dois temas. Todas as funções do EvOS continuam grátis.
 Usar la velocidad del escáner	Usar a velocidade do scanner
 Con el escáner conectado, el inicio muestra la velocidad del carro en vez de la del GPS: más exacta y sin retraso	Com o scanner conectado, o início mostra a velocidade do carro em vez da do GPS: mais exata e sem atraso
 1. Enchufa el escáner ELM327 en el conector OBD (bajo el volante) y pon el contacto.\n2. Bluetooth: emparéjalo con la clave 1234 o 0000. Wi-Fi: conecta la pantalla a la red del escáner y escribe su IP y puerto (casi siempre 192.168.0.10:35000). Cable USB: conéctalo a la pantalla y acepta el permiso que pide Android.\n3. Elígelo arriba en «Escáner».	1. Ligue o scanner ELM327 no conector OBD (embaixo do volante) e ligue a ignição.\n2. Bluetooth: pareie com a senha 1234 ou 0000. Wi-Fi: conecte a central à rede do scanner e escreva o IP e a porta (quase sempre 192.168.0.10:35000). Cabo USB: conecte-o à tela e aceite a permissão que o Android pede.\n3. Escolha-o acima em «Scanner».
@@ -1756,7 +1756,7 @@ El cable USB no tiene canal de datos	O cabo USB não tem canal de dados
 Otra app está usando el cable USB	Outro app está usando o cabo USB
 El cable USB no aceptó la velocidad	O cabo USB não aceitou a velocidade
 Se desconectó el cable USB	O cabo USB foi desconectado
-1. Enchufa el escáner ELM327 en el conector OBD (bajo el volante) y pon el contacto.\n2. Si es Bluetooth, emparéjalo primero en los ajustes de Bluetooth del equipo (clave 1234 o 0000).\n3. Toca ⚙ para elegirlo y luego Conectar.\n\nStradaOS vigila la temperatura, el voltaje, la mezcla y los códigos de falla, y te avisa por voz aunque estés en otra app.	1. Ligue o scanner ELM327 no conector OBD (embaixo do volante) e ligue a ignição.\n2. Se for Bluetooth, pareie-o primeiro nas configurações de Bluetooth do aparelho (senha 1234 ou 0000).\n3. Toque em ⚙ para escolhê-lo e depois em Conectar.\n\nO StradaOS vigia a temperatura, a tensão, a mistura e os códigos de falha, e avisa você por voz mesmo se estiver em outro app.
+1. Enchufa el escáner ELM327 en el conector OBD (bajo el volante) y pon el contacto.\n2. Si es Bluetooth, emparéjalo primero en los ajustes de Bluetooth del equipo (clave 1234 o 0000).\n3. Toca ⚙ para elegirlo y luego Conectar.\n\nEvOS vigila la temperatura, el voltaje, la mezcla y los códigos de falla, y te avisa por voz aunque estés en otra app.	1. Ligue o scanner ELM327 no conector OBD (embaixo do volante) e ligue a ignição.\n2. Se for Bluetooth, pareie-o primeiro nas configurações de Bluetooth do aparelho (senha 1234 ou 0000).\n3. Toque em ⚙ para escolhê-lo e depois em Conectar.\n\nO EvOS vigia a temperatura, a tensão, a mistura e os códigos de falha, e avisa você por voz mesmo se estiver em outro app.
 Hace {} min	Há {} min
 Para que una IA explique los códigos, pon tu API key (Claude, Groq, Gemini u otra) en ⚙ → Inteligencia artificial. Las explicaciones se guardan en el equipo y después funcionan sin internet.	Para que uma IA explique os códigos, coloque sua chave de API (Claude, Groq, Gemini ou outra) em ⚙ → Inteligência artificial. As explicações ficam guardadas no aparelho e depois funcionam sem internet.
 Se apaga la luz del motor y se borran los datos que usa el taller para diagnosticar. Si la falla sigue, el código volverá a aparecer. Anota los códigos antes.	A luz do motor se apaga e os dados que a oficina usa para diagnosticar são apagados. Se a falha continuar, o código voltará a aparecer. Anote os códigos antes.
@@ -1916,7 +1916,7 @@ No compatible con esta pantalla	Não compatível com esta tela
 Conviértelo a H.264 de 720p o 1080p horizontal, a 30 cuadros por segundo	Converta para H.264 em 720p ou 1080p na horizontal, a 30 quadros por segundo
 Sin miniatura	Sem miniatura
 Leer varios datos por consulta	Ler vários dados por consulta
-Tu escáner no lo entiende: StradaOS lee de a un dato. Actívalo para volver a probar	Seu scanner não entende: o StradaOS lê um dado por vez. Ative para testar de novo
+Tu escáner no lo entiende: EvOS lee de a un dato. Actívalo para volver a probar	Seu scanner não entende: o EvOS lê um dado por vez. Ative para testar de novo
 Más rápido. Apágalo si tu escáner se desconecta a cada rato	Mais rápido. Desative se o seu scanner desconecta toda hora
 Miniatura tomada del video	Miniatura tirada do vídeo
 Enorme	Enorme

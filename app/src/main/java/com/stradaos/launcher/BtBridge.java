@@ -15,7 +15,7 @@ import android.os.SystemClock;
  *
  * En estas pantallas el audio A2DP solo sale por los parlantes cuando la pantalla de «Audio Bluetooth»
  * pasa al frente: el sistema cambia la fuente de audio según la app de fuente que se abrió por última vez
- * (probado en 2.9.0: llamar solo a setBTMusicMode() desde el servicio no basta). StradaOS mantiene vivo
+ * (probado en 2.9.0: llamar solo a setBTMusicMode() desde el servicio no basta). EvOS mantiene vivo
  * el servicio para saber cuándo el celular empieza a sonar y avisa a Main, que abre esa pantalla un
  * instante y vuelve a donde estaba el usuario.
  */

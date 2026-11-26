@@ -60,7 +60,7 @@ public class Modern {
         return s != null && s.contains(c.getPackageName());
     }
 
-    /** Android 10+: ventana del sistema «¿Usar StradaOS como app de inicio?». Devuelve false si no se pudo pedir. */
+    /** Android 10+: ventana del sistema «¿Usar EvOS como app de inicio?». Devuelve false si no se pudo pedir. */
     public static boolean requestHomeRole(Activity a, int req) {
         if (android.os.Build.VERSION.SDK_INT < 29) return false;
         android.app.role.RoleManager rm = a.getSystemService(android.app.role.RoleManager.class);

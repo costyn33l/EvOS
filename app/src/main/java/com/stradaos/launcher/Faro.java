@@ -25,7 +25,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 
 /**
- * Tema premium «Faro» (Bloque 16, 2.25). Diseño propio de StradaOS: fondo carbón (o perla en claro) con un haz de luz
+ * Tema premium «Faro» (Bloque 16, 2.25). Diseño propio de EvOS: fondo carbón (o perla en claro) con un haz de luz
  * diagonal que cruza de abajo a la izquierda hasta arriba a la derecha; columna izquierda con el velocímetro arriba y
  * un carro en vista cenital abajo (con los faros encendidos en el modo oscuro); el mapa en trazo fino en el centro;
  * clima y mantenimientos a la derecha; reproductor horizontal debajo y una barra de apps compacta.

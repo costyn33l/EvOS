@@ -210,7 +210,7 @@ public class Main extends Activity {
         testHook(getIntent());
         applyTheme();
         applyAccent();
-        // escáner OBD-II: si está encendido y elegido, el monitor arranca con StradaOS (alertas aunque no se mire)
+        // escáner OBD-II: si está encendido y elegido, el monitor arranca con EvOS (alertas aunque no se mire)
         if (obdOn() && prefs.contains("obd_addr") && prefs.getBoolean("obd_autostart", true) && !Obd.running()) {
             try { ObdService.start(this); } catch (Throwable ignored) { }
         }
@@ -327,7 +327,7 @@ public class Main extends Activity {
     static final String[] OTHER_SOURCES = {"com.clw.fmam", "com.clw.aux", "com.clw.dvd", "com.clw.video",
         "com.autochips.dvdplayer", "com.autochips.ipodplayer", "com.android.music", "com.clw.music", "com.clw.media"};
 
-    /** Pantallas Clinkway: StradaOS pasa el sonido a Bluetooth cuando el celular empieza a sonar. */
+    /** Pantallas Clinkway: EvOS pasa el sonido a Bluetooth cuando el celular empieza a sonar. */
     private boolean btAutoOn() {
         return clwBt && prefs.getBoolean("bt_auto3", false);
     }
@@ -355,7 +355,7 @@ public class Main extends Activity {
     /** El celular empezó a sonar por Bluetooth. */
     private void onPhoneStartedBt() {
         if (!btAutoOn()) return;
-        if (SystemClock.elapsedRealtime() - startedAt < 60000) { BtBridge.log("no se cambió: StradaOS acaba de arrancar"); return; }
+        if (SystemClock.elapsedRealtime() - startedAt < 60000) { BtBridge.log("no se cambió: EvOS acaba de arrancar"); return; }
         String top = topPackage();
         if (top != null && (top.contains("btphone") || top.contains("dialer") || top.contains("incallui"))) { BtBridge.log("no se cambió: llamada en curso"); return; }
         if ("Android Auto".equals(curSource) && aaRunning()) { BtBridge.log("no se cambió: Android Auto tiene el sonido"); return; }
@@ -405,7 +405,7 @@ public class Main extends Activity {
             if (settingsView != null && hasWindowFocus()) { BtBridge.log("no se abrió la app BT: ajustes abiertos"); return; }
             lastBtOpen = now;
         }
-        // tarea a la que se vuelve después (otra app, por ejemplo Waze), o StradaOS
+        // tarea a la que se vuelve después (otra app, por ejemplo Waze), o EvOS
         int backTask = -1;
         try {
             android.app.ActivityManager am = (android.app.ActivityManager) getSystemService(ACTIVITY_SERVICE);
@@ -435,7 +435,7 @@ public class Main extends Activity {
             // si el usuario ya cambió de app, no lo movemos
             String now = topPackage();
             BtBridge.log("revisando la vuelta: al frente " + now + (hasWindowFocus() ? " (inicio con foco)" : ""));
-            // 2.30 (#47): en Android 5+ el sistema solo deja ver las tareas propias y topPackage() responde StradaOS aunque
+            // 2.30 (#47): en Android 5+ el sistema solo deja ver las tareas propias y topPackage() responde EvOS aunque
             // la app de música esté al frente; antes eso se leía como «el usuario abrió otra app» y nunca se volvía.
             boolean self = getPackageName().equals(now);
             if (self && hasWindowFocus()) { BtBridge.log("no se volvió: ya estás en el inicio"); return; }
@@ -450,7 +450,7 @@ public class Main extends Activity {
                 }
             } catch (Throwable ignored) { }
             BtBridge.log("vuelta al inicio");
-            // 2.30: primero se trae al frente la tarea de StradaOS (permiso REORDER_TASKS); el startActivity queda de respaldo
+            // 2.30: primero se trae al frente la tarea de EvOS (permiso REORDER_TASKS); el startActivity queda de respaldo
             try { ((android.app.ActivityManager) getSystemService(ACTIVITY_SERVICE)).moveTaskToFront(getTaskId(), 0); }
             catch (Throwable e) { BtBridge.log("moveTaskToFront: " + e); }
             try {
@@ -492,7 +492,7 @@ public class Main extends Activity {
         super.onResume();
         if (videoCard != null) videoCard.onResume();
         Obd.addListener(obdWatch);
-        try { odoFromObd(); } catch (Throwable ignored) { }   // lo recorrido con el escáner mientras StradaOS estaba detrás
+        try { odoFromObd(); } catch (Throwable ignored) { }   // lo recorrido con el escáner mientras EvOS estaba detrás
         if (homeFixing && SDK < 29) h.postDelayed(new Runnable() { public void run() { homeResult(); } }, 700);
         immersive();
         if (SDK >= 23 && !askedPerms) {
@@ -515,7 +515,7 @@ public class Main extends Activity {
     }
 
     // ───────────────────────── pantalla en reposo (2.22, #27 / #28) ─────────────────────────
-    // Tras X minutos sin tocar StradaOS, la pantalla se pone negra con la hora, la fecha y la velocidad.
+    // Tras X minutos sin tocar EvOS, la pantalla se pone negra con la hora, la fecha y la velocidad.
     // Viene apagada (idle_on). Un toque la quita (ese toque no llega a lo de abajo).
 
     static final int[] IDLE_MIN = {1, 2, 5, 10, 15, 30};
@@ -705,7 +705,7 @@ public class Main extends Activity {
      * VALOR: saltar (omite el asistente), inicio, ajustes:N, fyt-demo:139,1170 (datos del carro de prueba), boton:N (menú del botón N), elegir:N (lista de apps del botón N),
      * cajon (todas las apps), musica (lista de música preferida), asistente, demo-barra (cambia los botones 3 y 4), idioma:es|en|pt|auto,
      * ultimo-aceite / ultimo-alto / unidad-aceite (recordatorio de aceite), ocultas / ocultar-demo / ocultar-limpiar (apps ocultas),
-     * salir-fabrica (abre el launcher de fábrica), desactivar (apaga StradaOS; solo lo usa salida.yml),
+     * salir-fabrica (abre el launcher de fábrica), desactivar (apaga EvOS; solo lo usa salida.yml),
      * diseno:izq|der|sinauto|conauto|normal|compacta|lateral|plegar|base (diseño del inicio), sim:5 (1280x480).
      */
     private void testHook(Intent i) {
@@ -730,7 +730,7 @@ public class Main extends Activity {
                     // 2.35 r7: la ventana de «Nueva versión» con notas en español e inglés (sale la del idioma elegido)
                     Updates.Release r = new Updates.Release();
                     r.version = "9.9.9";
-                    r.notes = "# StradaOS 9.9.9\n\n- **Prueba.** Notas en español.\n\n[](#lang-en)\n# StradaOS 9.9.9 (English)\n\n- **Test.** Notes in English.\n\n---\n**Cómo instalar:** …";
+                    r.notes = "# EvOS 9.9.9\n\n- **Prueba.** Notas en español.\n\n[](#lang-en)\n# EvOS 9.9.9 (English)\n\n- **Test.** Notes in English.\n\n---\n**Cómo instalar:** …";
                     updateDialog(r);
                 }
                 else if ("obd-elegir".equals(v)) obdDialogs().pickAdapter();
@@ -769,7 +769,7 @@ public class Main extends Activity {
                 else if ("ocultas".equals(v)) manageHidden(null);
                 else if ("salir-fabrica".equals(v)) openFactoryLauncher();
                 else if (v.startsWith("aa-simular:")) {
-                    // simula Android Auto conectado (solo StradaOS Prueba, se pierde al cerrar la app)
+                    // simula Android Auto conectado (solo EvOS Prueba, se pierde al cerrar la app)
                     aaSim = v.endsWith("1");
                     aaCheckedAt = 0;
                 }
@@ -778,7 +778,7 @@ public class Main extends Activity {
                     // (con coma: «|» lo corta la consola del equipo)
                     String[] a = v.substring(7).split(",");
                     NowPlaying.Track t = new NowPlaying.Track();
-                    t.origin = "rcc"; t.title = a[0].replace('_', ' '); t.artist = "StradaOS"; t.source = "Android Auto";
+                    t.origin = "rcc"; t.title = a[0].replace('_', ' '); t.artist = "EvOS"; t.source = "Android Auto";
                     t.durationMs = a.length > 1 ? Long.parseLong(a[1]) * 1000 : -1; t.playing = true;
                     showTrack(t);
                 }
@@ -812,8 +812,8 @@ public class Main extends Activity {
                     long ps = Long.parseLong(a[1]), ds = Long.parseLong(a[2]);
                     String prog = String.format(Locale.US, "%02d:%02d / %02d:%02d", ps / 60, ps % 60, ds / 60, ds % 60);
                     java.util.List<String> tx = new java.util.ArrayList<String>();
-                    tx.add(a[0].replace('_', ' ')); tx.add("StradaOS"); tx.add(prog);
-                    NotifArt.lastTitle = tx.get(0); NotifArt.lastArtist = "StradaOS";
+                    tx.add(a[0].replace('_', ' ')); tx.add("EvOS"); tx.add(prog);
+                    NotifArt.lastTitle = tx.get(0); NotifArt.lastArtist = "EvOS";
                     NotifArt.lastPosMs = ps * 1000; NotifArt.lastDurMs = ds * 1000; NotifArt.lastPlaying = Boolean.TRUE;
                     NotifArt.lastTexts = tx; NotifArt.lastAt = SystemClock.elapsedRealtime();
                     applyAaNotif(curArt, tx);
@@ -821,7 +821,7 @@ public class Main extends Activity {
                 else if ("pista-demo".equals(v) || v.startsWith("pista-demo:")) {
                     // canción de ejemplo con duración y posición, para ver la línea de tiempo en las capturas
                     // («pista-demo:Night_Drive» cambia el título; «_» = espacio)
-                    curTitle = v.length() > 11 ? v.substring(11).replace('_', ' ') : "Canción de prueba"; curArtist = "StradaOS"; curSource = "Bluetooth";
+                    curTitle = v.length() > 11 ? v.substring(11).replace('_', ' ') : "Canción de prueba"; curArtist = "EvOS"; curSource = "Bluetooth";
                     durMs = 215000; posBaseMs = 68000; posBaseAt = SystemClock.elapsedRealtime(); posKnown = true; playingState = false;
                     // carátula de ejemplo (degradado con una nota), sin portadas reales
                     int az = 400;
@@ -1093,7 +1093,7 @@ public class Main extends Activity {
                     // ida y vuelta: se guarda una copia, se cambian datos, se restaura y deben volver los de antes
                     prefs.edit().putString("car_name", "Carro de prueba").putFloat("odo_base_km", 12345.5f).putInt("accent", 0xFF2D7FF9).apply();
                     String json = Backup.build(Main.this);
-                    File f = Backup.save(Main.this, Backup.primary(), "StradaOS-backup-prueba.json", json);
+                    File f = Backup.save(Main.this, Backup.primary(), "EvOS-backup-prueba.json", json);
                     prefs.edit().putString("car_name", "Otro").putFloat("odo_base_km", 1f).remove("accent").putString("maint", "[]").apply();
                     String err = Backup.apply(Main.this, new String(Backup.readAll(new java.io.FileInputStream(f)), "UTF-8"));
                     boolean ok = err == null && "Carro de prueba".equals(prefs.getString("car_name", "")) && prefs.getFloat("odo_base_km", 0) == 12345.5f
@@ -1147,7 +1147,7 @@ public class Main extends Activity {
 
     /**
      * Protección: si el tamaño de la ventana cambia una y otra vez (barras del sistema que aparecen y desaparecen
-     * al pedir pantalla completa), StradaOS se reconstruiría sin parar. Tras 5 cambios en 6 s deja de pedir
+     * al pedir pantalla completa), EvOS se reconstruiría sin parar. Tras 5 cambios en 6 s deja de pedir
      * pantalla completa y lo anota en el registro de fallos.
      */
     private void sizeStorm(int w, int hh) {
@@ -1241,7 +1241,7 @@ public class Main extends Activity {
         }
     }
 
-    /** Bluetooth: sigue revisando aunque StradaOS esté detrás de otra app (Waze, Maps…). */
+    /** Bluetooth: sigue revisando aunque EvOS esté detrás de otra app (Waze, Maps…). */
     private final Runnable btTicker = new Runnable() {
         public void run() {
             if (bt != null) {
@@ -1356,7 +1356,7 @@ public class Main extends Activity {
         // siempre). Las pantallas tipo Tesla con barra de clima de fábrica quedan casi cuadradas: ahí se puede forzar.
         boxW = W; boxH = H;
         // 2.22: Automático pasa a vertical desde 1,05·H (antes 1,2): en pantallas un poco más altas que anchas el diseño
-        // horizontal queda chico en el medio (Jorge Morales). Quien ya tenía StradaOS con una pantalla así se queda en
+        // horizontal queda chico en el medio (Jorge Morales). Quien ya tenía EvOS con una pantalla así se queda en
         // horizontal (se guarda una sola vez); las instalaciones nuevas arrancan en vertical sin tocar Ajustes.
         if (!prefs.getBoolean("layout_mig_222", false)) {
             SharedPreferences.Editor me = prefs.edit().putBoolean("layout_mig_222", true);
@@ -1923,8 +1923,8 @@ public class Main extends Activity {
     }
 
     // ───────────────────────── recordatorio de cambio de aceite ─────────────────────────
-    // StradaOS no puede leer el odómetro del tablero, así que lo estima: el usuario escribe el kilometraje una vez
-    // y StradaOS le suma la distancia recorrida que mide el GPS. Todo se guarda en km; se muestra en km o millas.
+    // EvOS no puede leer el odómetro del tablero, así que lo estima: el usuario escribe el kilometraje una vez
+    // y EvOS le suma la distancia recorrida que mide el GPS. Todo se guarda en km; se muestra en km o millas.
 
     private TextView oilValTv, oilLblTv;
     private ImageView oilIc;
@@ -1943,7 +1943,7 @@ public class Main extends Activity {
         return I18n.integer(Math.round(toUnit(km))) + " " + unit();
     }
 
-    /** Distancia medida por el GPS (también con StradaOS detrás de otras apps). */
+    /** Distancia medida por el GPS (también con EvOS detrás de otras apps). */
     private final LocationListener odoListener = new LocationListener() {
         public void onLocationChanged(Location l) {
             try { odoStep(l); } catch (Throwable ignored) { }
@@ -2004,7 +2004,7 @@ public class Main extends Activity {
     /**
      * #52: kilometraje con el escáner OBD, sin internet. Si el auto entrega su odómetro (PID A6) se toma tal cual;
      * si no, se suma lo recorrido con la velocidad del escáner (la misma que usa el tablero, así que se aleja menos
-     * del odómetro real que el GPS). Se llama con cada lectura del escáner y al volver a StradaOS.
+     * del odómetro real que el GPS). Se llama con cada lectura del escáner y al volver a EvOS.
      */
     private void odoFromObd() {
         double m = Obd.takeDistance();
@@ -2180,7 +2180,7 @@ public class Main extends Activity {
     private void oilSetup() {
         new TB(this, dlg())
             .setTitle("Recordatorio de cambio de aceite")
-            .setMessage("StradaOS no puede leer el kilometraje del tablero del carro. Escríbelo una vez y StradaOS le irá sumando lo que recorras con el GPS, para avisarte cuando toque el cambio.\n\nDe vez en cuando puedes corregirlo con el valor real del tablero.")
+            .setMessage("EvOS no puede leer el kilometraje del tablero del carro. Escríbelo una vez y EvOS le irá sumando lo que recorras con el GPS, para avisarte cuando toque el cambio.\n\nDe vez en cuando puedes corregirlo con el valor real del tablero.")
             .setPositiveButton("Empezar", new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) {
                 askOilUnit(new Runnable() { public void run() {
                     askOdo(new Runnable() { public void run() {
@@ -2277,7 +2277,7 @@ public class Main extends Activity {
 
     /** Aviso en el inicio cuando toca el cambio. «Aún no» lo vuelve a mostrar tras 100 km (60 mi). */
     private android.app.Dialog oilDlg;
-    private static boolean oilLater;   // cerró el aviso sin elegir: se vuelve a mostrar la próxima vez que abra StradaOS
+    private static boolean oilLater;   // cerró el aviso sin elegir: se vuelve a mostrar la próxima vez que abra EvOS
 
     private boolean oilAlert() {
         if (oilLater || (oilDlg != null && oilDlg.isShowing())) return false;
@@ -2634,7 +2634,7 @@ public class Main extends Activity {
                 if (!prefs.contains("odo_base_km")) {
                     new TB(Main.this, dlg())
                         .setTitle("Kilometraje del tablero")
-                        .setMessage("StradaOS no puede leer el kilometraje del carro. Escríbelo una vez y StradaOS le suma lo que recorras con el GPS.")
+                        .setMessage("EvOS no puede leer el kilometraje del carro. Escríbelo una vez y EvOS le suma lo que recorras con el GPS.")
                         .setPositiveButton("Escribirlo", new DialogInterface.OnClickListener() { public void onClick(DialogInterface dd, int ww) {
                             askOilUnit(new Runnable() { public void run() { askOdo(askKm); } });
                         }})
@@ -2759,7 +2759,7 @@ public class Main extends Activity {
     interface NumCb { void on(float v); }
 
     /**
-     * Campo de texto para las ventanas. La actividad usa un tema oscuro y las ventanas siguen el tema de StradaOS:
+     * Campo de texto para las ventanas. La actividad usa un tema oscuro y las ventanas siguen el tema de EvOS:
      * en modo claro el texto y la pista salían blancos sobre fondo blanco (visto en la 2.13 de prueba).
      */
     private android.widget.EditText field() {
@@ -2849,7 +2849,7 @@ public class Main extends Activity {
     /** Video en lugar del mapa («center_card» = «video»), o null. */
     private VideoCard videoCard;
 
-    /** Pruebas (solo StradaOS Prueba): velocidad fija para el video y el mapa («video-vel:»). */
+    /** Pruebas (solo EvOS Prueba): velocidad fija para el video y el mapa («video-vel:»). */
     private boolean testKmhOn;
     private float testKmh = Float.NaN;
 
@@ -2866,7 +2866,7 @@ public class Main extends Activity {
     }
 
     /**
-     * Tamaños del video dentro de StradaOS: 0 en su tarjeta, 1 «Solo video» (como el «Solo mapa» de Aurora, en todos los
+     * Tamaños del video dentro de EvOS: 0 en su tarjeta, 1 «Solo video» (como el «Solo mapa» de Aurora, en todos los
      * temas: ocupa el inicio entre la hora y el dock, con el fondo del tema) y 2 pantalla completa. La tarjeta se mueve a
      * una capa y vuelve a su lugar; el video sigue desde el mismo segundo.
      */
@@ -3525,7 +3525,7 @@ public class Main extends Activity {
             } catch (Throwable ignored) { }
         }
         if (best != null) { feedMap(best); return; }
-        // #37: la pantalla no recuerda ninguna ubicación buena (o solo el 0,0): se usa la última que guardó StradaOS.
+        // #37: la pantalla no recuerda ninguna ubicación buena (o solo el 0,0): se usa la última que guardó EvOS.
         // Solo ubica el mapa; no pasa por la navegación para no recalcular con una posición vieja.
         Location sv = savedLoc();
         if (sv == null) return;
@@ -3600,7 +3600,7 @@ public class Main extends Activity {
         return "US".equals(c) || "GB".equals(c) || "LR".equals(c) || "MM".equals(c);
     }
 
-    /** 0 = bien (o buscando señal), 1 = StradaOS sin permiso de ubicación, 2 = ubicación del equipo apagada. */
+    /** 0 = bien (o buscando señal), 1 = EvOS sin permiso de ubicación, 2 = ubicación del equipo apagada. */
     private int gpsState() {
         try {
             if (SDK >= 23 && checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) return 1;
@@ -3627,7 +3627,7 @@ public class Main extends Activity {
                     startActivity(new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + getPackageName()))
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                     toast("Permisos → Ubicación → Permitir");
-                } catch (Throwable e) { toast("Activa la ubicación para StradaOS en los ajustes de la pantalla"); }
+                } catch (Throwable e) { toast("Activa la ubicación para EvOS en los ajustes de la pantalla"); }
             }
             prefs.edit().putBoolean("loc_asked", true).apply();
         } else if (st == 2) {
@@ -3652,7 +3652,7 @@ public class Main extends Activity {
         String head = "Permiso de ubicación: " + (st == 1 ? "NO (toca el letrero del mapa)" : "sí")
             + "\nGPS del equipo: " + (!hasGps ? "no encontrado" : gpsOn ? "encendido" : "apagado")
             + " · ubicación por red: " + (netOn ? "encendida" : "apagada")
-            + "\nÚltima señal: " + (ago < 0 ? "ninguna desde que abrió StradaOS" : ago < 120 ? "hace " + ago + " s" : "hace " + (ago / 60) + " min")
+            + "\nÚltima señal: " + (ago < 0 ? "ninguna desde que abrió EvOS" : ago < 120 ? "hace " + ago + " s" : "hace " + (ago / 60) + " min")
             + (gpsStartAt > 0 ? "\nBuscando desde hace " + ((SystemClock.elapsedRealtime() - gpsStartAt) / 60000) + " min" : "");
         return I18n.lines(head + "\n\n" + (liveMap != null ? liveMap.diag() : "Mapa en vivo apagado"));
     }
@@ -4041,7 +4041,7 @@ public class Main extends Activity {
             return r.loadIcon(getPackageManager());
         } catch (OutOfMemoryError e) {
             // 2.31: pantallas con poca memoria y muchas apps (la regresión lo vio en Android 4.1): un ícono genérico
-            // en vez de cerrar StradaOS
+            // en vez de cerrar EvOS
             System.gc();
             try { return getResources().getDrawable(android.R.drawable.sym_def_app_icon); } catch (Throwable t) { return null; }
         }
@@ -4049,7 +4049,7 @@ public class Main extends Activity {
 
     /**
      * Con «Íconos de las apps» (2.19, Reinaldo, Lucas Cacciola): la app que abre cada función (radio, Bluetooth,
-     * cámara, archivos, navegación, música) con su propio ícono. null = se queda el ícono redondo de StradaOS.
+     * cámara, archivos, navegación, música) con su propio ícono. null = se queda el ícono redondo de EvOS.
      */
     private Drawable fnAppIcon(String id) {
         try {
@@ -4174,7 +4174,7 @@ public class Main extends Activity {
     // vehículo y clima), el mapa a lo ancho y la barra de apps tipo píldora con íconos sin círculos. «Solo mapa» oculta
     // la cabecera y el mapa crece hasta arriba. Usa los mismos campos que el inicio de siempre (timeTv, trackTv,
     // speedTv, oil…, panelWx…), así que el reloj, la música, el GPS, los mantenimientos y el clima se actualizan con el
-    // código de siempre. Sin controles de aire acondicionado: StradaOS no los maneja.
+    // código de siempre. Sin controles de aire acondicionado: EvOS no los maneja.
 
     private boolean premium, mapOnly;
     private float premHeadY = 60, premHeadH, premPillH;
@@ -4384,13 +4384,13 @@ public class Main extends Activity {
         return id != null && premiumUnlocked(id);
     }
 
-    /** Aurora y Cobalto son gratis para todos desde la 2.24. Los temas siguientes: en StradaOS Prueba sin código
+    /** Aurora y Cobalto son gratis para todos desde la 2.24. Los temas siguientes: en EvOS Prueba sin código
      *  y, en la versión normal, con el código atado al ID de la pantalla (Fase 3). */
     private boolean premiumUnlocked(String id) {
         return Prem.known(id) && (Prem.free(id) || debugUnlock() || Lic.has(this, id));
     }
 
-    /** StradaOS Prueba aplica los temas sin código, salvo que se quiera probar el desbloqueo como en la versión normal. */
+    /** EvOS Prueba aplica los temas sin código, salvo que se quiera probar el desbloqueo como en la versión normal. */
     private boolean debugUnlock() {
         return getPackageName().endsWith(".debug") && !prefs.getBoolean("lic_test", false);
     }
@@ -6201,7 +6201,7 @@ public class Main extends Activity {
         place(board, card, x, y, w, hh);
         premHeadViews.add(card);
         float m = 14;
-        // velocímetro elegido en Pantalla de inicio: digital (número) o analógico / mixto (el aro de StradaOS)
+        // velocímetro elegido en Pantalla de inicio: digital (número) o analógico / mixto (el aro de EvOS)
         final int speedo = carSpeed ? prefs.getInt("speedo", 0) : 0;
         float stripH = 34, stripY = hh - stripH - 8;
         carTv = tv(prefs.getString("car_name", "Mi vehículo"), 11, MUTED, true);
@@ -6485,14 +6485,14 @@ public class Main extends Activity {
             View.OnClickListener open = new View.OnClickListener() { public void onClick(View v) { unlockDialog(id); } };
             btn.setOnClickListener(open);
             cell.setOnClickListener(open);
-            TextView soon = tv(Prem.bundle() ? "Se desbloquea con una donación de 5 USD, o 8 USD por dos temas. Todas las funciones de StradaOS siguen siendo gratis."
-                : "Se desbloquea con una donación. Todas las funciones de StradaOS siguen siendo gratis.", 11, MUTED, false);
+            TextView soon = tv(Prem.bundle() ? "Se desbloquea con una donación de 5 USD, o 8 USD por dos temas. Todas las funciones de EvOS siguen siendo gratis."
+                : "Se desbloquea con una donación. Todas las funciones de EvOS siguen siendo gratis.", 11, MUTED, false);
             multiLine(soon);
             soon.setPadding(0, (int) (8 * s), 0, 0);
             info.addView(soon);
         }
         if (getPackageName().endsWith(".debug") && !free) {
-            // solo en StradaOS Prueba: probar el desbloqueo de verdad (con el ID y el código de esta pantalla)
+            // solo en EvOS Prueba: probar el desbloqueo de verdad (con el ID y el código de esta pantalla)
             final boolean t = prefs.getBoolean("lic_test", false);
             TextView tt = tv(t ? "Prueba: volver a aplicar sin código" : "Prueba: desbloquear como en la versión normal", 11, RED, true);
             multiLine(tt);
@@ -6623,7 +6623,7 @@ public class Main extends Activity {
         if (settingsView != null && settingsCat == C_STYLE) showSettings(C_STYLE);
         new TB(this, dlg())
             .setTitle("¡Listo!")
-            .setMessage(I18n.t("{} quedó desbloqueado en esta pantalla. Gracias por apoyar StradaOS.").replace("{}", Prem.known(th) ? Prem.name(th) : th))
+            .setMessage(I18n.t("{} quedó desbloqueado en esta pantalla. Gracias por apoyar EvOS.").replace("{}", Prem.known(th) ? Prem.name(th) : th))
             .setPositiveButton("Aplicar ahora", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface d, int w) { if (Prem.known(th)) applyPremium(th); } })
             .setNegativeButton("Después", null)
@@ -6708,7 +6708,7 @@ public class Main extends Activity {
             dockChanged(after);
         }};
         final List<String[]> extra = new ArrayList<String[]>();
-        extra.add(new String[]{"fns", "★  Funciones de StradaOS (Música, Navegación, Android Auto…)", "apps"});
+        extra.add(new String[]{"fns", "★  Funciones de EvOS (Música, Navegación, Android Auto…)", "apps"});
         pickApp("¿Qué abre el botón " + (i + 1) + "?", extra, null, true, new TargetCb() { public void on(String target) {
             if (!"fns".equals(target)) { save.on(target); return; }
             List<String[]> fns = new ArrayList<String[]>();
@@ -6812,7 +6812,7 @@ public class Main extends Activity {
     /** Toca el reproductor: la app de música elegida; si no hay, la de la fuente que suena. */
     private boolean notifHint;
 
-    /** Android 5+: suena música pero StradaOS no tiene «Acceso a notificaciones», así que no puede ver la canción. */
+    /** Android 5+: suena música pero EvOS no tiene «Acceso a notificaciones», así que no puede ver la canción. */
     private boolean wantsNotifAccess() {
         if (SDK < 21 || curTitle != null || curArtist != null || prefs.getBoolean("notif_hint_off", false)) return false;
         try {
@@ -6825,7 +6825,7 @@ public class Main extends Activity {
     private void askNotifAccess() {
         new TB(this, dlg())
             .setTitle("Ver la canción de tus apps")
-            .setMessage("Para mostrar la canción, el artista y la carátula de Spotify, YouTube Music y otras apps, StradaOS necesita «Acceso a notificaciones». Solo lo usa para leer lo que suena: no guarda ni envía nada.")
+            .setMessage("Para mostrar la canción, el artista y la carátula de Spotify, YouTube Music y otras apps, EvOS necesita «Acceso a notificaciones». Solo lo usa para leer lo que suena: no guarda ni envía nada.")
             .setPositiveButton("Activar", new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) {
                 try { startActivity(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)); }
                 catch (Throwable e) { notifAccessAdb(); }
@@ -7547,7 +7547,7 @@ public class Main extends Activity {
     private String autoLabel(String key, String[] pkgs, String none) {
         String c = prefs.getString(key, null);
         if ("nav_app".equals(key) && "internal".equals(c)) {
-            return I18n.t("En el mapa de StradaOS");
+            return I18n.t("En el mapa de EvOS");
         }
         if (c != null) return labelOf(c);
         String p = firstInstalled(pkgs);
@@ -7706,7 +7706,7 @@ public class Main extends Activity {
     /**
      * 2.29: con el escáner OBD-II conectado, el velocímetro del inicio usa la velocidad del carro (más exacta y sin el
      * retraso del GPS, también en túneles). Sin datos frescos del escáner (menos de 3 s) vuelve solo al GPS.
-     * El auto simulado no cuenta, para no mostrar una velocidad falsa (salvo en StradaOS Prueba con «obd-vel-demo:1»).
+     * El auto simulado no cuenta, para no mostrar una velocidad falsa (salvo en EvOS Prueba con «obd-vel-demo:1»).
      * Devuelve km/h o NaN.
      */
     private float obdKmh() {
@@ -8132,9 +8132,9 @@ public class Main extends Activity {
 
     /**
      * La canción llega por otra fuente (el control remoto de Open Headunit, «rcc», o Bluetooth), que no trae el
-     * tiempo o no lo corrige al adelantar desde el celular (Andrés, 18 nov.: adelantó de 0:46 a 2:34 y StradaOS
+     * tiempo o no lo corrige al adelantar desde el celular (Andrés, 18 nov.: adelantó de 0:46 a 2:34 y EvOS
      * siguió en 1:11). La notificación de Open Headunit sí lo trae cada segundo: si se aleja más de 3 s de lo que
-     * cuenta StradaOS, manda la notificación. Con 3 s de margen no se mueve por el redondeo. Devuelve si corrigió.
+     * cuenta EvOS, manda la notificación. Con 3 s de margen no se mueve por el redondeo. Devuelve si corrigió.
      */
     private boolean aaFixPos(long now) {
         if (NotifArt.lastPosMs < 0) return false;
@@ -8162,7 +8162,7 @@ public class Main extends Activity {
                 + "\nCarátula: " + (curArt != null ? curArt.getWidth() + "x" + curArt.getHeight() : "no")
                 + "\nCarátula de internet: " + (prefs.getBoolean("cover_online", false) ? CoverFetch.lastInfo
                     + (coverArt != null ? " · en pantalla " + coverArt.getWidth() + "x" + coverArt.getHeight() : "") : "apagada")
-                + "\nTiempo en StradaOS: " + (currentPos() / 1000) + "/" + (durMs / 1000) + " s · " + posSrc
+                + "\nTiempo en EvOS: " + (currentPos() / 1000) + "/" + (durMs / 1000) + " s · " + posSrc
                 + "\nÚltimo tiempo por Bluetooth: " + (btPosMs < 0 ? "ninguno"
                     : (btPosMs / 1000) + " s, hace " + ((SystemClock.elapsedRealtime() - btPosAt) / 1000) + " s")
                 + "\n\nLector de notificaciones (accesibilidad): " + (NotifArt.running ? "ACTIVO" : "apagado")
@@ -8174,7 +8174,7 @@ public class Main extends Activity {
                     + (NotifArt.lastPlaying == null ? "estado ?" : NotifArt.lastPlaying ? "sonando" : "en pausa"))
                 + "\nOpen Headunit corriendo: " + (processRunning(PKG_HUR) ? "sí" : "no")
                 + " · celular por USB en modo Android Auto: " + (aaUsbState() == 1 ? "sí" : aaUsbState() == 0 ? "no" : "no se sabe")
-                + "\nAndroid Auto conectado (para StradaOS): " + (aaRunning() ? "sí" : "no")
+                + "\nAndroid Auto conectado (para EvOS): " + (aaRunning() ? "sí" : "no")
                 + "\nApps de Android Auto / CarPlay con notificación: " + Projection.describe(Projection.any)
                 + " · multimedia: " + Projection.describe(Projection.media)
                 + "\n▶ sin nada sonando abre tu app de música: " + (projectionActive() ? "no (Android Auto / CarPlay conectado)" : "sí")
@@ -8206,7 +8206,7 @@ public class Main extends Activity {
     private void openAccessibility() {
         try {
             startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-            toast("Activa «Carátula de Android Auto» (StradaOS)");
+            toast("Activa «Carátula de Android Auto» (EvOS)");
         } catch (Throwable e) {
             toast("No se pudo abrir Accesibilidad");
         }
@@ -8360,7 +8360,7 @@ public class Main extends Activity {
                     public void run() {
                         new TB(Main.this, dlg())
                             .setTitle("Diagnóstico listo")
-                            .setMessage("Se guardó en:\n" + r + "\n\nCopia la carpeta StradaDiag a una memoria USB y adjúntala en un «issue» del repositorio de StradaOS en GitHub.")
+                            .setMessage("Se guardó en:\n" + r + "\n\nCopia la carpeta StradaDiag a una memoria USB y adjúntala en un «issue» del repositorio de EvOS en GitHub.")
                             .setPositiveButton("OK", null).show();
                     }
                 });
@@ -8424,7 +8424,7 @@ public class Main extends Activity {
                 public void onClick(DialogInterface d, int w) {
                     prefs.edit().putString(key, et.getText().toString().trim()).apply();
                     if ("city_manual".equals(key)) refreshWeatherNow();
-                    if ("map_url".equals(key)) toast("Se aplicará al reiniciar StradaOS");
+                    if ("map_url".equals(key)) toast("Se aplicará al reiniciar EvOS");
                     if ("tomtom_key".equals(key) || "traffic_url".equals(key)) {
                         if ("tomtom_key".equals(key) && et.getText().toString().trim().length() > 0) {
                             prefs.edit().putBoolean("map_traffic", true).apply();
@@ -8446,7 +8446,7 @@ public class Main extends Activity {
 
     // ───────────────────────── universal: asistente, color, foto, CarPlay ─────────────────────────
 
-    static final String[] ACCENT_NAMES = {"StradaOS", "Rojo", "Naranja", "Amarillo", "Verde", "Turquesa", "Azul", "Morado", "Rosa", "Plata"};
+    static final String[] ACCENT_NAMES = {"EvOS", "Rojo", "Naranja", "Amarillo", "Verde", "Turquesa", "Azul", "Morado", "Rosa", "Plata"};
     static final int[] ACCENT_COLORS = {0xFFFE3211, 0xFFE3262F, 0xFFFF7A1A, 0xFFF5B800, 0xFF2DBE6C, 0xFF14B8B0, 0xFF2F7CF6, 0xFF8E5CF7, 0xFFE8457C, 0xFF9AA3AF};
     static final String[] CARPLAY_PKGS = {"com.zjinnova.zlink", "com.zjinnova.zlink5", "com.autokit", "cn.manstep.phonemirrorBox",
             "cn.manstep.phonemirrorBox.nomap", "com.suding.speedplay", "com.tlink.carplay", "com.syu.carlink", "com.carlinkit.autokit"};
@@ -8489,7 +8489,7 @@ public class Main extends Activity {
     private void wizard() {
         int sel = Math.max(0, java.util.Arrays.asList(I18n.CODES).indexOf(I18n.lang));
         wizardDlg = new TB(this, dlg()).raw()
-            .setTitle("Idioma · Language · Langue · Lingua · Sprache · Bahasa · Dil · Nyelv · اللغة")
+            .setTitle("Limba · Idioma · Language · Langue · Lingua · Sprache · Bahasa · Dil · Nyelv · اللغة")
             .setSingleChoiceItems(I18n.NAMES, sel, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface d, int w) {
                     d.dismiss();
@@ -8504,7 +8504,7 @@ public class Main extends Activity {
 
     private void wizardWelcome() {
         new TB(this, dlg())
-            .setTitle("Bienvenido a StradaOS")
+            .setTitle("Bienvenido a EvOS")
             .setMessage("Vamos a dejar el launcher a tu gusto: tu nombre, tu vehículo, el color y la foto. Toma menos de un minuto y lo puedes cambiar después en el engranaje ⚙.")
             .setPositiveButton("Empezar", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface d, int w) {
@@ -8535,7 +8535,7 @@ public class Main extends Activity {
 
     static final String[][] REVIEW = {{"radio", "Radio"}, {"bt", "Bluetooth"}, {"btaudio", "Música Bluetooth"}, {"cam", "Cámara"}, {"files", "Archivos"}, {"aa", "Android Auto"}};
 
-    /** Qué app abre cada botón en esta pantalla: la elegida o la que StradaOS detectó. */
+    /** Qué app abre cada botón en esta pantalla: la elegida o la que EvOS detectó. */
     private String shortcutLabel(String key) {
         String c = prefs.getString(key, null);
         if (c != null) return labelOf(c);
@@ -9405,7 +9405,7 @@ public class Main extends Activity {
         ImageView logo = new ImageView(this);
         logo.setImageBitmap(asset("logo.png"));
         brand.addView(logo, new LinearLayout.LayoutParams((int) (30 * s), (int) (30 * s)));
-        TextView bt = tv("StradaOS", 18, TEXT, true);
+        TextView bt = tv("EvOS", 18, TEXT, true);
         bt.setPadding((int) (10 * s), 0, 0, 0);
         brand.addView(bt);
         side.addView(brand);
@@ -9917,7 +9917,7 @@ public class Main extends Activity {
             rowIc(k, "speed", "Kilometraje actual", "Estimado con el GPS. Corrígelo con el del tablero cuando quieras", "≈ " + fmtDist(odoKm()),
                 new Runnable() { public void run() { askOdo(null); } });
         else
-            rowIc(k, "speed", "Kilometraje del tablero", "Escríbelo una vez y StradaOS le suma lo que recorras con el GPS", I18n.t("Configurar"),
+            rowIc(k, "speed", "Kilometraje del tablero", "Escríbelo una vez y EvOS le suma lo que recorras con el GPS", I18n.t("Configurar"),
                 new Runnable() { public void run() { askOilUnit(new Runnable() { public void run() { askOdo(null); } }); } });
         LinearLayout o = section(body, "Cambio de aceite");
         toggle(o, "Recordatorio de cambio de aceite", "Avisa cuando toca el cambio", oilOn(), new IntCb() { public void on(int i) {
@@ -10072,7 +10072,7 @@ public class Main extends Activity {
         }});
         LinearLayout ic = section(body, "Íconos");
         boolean appStyle = "apps".equals(prefs.getString("dock_style", "circle"));
-        segmented(ic, "Íconos de la barra", "Apps: el ícono de la app que abre cada botón (radio, cámara…)", new String[]{"StradaOS", "Apps"}, appStyle ? 1 : 0, new IntCb() { public void on(int i) {
+        segmented(ic, "Íconos de la barra", "Apps: el ícono de la app que abre cada botón (radio, cámara…)", new String[]{"EvOS", "Apps"}, appStyle ? 1 : 0, new IntCb() { public void on(int i) {
             prefs.edit().putString("dock_style", i == 1 ? "apps" : "circle").apply(); rebuild(); showSettings(settingsCat);
         }});
         final List<String[]> packs = IconPack.installed(this);
@@ -10477,8 +10477,8 @@ public class Main extends Activity {
     private boolean askedWrite;
 
     private void chooseMapToDownload(final String folder) {
-        // Android 6–9: permiso para guardar en Download/StradaOS (se pide una sola vez). Android 10+ no lo tiene para
-        // StradaOS: el mapa va a la carpeta propia de la app, sin pedir nada.
+        // Android 6–9: permiso para guardar en Download/EvOS (se pide una sola vez). Android 10+ no lo tiene para
+        // EvOS: el mapa va a la carpeta propia de la app, sin pedir nada.
         if (folder.length() == 0 && SDK >= 23 && SDK <= 28 && !askedWrite
                 && checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
             askedWrite = true;
@@ -10574,13 +10574,13 @@ public class Main extends Activity {
         b.show();
     }
 
-    /** Mapa en uso: dejar de usarlo o, si lo descargó StradaOS, borrarlo. */
+    /** Mapa en uso: dejar de usarlo o, si lo descargó EvOS, borrarlo. */
     private void mapFileOptions() {
         final File f = new File(prefs.getString("map_file", ""));
         File dir = MapDownload.folder(this);
         boolean ours = f.getParentFile() != null && f.getParentFile().equals(dir);
         android.app.AlertDialog.Builder b = new TB(this, dlg()).setTitle(f.getName())
-            .setMessage(ours ? "Este mapa lo descargó StradaOS. Puedes dejar de usarlo o borrarlo para liberar espacio." : "Puedes dejar de usar este mapa (el archivo no se borra).")
+            .setMessage(ours ? "Este mapa lo descargó EvOS. Puedes dejar de usarlo o borrarlo para liberar espacio." : "Puedes dejar de usar este mapa (el archivo no se borra).")
             .setPositiveButton("Dejar de usarlo", new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) {
                 prefs.edit().remove("map_file").apply();
                 LiveMapView.loadFile(Main.this);
@@ -10834,7 +10834,7 @@ public class Main extends Activity {
                 prefs.edit().putBoolean("aa_off_bt", i == 1).apply(); showSettings(settingsCat);
             }});
         if (clwBt) {
-            row(b, "Escuchar el Bluetooth", "En esta pantalla, toca ▶ en el inicio: StradaOS pasa el sonido a Bluetooth (por ejemplo, si venías de la radio)", null, null);
+            row(b, "Escuchar el Bluetooth", "En esta pantalla, toca ▶ en el inicio: EvOS pasa el sonido a Bluetooth (por ejemplo, si venías de la radio)", null, null);
             toggle(b, "Pasar a Bluetooth al dar play en el celular (en prueba)", "Abre un instante «Audio Bluetooth» y vuelve. En algunas pantallas no detecta el play del celular",
                 prefs.getBoolean("bt_auto3", false), new IntCb() { public void on(int i) {
                     prefs.edit().putBoolean("bt_auto3", i == 1).apply(); showSettings(settingsCat);
@@ -10892,15 +10892,15 @@ public class Main extends Activity {
         }});
         LinearLayout hm = section(body, "Al encender");
         final boolean def = isDefaultHome();
-        row(hm, "Launcher predeterminado", "La que aparece al encender y al tocar Inicio", def ? "StradaOS ✓" : "Otra · toca para cambiar", new Runnable() { public void run() {
+        row(hm, "Launcher predeterminado", "La que aparece al encender y al tocar Inicio", def ? "EvOS ✓" : "Otra · toca para cambiar", new Runnable() { public void run() {
             if (isDefaultHome()) homeHelp(); else makeDefaultHome();
         }});
-        toggle(hm, "Abrir StradaOS al encender", "Para pantallas que siempre arrancan en su menú de fábrica (Android 4 a 9)", prefs.getBoolean("boot_open", false), new IntCb() { public void on(int i) {
+        toggle(hm, "Abrir EvOS al encender", "Para pantallas que siempre arrancan en su menú de fábrica (Android 4 a 9)", prefs.getBoolean("boot_open", false), new IntCb() { public void on(int i) {
             prefs.edit().putBoolean("boot_open", i == 1).apply(); showSettings(settingsCat);
         }});
         // 2.21 (rvilonen-spec, #15): abrir una app al encender (la radio, para que empiece a sonar) y volver al inicio
         String bootApp = prefs.getString("boot_app", "");
-        row(hm, "Abrir una app al encender", "StradaOS la abre un momento al arrancar (por ejemplo la radio, para que empiece a sonar) y vuelve al inicio",
+        row(hm, "Abrir una app al encender", "EvOS la abre un momento al arrancar (por ejemplo la radio, para que empiece a sonar) y vuelve al inicio",
             bootApp.length() > 0 ? labelOf(bootApp) : I18n.t("Ninguna"), new Runnable() { public void run() {
                 List<String[]> extra = new ArrayList<String[]>();
                 extra.add(new String[]{"none", "Ninguna", null});
@@ -10910,12 +10910,12 @@ public class Main extends Activity {
                     showSettings(settingsCat);
                 }});
             }});
-        // Salidas (issue #9): una pantalla Android 11 quedó atrapada en StradaOS tras elegirlo como launcher desde su
-        // modo fábrica (toda app, incluso la ventana de desinstalar, se abría y volvía a StradaOS).
-        LinearLayout out = section(body, "Salir de StradaOS");
-        row(out, "Abrir el launcher de fábrica", "Sale de StradaOS sin desinstalarlo", null, new Runnable() { public void run() { openFactoryLauncher(); } });
-        row(out, "Desactivar StradaOS", "Si la pantalla quedó atrapada en StradaOS: se apaga solo, sin ventanas de Android", null, new Runnable() { public void run() { confirmDisableSelf(); } });
-        row(out, "Desinstalar StradaOS", "Android pide confirmar", null, new Runnable() { public void run() { uninstallSelf(); } });
+        // Salidas (issue #9): una pantalla Android 11 quedó atrapada en EvOS tras elegirlo como launcher desde su
+        // modo fábrica (toda app, incluso la ventana de desinstalar, se abría y volvía a EvOS).
+        LinearLayout out = section(body, "Salir de EvOS");
+        row(out, "Abrir el launcher de fábrica", "Sale de EvOS sin desinstalarlo", null, new Runnable() { public void run() { openFactoryLauncher(); } });
+        row(out, "Desactivar EvOS", "Si la pantalla quedó atrapada en EvOS: se apaga solo, sin ventanas de Android", null, new Runnable() { public void run() { confirmDisableSelf(); } });
+        row(out, "Desinstalar EvOS", "Android pide confirmar", null, new Runnable() { public void run() { uninstallSelf(); } });
         if (getPackageName().endsWith(".debug")) {
             LinearLayout sm = section(body, "Versión de prueba");
             choice(sm, "Simular pantalla", "Para probar otros tamaños en una tablet o celular", new String[]{"Real", "1024×600", "1280×720", "1920×720", "2000×1200", "1280×480", "768×1024", "1080×1920"},
@@ -10965,7 +10965,7 @@ public class Main extends Activity {
         final List<File> roots = new ArrayList<File>();
         final List<String> items = new ArrayList<String>();
         roots.add(Backup.primary());
-        items.add(I18n.t("Memoria de la pantalla") + "\n" + new File(Backup.primary(), "StradaOS").getAbsolutePath());
+        items.add(I18n.t("Memoria de la pantalla") + "\n" + new File(Backup.primary(), "EvOS").getAbsolutePath());
         for (File u : Backup.removable(this)) {
             roots.add(u);
             items.add(I18n.t("Memoria USB") + "  ·  " + u.getName() + "\n" + u.getAbsolutePath());
@@ -11061,14 +11061,14 @@ public class Main extends Activity {
         if (found.isEmpty() && doc == null) {
             new TB(this, dlg())
                 .setTitle("No se encontró ninguna copia")
-                .setMessage("No hay copias de StradaOS en la memoria de la pantalla ni en las USB conectadas. El archivo se llama «StradaOS-backup» y termina en .json.")
+                .setMessage("No hay copias de EvOS en la memoria de la pantalla ni en las USB conectadas. El archivo se llama «EvOS-backup» y termina en .json.")
                 .setPositiveButton("OK", null).show();
             return;
         }
         List<String> items = new ArrayList<String>();
         java.text.DateFormat df = I18n.sdf("d MMM yyyy, HH:mm");
         for (Backup.Info i : found) {
-            items.add(df.format(new Date(i.created)) + "  ·  StradaOS " + i.version
+            items.add(df.format(new Date(i.created)) + "  ·  EvOS " + i.version
                 + (Backup.AUTO.equals(i.file.getName()) ? "  ·  " + I18n.t("automática") : "") + "\n" + i.file.getParent());
         }
         if (doc != null) items.add(I18n.t("Buscar el archivo…"));
@@ -11090,14 +11090,14 @@ public class Main extends Activity {
         Backup.Info i = json == null ? null : Backup.peek(json);
         if (i == null) {
             new TB(this, dlg()).setTitle("No se pudo restaurar")
-                .setMessage("Este archivo no es una copia de seguridad de StradaOS").setPositiveButton("OK", null).show();
+                .setMessage("Este archivo no es una copia de seguridad de EvOS").setPositiveButton("OK", null).show();
             return;
         }
         String when = i.created > 0 ? I18n.sdf("d MMM yyyy, HH:mm").format(new Date(i.created)) : "—";
-        String msg = I18n.t("Copia del") + " " + when + "  ·  StradaOS " + i.version
+        String msg = I18n.t("Copia del") + " " + when + "  ·  EvOS " + i.version
             + (i.device.length() > 0 ? "\n" + I18n.t("Pantalla:") + " " + i.device : "")
             + "\n" + I18n.t("Ajustes guardados:") + " " + i.settings + (i.photo ? "  ·  " + I18n.t("con la foto del vehículo") : "")
-            + "\n\n" + I18n.t("Se reemplaza toda la configuración actual de StradaOS por la de la copia.");
+            + "\n\n" + I18n.t("Se reemplaza toda la configuración actual de EvOS por la de la copia.");
         new TB(this, dlg()).raw()
             .setTitle(I18n.t("¿Restaurar esta copia?"))
             .setMessage(msg)
@@ -11155,7 +11155,7 @@ public class Main extends Activity {
 
     /**
      * Abre la app elegida un momento y vuelve al inicio. Solo al encender la pantalla (los primeros minutos desde
-     * que arrancó Android): si StradaOS se reinicia más tarde (una actualización, un cierre) no se abre nada.
+     * que arrancó Android): si EvOS se reinicia más tarde (una actualización, un cierre) no se abre nada.
      */
     private void maybeBootApp() {
         if (bootAppDone) return;
@@ -11166,7 +11166,7 @@ public class Main extends Activity {
 
     /**
      * Muchas pantallas no se apagan del todo con el carro: se duermen. Al despertar después de un buen rato
-     * (el carro estuvo apagado) también cuenta como «encender», si StradaOS es lo que está a la vista.
+     * (el carro estuvo apagado) también cuenta como «encender», si EvOS es lo que está a la vista.
      */
     private long screenOffAt;
     private final BroadcastReceiver screenReceiver = new BroadcastReceiver() {
@@ -11218,7 +11218,7 @@ public class Main extends Activity {
         compatLine(b, "Android Auto con Open Headunit", "Android 4.1+ · cable USB", true, installed(PKG_HUR) ? "Open Headunit instalado" : "falta instalar Open Headunit");
         compatLine(b, "Android Auto / CarPlay de la pantalla", "Si la pantalla lo trae", nativeProjectionApp() != null, nativeProjectionApp() != null ? labelOf(nativeProjectionApp()) : "no detectado");
         compatLine(b, "CarPlay", "Pantalla con CarPlay o adaptador USB", carPlayApp() != null, carPlayApp() != null ? labelOf(carPlayApp()) : "no detectado");
-        compatLine(b, "Mapa con internet seguro (TLS 1.2)", "Android 4.1+ (StradaOS lo activa)", true, SDK < 20 ? "en Android 4.x solo algunos servidores de mapas responden" : null);
+        compatLine(b, "Mapa con internet seguro (TLS 1.2)", "Android 4.1+ (EvOS lo activa)", true, SDK < 20 ? "en Android 4.x solo algunos servidores de mapas responden" : null);
         compatLine(b, "Instalar actualizaciones desde la app", "Android 4.1+", true, SDK >= 26 ? "pide permiso «Instalar apps desconocidas»" : null);
         compatLine(b, "Íconos de Wi-Fi y Bluetooth arriba", "Android 4.1+", true, clwBt ? "Bluetooth: estado del celular desde la app de fábrica; toca para abrirla" : null);
         compatLine(b, "Tema según el modo oscuro del sistema", "Pantallas que lo cambian (p. ej. con las luces)", true,
@@ -11245,7 +11245,7 @@ public class Main extends Activity {
     private void btHelp() {
         new TB(this, dlg())
             .setTitle("Música Bluetooth")
-            .setMessage("• Se corta al salir de la app Bluetooth: sal con el botón Inicio (la casita), no con Atrás. Atrás cierra la app de fábrica y con ella la música.\n\n• No suena hasta abrir la app Bluetooth: activa «Abrir la app de música Bluetooth al conectar el celular» (aquí mismo). Abre la app un instante y vuelve al inicio.\n\n• La canción no aparece en el inicio (Android 5 o más nuevo): activa «Música de cualquier app» arriba y dale acceso a notificaciones a StradaOS.\n\n• Revisa en Ajustes → Accesos y apps que «Música Bluetooth» sea la app Bluetooth de tu pantalla.")
+            .setMessage("• Se corta al salir de la app Bluetooth: sal con el botón Inicio (la casita), no con Atrás. Atrás cierra la app de fábrica y con ella la música.\n\n• No suena hasta abrir la app Bluetooth: activa «Abrir la app de música Bluetooth al conectar el celular» (aquí mismo). Abre la app un instante y vuelve al inicio.\n\n• La canción no aparece en el inicio (Android 5 o más nuevo): activa «Música de cualquier app» arriba y dale acceso a notificaciones a EvOS.\n\n• Revisa en Ajustes → Accesos y apps que «Música Bluetooth» sea la app Bluetooth de tu pantalla.")
             .setPositiveButton("Entendido", null)
             .show();
     }
@@ -11254,7 +11254,7 @@ public class Main extends Activity {
         String t = Guard.read(this);
         if (t == null) { toast("No hay fallos registrados"); return; }
         if (t.length() > 6000) t = "…" + t.substring(t.length() - 6000);
-        // el registro es para quien desarrolla StradaOS: los avisos se guardan en español, sea cual sea el idioma elegido
+        // el registro es para quien desarrolla EvOS: los avisos se guardan en español, sea cual sea el idioma elegido
         TextView v = tv(I18n.t("Registro técnico para enviar al desarrollador (se guarda en español).") + "\n\n" + t, 12, TEXT, false);
         v.setSingleLine(false);
         v.setTextIsSelectable(true);
@@ -11271,26 +11271,26 @@ public class Main extends Activity {
     }
 
     private void catAbout(LinearLayout body) {
-        LinearLayout c = section(body, "StradaOS");
-        LinearLayout r = rowBase(c, "StradaOS · Auto Head Unit UI", "Gratis y de código abierto. Una nueva vida para las pantallas Android del carro.");
+        LinearLayout c = section(body, "EvOS");
+        LinearLayout r = rowBase(c, "EvOS · Auto Head Unit UI", "Gratis y de código abierto. Una nueva vida para las pantallas Android del carro.");
         ImageView logo = new ImageView(this);
         logo.setImageBitmap(asset("logo.png"));
         r.addView(logo, 0, new LinearLayout.LayoutParams((int) (56 * s), (int) (56 * s)));
         ((LinearLayout.LayoutParams) r.getChildAt(1).getLayoutParams()).leftMargin = (int) (14 * s);
         row(c, "Versión", null, Updates.currentVersion(this), null);
         row(c, "Android de la pantalla", "Real: " + androidName(SDK) + " · ver qué funciona aquí", android.os.Build.VERSION.RELEASE + " (API " + SDK + ")", new Runnable() { public void run() { showCompat(); } });
-        row(c, "Registro de fallos", "Cierres inesperados o bloqueos de StradaOS en esta pantalla", Guard.read(this) == null ? "Sin fallos" : "Ver",
+        row(c, "Registro de fallos", "Cierres inesperados o bloqueos de EvOS en esta pantalla", Guard.read(this) == null ? "Sin fallos" : "Ver",
             new Runnable() { public void run() { showGuardLog(); } });
 
         LinearLayout u = section(body, "Actualizaciones");
         final boolean fd = Updates.fromFdroid(this);
         if (fd) row(u, "Instalado desde " + Updates.storeName(this), "Las actualizaciones llegan por esa app", null, null);
         toggle(u, fd ? "Avisar también de versiones en GitHub" : "Comprobar actualizaciones automáticamente",
-            fd ? "Opcional: las descargas de GitHub no pasan por la revisión de la tienda" : "Al abrir StradaOS con internet, una vez al día",
+            fd ? "Opcional: las descargas de GitHub no pasan por la revisión de la tienda" : "Al abrir EvOS con internet, una vez al día",
             prefs.getBoolean("auto_update", !fd), new IntCb() { public void on(final int i) {
                 if (i == 1 && fd) {
                     new TB(Main.this, dlg()).setTitle("Actualizaciones desde GitHub")
-                        .setMessage("Instalaste StradaOS desde " + Updates.storeName(Main.this) + ". Si activas esto, StradaOS revisará una vez al día las versiones publicadas en github.com/" + Updates.OWNER + "/" + Updates.REPO + " y te ofrecerá descargarlas desde ahí.\n\nEsas descargas no pasan por la revisión de la tienda. Puede que GitHub tenga una versión un poco antes que la tienda.")
+                        .setMessage("Instalaste EvOS desde " + Updates.storeName(Main.this) + ". Si activas esto, EvOS revisará una vez al día las versiones publicadas en github.com/" + Updates.OWNER + "/" + Updates.REPO + " y te ofrecerá descargarlas desde ahí.\n\nEsas descargas no pasan por la revisión de la tienda. Puede que GitHub tenga una versión un poco antes que la tienda.")
                         .setPositiveButton("Activar", new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) {
                             prefs.edit().putBoolean("auto_update", true).apply(); showSettings(settingsCat); } })
                         .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) { showSettings(settingsCat); } })
@@ -11306,10 +11306,10 @@ public class Main extends Activity {
             new Runnable() { public void run() { checkUpdates(true); } });
 
         LinearLayout k = section(body, "Comunidad");
-        row(k, "Dar una estrella en GitHub", "Ayuda a que más personas encuentren StradaOS", "★",
+        row(k, "Dar una estrella en GitHub", "Ayuda a que más personas encuentren EvOS", "★",
             new Runnable() { public void run() { linkDialog("Dar una estrella ⭐", "Abre el repositorio y toca «Star». ¡Gracias!", Updates.REPO_URL); } });
-        row(k, "Donar", "Si StradaOS revivió tu pantalla, invítame un café", "☕",
-            new Runnable() { public void run() { linkDialog("Apoya el proyecto ☕", "StradaOS es gratis. Las donaciones ayudan a mantenerlo y a probarlo en más pantallas.", Updates.donateUrl(Main.this)); } });
+        row(k, "Donar", "Si EvOS revivió tu pantalla, invítame un café", "☕",
+            new Runnable() { public void run() { linkDialog("Apoya el proyecto ☕", "EvOS es gratis. Las donaciones ayudan a mantenerlo y a probarlo en más pantallas.", Updates.donateUrl(Main.this)); } });
         row(k, "Reportar un problema o sugerir algo", "Crea un «issue» en GitHub (adjunta el diagnóstico)", null,
             new Runnable() { public void run() { linkDialog("Reportar un problema", "Cuenta tu modelo de pantalla y su versión de Android. Puedes adjuntar la carpeta StradaDiag (Sistema → Exportar diagnóstico).", Updates.ISSUES_URL); } });
         row(k, "Código fuente", Updates.REPO_URL.replace("https://", ""), null,
@@ -11329,7 +11329,7 @@ public class Main extends Activity {
 
     private boolean updBusy, promptShown;
 
-    /** Al volver al inicio: busca versión nueva (1 vez al día) o, si toca, el recuadro «¿Te gusta StradaOS?». */
+    /** Al volver al inicio: busca versión nueva (1 vez al día) o, si toca, el recuadro «¿Te gusta EvOS?». */
     private void autoChecks() {
         if (!hasWindowFocus() || settingsView != null || drawer != null) return;
         if (!homeAsked && prefs.getBoolean("setup_done", false) && !prefs.getBoolean("home_never", false) && askDefaultHome(null)) return;
@@ -11397,7 +11397,7 @@ public class Main extends Activity {
         sc.addView(notes);
         box.addView(sc, new LinearLayout.LayoutParams(-1, (int) (200 * s)));
         AlertDialog.Builder b = new TB(this, dlg())
-            .setTitle("Nueva versión de StradaOS")
+            .setTitle("Nueva versión de EvOS")
             .setView(box);
         if (Updates.fromFdroid(this) && !prefs.getBoolean("auto_update", false)) {
             // instalada desde una tienda: se actualiza por ahí; GitHub queda como opción explícita
@@ -11405,14 +11405,14 @@ public class Main extends Activity {
                 + "\nActualiza desde " + Updates.storeName(this) + " cuando llegue. Descargar de GitHub omite la revisión de la tienda."));
             b.setPositiveButton("Entendido", null)
              .setNeutralButton("Ver en GitHub", new DialogInterface.OnClickListener() {
-                 public void onClick(DialogInterface d, int w) { linkDialog("StradaOS " + r.version, "Descarga desde GitHub:", r.pageUrl); } })
+                 public void onClick(DialogInterface d, int w) { linkDialog("EvOS " + r.version, "Descarga desde GitHub:", r.pageUrl); } })
              .show();
             return;
         }
         b
             .setPositiveButton(r.apkUrl != null ? "Descargar e instalar" : "Ver en GitHub", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface d, int w) {
-                    if (r.apkUrl != null) downloadUpdate(r); else linkDialog("StradaOS " + r.version, "Descarga la nueva versión desde:", r.pageUrl);
+                    if (r.apkUrl != null) downloadUpdate(r); else linkDialog("EvOS " + r.version, "Descarga la nueva versión desde:", r.pageUrl);
                 }
             })
             .setNeutralButton("Omitir esta versión", new DialogInterface.OnClickListener() {
@@ -11425,7 +11425,7 @@ public class Main extends Activity {
     /** Descarga el APK y abre el instalador; si esta pantalla no puede conectarse, muestra el código QR. */
     private void downloadUpdate(final Updates.Release r) {
         if (!unknownSourcesOk()) return;
-        final ProgressDialogLite pd = new ProgressDialogLite("Descargando StradaOS " + r.version + "…");
+        final ProgressDialogLite pd = new ProgressDialogLite("Descargando EvOS " + r.version + "…");
         new Thread(new Runnable() { public void run() {
             File out = null;
             try {
@@ -11434,13 +11434,13 @@ public class Main extends Activity {
                 File dir = getExternalFilesDir(null);
                 if (dir == null) dir = getFilesDir();
                 dir.mkdirs();
-                out = new File(dir, "StradaOS-" + r.version + ".apk");
+                out = new File(dir, "EvOS-" + r.version + ".apk");
                 java.io.FileOutputStream os = new java.io.FileOutputStream(out);
                 os.write(data);
                 os.close();
                 out.setReadable(true, false);
                 if (!verifyApk(out)) {
-                    Guard.log("Actualización rechazada: el APK descargado no es StradaOS firmado con la misma llave.");
+                    Guard.log("Actualización rechazada: el APK descargado no es EvOS firmado con la misma llave.");
                     out.delete();
                     out = null;
                 }
@@ -11448,7 +11448,7 @@ public class Main extends Activity {
             final File f = out;
             runOnUiThread(new Runnable() { public void run() {
                 pd.dismiss();
-                if (f != null) installFile(f, "StradaOS " + r.version);
+                if (f != null) installFile(f, "EvOS " + r.version);
                 else linkDialog("Descárgala desde tu celular", "Esta pantalla no pudo descargar el archivo. Escanea el código, descarga el APK y pásalo por USB.", r.pageUrl);
             }});
         }}).start();
@@ -11463,11 +11463,11 @@ public class Main extends Activity {
         ImageView logo = new ImageView(this);
         logo.setImageBitmap(asset("logo.png"));
         box.addView(logo, new LinearLayout.LayoutParams((int) (64 * s), (int) (64 * s)));
-        TextView t = tv("¿Disfrutando StradaOS?", 20, TEXT, true);
+        TextView t = tv("¿Disfrutando EvOS?", 20, TEXT, true);
         t.setGravity(Gravity.CENTER);
         t.setPadding(0, (int) (14 * s), 0, (int) (8 * s));
         box.addView(t);
-        TextView m = tv("Si te gusta usar StradaOS, dale una estrella en GitHub. Y si revivió tu pantalla, considera invitarme un café ☕", 14, SOFT, false);
+        TextView m = tv("Si te gusta usar EvOS, dale una estrella en GitHub. Y si revivió tu pantalla, considera invitarme un café ☕", 14, SOFT, false);
         m.setSingleLine(false);
         m.setGravity(Gravity.CENTER);
         box.addView(m);
@@ -11482,7 +11482,7 @@ public class Main extends Activity {
             .setNeutralButton("Donar", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface d, int w) {
                     prefs.edit().putBoolean("enjoy_done", true).apply();
-                    linkDialog("Apoya el proyecto ☕", "StradaOS es gratis. Las donaciones ayudan a mantenerlo.", Updates.donateUrl(Main.this));
+                    linkDialog("Apoya el proyecto ☕", "EvOS es gratis. Las donaciones ayudan a mantenerlo.", Updates.donateUrl(Main.this));
                 }
             })
             .setNegativeButton("Más tarde", new DialogInterface.OnClickListener() {
@@ -11650,7 +11650,7 @@ public class Main extends Activity {
     static final String[] APP_ORDERS = {"az", "za", "used", "installed", "manual"};
     static final String[] APP_ORDER_NAMES = {"A-Z", "Z-A", "Usadas recientemente", "Instaladas recientemente", "A mano"};
 
-    /** Anota cuándo se abrió una app desde StradaOS (para «Usadas recientemente»; se guardan las últimas 60). */
+    /** Anota cuándo se abrió una app desde EvOS (para «Usadas recientemente»; se guardan las últimas 60). */
     private void markUsed(String pkg) {
         if (pkg == null) return;
         java.util.LinkedHashMap<String, Long> m = usedApps();
@@ -11775,14 +11775,14 @@ public class Main extends Activity {
     static final int REQ_HOME = 77;
     private boolean homeAsked, homeFixing;
 
-    /** Otras pantallas de inicio instaladas (el launcher de fábrica), sin StradaOS ni la de emergencia de Ajustes. */
+    /** Otras pantallas de inicio instaladas (el launcher de fábrica), sin EvOS ni la de emergencia de Ajustes. */
     private List<ResolveInfo> otherHomes() {
         List<ResolveInfo> out = new ArrayList<ResolveInfo>();
         try {
             Intent i = new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME);
             for (ResolveInfo r : getPackageManager().queryIntentActivities(i, 0)) {
                 String p = r.activityInfo.packageName, n = r.activityInfo.name;
-                if (getPackageName().equals(p) || p.startsWith("com.stradaos.") || n.endsWith("FallbackHome")
+                if (getPackageName().equals(p) || p.startsWith("com.stradaos.") || p.startsWith("com.evos.") || n.endsWith("FallbackHome")
                         || "com.android.provision".equals(p) || r.priority < 0) continue;
                 out.add(r);
             }
@@ -11816,19 +11816,19 @@ public class Main extends Activity {
         final List<ResolveInfo> homes = otherHomes();
         if (homes.isEmpty()) {
             // sin otra pantalla de inicio, desactivar dejaría el equipo sin inicio
-            toast("No encontré otra pantalla de inicio: StradaOS no se puede desactivar en este equipo");
+            toast("No encontré otra pantalla de inicio: EvOS no se puede desactivar en este equipo");
             return;
         }
         new TB(this, dlg())
-            .setTitle("¿Desactivar StradaOS?")
-            .setMessage("StradaOS deja de ser la pantalla de inicio, ya no se abre al encender y vuelve el launcher de fábrica. No pide confirmaciones de Android, así que sirve aunque la pantalla haya quedado atrapada.\n\nPara volver a usarlo después: desinstálalo desde los ajustes de la pantalla e instálalo de nuevo.")
+            .setTitle("¿Desactivar EvOS?")
+            .setMessage("EvOS deja de ser la pantalla de inicio, ya no se abre al encender y vuelve el launcher de fábrica. No pide confirmaciones de Android, así que sirve aunque la pantalla haya quedado atrapada.\n\nPara volver a usarlo después: desinstálalo desde los ajustes de la pantalla e instálalo de nuevo.")
             .setPositiveButton("Desactivar", new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) { disableSelf(homes.get(0)); } })
             .setNegativeButton("Cancelar", null)
             .show();
     }
 
     /**
-     * Apaga StradaOS sin ventanas del sistema: desactiva sus componentes (una app puede hacerlo con los suyos sin
+     * Apaga EvOS sin ventanas del sistema: desactiva sus componentes (una app puede hacerlo con los suyos sin
      * permisos) para que Android y el firmware ya no puedan abrirlo, borra la elección «Siempre» y abre el de fábrica.
      */
     private void disableSelf(ResolveInfo home) {
@@ -11849,7 +11849,7 @@ public class Main extends Activity {
         } catch (Throwable e) { toast("No se pudo abrir el ajuste"); }
     }
 
-    /** true si StradaOS es la app que abre Android al encender y al tocar Inicio. */
+    /** true si EvOS es la app que abre Android al encender y al tocar Inicio. */
     private boolean isDefaultHome() {
         try {
             Intent i = new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME);
@@ -11860,13 +11860,13 @@ public class Main extends Activity {
         }
     }
 
-    /** Aviso: StradaOS no es la pantalla de inicio (por eso al encender aparece el menú de fábrica). */
+    /** Aviso: EvOS no es la pantalla de inicio (por eso al encender aparece el menú de fábrica). */
     private boolean askDefaultHome(final Runnable after) {
         if (isDefaultHome()) return false;
         homeAsked = true;
         new TB(this, dlg())
-            .setTitle("StradaOS aún no es tu pantalla de inicio")
-            .setMessage("Por eso al encender el carro o al tocar Inicio aparece el menú de fábrica.\n\nToca «Fijar ahora», elige StradaOS y luego «Siempre».")
+            .setTitle("EvOS aún no es tu pantalla de inicio")
+            .setMessage("Por eso al encender el carro o al tocar Inicio aparece el menú de fábrica.\n\nToca «Fijar ahora», elige EvOS y luego «Siempre».")
             .setPositiveButton("Fijar ahora", new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) { makeDefaultHome(); if (after != null) after.run(); } })
             .setNegativeButton("Ahora no", new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) { if (after != null) after.run(); } })
             .setNeutralButton("No volver a preguntar", new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) {
@@ -11881,7 +11881,7 @@ public class Main extends Activity {
         if (SDK >= 29) {
             try { if (Modern.requestHomeRole(this, REQ_HOME)) return; } catch (Throwable ignored) { }
         }
-        toast("Elige StradaOS y toca «Siempre»");
+        toast("Elige EvOS y toca «Siempre»");
         PackageManager pm = getPackageManager();
         ComponentName fake = new ComponentName(this, FakeHome.class);
         try {
@@ -11899,14 +11899,14 @@ public class Main extends Activity {
     private void homeResult() {
         if (!homeFixing) return;
         homeFixing = false;
-        if (isDefaultHome()) toast("Listo: StradaOS es tu pantalla de inicio");
+        if (isDefaultHome()) toast("Listo: EvOS es tu pantalla de inicio");
         else homeHelp();
     }
 
     private void homeHelp() {
         new TB(this, dlg())
-            .setTitle("Fijar StradaOS a mano")
-            .setMessage("Algunas pantallas no muestran la lista para elegir. Prueba así:\n\n1. Toca el botón Inicio (la casita) de la pantalla. Si pregunta qué app usar, elige StradaOS → Siempre.\n2. Si no pregunta: en los ajustes de la pantalla busca Aplicaciones → Aplicaciones predeterminadas → Pantalla de inicio (o «App de inicio») y elige StradaOS.\n3. Con Android 10 o más nuevo, no lo elijas desde el modo fábrica de la pantalla («Launcher», «Interfaz» o «UI»): en algunas marcas eso deja las demás apps sin poder abrirse. En Android 4 a 9 sí puedes usar esa opción.\n\nSi tu pantalla siempre vuelve a su menú de fábrica al encender, activa «Abrir StradaOS al encender» en Ajustes → Sistema.")
+            .setTitle("Fijar EvOS a mano")
+            .setMessage("Algunas pantallas no muestran la lista para elegir. Prueba así:\n\n1. Toca el botón Inicio (la casita) de la pantalla. Si pregunta qué app usar, elige EvOS → Siempre.\n2. Si no pregunta: en los ajustes de la pantalla busca Aplicaciones → Aplicaciones predeterminadas → Pantalla de inicio (o «App de inicio») y elige EvOS.\n3. Con Android 10 o más nuevo, no lo elijas desde el modo fábrica de la pantalla («Launcher», «Interfaz» o «UI»): en algunas marcas eso deja las demás apps sin poder abrirse. En Android 4 a 9 sí puedes usar esa opción.\n\nSi tu pantalla siempre vuelve a su menú de fábrica al encender, activa «Abrir EvOS al encender» en Ajustes → Sistema.")
             .setPositiveButton("Entendido", null)
             .show();
     }
@@ -11932,7 +11932,7 @@ public class Main extends Activity {
     private void pickFor(final String key, String name, final Runnable after) {
         List<String[]> extra = new ArrayList<String[]>();
         extra.add(new String[]{"auto", "↺  Automático (por defecto)", "restart_alt"});
-        if ("nav_app".equals(key)) extra.add(new String[]{"internal", "★  En el mapa de StradaOS (integrada)", "navigation"});
+        if ("nav_app".equals(key)) extra.add(new String[]{"internal", "★  En el mapa de EvOS (integrada)", "navigation"});
         String[] pin = "nav_app".equals(key) ? NAV_PKGS : "music_app".equals(key) ? MUSIC_PKGS : null;
         pickApp("¿Qué app abre «" + name + "»?", extra, pin, true, new TargetCb() { public void on(String target) {
             if ("auto".equals(target)) {
@@ -12063,7 +12063,7 @@ public class Main extends Activity {
         if (SDK >= 26) {
             try {
                 if (Modern.canInstall(this)) return true;
-                toast("Permite «Instalar apps desconocidas» para StradaOS y vuelve a tocar.");
+                toast("Permite «Instalar apps desconocidas» para EvOS y vuelve a tocar.");
                 return false;
             } catch (Throwable e) { return true; }
         }
@@ -12116,7 +12116,7 @@ public class Main extends Activity {
     }
 
     /**
-     * true si el APK es StradaOS (mismo paquete) y, cuando el equipo deja leer la firma, está firmado con la misma
+     * true si el APK es EvOS (mismo paquete) y, cuando el equipo deja leer la firma, está firmado con la misma
      * llave que la app instalada. Si la firma no se puede leer, Android igual exige la misma llave para actualizar
      * un paquete ya instalado, así que basta con que el paquete coincida.
      */
@@ -12704,7 +12704,7 @@ public class Main extends Activity {
             int nc = Obd.dtcs.size();
             for (String x : Obd.pending) if (!Obd.dtcs.contains(x)) nc++;
             LinearLayout dg = section(body, "Diagnóstico");
-            row(dg, "Alertas", "Qué vigila StradaOS y cuándo avisa por voz",
+            row(dg, "Alertas", "Qué vigila EvOS y cuándo avisa por voz",
                 al.isEmpty() ? I18n.t("Todo normal") : I18n.t(al.size() == 1 ? "1 activa" : al.size() + " activas"), obdGo("obd_alerts"));
             row(dg, "Códigos de falla", "Qué significan y qué hacer; borrarlos con el motor apagado",
                 nc == 0 ? I18n.t(Obd.lastDtcCheck > 0 ? "Ninguno" : "—") : String.valueOf(nc), obdGo("obd_codes"));
@@ -12717,7 +12717,7 @@ public class Main extends Activity {
             LinearLayout c = section(body, "Escáner");
             row(c, "Escáner", "Bluetooth emparejado, Wi-Fi (IP y puerto), cable USB o un auto simulado para probar", ObdDialogs.deviceName(this),
                 new Runnable() { public void run() { d.pickAdapter(); } });
-            row(c, "Buscar escáneres Bluetooth cercanos", "Empareja el escáner sin salir de StradaOS (clave 1234 o 0000)", null,
+            row(c, "Buscar escáneres Bluetooth cercanos", "Empareja el escáner sin salir de EvOS (clave 1234 o 0000)", null,
                 new Runnable() { public void run() { d.discover(); } });
             // 2.31 (#51): escáner por cable USB (pantallas cuyo Bluetooth no ve el escáner, como muchas FYT)
             row(c, "Escáner por cable USB", "Cable ELM327 USB (chips CH340, FTDI, PL2303 o CP2102)", null,
@@ -12725,7 +12725,7 @@ public class Main extends Activity {
             liveRow(c, "Conexión", null, "status", new Runnable() { public void run() { d.reconnect(); } });
             row(c, "Reconectar", null, null, new Runnable() { public void run() { d.reconnect(); } });
             LinearLayout o = section(body, "Al encender");
-            toggle(o, "Conectar al iniciar StradaOS", "Las alertas funcionan aunque estés en otra app (con una notificación fija)",
+            toggle(o, "Conectar al iniciar EvOS", "Las alertas funcionan aunque estés en otra app (con una notificación fija)",
                 prefs.getBoolean("obd_autostart", true), new IntCb() { public void on(int i) {
                     prefs.edit().putBoolean("obd_autostart", i == 1).apply(); showSettings(C_VEHICLE); }});
             LinearLayout h2 = section(body, "Ayuda");
@@ -12822,7 +12822,7 @@ public class Main extends Activity {
             final boolean multiBad = prefs.getString("obd_multi_bad", "").length() > 0
                 && prefs.getString("obd_multi_bad", "").equals(prefs.getString("obd_addr", "demo"));
             toggle(m, "Leer varios datos por consulta", multiBad
-                    ? "Tu escáner no lo entiende: StradaOS lee de a un dato. Actívalo para volver a probar"
+                    ? "Tu escáner no lo entiende: EvOS lee de a un dato. Actívalo para volver a probar"
                     : "Más rápido. Apágalo si tu escáner se desconecta a cada rato",
                 prefs.getBoolean("obd_multi", true) && !multiBad, new IntCb() { public void on(int i) {
                     prefs.edit().putBoolean("obd_multi", i == 1).remove("obd_multi_bad").apply();
@@ -12831,9 +12831,9 @@ public class Main extends Activity {
             toggle(ve, "Usar la velocidad del escáner", "Con el escáner conectado, el inicio muestra la velocidad del carro en vez de la del GPS: más exacta y sin retraso",
                 prefs.getBoolean("obd_speed", true), new IntCb() { public void on(int i) {
                     prefs.edit().putBoolean("obd_speed", i == 1).apply(); showSpeed(); showSettings(C_VEHICLE); }});
-            // Solo en StradaOS Prueba: ver el velocímetro con el auto simulado, para probar sin escáner
+            // Solo en EvOS Prueba: ver el velocímetro con el auto simulado, para probar sin escáner
             if (getPackageName().endsWith(".debug"))
-                toggle(ve, "Prueba: usar también el auto simulado", "Solo en StradaOS Prueba. Elige «Auto simulado» en Conexión y mira el inicio",
+                toggle(ve, "Prueba: usar también el auto simulado", "Solo en EvOS Prueba. Elige «Auto simulado» en Conexión y mira el inicio",
                     prefs.getBoolean("obd_speed_demo", false), new IntCb() { public void on(int i) {
                         prefs.edit().putBoolean("obd_speed_demo", i == 1).apply(); showSpeed(); showSettings(C_VEHICLE); }});
             LinearLayout pn = section(body, "Panel del vehículo");

@@ -83,7 +83,7 @@ public class Diag {
                 bw.println("  " + r.service.flattenToShortString() + (r.foreground ? " [primer plano]" : "") + (r.started ? " [iniciado]" : "") + " clientes=" + r.clientCount);
             }
             bw.println();
-            bw.println("Eventos Bluetooth de StradaOS:");
+            bw.println("Eventos Bluetooth de EvOS:");
             bw.println(BtBridge.logText());
             bw.println();
             bw.println(Hcn.report());

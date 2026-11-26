@@ -20,7 +20,7 @@ import java.lang.reflect.Proxy;
  * no pone la canción en su MediaSession, pero el sistema trae un servicio propio, «sourceinfo» (clases
  * android.sourceservice.*), que dice qué fuente suena y, para archivos locales, la ruta del archivo, el estado
  * («start», «paused», «stopped»), la duración y el tiempo. El launcher de fábrica lee las etiquetas del archivo
- * (título, artista, carátula) y StradaOS hace lo mismo.
+ * (título, artista, carátula) y EvOS hace lo mismo.
  *
  * Todo va por reflexión: en cualquier otra pantalla la clase no existe, start() devuelve false y no hace nada más.
  * Solo se lee; nunca se le manda nada al servicio (ni se pide audio ni se tocan los efectos).
@@ -102,7 +102,7 @@ class Hcn {
                     } else if ("equals".equals(n)) {
                         return a != null && a.length > 0 && p == a[0];
                     } else if ("toString".equals(n)) {
-                        return "StradaOS";
+                        return "EvOS";
                     }
                     return null;
                 }
@@ -157,7 +157,7 @@ class Hcn {
         boolean newFile = !file.equals(curFile);
         boolean newState = state == null ? curState != null : !state.equals(curState);
         // ¿El tiempo que da el servicio está vivo? Si no cambió desde la lectura anterior, es el de la última orden
-        // (empezar, pausa, adelantar) y no sirve para corregir: StradaOS sigue contando el suyo.
+        // (empezar, pausa, adelantar) y no sirve para corregir: EvOS sigue contando el suyo.
         boolean posFresh = event || newFile || (pos >= 0 && pos != rawPos);
         if (pos != rawPos) { rawPos = pos; rawAt = now; }
         curState = state;
@@ -260,7 +260,7 @@ class Hcn {
         return l;
     }
 
-    // ── pruebas (solo StradaOS Prueba): «hcn-sim:ruta,estado,posición_s,duración_s» ──
+    // ── pruebas (solo EvOS Prueba): «hcn-sim:ruta,estado,posición_s,duración_s» ──
     static class Fake {
         public String className = "com.hcn.MediaActivity.MusicPlayerUiActivity", fileName, state;
         public int duration, position;

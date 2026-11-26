@@ -11,7 +11,7 @@ import android.graphics.Shader;
 import android.view.View;
 
 /**
- * Tema premium «Aurora» (2.24, Bloque 14, fase 2). Diseño propio de StradaOS: fondo oscuro o claro con un arco de
+ * Tema premium «Aurora» (2.24, Bloque 14, fase 2). Diseño propio de EvOS: fondo oscuro o claro con un arco de
  * color difuminado (el acento y un violeta) y grano fino, tarjetas translúcidas y barra tipo píldora.
  *
  * Todo se dibuja en código y una sola vez: el fondo se pinta a media resolución en un Bitmap (con el grano ya puesto)
@@ -24,7 +24,7 @@ final class Aurora {
     static final String ID = "aurora";
     static final int VIOLET = 0xFF7C5CFF;
 
-    // Colores propios del tema (el resto de StradaOS sigue con su paleta normal: Ajustes, ventanas, etc.)
+    // Colores propios del tema (el resto de EvOS sigue con su paleta normal: Ajustes, ventanas, etc.)
     static int base(boolean light) { return light ? 0xFFE6DFEE : 0xFF110E17; }
     static int glass(boolean light) { return light ? 0x8CFFFFFF : 0x1FFFFFFF; }
     static int glassEdge(boolean light) { return light ? 0xCCFFFFFF : 0x26FFFFFF; }

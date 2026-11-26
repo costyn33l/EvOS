@@ -13,7 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Idiomas de StradaOS (español, inglés, portugués, italiano, alemán, malayo, árabe, turco, francés, chino, húngaro, polaco, ruso). El código se escribe en español y cada texto se traduce al
+ * Idiomas de EvOS (rumano —el predeterminado—, español, inglés, portugués, italiano, alemán, malayo, árabe, turco, francés, chino, húngaro, polaco, ruso). El código se escribe en español y cada texto se traduce al
  * mostrarse (tv(), toast(), ventanas TB, etc.) buscándolo en assets/i18n/LANG.txt.
  *
  * Formato del archivo: una línea por texto, «español<TAB>traducción». «\n» representa un salto de línea.
@@ -21,17 +21,17 @@ import java.util.regex.Pattern;
  * tabla. En la traducción, {1}, {2}… permiten cambiar el orden. Si un texto no está en la tabla queda en español.
  */
 public class I18n {
-    static final String[] CODES = {"es", "en", "pt", "it", "de", "ms", "ar", "tr", "fr", "zh", "hu", "pl", "ru"};
-    static final String[] NAMES = {"Español", "English", "Português", "Italiano", "Deutsch", "Melayu", "العربية", "Türkçe", "Français", "中文", "Magyar", "Polski", "Русский"};
+    static final String[] CODES = {"ro", "es", "en", "pt", "it", "de", "ms", "ar", "tr", "fr", "zh", "hu", "pl", "ru"};
+    static final String[] NAMES = {"Română", "Español", "English", "Português", "Italiano", "Deutsch", "Melayu", "العربية", "Türkçe", "Français", "中文", "Magyar", "Polski", "Русский"};
 
-    static String lang = "es";
-    static Locale loc = new Locale("es", "CO");
+    static String lang = "ro";
+    static Locale loc = new Locale("ro", "RO");
     /** Locale de los números: en árabe se usan dígitos latinos (0-9), no ٠-٩. */
     static Locale num = loc;
     private static final HashMap<String, String> map = new HashMap<String, String>();
     private static final List<Pat> pats = new ArrayList<Pat>();
     private static final HashMap<String, String> cache = new HashMap<String, String>();
-    /** Solo en StradaOS Prueba: anota en el logcat (StradaI18n) cada texto que quedó sin traducir. */
+    /** Solo en EvOS Prueba: anota en el logcat (StradaI18n) cada texto que quedó sin traducir. */
     private static boolean audit;
     private static final java.util.HashSet<String> missed = new java.util.HashSet<String>();
     private static final java.util.regex.Pattern WORD = java.util.regex.Pattern.compile("[a-záéíóúñ]{3,}");
@@ -46,17 +46,17 @@ public class I18n {
     static String pref(SharedPreferences p) {
         String v = p.getString("lang", null);
         if (v == null) {
-            v = p.getBoolean("setup_done", false) ? "es" : "auto";
+            v = "ro";   // EvOS: rumano de fábrica (se cambia en Ajustes)
             p.edit().putString("lang", v).apply();
         }
         return v;
     }
 
-    /** Idioma del sistema si es uno de los disponibles; si no, inglés. */
+    /** Idioma del sistema si es uno de los disponibles; si no, rumano. */
     static String system() {
         String l = Locale.getDefault().getLanguage();
         for (String c : CODES) if (c.equals(l)) return l;
-        return "en";
+        return "ro";
     }
 
     static void init(Context c, SharedPreferences p) {
@@ -65,7 +65,7 @@ public class I18n {
     }
 
     static synchronized void set(Context c, String code) {
-        if (code == null) code = "es";
+        if (code == null) code = "ro";
         lang = code;
         audit = c != null && c.getPackageName().endsWith(".debug");
         missed.clear();
@@ -75,6 +75,7 @@ public class I18n {
             : "tr".equals(code) ? new Locale("tr", "TR") : "fr".equals(code) ? Locale.FRANCE
             : "zh".equals(code) ? Locale.SIMPLIFIED_CHINESE : "hu".equals(code) ? new Locale("hu", "HU")
             : "pl".equals(code) ? new Locale("pl", "PL") : "ru".equals(code) ? new Locale("ru", "RU")
+            : "ro".equals(code) ? new Locale("ro", "RO")
             : new Locale("es", "CO");
         num = "ar".equals(code) ? Locale.US : loc;
         map.clear();
@@ -229,7 +230,7 @@ public class I18n {
         if ("ar".equals(lang)) return "EEEE، d MMMM";
         if ("zh".equals(lang)) return "EEEE, M月d日";
         if ("hu".equals(lang)) return "MMMM d., EEEE";
-        if ("pl".equals(lang) || "ru".equals(lang)) return "EEEE, d MMMM";
+        if ("pl".equals(lang) || "ru".equals(lang) || "ro".equals(lang)) return "EEEE, d MMMM";
         return "EEEE, d 'de' MMMM";
     }
 }

@@ -9,7 +9,7 @@ import android.os.SystemClock;
 /**
  * Android 5+ (solo se llama ahí): la canción que manda el Bluetooth del sistema (AVRCP) en el aviso
  * «android.bluetooth.avrcp-controller.profile.action.TRACK_EVENT». Trae la canción como MediaMetadata y el estado
- * como PlaybackState (no como textos), por eso antes StradaOS lo recibía pero no lo entendía (issue #5: pantallas
+ * como PlaybackState (no como textos), por eso antes EvOS lo recibía pero no lo entendía (issue #5: pantallas
  * HCN con el celular por Bluetooth o con Android Auto inalámbrico por ZLink, que manda la canción por AVRCP).
  */
 class AvrcpMeta {
@@ -58,7 +58,7 @@ class AvrcpMeta {
         return v.length() == 0 || "Not Provided".equalsIgnoreCase(v) || "unknown".equalsIgnoreCase(v) ? null : v;
     }
 
-    /** Pruebas (StradaOS Prueba): arma el mismo aviso que manda el sistema. estado: 3 sonando, 2 en pausa. */
+    /** Pruebas (EvOS Prueba): arma el mismo aviso que manda el sistema. estado: 3 sonando, 2 en pausa. */
     static Intent testIntent(String title, String artist, int state, long posMs, long durMs) {
         Intent i = new Intent(ACTION);
         if (title != null) {

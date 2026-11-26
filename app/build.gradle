@@ -11,14 +11,14 @@ android {
     compileSdk 35
 
     defaultConfig {
-        applicationId 'com.stradaos.launcher'
+        applicationId 'com.evos.launcher'
         // Android 4.1+: el objetivo del proyecto es revivir pantallas de carro antiguas.
         minSdk 16
         // 28 a propósito: mantiene el comportamiento probado en pantallas viejas y nuevas.
         targetSdk 28
-        versionCode 74
-        versionName '2.37.0'
-        manifestPlaceholders = [appLabel: 'StradaOS']
+        versionCode 1
+        versionName '1.0.0'
+        manifestPlaceholders = [appLabel: 'EvOS']
     }
 
     signingConfigs {
@@ -43,8 +43,8 @@ android {
         // con la misma llave que la normal para que cada prueba nueva se instale encima de la anterior.
         debug {
             applicationIdSuffix '.debug'
-            versionNameSuffix '-prueba'
-            manifestPlaceholders = [appLabel: 'StradaOS Prueba']
+            versionNameSuffix '-test'
+            manifestPlaceholders = [appLabel: 'EvOS Test']
             if (ksPath) signingConfig signingConfigs.release
         }
     }
@@ -67,7 +67,7 @@ android {
 
     applicationVariants.configureEach { variant ->
         variant.outputs.configureEach {
-            outputFileName = "StradaOS-${variant.versionName}.apk"
+            outputFileName = "EvOS-${variant.versionName}.apk"
         }
     }
 }

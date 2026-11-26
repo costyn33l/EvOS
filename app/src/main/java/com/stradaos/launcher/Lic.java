@@ -24,7 +24,7 @@ import java.util.Locale;
  *
  * Cada pantalla tiene un ID corto (XXXX-XXXX) que la persona escribe en el mensaje de su donación en Ko-fi.
  * Andrés corre la Action «Licencia» con ese ID: crea un código STRD-XXXX-XXXX y una licencia firmada con la
- * llave de publicación de StradaOS (la misma del APK, guardada en los secretos de GitHub) en la rama «licencias».
+ * llave de publicación de EvOS (la misma del APK, guardada en los secretos de GitHub) en la rama «licencias».
  * La app solo trae la llave pública: con el código baja su licencia una vez (o la lee de una USB) y la guarda.
  *
  * Licencia:   STRADAOS-LIC-1 / id=XXXXXXXX / temas=faro / fecha=AAAA-MM-DD / firma=base64
@@ -174,7 +174,7 @@ final class Lic {
         ArrayList<File> dirs = new ArrayList<File>();
         for (File r : roots) {
             dirs.add(r);
-            dirs.add(new File(r, "StradaOS"));
+            dirs.add(new File(r, "EvOS"));
             dirs.add(new File(r, "Download"));
         }
         ArrayList<String> got = new ArrayList<String>();

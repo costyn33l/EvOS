@@ -1,7 +1,7 @@
-# StradaOS · Guía del escáner OBD-II · español. Formato: ver ObdGuide.java.
+# EvOS · Guía del escáner OBD-II · español. Formato: ver ObdGuide.java.
 
 == comprar | Qué escáner comprar | Los que sirven y los que debes evitar
-StradaOS habla con escáneres ELM327, el tipo más común y económico. Se conectan por Bluetooth o por Wi-Fi.
+EvOS habla con escáneres ELM327, el tipo más común y económico. Se conectan por Bluetooth o por Wi-Fi.
 ### Sirven
 - Bluetooth «clásico» (también dice SPP, Bluetooth 2.0 o 3.0) o de doble modo. Recomendados: Vgate iCar Pro (versión Bluetooth 3.0), Veepeak Mini Bluetooth, OBDLink LX y OBDLink MX+.
 - Wi-Fi: también sirven, pero mientras la pantalla esté conectada a la red del escáner se queda sin internet (mapa en línea, clima, IA).
@@ -40,8 +40,8 @@ El panel sale del lado del conductor: ábrelo con la pestaña del borde, con un 
 Debajo hay tres datos chicos (por ejemplo velocidad, carga del motor o combustible): tócalos para ver su gráfico. Más abajo salen las alertas activas y los códigos de falla.
 >> panel | Abrir el panel del vehículo
 
-== alertas | Las alertas y sus límites | Cuándo avisa StradaOS y cómo cambiarlo
-StradaOS vigila los datos mientras conduces y avisa en pantalla y por voz, aunque estés en Waze o con música.
+== alertas | Las alertas y sus límites | Cuándo avisa EvOS y cómo cambiarlo
+EvOS vigila los datos mientras conduces y avisa en pantalla y por voz, aunque estés en Waze o con música.
 - Aviso (ámbar): algo se sale de lo normal; por ejemplo, el refrigerante sobre 100 °C.
 - Alerta (rojo): hay que actuar; por ejemplo, el refrigerante sobre 106 °C o la batería que no carga. Si lo tienes activado, el panel se abre solo.
 - También avisa si el refrigerante sube muy rápido y cuando aparece un código de falla nuevo.
@@ -67,21 +67,21 @@ Toca un código para ver qué significa, qué tan grave es y qué hacer.
 En Datos en vivo ves cada dato que entrega tu auto: velocidad, carga del motor, acelerador, temperatura del aire, combustible, mezcla y más. Cada auto entrega datos distintos: si uno no aparece, tu auto no lo da.
 - Toca un dato para abrir su gráfico.
 - En los gráficos ves hasta 3 datos a la vez, de 1 a 30 minutos.
-- Los que dicen «calculado» los saca StradaOS de otros datos (por ejemplo, el consumo). Son aproximados.
+- Los que dicen «calculado» los saca EvOS de otros datos (por ejemplo, el consumo). Son aproximados.
 Consejo: si tu motor no tiene sensor MAF, escribe su cilindrada en Avanzado para que el consumo salga mejor.
 >> obd_live | Ir a Datos en vivo
 
 == ia | Activar la IA, paso a paso | Opcional: explica los códigos para tu auto
-La IA es opcional: sin ella, StradaOS ya explica los códigos más comunes. Con ella, la explicación es para tu auto en particular. Necesitas una clave (API key) propia y que la pantalla tenga internet.
+La IA es opcional: sin ella, EvOS ya explica los códigos más comunes. Con ella, la explicación es para tu auto en particular. Necesitas una clave (API key) propia y que la pantalla tenga internet.
 ### Groq (gratis)
 - Entra a console.groq.com e inicia sesión con Google o con tu correo. No pide tarjeta.
 - Ve a «API Keys» → «Create API Key», ponle un nombre y copia la clave (empieza por gsk_). Solo se muestra una vez.
-- En StradaOS: Inteligencia artificial → Proveedor: Groq → API key: pégala.
+- En EvOS: Inteligencia artificial → Proveedor: Groq → API key: pégala.
 Consejo: hazlo en el navegador de la misma pantalla para copiar y pegar la clave. Si lo haces en el celular, tendrás que escribirla con cuidado.
 ### Claude u OpenAI (de pago)
 - Claude: platform.claude.com → Settings → API keys. Antes compra créditos en Billing.
 - OpenAI: platform.openai.com → API keys. También funciona con créditos prepagados.
-- En StradaOS elige el proveedor, pega la clave y, si te lo pide, elige el modelo.
+- En EvOS elige el proveedor, pega la clave y, si te lo pide, elige el modelo.
 ### Para terminar
 - Escribe «Tu vehículo (para la IA)»: marca, modelo, año, motor y caja. Así la respuesta es más precisa.
 - Toca «Probar la IA». Si responde, ya está.

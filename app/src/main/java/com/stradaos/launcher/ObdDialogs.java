@@ -115,7 +115,7 @@ class ObdDialogs {
             .setNegativeButton(I18n.t("Cancelar"), null).show();
     }
 
-    /** 2.31 (#51): cable USB elegido. Android pide permiso para usarlo (una ventana); StradaOS espera la respuesta. */
+    /** 2.31 (#51): cable USB elegido. Android pide permiso para usarlo (una ventana); EvOS espera la respuesta. */
     void chooseUsb(android.hardware.usb.UsbDevice dev) {
         UsbSerial.askPermission(a, dev);
         choose(UsbSerial.addr(dev), "USB · " + UsbSerial.chipName(UsbSerial.chip(dev)));
@@ -145,7 +145,7 @@ class ObdDialogs {
         done();
     }
 
-    // ── buscar escáneres cercanos y emparejarlos sin salir de StradaOS ──
+    // ── buscar escáneres cercanos y emparejarlos sin salir de EvOS ──
 
     private android.content.BroadcastReceiver btRx;
     private AlertDialog btDlg;

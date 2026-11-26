@@ -1,4 +1,4 @@
-# StradaOS · traducción hu (magyar). Formato: español<TAB>traducción. Ver I18n.java.
+# EvOS · traducción hu (magyar). Formato: español<TAB>traducción. Ver I18n.java.
 Radio	Rádió
 Cámara	Kamera
 Archivos	Fájlok
@@ -33,7 +33,7 @@ Restablecer ({})	Visszaállítás ({})
 Botón restablecido	Gomb visszaállítva
 Cerrar	Bezárás
 Cerrar  ✕	Bezárás  ✕
-★  Funciones de StradaOS (Música, Navegación, Android Auto…)	★  StradaOS-funkciók (Zene, Navigáció, Android Auto…)
+★  Funciones de EvOS (Música, Navegación, Android Auto…)	★  EvOS-funkciók (Zene, Navigáció, Android Auto…)
 ¿Qué abre el botón {}?	Mit nyisson meg a(z) {}. gomb?
 Función del botón {}	{}. gomb funkciója
 Nombre del botón {} (vacío = el de la app)	{}. gomb neve (üres = az alkalmazás neve)
@@ -49,7 +49,7 @@ Buenas tardes	Szép napot
 Buenas noches	Szép estét
 Diagnóstico del reproductor	Lejátszó-diagnosztika
 Accesibilidad	Kisegítő lehetőségek
-Activa «Carátula de Android Auto» (StradaOS)	Kapcsold be az „Android Auto albumborító” (StradaOS) lehetőséget
+Activa «Carátula de Android Auto» (EvOS)	Kapcsold be az „Android Auto albumborító” (EvOS) lehetőséget
 No se pudo abrir Accesibilidad	Nem sikerült megnyitni a Kisegítő lehetőségeket
 Activa «Pista actual de AA» en Open Headunit	Kapcsold be az „AA current track” opciót az Open Headunitban
 «Ninguna aplic. funciona con este accesorio USB»	„Egyik telepített alkalmazás sem működik ezzel az USB-tartozékkal”
@@ -58,7 +58,7 @@ Abrir EasyConnection	EasyConnection megnyitása
 No hay apps de espejo instaladas	Nincs telepített tükrözőalkalmazás
 Exportando… puede tardar un minuto	Exportálás… ez egy percig is eltarthat
 Diagnóstico listo	A diagnosztika elkészült
-Se guardó en:\n{}\n\nCopia la carpeta StradaDiag a una memoria USB y adjúntala en un «issue» del repositorio de StradaOS en GitHub.	Mentve ide:\n{}\n\nMásold a StradaDiag mappát egy pendrive-ra, és csatold egy hibajegyhez (issue) a StradaOS GitHub-tárolójában.
+Se guardó en:\n{}\n\nCopia la carpeta StradaDiag a una memoria USB y adjúntala en un «issue» del repositorio de EvOS en GitHub.	Mentve ide:\n{}\n\nMásold a StradaDiag mappát egy pendrive-ra, és csatold egy hibajegyhez (issue) a EvOS GitHub-tárolójában.
 12 horas	12 órás
 24 horas	24 órás
 Automático	Automatikus
@@ -66,7 +66,7 @@ Automática	Automatikus
 Auto	Auto
 12 horas (a.m./p.m.)	12 órás (de./du.)
 Formato de hora	Időformátum
-Se aplicará al reiniciar StradaOS	A StradaOS újraindításakor lép életbe
+Se aplicará al reiniciar EvOS	A EvOS újraindításakor lép életbe
 Rojo	Piros
 Naranja	Narancs
 Amarillo	Sárga
@@ -76,7 +76,7 @@ Azul	Kék
 Morado	Lila
 Rosa	Rózsaszín
 Plata	Ezüst
-Bienvenido a StradaOS	Üdvözöl a StradaOS
+Bienvenido a EvOS	Üdvözöl a EvOS
 Vamos a dejar el launcher a tu gusto: tu nombre, tu vehículo, el color y la foto. Toma menos de un minuto y lo puedes cambiar después en el engranaje ⚙.	Állítsuk be a launchert ízlésed szerint: a neved, a járműved, a szín és a fotó. Kevesebb mint egy perc, és később a fogaskerékkel ⚙ bármikor módosíthatod.
 Empezar	Kezdés
 ¿Cómo te llamas?	Mi a neved?
@@ -214,7 +214,7 @@ Audio Bluetooth	Bluetooth-hang
 Volver al Bluetooth al desconectar Android Auto	Vissza a Bluetooth-ra, amikor az Android Auto leválik
 Al quitar el cable, abre un instante la app de música Bluetooth para que el sonido siga por Bluetooth	A kábel kihúzásakor rövid időre megnyitja a Bluetooth-zene alkalmazást, hogy a hang tovább szóljon Bluetooth-on
 Escuchar el Bluetooth	Bluetooth hallgatása
-En esta pantalla, toca ▶ en el inicio: StradaOS pasa el sonido a Bluetooth (por ejemplo, si venías de la radio)	Ezen a kijelzőn koppints a ▶ gombra a kezdőképernyőn: a StradaOS Bluetooth-ra váltja a hangot (például a rádióról)
+En esta pantalla, toca ▶ en el inicio: EvOS pasa el sonido a Bluetooth (por ejemplo, si venías de la radio)	Ezen a kijelzőn koppints a ▶ gombra a kezdőképernyőn: a EvOS Bluetooth-ra váltja a hangot (például a rádióról)
 Pasar a Bluetooth al dar play en el celular (en prueba)	Váltás Bluetooth-ra, ha a telefonon elindítod a lejátszást (béta)
 Abre un instante «Audio Bluetooth» y vuelve. En algunas pantallas no detecta el play del celular	Rövid időre megnyitja a „Bluetooth audio” alkalmazást, majd visszatér. Egyes kijelzők nem érzékelik a telefonon indított lejátszást
 Probar ahora	Kipróbálás most
@@ -271,7 +271,7 @@ Si la pantalla lo trae	Ha a kijelzőn van
 no detectado	nem észlelhető
 Pantalla con CarPlay o adaptador USB	CarPlay-es kijelző vagy USB-adapter
 Mapa con internet seguro (TLS 1.2)	Térkép biztonságos internettel (TLS 1.2)
-Android 4.1+ (StradaOS lo activa)	Android 4.1+ (a StradaOS bekapcsolja)
+Android 4.1+ (EvOS lo activa)	Android 4.1+ (a EvOS bekapcsolja)
 en Android 4.x solo algunos servidores de mapas responden	Android 4.x-en csak néhány térképszerver válaszol
 Instalar actualizaciones desde la app	Frissítések telepítése az alkalmazásból
 pide permiso «Instalar apps desconocidas»	„Ismeretlen alkalmazások telepítése” engedélyt kér
@@ -283,7 +283,7 @@ Gratis y de código abierto. Una nueva vida para las pantallas Android del carro
 Versión	Verzió
 Android de la pantalla	A kijelző Android-verziója
 Real: {} · ver qué funciona aquí	Valójában: {} · nézd meg, mi működik itt
-Cierres inesperados o bloqueos de StradaOS en esta pantalla	A StradaOS váratlan összeomlásai vagy lefagyásai ezen a kijelzőn
+Cierres inesperados o bloqueos de EvOS en esta pantalla	A EvOS váratlan összeomlásai vagy lefagyásai ezen a kijelzőn
 Sin fallos	Nincs összeomlás
 Ver	Megtekintés
 Actualizaciones	Frissítések
@@ -292,9 +292,9 @@ Las actualizaciones llegan por esa app	A frissítések azon az alkalmazáson ker
 Avisar también de versiones en GitHub	A GitHubon megjelent verziókról is értesítsen
 Comprobar actualizaciones automáticamente	Frissítések automatikus keresése
 Opcional: las descargas de GitHub no pasan por la revisión de la tienda	Opcionális: a GitHubról letöltött fájlok nem mennek át az áruház ellenőrzésén
-Al abrir StradaOS con internet, una vez al día	Amikor a StradaOS internettel nyílik meg, naponta egyszer
+Al abrir EvOS con internet, una vez al día	Amikor a EvOS internettel nyílik meg, naponta egyszer
 Actualizaciones desde GitHub	Frissítések a GitHubról
-Instalaste StradaOS desde {}. Si activas esto, StradaOS revisará una vez al día las versiones publicadas en github.com/{} y te ofrecerá descargarlas desde ahí.\n\nEsas descargas no pasan por la revisión de la tienda. Puede que GitHub tenga una versión un poco antes que la tienda.	A StradaOS-t innen telepítetted: {}. Ha ezt bekapcsolod, a StradaOS naponta egyszer megnézi a github.com/{} oldalon közzétett verziókat, és felajánlja a letöltésüket onnan.\n\nEzek a letöltések nem mennek át az áruház ellenőrzésén. A GitHubon egy verzió valamivel az áruház előtt is megjelenhet.
+Instalaste EvOS desde {}. Si activas esto, EvOS revisará una vez al día las versiones publicadas en github.com/{} y te ofrecerá descargarlas desde ahí.\n\nEsas descargas no pasan por la revisión de la tienda. Puede que GitHub tenga una versión un poco antes que la tienda.	A EvOS-t innen telepítetted: {}. Ha ezt bekapcsolod, a EvOS naponta egyszer megnézi a github.com/{} oldalon közzétett verziókat, és felajánlja a letöltésüket onnan.\n\nEzek a letöltések nem mennek át az áruház ellenőrzésén. A GitHubon egy verzió valamivel az áruház előtt is megjelenhet.
 Activar	Bekapcsolás
 Canal de actualizaciones	Frissítési csatorna
 Buscar actualizaciones	Frissítések keresése
@@ -302,13 +302,13 @@ Aún no se ha comprobado	Még nem volt ellenőrizve
 Última comprobación: {}	Utolsó ellenőrzés: {}
 Comunidad	Közösség
 Dar una estrella en GitHub	Adj csillagot a GitHubon
-Ayuda a que más personas encuentren StradaOS	Segít, hogy többen megtalálják a StradaOS-t
+Ayuda a que más personas encuentren EvOS	Segít, hogy többen megtalálják a EvOS-t
 Dar una estrella ⭐	Adj egy csillagot ⭐
 Abre el repositorio y toca «Star». ¡Gracias!	Nyisd meg a tárolót, és koppints a „Star” gombra. Köszönjük!
 Donar	Adományozás
-Si StradaOS revivió tu pantalla, invítame un café	Ha a StradaOS új életet adott a kijelződnek, hívj meg egy kávéra
+Si EvOS revivió tu pantalla, invítame un café	Ha a EvOS új életet adott a kijelződnek, hívj meg egy kávéra
 Apoya el proyecto ☕	A projekt támogatása ☕
-StradaOS es gratis. Las donaciones ayudan a mantenerlo y a probarlo en más pantallas.	A StradaOS ingyenes. Az adományok segítenek a karbantartásában és a további kijelzőkön való tesztelésében.
+EvOS es gratis. Las donaciones ayudan a mantenerlo y a probarlo en más pantallas.	A EvOS ingyenes. Az adományok segítenek a karbantartásában és a további kijelzőkön való tesztelésében.
 Reportar un problema o sugerir algo	Hiba bejelentése vagy javaslat
 Crea un «issue» en GitHub (adjunta el diagnóstico)	Hozz létre egy hibajegyet (issue) a GitHubon (csatold a diagnosztikát)
 Reportar un problema	Hiba bejelentése
@@ -336,7 +336,7 @@ error de red	hálózati hiba
 tu tienda de apps	az alkalmazásáruházad
 Tienes la {} · nueva: {}	Telepítve: {} · új: {}
 Mejoras y correcciones.	Fejlesztések és javítások.
-Nueva versión de StradaOS	Új StradaOS-verzió
+Nueva versión de EvOS	Új EvOS-verzió
 Tienes la {} · en GitHub: {}\nActualiza desde {} cuando llegue. Descargar de GitHub omite la revisión de la tienda.	Telepítve: {} · a GitHubon: {}\nFrissíts innen: {}, amikor megérkezik. A GitHubról letöltve kimarad az áruház ellenőrzése.
 Ver en GitHub	Megtekintés a GitHubon
 Descarga desde GitHub:	Letöltés a GitHubról:
@@ -344,13 +344,13 @@ Descargar e instalar	Letöltés és telepítés
 Descarga la nueva versión desde:	Töltsd le az új verziót innen:
 Omitir esta versión	Ezt a verziót kihagyom
 Más tarde	Később
-Descargando StradaOS {}…	StradaOS {} letöltése…
+Descargando EvOS {}…	EvOS {} letöltése…
 Descárgala desde tu celular	Töltsd le a telefonodról
 Esta pantalla no pudo descargar el archivo. Escanea el código, descarga el APK y pásalo por USB.	Ez a kijelző nem tudta letölteni a fájlt. Olvasd be a kódot, töltsd le az APK-t, és másold át USB-n.
-¿Disfrutando StradaOS?	Tetszik a StradaOS?
-Si te gusta usar StradaOS, dale una estrella en GitHub. Y si revivió tu pantalla, considera invitarme un café ☕	Ha szívesen használod a StradaOS-t, adj neki egy csillagot a GitHubon. És ha új életet adott a kijelződnek, hívj meg egy kávéra ☕
+¿Disfrutando EvOS?	Tetszik a EvOS?
+Si te gusta usar EvOS, dale una estrella en GitHub. Y si revivió tu pantalla, considera invitarme un café ☕	Ha szívesen használod a EvOS-t, adj neki egy csillagot a GitHubon. És ha új életet adott a kijelződnek, hívj meg egy kávéra ☕
 Dar una estrella	Csillag adása
-StradaOS es gratis. Las donaciones ayudan a mantenerlo.	A StradaOS ingyenes. Az adományok segítenek a karbantartásában.
+EvOS es gratis. Las donaciones ayudan a mantenerlo.	A EvOS ingyenes. Az adományok segítenek a karbantartásában.
 Escanéalo con la cámara de tu celular o entra a:	Olvasd be a telefonod kamerájával, vagy nyisd meg:
 Abrir aquí	Megnyitás itt
 No hay navegador disponible	Nincs elérhető böngésző
@@ -373,7 +373,7 @@ Conexión: {}. Cámbiala dejando presionado el botón.	Kapcsolat: {}. A gomb len
 el navegador	a böngésző
 «{}» necesita un Android más nuevo que el de esta pantalla. Abro el navegador de fábrica.	A(z) „{}” újabb Androidot igényel, mint ami ezen a kijelzőn van. A gyári böngésző nyílik meg.
 No encontré un navegador. Déjalo presionado para elegir uno.	Nem található böngésző. Tartsd lenyomva, és válassz egyet.
-Permite «Instalar apps desconocidas» para StradaOS y vuelve a tocar.	Engedélyezd az „Ismeretlen alkalmazások telepítése” lehetőséget a StradaOS-nek, és koppints újra.
+Permite «Instalar apps desconocidas» para EvOS y vuelve a tocar.	Engedélyezd az „Ismeretlen alkalmazások telepítése” lehetőséget a EvOS-nek, és koppints újra.
 Activa «Orígenes desconocidos» y vuelve a tocar.	Kapcsold be az „Ismeretlen források” lehetőséget, és koppints újra.
 No se pudo preparar {}	Nem sikerült előkészíteni: {}
 No se pudo abrir el instalador para {}	Nem sikerült megnyitni a telepítőt ehhez: {}
@@ -389,30 +389,30 @@ Tormenta	Vihar
 Mapa en vivo apagado	Élő térkép kikapcsolva
 Rendimiento	Teljesítmény
 Apágalo si la pantalla va lenta: queda un mapa de adorno y el velocímetro sigue funcionando	Kapcsold ki, ha a kijelző lassú: egy díszítő térkép marad, és a sebességmérő tovább működik
-StradaOS aún no es tu pantalla de inicio	A StradaOS még nem a kezdőképernyőd
-Por eso al encender el carro o al tocar Inicio aparece el menú de fábrica.\n\nToca «Fijar ahora», elige StradaOS y luego «Siempre».	Ezért jelenik meg a gyári menü, amikor beindítod az autót vagy megnyomod a Kezdőlap gombot.\n\nKoppints a „Beállítás most” gombra, válaszd a StradaOS-t, majd a „Mindig” lehetőséget.
+EvOS aún no es tu pantalla de inicio	A EvOS még nem a kezdőképernyőd
+Por eso al encender el carro o al tocar Inicio aparece el menú de fábrica.\n\nToca «Fijar ahora», elige EvOS y luego «Siempre».	Ezért jelenik meg a gyári menü, amikor beindítod az autót vagy megnyomod a Kezdőlap gombot.\n\nKoppints a „Beállítás most” gombra, válaszd a EvOS-t, majd a „Mindig” lehetőséget.
 Fijar ahora	Beállítás most
 Ahora no	Most nem
 No volver a preguntar	Ne kérdezze újra
-Elige StradaOS y toca «Siempre»	Válaszd a StradaOS-t, és koppints a „Mindig” gombra
-Listo: StradaOS es tu pantalla de inicio	Kész: a StradaOS a kezdőképernyőd
-Fijar StradaOS a mano	A StradaOS kézi beállítása
-Algunas pantallas no muestran la lista para elegir. Prueba así:\n\n1. Toca el botón Inicio (la casita) de la pantalla. Si pregunta qué app usar, elige StradaOS → Siempre.\n2. Si no pregunta: en los ajustes de la pantalla busca Aplicaciones → Aplicaciones predeterminadas → Pantalla de inicio (o «App de inicio») y elige StradaOS.\n3. Con Android 10 o más nuevo, no lo elijas desde el modo fábrica de la pantalla («Launcher», «Interfaz» o «UI»): en algunas marcas eso deja las demás apps sin poder abrirse. En Android 4 a 9 sí puedes usar esa opción.\n\nSi tu pantalla siempre vuelve a su menú de fábrica al encender, activa «Abrir StradaOS al encender» en Ajustes → Sistema.	Egyes kijelzők nem mutatják a választólistát. Próbáld így:\n\n1. Nyomd meg a kijelző Kezdőlap gombját (a házikót). Ha megkérdezi, melyik alkalmazást használja, válaszd: StradaOS → Mindig.\n2. Ha nem kérdezi: a kijelző beállításaiban keresd meg az Alkalmazások → Alapértelmezett alkalmazások → Kezdőalkalmazás menüt, és válaszd a StradaOS-t.\n3. Android 10-en vagy újabban ne a kijelző gyári módjából válaszd („Launcher”, „Interface” vagy „UI”): egyes márkáknál emiatt más alkalmazások nem nyílnak meg. Android 4–9-en használhatod ezt a lehetőséget.\n\nHa a kijelződ indításkor mindig a gyári menüjére tér vissza, kapcsold be a „StradaOS megnyitása indításkor” lehetőséget a Beállítások → Rendszer menüben.
+Elige EvOS y toca «Siempre»	Válaszd a EvOS-t, és koppints a „Mindig” gombra
+Listo: EvOS es tu pantalla de inicio	Kész: a EvOS a kezdőképernyőd
+Fijar EvOS a mano	A EvOS kézi beállítása
+Algunas pantallas no muestran la lista para elegir. Prueba así:\n\n1. Toca el botón Inicio (la casita) de la pantalla. Si pregunta qué app usar, elige EvOS → Siempre.\n2. Si no pregunta: en los ajustes de la pantalla busca Aplicaciones → Aplicaciones predeterminadas → Pantalla de inicio (o «App de inicio») y elige EvOS.\n3. Con Android 10 o más nuevo, no lo elijas desde el modo fábrica de la pantalla («Launcher», «Interfaz» o «UI»): en algunas marcas eso deja las demás apps sin poder abrirse. En Android 4 a 9 sí puedes usar esa opción.\n\nSi tu pantalla siempre vuelve a su menú de fábrica al encender, activa «Abrir EvOS al encender» en Ajustes → Sistema.	Egyes kijelzők nem mutatják a választólistát. Próbáld így:\n\n1. Nyomd meg a kijelző Kezdőlap gombját (a házikót). Ha megkérdezi, melyik alkalmazást használja, válaszd: EvOS → Mindig.\n2. Ha nem kérdezi: a kijelző beállításaiban keresd meg az Alkalmazások → Alapértelmezett alkalmazások → Kezdőalkalmazás menüt, és válaszd a EvOS-t.\n3. Android 10-en vagy újabban ne a kijelző gyári módjából válaszd („Launcher”, „Interface” vagy „UI”): egyes márkáknál emiatt más alkalmazások nem nyílnak meg. Android 4–9-en használhatod ezt a lehetőséget.\n\nHa a kijelződ indításkor mindig a gyári menüjére tér vissza, kapcsold be a „EvOS megnyitása indításkor” lehetőséget a Beállítások → Rendszer menüben.
 Pantalla de inicio	Kezdőképernyő
 La que aparece al encender y al tocar Inicio	Ami indításkor és a Kezdőlap gomb megnyomásakor megjelenik
-StradaOS ✓	StradaOS ✓
+EvOS ✓	EvOS ✓
 Otra · toca para cambiar	Másik · koppints a módosításhoz
-Abrir StradaOS al encender	StradaOS megnyitása indításkor
+Abrir EvOS al encender	EvOS megnyitása indításkor
 Para pantallas que siempre arrancan en su menú de fábrica (Android 4 a 9)	Olyan kijelzőkhöz, amelyek mindig a gyári menüvel indulnak (Android 4–9)
 ¿La música Bluetooth se corta o no aparece?	Akadozik vagy nem látszik a Bluetooth-zene?
 Qué hacer en cada caso	Mit tegyél az egyes esetekben
-• Se corta al salir de la app Bluetooth: sal con el botón Inicio (la casita), no con Atrás. Atrás cierra la app de fábrica y con ella la música.\n\n• No suena hasta abrir la app Bluetooth: activa «Abrir la app de música Bluetooth al conectar el celular» (aquí mismo). Abre la app un instante y vuelve al inicio.\n\n• La canción no aparece en el inicio (Android 5 o más nuevo): activa «Música de cualquier app» arriba y dale acceso a notificaciones a StradaOS.\n\n• Revisa en Ajustes → Accesos y apps que «Música Bluetooth» sea la app Bluetooth de tu pantalla.	• Megszakad, amikor kilépsz a Bluetooth-alkalmazásból: a Kezdőlap gombbal (a házikó) lépj ki, ne a Vissza gombbal. A Vissza bezárja a gyári alkalmazást, és vele a zenét is.\n\n• Nem szól, amíg meg nem nyitod a Bluetooth-alkalmazást: kapcsold be „A Bluetooth-zene alkalmazás megnyitása a telefon csatlakozásakor” lehetőséget (itt). Egy pillanatra megnyitja az alkalmazást, majd visszatér a kezdőképernyőre.\n\n• A dal nem látszik a kezdőképernyőn (Android 5 vagy újabb): kapcsold be fent a „Zene bármely alkalmazásból” lehetőséget, és adj a StradaOS-nek értesítési hozzáférést.\n\n• Ellenőrizd a Beállítások → Parancsikonok és alkalmazások menüben, hogy a „Bluetooth-zene” a kijelződ Bluetooth-alkalmazása legyen.
+• Se corta al salir de la app Bluetooth: sal con el botón Inicio (la casita), no con Atrás. Atrás cierra la app de fábrica y con ella la música.\n\n• No suena hasta abrir la app Bluetooth: activa «Abrir la app de música Bluetooth al conectar el celular» (aquí mismo). Abre la app un instante y vuelve al inicio.\n\n• La canción no aparece en el inicio (Android 5 o más nuevo): activa «Música de cualquier app» arriba y dale acceso a notificaciones a EvOS.\n\n• Revisa en Ajustes → Accesos y apps que «Música Bluetooth» sea la app Bluetooth de tu pantalla.	• Megszakad, amikor kilépsz a Bluetooth-alkalmazásból: a Kezdőlap gombbal (a házikó) lépj ki, ne a Vissza gombbal. A Vissza bezárja a gyári alkalmazást, és vele a zenét is.\n\n• Nem szól, amíg meg nem nyitod a Bluetooth-alkalmazást: kapcsold be „A Bluetooth-zene alkalmazás megnyitása a telefon csatlakozásakor” lehetőséget (itt). Egy pillanatra megnyitja az alkalmazást, majd visszatér a kezdőképernyőre.\n\n• A dal nem látszik a kezdőképernyőn (Android 5 vagy újabb): kapcsold be fent a „Zene bármely alkalmazásból” lehetőséget, és adj a EvOS-nek értesítési hozzáférést.\n\n• Ellenőrizd a Beállítások → Parancsikonok és alkalmazások menüben, hogy a „Bluetooth-zene” a kijelződ Bluetooth-alkalmazása legyen.
 Sin permiso	Nincs engedély
 GPS apagado	GPS kikapcsolva
 Unidades	Mértékegységek
 Automático: mph en EE. UU. y Reino Unido	Automatikus: mph az USA-ban és az Egyesült Királyságban
 Permisos → Ubicación → Permitir	Engedélyek → Helymeghatározás → Engedélyezés
-Activa la ubicación para StradaOS en los ajustes de la pantalla	Kapcsold be a helymeghatározást a StradaOS-nek a kijelző beállításaiban
+Activa la ubicación para EvOS en los ajustes de la pantalla	Kapcsold be a helymeghatározást a EvOS-nek a kijelző beállításaiban
 Activa la ubicación (GPS)	Kapcsold be a helymeghatározást (GPS)
 Activa la ubicación (GPS) en los ajustes de la pantalla	Kapcsold be a helymeghatározást (GPS) a kijelző beállításaiban
 Sin permiso de ubicación · toca aquí	Nincs helymeghatározási engedély · koppints ide
@@ -435,7 +435,7 @@ Corregir el kilometraje actual	Az aktuális kilométeróra-állás javítása
 Cambiar cada cuánto se hace	A csere gyakoriságának módosítása
 Desactivar el recordatorio	Emlékeztető kikapcsolása
 Recordatorio de cambio de aceite	Olajcsere-emlékeztető
-StradaOS no puede leer el kilometraje del tablero del carro. Escríbelo una vez y StradaOS le irá sumando lo que recorras con el GPS, para avisarte cuando toque el cambio.\n\nDe vez en cuando puedes corregirlo con el valor real del tablero.	A StradaOS nem tudja kiolvasni az autó műszerfalán lévő kilométeróra-állást. Add meg egyszer, és a StradaOS a GPS alapján hozzáadja a megtett távolságot, hogy szóljon, amikor esedékes a csere.\n\nIdőnként javíthatod a műszerfal valós értékével.
+EvOS no puede leer el kilometraje del tablero del carro. Escríbelo una vez y EvOS le irá sumando lo que recorras con el GPS, para avisarte cuando toque el cambio.\n\nDe vez en cuando puedes corregirlo con el valor real del tablero.	A EvOS nem tudja kiolvasni az autó műszerfalán lévő kilométeróra-állást. Add meg egyszer, és a EvOS a GPS alapján hozzáadja a megtett távolságot, hogy szóljon, amikor esedékes a csere.\n\nIdőnként javíthatod a műszerfal valós értékével.
 ¿A cuántos {} fue el último cambio de aceite?	Kilométeróra-állás az utolsó olajcserekor ({})
 Kilometraje actual del tablero	Aktuális kilométeróra-állás a műszerfalon
 ¿Cada cuántos {} cambias el aceite?	Hány {} legyen két olajcsere között?
@@ -477,19 +477,19 @@ Apps ocultas en el cajón	A fiókból elrejtett alkalmazások
 Se muestran todas las apps	Minden alkalmazás látható
 Apps ocultas: {}	Rejtett alkalmazások: {}
 Desinstalar	Eltávolítás
-Salir de StradaOS	Kilépés a StradaOS-ből
+Salir de EvOS	Kilépés a EvOS-ből
 Abrir el launcher de fábrica	A gyári launcher megnyitása
-Sale de StradaOS sin desinstalarlo	Kilép a StradaOS-ből anélkül, hogy eltávolítaná
-Desactivar StradaOS	A StradaOS letiltása
-Si la pantalla quedó atrapada en StradaOS: se apaga solo, sin ventanas de Android	Ha a kijelző beragadt a StradaOS-be: kikapcsolja magát, Android-felugró ablakok nélkül
-Desinstalar StradaOS	A StradaOS eltávolítása
+Sale de EvOS sin desinstalarlo	Kilép a EvOS-ből anélkül, hogy eltávolítaná
+Desactivar EvOS	A EvOS letiltása
+Si la pantalla quedó atrapada en EvOS: se apaga solo, sin ventanas de Android	Ha a kijelző beragadt a EvOS-be: kikapcsolja magát, Android-felugró ablakok nélkül
+Desinstalar EvOS	A EvOS eltávolítása
 Android pide confirmar	Az Android megerősítést kér
 No encontré otra pantalla de inicio en este equipo	Nem találtam másik kezdőképernyőt ezen az eszközön
 ¿Cuál es el launcher de fábrica?	Melyik a gyári launcher?
 No se pudo abrir	Nem sikerült megnyitni
-No encontré otra pantalla de inicio: StradaOS no se puede desactivar en este equipo	Nem találtam másik kezdőképernyőt: a StradaOS nem tiltható le ezen az eszközön
-¿Desactivar StradaOS?	Letiltod a StradaOS-t?
-StradaOS deja de ser la pantalla de inicio, ya no se abre al encender y vuelve el launcher de fábrica. No pide confirmaciones de Android, así que sirve aunque la pantalla haya quedado atrapada.\n\nPara volver a usarlo después: desinstálalo desde los ajustes de la pantalla e instálalo de nuevo.	A StradaOS többé nem a kezdőképernyő, nem nyílik meg indításkor, és visszatér a gyári launcher. Nincs szüksége Android-megerősítésre, ezért akkor is működik, ha a kijelző beragadt.\n\nHa később újra használnád: távolítsd el a kijelző beállításaiból, és telepítsd újra.
+No encontré otra pantalla de inicio: EvOS no se puede desactivar en este equipo	Nem találtam másik kezdőképernyőt: a EvOS nem tiltható le ezen az eszközön
+¿Desactivar EvOS?	Letiltod a EvOS-t?
+EvOS deja de ser la pantalla de inicio, ya no se abre al encender y vuelve el launcher de fábrica. No pide confirmaciones de Android, así que sirve aunque la pantalla haya quedado atrapada.\n\nPara volver a usarlo después: desinstálalo desde los ajustes de la pantalla e instálalo de nuevo.	A EvOS többé nem a kezdőképernyő, nem nyílik meg indításkor, és visszatér a gyári launcher. Nincs szüksége Android-megerősítésre, ezért akkor is működik, ha a kijelző beragadt.\n\nHa később újra használnád: távolítsd el a kijelző beállításaiból, és telepítsd újra.
 Desactivar	Letiltás
 Diseño del inicio	Kezdőképernyő elrendezése
 Reproductor de música	Zenelejátszó
@@ -552,7 +552,7 @@ Pausar	Szünet
 Continuar	Folytatás
 Cancelar descarga	Letöltés megszakítása
 Descarga cancelada	Letöltés megszakítva
-Este mapa lo descargó StradaOS. Puedes dejar de usarlo o borrarlo para liberar espacio.	Ezt a térképet a StradaOS töltötte le. Abbahagyhatod a használatát, vagy törölheted, hogy helyet szabadíts fel.
+Este mapa lo descargó EvOS. Puedes dejar de usarlo o borrarlo para liberar espacio.	Ezt a térképet a EvOS töltötte le. Abbahagyhatod a használatát, vagy törölheted, hogy helyet szabadíts fel.
 Puedes dejar de usar este mapa (el archivo no se borra).	Abbahagyhatod a térkép használatát (a fájl nem törlődik).
 Dejar de usarlo	Használat befejezése
 Borrar el archivo	Fájl törlése
@@ -604,7 +604,7 @@ apagado	ki
 encendida	be
 apagada	ki
 Última señal: {}	Utolsó jel: {}
-ninguna desde que abrió StradaOS	nincs a StradaOS megnyitása óta
+ninguna desde que abrió EvOS	nincs a EvOS megnyitása óta
 hace {} s	{} mp-e
 hace {} min	{} perce
 Hace {} min	{} perce
@@ -733,7 +733,7 @@ Lo que llegue primero	Amelyik előbb jön
 ¿A cuántos {} fue la última vez?	Hány {}-nél volt utoljára?
 ¿Cuándo fue la última vez?	Mikor volt utoljára?
 Kilometraje del tablero	Kilométeróra-állás a műszerfalon
-StradaOS no puede leer el kilometraje del carro. Escríbelo una vez y StradaOS le suma lo que recorras con el GPS.	A StradaOS nem tudja kiolvasni az autó kilométeróra-állását. Írd be egyszer, és a StradaOS a GPS alapján hozzáadja, amennyit vezetsz.
+EvOS no puede leer el kilometraje del carro. Escríbelo una vez y EvOS le suma lo que recorras con el GPS.	A EvOS nem tudja kiolvasni az autó kilométeróra-állását. Írd be egyszer, és a EvOS a GPS alapján hozzáadja, amennyit vezetsz.
 Escribirlo	Beírás
 Última vez	Utoljára
 Cambiar cada cuánto	Gyakoriság módosítása
@@ -766,7 +766,7 @@ Diseño de la barra	Sáv elrendezése
 Botones (déjalos presionados en el inicio para cambiarlos)	Gombok (a kezdőképernyőn lenyomva tartva módosíthatod őket)
 Texto	Szöveg
 Kilometraje	Kilométeróra
-Escríbelo una vez y StradaOS le suma lo que recorras con el GPS	Írd be egyszer, és a StradaOS a GPS alapján hozzáadja, amennyit vezetsz
+Escríbelo una vez y EvOS le suma lo que recorras con el GPS	Írd be egyszer, és a EvOS a GPS alapján hozzáadja, amennyit vezetsz
 Avisa cuando toca el cambio	Szól, amikor esedékes a csere
 En el inicio	A kezdőképernyőn
 Mantenimiento en el inicio	Karbantartás a kezdőképernyőn
@@ -799,7 +799,7 @@ ninguna	nincs
 {} s, carátula {}, textos {}	{} mp, albumborító {}, szövegek {}
 Open Headunit corriendo: {} · celular por USB en modo Android Auto: {}	Open Headunit fut: {} · telefon USB-n Android Auto módban: {}
 no se sabe	ismeretlen
-Android Auto conectado (para StradaOS): {}	Android Auto csatlakoztatva (a StradaOS szerint): {}
+Android Auto conectado (para EvOS): {}	Android Auto csatlakoztatva (a EvOS szerint): {}
 App Bluetooth conectada: {}	Bluetooth-alkalmazás csatlakoztatva: {}
 Audio Bluetooth automático: {}	Automatikus Bluetooth-hang: {}
 desactivado	ki
@@ -821,7 +821,7 @@ activar audio falló: {}	a hang engedélyezése sikertelen: {}
 el celular empezó a sonar	a telefon elindította a lejátszást
 revisión falló: {}	az ellenőrzés sikertelen: {}
 otra fuente al frente: {}	másik forrás van előtérben: {}
-no se cambió: StradaOS acaba de arrancar	nincs váltás: a StradaOS épp most indult el
+no se cambió: EvOS acaba de arrancar	nincs váltás: a EvOS épp most indult el
 no se cambió: llamada en curso	nincs váltás: hívás folyamatban
 no se cambió: Android Auto tiene el sonido	nincs váltás: az Android Autónál van a hang
 el sonido ya es Bluetooth	a hang már Bluetooth-on szól
@@ -855,25 +855,25 @@ Al restablecer la pantalla de fábrica también se puede borrar su memoria: guar
 No se pudo leer el archivo	Nem sikerült olvasni a fájlt
 Buscando copias…	Biztonsági mentések keresése…
 No se encontró ninguna copia	Nem található biztonsági mentés
-No hay copias de StradaOS en la memoria de la pantalla ni en las USB conectadas. El archivo se llama «StradaOS-backup» y termina en .json.	Nincs StradaOS biztonsági mentés a kijelző tárhelyén vagy a csatlakoztatott pendrive-okon. A fájl neve „StradaOS-backup”, és .json-ra végződik.
+No hay copias de EvOS en la memoria de la pantalla ni en las USB conectadas. El archivo se llama «EvOS-backup» y termina en .json.	Nincs EvOS biztonsági mentés a kijelző tárhelyén vagy a csatlakoztatott pendrive-okon. A fájl neve „EvOS-backup”, és .json-ra végződik.
 automática	automatikus
 Buscar el archivo…	Fájl tallózása…
 Elige la copia	Válaszd ki a biztonsági mentést
 No se pudo restaurar	Nem sikerült visszaállítani
-Este archivo no es una copia de seguridad de StradaOS	Ez a fájl nem StradaOS biztonsági mentés
+Este archivo no es una copia de seguridad de EvOS	Ez a fájl nem EvOS biztonsági mentés
 Copia del	Mentés dátuma
 Pantalla:	Kijelző:
 Ajustes guardados:	Mentett beállítások:
 con la foto del vehículo	a jármű fotójával
-Se reemplaza toda la configuración actual de StradaOS por la de la copia.	A StradaOS összes jelenlegi beállítását felülírják a mentésben lévők.
+Se reemplaza toda la configuración actual de EvOS por la de la copia.	A EvOS összes jelenlegi beállítását felülírják a mentésben lévők.
 ¿Restaurar esta copia?	Visszaállítod ezt a biztonsági mentést?
 Restaurar	Visszaállítás
 Copia restaurada	Biztonsági mentés visszaállítva
-Esta copia se hizo con una versión más nueva de StradaOS. Actualiza StradaOS y vuelve a intentarlo	Ez a mentés a StradaOS egy újabb verziójával készült. Frissítsd a StradaOS-t, és próbáld újra
+Esta copia se hizo con una versión más nueva de EvOS. Actualiza EvOS y vuelve a intentarlo	Ez a mentés a EvOS egy újabb verziójával készült. Frissítsd a EvOS-t, és próbáld újra
 No se pudo guardar la configuración	Nem sikerült menteni a beállításokat
 La copia está dañada o incompleta	A biztonsági mentés sérült vagy hiányos
 Abrir una app al encender	Alkalmazás megnyitása indításkor
-StradaOS la abre un momento al arrancar (por ejemplo la radio, para que empiece a sonar) y vuelve al inicio	A StradaOS indításkor egy pillanatra megnyitja (például a rádiót, hogy elinduljon a lejátszás), majd visszatér a kezdőképernyőre
+EvOS la abre un momento al arrancar (por ejemplo la radio, para que empiece a sonar) y vuelve al inicio	A EvOS indításkor egy pillanatra megnyitja (például a rádiót, hogy elinduljon a lejátszás), majd visszatér a kezdőképernyőre
 Copia de seguridad en un archivo (pantalla o USB)	Biztonsági mentés fájlba (kijelző vagy USB)
 en Android 10+ la carpeta se elige con el selector de archivos	Android 10+ esetén a mappát a fájlválasztóval választod ki
 Diseño vertical	Álló elrendezés
@@ -949,11 +949,11 @@ Detener navegación	Navigáció leállítása
 Navegación en el mapa	Navigáció a térképen
 Voz activada	Hang bekapcsolva
 Voz silenciada	Hang némítva
-En el mapa de StradaOS	A StradaOS térképén
+En el mapa de EvOS	A EvOS térképén
 Se abre con el botón del mapa (Waze, Maps, OsmAnd… o integrada en el mapa)	A térkép gombjával nyílik meg (Waze, Maps, OsmAnd… vagy a beépített térkép)
 Voz de navegación	Navigációs hang
 Indicaciones paso a paso habladas durante el recorrido	Hangos, lépésenkénti útbaigazítás az út során
-★  En el mapa de StradaOS (integrada)	★  A StradaOS térképén (beépített)
+★  En el mapa de EvOS (integrada)	★  A EvOS térképén (beépített)
 Guardado: Navegación en el mapa	Mentve: Navigáció a térképen
 Coordenadas	Koordináták
 No se encontró ruta	Nem található útvonal
@@ -1100,7 +1100,7 @@ Cambia el aspecto de la pantalla de inicio con un toque. Puedes seguir ajustando
 Temas gratis	Ingyenes témák
 Temas premium	Prémium témák
 Próximamente	Hamarosan
-Temas exclusivos para quienes apoyan StradaOS con una donación. Todas las funciones siguen siendo gratis.	Exkluzív témák azoknak, akik adománnyal támogatják a StradaOS-t. Minden funkció ingyenes marad.
+Temas exclusivos para quienes apoyan EvOS con una donación. Todas las funciones siguen siendo gratis.	Exkluzív témák azoknak, akik adománnyal támogatják a EvOS-t. Minden funkció ingyenes marad.
 En uso	Használatban
 Tema aplicado:	Alkalmazott téma:
 Clásico	Klasszikus
@@ -1141,7 +1141,7 @@ Esta pantalla no informa su brillo	Ez a kijelző nem jelzi a fényerejét
 Países del Golfo	Öböl-menti országok
 Irlanda del Norte	Észak-Írország
 Islas Canarias	Kanári-szigetek
-Tiempo en StradaOS: {}	Idő a StradaOS-ben: {}
+Tiempo en EvOS: {}	Idő a EvOS-ben: {}
 Último tiempo por Bluetooth: {}	Utolsó idő a Bluetooth-ról: {}
 Fondo carbón (o perla en claro) con un haz de luz diagonal. A la izquierda, el velocímetro y un carro visto desde arriba que enciende los faros de noche; en el centro, el mapa integrado al fondo; a la derecha, el clima por horas y tus próximos mantenimientos, con el reproductor y la barra de apps debajo.	Szénszürke háttér (világos módban gyöngyház) átlós fénysugárral. Balra a sebességmérő és egy felülnézeti autó, amely éjszaka felkapcsolja a fényszóróit; középen a háttérbe olvadó térkép; jobbra az óránkénti időjárás és a közelgő karbantartások, alul a lejátszó és az alkalmazássáv.
 Color del carro	Autó színe
@@ -1158,7 +1158,7 @@ Navegar	Navigálás
 Música sonando	Zene szól
 Toca para ver la canción	Koppints a dal megtekintéséhez
 Ver la canción de tus apps	A dal megjelenítése az alkalmazásaidból
-Para mostrar la canción, el artista y la carátula de Spotify, YouTube Music y otras apps, StradaOS necesita «Acceso a notificaciones». Solo lo usa para leer lo que suena: no guarda ni envía nada.	Ahhoz, hogy a Spotify, a YouTube Music és más alkalmazások dalát, előadóját és borítóját megjelenítse, a StradaOS-nek „Hozzáférés az értesítésekhez” engedély kell. Csak arra használja, hogy kiolvassa, mi szól: semmit nem tárol és nem küld el.
+Para mostrar la canción, el artista y la carátula de Spotify, YouTube Music y otras apps, EvOS necesita «Acceso a notificaciones». Solo lo usa para leer lo que suena: no guarda ni envía nada.	Ahhoz, hogy a Spotify, a YouTube Music és más alkalmazások dalát, előadóját és borítóját megjelenítse, a EvOS-nek „Hozzáférés az értesítésekhez” engedély kell. Csak arra használja, hogy kiolvassa, mi szól: semmit nem tárol és nem küld el.
 No volver a mostrar	Ne jelenjen meg újra
 Esta pantalla no tiene el ajuste de «Acceso a notificaciones». Se puede activar una sola vez desde una computadora con ADB:	Ezen a kijelzőn nincs „Hozzáférés az értesítésekhez” beállítás. Egyszer bekapcsolhatod számítógépről, ADB-vel:
 Spotify, YouTube Music y otras apps de la pantalla (acceso a notificaciones)	Spotify, YouTube Music és más alkalmazások a kijelzőn (értesítési hozzáférés)
@@ -1212,7 +1212,7 @@ Estado	Állapot
 Abrir el panel del vehículo	A járműpanel megnyitása
 Medidores, alertas y códigos encima del tema que tengas	Műszerek, riasztások és kódok a témád felett
 Diagnóstico	Diagnosztika
-Qué vigila StradaOS y cuándo avisa por voz	Mit figyel a StradaOS, és mikor szól hangosan
+Qué vigila EvOS y cuándo avisa por voz	Mit figyel a EvOS, és mikor szól hangosan
 Todo normal	Minden rendben
 Qué significan y qué hacer; borrarlos con el motor apagado	Mit jelentenek és mit tegyél; leállított motornál töröld őket
 Cada dato que entrega tu auto, con gráficos	Minden adat, amit az autód ad, grafikonokkal
@@ -1220,9 +1220,9 @@ Más	Továbbiak
 Opcional: explica los códigos para tu auto en particular	Opcionális: a kódokat a te autódra szabva magyarázza
 Motor, protocolo, panel y escaneo completo	Motor, protokoll, panel és teljes vizsgálat
 Bluetooth emparejado, Wi-Fi (IP y puerto) o un auto simulado para probar	Párosított Bluetooth, Wi-Fi (IP és port) vagy egy szimulált autó kipróbáláshoz
-Empareja el escáner sin salir de StradaOS (clave 1234 o 0000)	Párosítsd a szkennert a StradaOS elhagyása nélkül (PIN: 1234 vagy 0000)
+Empareja el escáner sin salir de EvOS (clave 1234 o 0000)	Párosítsd a szkennert a EvOS elhagyása nélkül (PIN: 1234 vagy 0000)
 Reconectar	Újracsatlakozás
-Conectar al iniciar StradaOS	Csatlakozás a StradaOS indulásakor
+Conectar al iniciar EvOS	Csatlakozás a EvOS indulásakor
 Las alertas funcionan aunque estés en otra app (con una notificación fija)	A riasztások más alkalmazásban is működnek (állandó értesítéssel)
 Cómo conectar el escáner	A szkenner csatlakoztatása
 1. Enchufa el escáner ELM327 en el conector OBD (bajo el volante) y pon el contacto.\n2. Bluetooth: emparéjalo con la clave 1234 o 0000. Wi-Fi: conecta la pantalla a la red del escáner y escribe su IP y puerto (casi siempre 192.168.0.10:35000).\n3. Elígelo arriba en «Escáner».	1. Dugd a ELM327 szkennert az OBD-aljzatba (a kormány alatt), és kapcsold rá a gyújtást.\n2. Bluetooth: párosítsd 1234 vagy 0000 PIN-nel. Wi-Fi: csatlakoztasd a fejegységet a szkenner hálózatához, és add meg az IP-t és a portot (szinte mindig 192.168.0.10:35000).\n3. Válaszd ki fent a „Szkenner” menüben.
@@ -1658,7 +1658,7 @@ Guía del escáner	Szkenner útmutató
 Guía	Útmutató
 Qué comprar, cómo conectarlo y qué significa cada cosa · sin internet	Mit vegyél, hogyan csatlakoztasd, és mit jelent minden · internet nélkül
 Desbloquear	Feloldás
-Se desbloquea con una donación. Todas las funciones de StradaOS siguen siendo gratis.	Adománnyal oldható fel. A StradaOS minden funkciója ingyenes marad.
+Se desbloquea con una donación. Todas las funciones de EvOS siguen siendo gratis.	Adománnyal oldható fel. A EvOS minden funkciója ingyenes marad.
 Desbloqueado en esta pantalla. ¡Gracias por tu donación!	Ezen a kijelzőn feloldva. Köszönjük az adományodat!
 Prueba: volver a aplicar sin código	Teszt: újra kód nélkül alkalmaz
 Prueba: desbloquear como en la versión normal	Teszt: feloldás úgy, mint a normál verzióban
@@ -1681,11 +1681,11 @@ Buscando la licencia en la pantalla y en las USB…	A licenc keresése a kijelz�
 No encontramos la licencia	A licenc nem található
 Copia el archivo que te enviamos (stradaos-licencia.txt) en la raíz de una USB, conéctala y vuelve a intentarlo. Tiene que ser para el ID {}.	Másold a küldött fájlt (stradaos-licencia.txt) egy USB-meghajtó gyökerébe, csatlakoztasd, és próbáld újra. A(z) {} azonosítóhoz kell tartoznia.
 ¡Listo!	Kész!
-{} quedó desbloqueado en esta pantalla. Gracias por apoyar StradaOS.	A(z) {} feloldva ezen a kijelzőn. Köszönjük, hogy támogatod a StradaOS-t.
+{} quedó desbloqueado en esta pantalla. Gracias por apoyar EvOS.	A(z) {} feloldva ezen a kijelzőn. Köszönjük, hogy támogatod a EvOS-t.
 Aplicar ahora	Alkalmazás most
 1. Dona en Ko-fi 5 USD por un tema o 8 USD por dos: escanea el código con tu celular o entra a {}.	1. Adományozz a Ko-fin 5 USD-t egy témáért vagy 8 USD-t kettőért: olvasd be a kódot a telefonoddal, vagy nyisd meg: {}.
 2. En el mensaje de la donación escribe el ID de esta pantalla y qué temas quieres:	2. Az adomány üzenetébe írd be ennek a kijelzőnek az azonosítóját és azt, hogy mely témákat szeretnéd:
-Se desbloquea con una donación de 5 USD, o 8 USD por dos temas. Todas las funciones de StradaOS siguen siendo gratis.	5 USD-s adománnyal oldható fel, két téma 8 USD. A StradaOS minden funkciója ingyenes marad.
+Se desbloquea con una donación de 5 USD, o 8 USD por dos temas. Todas las funciones de EvOS siguen siendo gratis.	5 USD-s adománnyal oldható fel, két téma 8 USD. A EvOS minden funkciója ingyenes marad.
 Usar la velocidad del escáner	A szkenner sebességének használata
 Con el escáner conectado, el inicio muestra la velocidad del carro en vez de la del GPS: más exacta y sin retraso	Csatlakoztatott szkennerrel a kezdőképernyő az autó sebességét mutatja a GPS-sebesség helyett: pontosabb, késés nélkül
 1. Enchufa el escáner ELM327 en el conector OBD (bajo el volante) y pon el contacto.\n2. Bluetooth: emparéjalo con la clave 1234 o 0000. Wi-Fi: conecta la pantalla a la red del escáner y escribe su IP y puerto (casi siempre 192.168.0.10:35000). Cable USB: conéctalo a la pantalla y acepta el permiso que pide Android.\n3. Elígelo arriba en «Escáner».	1. Dugd a ELM327 szkennert az OBD-aljzatba (a kormány alatt), és kapcsold rá a gyújtást.\n2. Bluetooth: párosítsd 1234 vagy 0000 PIN-nel. Wi-Fi: csatlakoztasd a fejegységet a szkenner hálózatához, és add meg az IP-t és a portot (szinte mindig 192.168.0.10:35000). USB-kábel: csatlakoztasd a kijelzőhöz, és engedélyezd, amit az Android kér.\n3. Válaszd ki fent a „Szkenner” menüben.
@@ -1709,7 +1709,7 @@ Datos del panel	A panel adatai
 Máximo 6 datos	Legfeljebb 6 adat
 Hasta 6 datos del escáner, por ejemplo RPM, velocidad, refrigerante y consumo	Legfeljebb 6 szkenneradat, például fordulatszám, sebesség, hűtőfolyadék és fogyasztás
 Conecta tu escáner OBD-II	Csatlakoztasd az OBD-II szkennert
-1. Enchufa el escáner ELM327 en el conector OBD (bajo el volante) y pon el contacto.\n2. Si es Bluetooth, emparéjalo primero en los ajustes de Bluetooth del equipo (clave 1234 o 0000).\n3. Toca ⚙ para elegirlo y luego Conectar.\n\nStradaOS vigila la temperatura, el voltaje, la mezcla y los códigos de falla, y te avisa por voz aunque estés en otra app.	1. Dugd be az ELM327 szkennert az OBD-csatlakozóba (a kormány alatt), és kapcsold rá a gyújtást.\n2. Ha Bluetoothos, előbb párosítsd a készülék Bluetooth-beállításaiban (PIN: 1234 vagy 0000).\n3. Koppints a ⚙ ikonra a kiválasztásához, majd a Csatlakozásra.\n\nA StradaOS figyeli a hőmérsékletet, a feszültséget, a keveréket és a hibakódokat, és hanggal figyelmeztet akkor is, ha másik alkalmazásban vagy.
+1. Enchufa el escáner ELM327 en el conector OBD (bajo el volante) y pon el contacto.\n2. Si es Bluetooth, emparéjalo primero en los ajustes de Bluetooth del equipo (clave 1234 o 0000).\n3. Toca ⚙ para elegirlo y luego Conectar.\n\nEvOS vigila la temperatura, el voltaje, la mezcla y los códigos de falla, y te avisa por voz aunque estés en otra app.	1. Dugd be az ELM327 szkennert az OBD-csatlakozóba (a kormány alatt), és kapcsold rá a gyújtást.\n2. Ha Bluetoothos, előbb párosítsd a készülék Bluetooth-beállításaiban (PIN: 1234 vagy 0000).\n3. Koppints a ⚙ ikonra a kiválasztásához, majd a Csatlakozásra.\n\nA EvOS figyeli a hőmérsékletet, a feszültséget, a keveréket és a hibakódokat, és hanggal figyelmeztet akkor is, ha másik alkalmazásban vagy.
 Elegir escáner	Szkenner választása
 Probar con un auto simulado	Kipróbálás szimulált autóval
 Todo normal por ahora.	Egyelőre minden rendben.
@@ -1720,7 +1720,7 @@ Toca para ver qué hacer	Koppints, hogy lásd, mi a teendő
 Para que una IA explique los códigos, pon tu API key (Claude, Groq, Gemini u otra) en ⚙ → Inteligencia artificial. Las explicaciones se guardan en el equipo y después funcionan sin internet.	Ha azt szeretnéd, hogy egy MI elmagyarázza a kódokat, add meg az API-kulcsodat (Claude, Groq, Gemini vagy más) itt: ⚙ → Mesterséges intelligencia. A magyarázatok a készüléken tárolódnak, és utána internet nélkül is működnek.
 Se apaga la luz del motor y se borran los datos que usa el taller para diagnosticar. Si la falla sigue, el código volverá a aparecer. Anota los códigos antes.	Kialszik a motorhiba-jelző, és törlődnek az adatok, amelyeket a szerviz a diagnózishoz használ. Ha a hiba megmarad, a kód újra megjelenik. Előtte jegyezd fel a kódokat.
 Mi vehículo (para la IA)	Járművem (az MI-nek)
-Encender el monitor al iniciar StradaOS	Figyelő bekapcsolása a StradaOS indulásakor
+Encender el monitor al iniciar EvOS	Figyelő bekapcsolása a EvOS indulásakor
 Ej.: Kia Sorento 2010 2.4 bencina 4x4 automático	Pl.: Kia Sorento 2010 2.4 benzines 4x4 automata
 La IA recibe solo el código, el vehículo que escribiste y los datos del motor; nunca tu ubicación. Cada consulta la cobra tu proveedor con tu API key.	Az MI csak a kódot, a megadott járművet és a motoradatokat kapja meg, a helyzetedet soha. Minden lekérdezést a szolgáltatód számláz az API-kulcsodra.
 alerta sobre	riasztás felett
@@ -1898,7 +1898,7 @@ No compatible con esta pantalla	Nem kompatibilis ezzel a kijelzővel
 Conviértelo a H.264 de 720p o 1080p horizontal, a 30 cuadros por segundo	Alakítsd át H.264 formátumba, 720p vagy 1080p fekvő, 30 képkocka/másodperc
 Sin miniatura	Nincs bélyegkép
 Leer varios datos por consulta	Több adat lekérése egyszerre
-Tu escáner no lo entiende: StradaOS lee de a un dato. Actívalo para volver a probar	A szkenner nem támogatja: a StradaOS egyesével olvassa az adatokat. Kapcsold be az újrapróbáláshoz
+Tu escáner no lo entiende: EvOS lee de a un dato. Actívalo para volver a probar	A szkenner nem támogatja: a EvOS egyesével olvassa az adatokat. Kapcsold be az újrapróbáláshoz
 Más rápido. Apágalo si tu escáner se desconecta a cada rato	Gyorsabb. Kapcsold ki, ha a szkenner folyton lecsatlakozik
 Miniatura tomada del video	Bélyegkép a videóból
 Enorme	Óriási

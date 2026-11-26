@@ -12,7 +12,7 @@ import android.graphics.Shader;
 import android.view.View;
 
 /**
- * Tema premium «Cobalto» (2.24, Bloque 14). Diseño propio de StradaOS en azul noche: tres columnas en horizontal
+ * Tema premium «Cobalto» (2.24, Bloque 14). Diseño propio de EvOS en azul noche: tres columnas en horizontal
  * (mapa que se difumina hasta la tarjeta del reproductor, reproductor con la carátula redonda y tarjeta del vehículo
  * con el velocímetro arriba, el auto en el medio y el mantenimiento abajo) y la barra de apps abajo. En vertical: el
  * mapa arriba (se difumina hacia las tarjetas), reproductor y vehículo lado a lado y la barra.

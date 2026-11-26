@@ -1,7 +1,7 @@
-# StradaOS · Anleitung zum OBD-II-Scanner · Deutsch. Format: siehe ObdGuide.java.
+# EvOS · Anleitung zum OBD-II-Scanner · Deutsch. Format: siehe ObdGuide.java.
 
 == comprar | Welchen Scanner kaufen | Welche funktionieren und welche du meiden solltest
-StradaOS arbeitet mit ELM327-Scannern, der häufigsten und günstigsten Art. Sie verbinden sich per Bluetooth oder WLAN.
+EvOS arbeitet mit ELM327-Scannern, der häufigsten und günstigsten Art. Sie verbinden sich per Bluetooth oder WLAN.
 ### Funktionieren
 - „Klassisches“ Bluetooth (auch als SPP, Bluetooth 2.0 oder 3.0 angegeben) oder Dual-Mode. Empfohlen: Vgate iCar Pro (Bluetooth-3.0-Version), Veepeak Mini Bluetooth, OBDLink LX und OBDLink MX+.
 - WLAN: funktionieren auch, aber solange der Bildschirm mit dem Netz des Scanners verbunden ist, hat er kein Internet (Online-Karte, Wetter, KI).
@@ -40,8 +40,8 @@ Das Panel kommt von der Fahrerseite: Öffne es mit der Lasche am Rand, mit einer
 Darunter stehen drei kleine Werte (zum Beispiel Geschwindigkeit, Motorlast oder Kraftstoff): Tippe darauf, um ihr Diagramm zu sehen. Weiter unten stehen die aktiven Warnungen und die Fehlercodes.
 >> panel | Fahrzeugpanel öffnen
 
-== alertas | Warnungen und ihre Grenzwerte | Wann StradaOS warnt und wie du das änderst
-StradaOS überwacht die Daten während der Fahrt und warnt auf dem Bildschirm und per Sprache, auch wenn du gerade Waze nutzt oder Musik hörst.
+== alertas | Warnungen und ihre Grenzwerte | Wann EvOS warnt und wie du das änderst
+EvOS überwacht die Daten während der Fahrt und warnt auf dem Bildschirm und per Sprache, auch wenn du gerade Waze nutzt oder Musik hörst.
 - Warnung (gelb): Etwas ist nicht normal, zum Beispiel Kühlmittel über 100 °C.
 - Alarm (rot): Du musst handeln, zum Beispiel Kühlmittel über 106 °C oder eine Batterie, die nicht lädt. Wenn eingeschaltet, öffnet sich das Panel von selbst.
 - Es warnt auch, wenn das Kühlmittel sehr schnell steigt und wenn ein neuer Fehlercode auftaucht.
@@ -67,21 +67,21 @@ Tippe auf einen Code, um zu sehen, was er bedeutet, wie ernst er ist und was zu 
 Unter Live-Daten siehst du jeden Wert, den dein Auto liefert: Geschwindigkeit, Motorlast, Gaspedal, Lufttemperatur, Kraftstoff, Gemisch und mehr. Jedes Auto liefert andere Daten: Fehlt einer, gibt dein Auto ihn nicht aus.
 - Tippe auf einen Wert, um sein Diagramm zu öffnen.
 - In den Diagrammen siehst du bis zu 3 Werte gleichzeitig, von 1 bis 30 Minuten.
-- Werte mit „berechnet“ ermittelt StradaOS aus anderen Daten (zum Beispiel den Verbrauch). Sie sind ungefähr.
+- Werte mit „berechnet“ ermittelt EvOS aus anderen Daten (zum Beispiel den Verbrauch). Sie sind ungefähr.
 Tipp: Hat dein Motor keinen MAF-Sensor, trag unter Erweitert den Hubraum ein, damit der Verbrauch genauer wird.
 >> obd_live | Zu Live-Daten
 
 == ia | KI einschalten, Schritt für Schritt | Optional: erklärt die Codes für dein Auto
-Die KI ist optional: Ohne sie erklärt StradaOS schon die häufigsten Codes. Mit ihr gilt die Erklärung für dein Auto. Du brauchst einen eigenen Schlüssel (API key) und Internet auf dem Bildschirm.
+Die KI ist optional: Ohne sie erklärt EvOS schon die häufigsten Codes. Mit ihr gilt die Erklärung für dein Auto. Du brauchst einen eigenen Schlüssel (API key) und Internet auf dem Bildschirm.
 ### Groq (kostenlos)
 - Geh auf console.groq.com und melde dich mit Google oder deiner E-Mail an. Keine Karte nötig.
 - Geh zu „API Keys“ → „Create API Key“, gib einen Namen ein und kopiere den Schlüssel (beginnt mit gsk_). Er wird nur einmal angezeigt.
-- In StradaOS: Künstliche Intelligenz → Anbieter: Groq → API key: einfügen.
+- In EvOS: Künstliche Intelligenz → Anbieter: Groq → API key: einfügen.
 Tipp: Mach das im Browser desselben Bildschirms, dann kannst du den Schlüssel kopieren und einfügen. Am Handy musst du ihn sorgfältig abtippen.
 ### Claude oder OpenAI (kostenpflichtig)
 - Claude: platform.claude.com → Settings → API keys. Vorher unter Billing Guthaben kaufen.
 - OpenAI: platform.openai.com → API keys. Funktioniert ebenfalls mit Prepaid-Guthaben.
-- Wähle in StradaOS den Anbieter, füge den Schlüssel ein und wähle, falls gefragt, das Modell.
+- Wähle in EvOS den Anbieter, füge den Schlüssel ein und wähle, falls gefragt, das Modell.
 ### Zum Schluss
 - Füll „Dein Fahrzeug (für die KI)“ aus: Marke, Modell, Baujahr, Motor und Getriebe. So wird die Antwort genauer.
 - Tippe auf „KI testen“. Antwortet sie, bist du fertig.

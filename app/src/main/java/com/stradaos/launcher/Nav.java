@@ -56,7 +56,7 @@ import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
 /**
- * Navegación paso a paso en vivo sobre el mapa de StradaOS (sin Play Services ni SDKs pesados).
+ * Navegación paso a paso en vivo sobre el mapa de EvOS (sin Play Services ni SDKs pesados).
  * Búsqueda con Photon/Nominatim + mapa .map local, rutas con OSRM + A* sin conexión + caché de rutas,
  * y guía por voz con TextToSpeech del sistema.
  */
@@ -856,6 +856,7 @@ public class Nav {
         if ("hu".equals(lang)) return "hu-HU";
         if ("pl".equals(lang)) return "pl-PL";
         if ("ru".equals(lang)) return "ru-RU";
+        if ("ro".equals(lang)) return "ro-RO";
         return "en-US";
     }
 
@@ -1016,7 +1017,7 @@ public class Nav {
         if (conn instanceof HttpsURLConnection && f != null) ((HttpsURLConnection) conn).setSSLSocketFactory(f);
         conn.setConnectTimeout(timeoutMs);
         conn.setReadTimeout(timeoutMs);
-        conn.setRequestProperty("User-Agent", "StradaOS/2.1 (Android head unit launcher)");
+        conn.setRequestProperty("User-Agent", "EvOS/2.1 (Android head unit launcher)");
         try {
             int code = conn.getResponseCode();
             if (code != 200) throw new Exception("HTTP " + code);

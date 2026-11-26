@@ -1,127 +1,48 @@
 <div align="center">
-<img src="fastlane/metadata/android/es-ES/images/featureGraphic.png" alt="StradaOS">
-<h1>StradaOS</h1>
-<b>Una nueva vida para la pantalla Android de tu carro</b>
+<h1>EvOS</h1>
+<b>O viață nouă pentru ecranul Android din mașină</b>
 <br><br>
-<a href="https://github.com/lordnordic-debug/StradaOS/releases"><img src="https://img.shields.io/github/v/release/lordnordic-debug/StradaOS?color=FE3211&label=versi%C3%B3n"></a>
-<a href="https://github.com/lordnordic-debug/StradaOS/releases"><img src="https://img.shields.io/github/downloads/lordnordic-debug/StradaOS/total?color=FE3211&label=descargas"></a>
 <img src="https://img.shields.io/badge/Android-4.1%2B-3DDC84?logo=android&logoColor=white">
-<a href="LICENSE"><img src="https://img.shields.io/github/license/lordnordic-debug/StradaOS?label=licencia"></a>
-<br><br>
-<a href="https://github.com/lordnordic-debug/StradaOS/releases/latest"><img src="https://raw.githubusercontent.com/NeoApplications/Neo-Backup/034b226cea5c1b30eb4f6a6f313e4dadcbb0ece4/badge_github.png" width="200" alt="Descargar en GitHub"></a>
-<a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/%7B%22id%22%3A%22com.stradaos.launcher%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Flordnordic-debug%2FStradaOS%22%2C%22author%22%3A%22lordnordic-debug%22%2C%22name%22%3A%22StradaOS%22%7D"><img src="docs/badge_obtainium.png" height="59" alt="Obtenlo en Obtainium"></a>
-<br>
-<b>🌐 <a href="https://lordnordic-debug.github.io/StradaOS/">lordnordic-debug.github.io/StradaOS</a></b> · <a href="#english">English</a> · <a href="#português">Português</a>
+<a href="LICENSE"><img src="https://img.shields.io/github/license/costyn33l/EvOS?label=licen%C8%9B%C4%83"></a>
 </div>
 
 ---
 
-**StradaOS** es un launcher (pantalla de inicio) **gratis, sin anuncios y de código abierto** para las pantallas Android de los carros. Se instala como una app más, **sin flashear ni tocar el sistema**, y si no te gusta la quitas y todo queda como estaba. Nació para revivir las radios que dicen *«Android 6»* pero por dentro corren Android 4.x, y también funciona en pantallas modernas.
+**EvOS** este un launcher (ecran principal) **gratuit, fără reclame și open source** pentru ecranele Android din mașini (head unit). Se instalează ca orice aplicație, **fără flash-uire și fără să modifice sistemul**. Dacă nu-ți place, îl dezinstalezi și totul rămâne cum era. Merge pe unitățile vechi cu Android 4.x și pe cele moderne.
 
-<p align="center">
-<img src="fastlane/metadata/android/es-ES/images/phoneScreenshots/1.png" width="49%">
-<img src="fastlane/metadata/android/es-ES/images/phoneScreenshots/2.png" width="49%">
-<img src="fastlane/metadata/android/es-ES/images/phoneScreenshots/3.png" width="49%">
-<img src="fastlane/metadata/android/es-ES/images/phoneScreenshots/5.png" width="49%">
-</p>
+Limba implicită este **româna**; din Setări → Aspect → Limbă poți alege una dintre celelalte 13 limbi.
 
-## ✨ Qué trae
+## ✨ Ce oferă
 
-**En el inicio**
-- 🗺️ **Mapa en vivo y sin conexión:** descarga el mapa de tu país desde la app (gratis, de OpenStreetMap) y úsalo sin internet. La flecha se mueve suave con el GPS.
-- 🧭 **Navegación en el mapa (opcional):** busca un lugar y StradaOS te guía giro a giro con voz, recalcula si te desvías y funciona sin internet con el mapa descargado (ruta aproximada). Viene apagada: el botón del mapa sigue abriendo Waze o Maps hasta que la elijas.
-- 📲 **Android Auto y CarPlay** con un toque: abre la app de tu pantalla o [Open Headunit](https://github.com/andreknieriem/headunit-revived) por USB.
-- 🎵 **Tu música:** título, artista y tiempo de lo que suena por Bluetooth, con controles grandes. Con Android Auto, también la carátula.
-- ⏱️ **Velocímetro**, clima, reloj y **recordatorio de cambio de aceite**.
-- 🚗 **Foto de tu vehículo** en su recuadro (si quieres, le quitas el fondo).
-- 🔧 **Escáner OBD-II (opcional):** con un ELM327 por Bluetooth clásico, Wi-Fi o cable USB, un panel encima de cualquier tema con temperatura, batería y RPM, alertas por voz, códigos de falla explicados sin internet, gráficos en vivo, IA opcional con tu propia clave y una guía dentro de la app. Viene apagado.
+**Pe ecranul principal**
+- 🗺️ **Hartă live și offline:** descarci harta țării din aplicație (gratuit, din OpenStreetMap) și o folosești fără internet.
+- 🧭 **Navigație pe hartă (opțională):** indicații vocale pas cu pas, recalculare și trasee offline aproximative.
+- 📲 **Android Auto și CarPlay** dintr-o atingere (aplicația ecranului sau [Open Headunit](https://github.com/andreknieriem/headunit-revived) prin USB).
+- 🎵 **Muzica ta:** titlu, artist și timp pentru ce se redă prin Bluetooth, cu butoane mari.
+- ⏱️ **Vitezometru**, vreme, ceas și **memento pentru schimbul de ulei** și alte operațiuni de întreținere (RCA, ITP, filtre…).
+- 🔧 **Scaner OBD-II (opțional):** ELM327 prin Bluetooth, Wi-Fi sau USB; temperatură, baterie, turații, alerte vocale și coduri de eroare explicate fără internet. Doar citește, nu scrie nimic în mașină.
 
-**Diseña tu inicio**
-- **Temas:** Clásico (con 10 colores), **Aurora** y **Cobalto** gratis, **Faro** (tu carro visto desde arriba con los faros encendidos) y **Carbono** (tarjetas limpias sobre un fondo azul noche o seda clara, con tu carro en grande en 8 colores), que se desbloquean con una donación en Ko-fi: uno por 5 USD o los dos por 8 USD. Cada uno en versión oscura y clara.
-- Reproductor a la izquierda o a la derecha, tarjeta del vehículo visible u oculta, Android Auto y CarPlay plegables.
-- Barra de botones **normal, compacta o lateral** (con reproductor vertical para pantallas anchas como 1280×480).
-- Modo **claro, oscuro o automático** (por horario, con el amanecer y el atardecer o siguiendo al sistema).
+**Personalizare**
+- Teme cu variantă întunecată și luminoasă, culoare de accent, player în stânga sau în dreapta, bară de butoane normală, compactă sau laterală.
+- Fiecare buton deschide aplicația sau funcția pe care o vrei. Unități km/h sau mph.
+- Copie de siguranță a setărilor pe stick USB.
 
-**A tu medida**
-- Cada botón de la barra abre la app o la función que quieras. Oculta las apps que no usas.
-- 13 idiomas (español, inglés, portugués, francés, italiano, alemán, malayo, árabe, turco, chino, húngaro, polaco y ruso), km/h o mph.
-- Avisos de actualización con código QR. Pesa **alrededor de 1,5 MB**.
+## 📥 Instalare
 
-👉 Novedades de cada versión en [Releases](https://github.com/lordnordic-debug/StradaOS/releases).
+1. Descarcă **`EvOS-x.y.z.apk`** din [Releases](https://github.com/costyn33l/EvOS/releases/latest) și copiază-l pe ecran (prin stick USB, în memoria internă).
+2. Activează **Setări → Securitate → Surse necunoscute** și instalează-l.
+3. Apasă **Acasă** și alege **EvOS → Întotdeauna**. Un asistent te ghidează în rest.
 
-## 📥 Instalación
+## 🔒 Confidențialitate
 
-1. Descarga **`StradaOS-x.y.z.apk`** desde [Releases](https://github.com/lordnordic-debug/StradaOS/releases/latest) y cópialo a la pantalla (si usas USB, pásalo primero a la memoria interna).
-2. Activa **Ajustes → Seguridad → Orígenes desconocidos** e instálalo.
-3. Presiona **Inicio** y elige **StradaOS → Siempre**. Un asistente te guía el resto.
+Fără conturi, reclame sau statistici. Locația se folosește doar pe unitate. Detalii în [PRIVACY.md](PRIVACY.md).
 
-**Android Auto en pantallas que no lo traen:** instala [Open Headunit](https://github.com/andreknieriem/headunit-revived/releases), conecta el celular por USB y toca **Android Auto**. En *Ajustes → Música* activa la carátula de Android Auto.
+## 📄 Licență și credite
 
-## 📋 Compatibilidad
+[GNU GPL v3.0](LICENSE).
 
-| Mínimo | Probado |
-|---|---|
-| Android 4.1 (API 16), cualquier pantalla horizontal | Android 4.2 (Autochips AC8227, 1024×600), Android 10 y Android 17 |
+EvOS este o versiune derivată din **[StradaOS](https://github.com/lordnordic-debug/StradaOS)** de lordnordic-debug și contributorii săi, publicat sub GPL-3.0. Mulțumim tuturor celor care au contribuit la proiectul original.
 
-¿La probaste en otra pantalla? Cuéntalo en un [issue](https://github.com/lordnordic-debug/StradaOS/issues).
+Hărți © [contribuitorii OpenStreetMap](https://www.openstreetmap.org/copyright), OpenTopoMap și Esri; harta offline folosește un cititor adaptat din [mapsforge](https://github.com/mapsforge/mapsforge) (LGPL-3.0) și hărți de pe [download.mapsforge.org](https://download.mapsforge.org/). Vreme: [Open-Meteo](https://open-meteo.com). Android Auto cu [Open Headunit](https://github.com/andreknieriem/headunit-revived) (GPL-3.0). QR de la [Project Nayuki](https://github.com/nayuki/QR-Code-generator) (MIT). Pictograme [Material Symbols](https://fonts.google.com/icons) (Apache 2.0).
 
-## ❓ Preguntas frecuentes
-
-<details><summary><b>¿Por qué se llama StradaOS si no es un sistema operativo?</b></summary>
-Porque el «OS» es de <b>Open Source</b>: código abierto. StradaOS es un launcher: no reemplaza Android ni toca el sistema, solo cambia lo que ves en la pantalla del carro. Y «Strada» significa «camino» en italiano. Un launcher libre para el camino.
-</details>
-
-<details><summary><b>Al encender sale el menú de fábrica, no StradaOS</b></summary>
-Fija StradaOS como inicio: <b>Ajustes → Sistema → Pantalla de inicio</b>. Si tu pantalla siempre vuelve a su menú al encender, activa ahí <b>«Abrir StradaOS al encender»</b>.
-</details>
-
-<details><summary><b>¿Por qué no sale la carátula con música por Bluetooth?</b></summary>
-El Bluetooth entre el celular y la radio solo envía el título, el artista y el tiempo, no la imagen. La carátula sí sale con Android Auto y con las apps de música instaladas en la pantalla.
-</details>
-
-<details><summary><b>La música Bluetooth se corta o no suena</b></summary>
-Sal de la app Bluetooth con <b>Inicio</b>, no con Atrás. Revisa <b>Ajustes → Música → Audio Bluetooth</b>; ahí también está la ayuda «¿La música Bluetooth se corta o no aparece?».
-</details>
-
-<details><summary><b>El mapa no carga o no aparece mi ubicación</b></summary>
-El mapa en vivo necesita internet; con el mapa sin conexión no. Si dice «Sin señal GPS», revisa que la antena GPS de la radio esté conectada. Deja presionado el mapa para ver el diagnóstico.
-</details>
-
-<details><summary><b>¿Cómo dejo de usar StradaOS?</b></summary>
-En <b>Ajustes → Sistema</b> puedes volver al menú de fábrica o desinstalarlo. Si la pantalla quedara en negro, reiníciala (botón <b>RES</b> o apaga y enciende el carro).
-</details>
-
-## 🔒 Privacidad
-
-Sin cuentas, anuncios ni analíticas. Tu ubicación se usa solo en el equipo. Detalles en [PRIVACY.md](PRIVACY.md).
-
-## ☕ Apoya el proyecto
-
-StradaOS es y seguirá siendo gratis. Si te sirvió, dale una ⭐ a este repositorio o invítame un café en **[ko-fi.com/stradaos](https://ko-fi.com/stradaos)**. Reportes, ideas y traducciones son bienvenidos: lee [CONTRIBUTING.md](CONTRIBUTING.md).
-
-### 👥 Contribuidores
-
-Gracias a cada persona que ha aportado código, traducciones o pruebas:
-
-<table>
-<tr><td align="center"><a href="https://github.com/lordnordic-debug"><img src="https://avatars.githubusercontent.com/u/293109340?v=4&s=80" width="64" height="64" alt="lordnordic-debug"><br><sub>lordnordic-debug</sub></a></td><td align="center"><a href="https://github.com/nothanks91"><img src="https://avatars.githubusercontent.com/u/21056650?v=4&s=80" width="64" height="64" alt="nothanks91"><br><sub>nothanks91</sub></a></td><td align="center"><a href="https://github.com/mryusufcan"><img src="https://avatars.githubusercontent.com/u/36123888?v=4&s=80" width="64" height="64" alt="mryusufcan"><br><sub>mryusufcan</sub></a></td><td align="center"><a href="https://github.com/imccyu"><img src="https://avatars.githubusercontent.com/u/276526105?v=4&s=80" width="64" height="64" alt="imccyu"><br><sub>imccyu</sub></a></td><td align="center"><a href="https://github.com/9M2PJU"><img src="https://avatars.githubusercontent.com/u/991353?v=4&s=80" width="64" height="64" alt="9M2PJU"><br><sub>9M2PJU</sub></a></td></tr>
-<tr><td align="center"><a href="https://github.com/MartinDean07"><img src="https://avatars.githubusercontent.com/u/81487973?v=4&s=80" width="64" height="64" alt="MartinDean07"><br><sub>MartinDean07</sub></a></td><td align="center"><a href="https://github.com/darlo-Pl"><img src="https://avatars.githubusercontent.com/u/357112707?v=4&s=80" width="64" height="64" alt="darlo-Pl"><br><sub>darlo-Pl</sub></a></td><td align="center"><a href="https://github.com/Jaacern"><img src="https://avatars.githubusercontent.com/u/135047165?v=4&s=80" width="64" height="64" alt="Jaacern"><br><sub>Jaacern</sub></a></td><td align="center"><a href="https://github.com/gugezhushou789-dotcom"><img src="https://avatars.githubusercontent.com/u/304327512?v=4&s=80" width="64" height="64" alt="gugezhushou789-dotcom"><br><sub>gugezhushou789-dotcom</sub></a></td></tr>
-</table>
-
-<a href="https://github.com/lordnordic-debug/StradaOS/graphs/contributors"><img src="https://contrib.rocks/image?repo=lordnordic-debug/StradaOS"></a>
-
-## 📄 Licencia y créditos
-
-[GNU GPL v3.0](LICENSE). Mapas © [colaboradores de OpenStreetMap](https://www.openstreetmap.org/copyright), OpenTopoMap y Esri; mapa sin conexión con un lector adaptado de [mapsforge](https://github.com/mapsforge/mapsforge) (LGPL-3.0) y mapas de [download.mapsforge.org](https://download.mapsforge.org/). Clima: [Open-Meteo](https://open-meteo.com). Android Auto con [Open Headunit](https://github.com/andreknieriem/headunit-revived) (GPL-3.0). QR de [Project Nayuki](https://github.com/nayuki/QR-Code-generator) (MIT). Íconos [Material Symbols](https://fonts.google.com/icons) (Apache 2.0).
-
-StradaOS es un proyecto independiente, no afiliado a Google, Apple ni a ningún fabricante. *Android Auto* es marca de Google LLC y *CarPlay* de Apple Inc. No lo manipules mientras conduces.
-
----
-
-### English
-
-**StradaOS** is a free, ad-free, open-source launcher for Android car head units (Android 4.1+, about 1.5 MB). It installs like any app, without flashing. Live and **offline maps** (download your country from the app) with optional turn-by-turn navigation, themes (Classic, Aurora, Cobalto, Faro and Carbono), an optional OBD-II scanner panel with voice alerts and trouble codes, Android Auto and CarPlay buttons, a media card for Bluetooth and Android Auto, speedometer, weather, oil change reminder, a customizable layout (player left or right, compact or side bar), light/dark themes, portrait layout, settings backup to USB and 11 languages. *Why “OS”? It stands for **Open Source**: StradaOS is a launcher, not an operating system, and “Strada” means “road” in Italian.* [Website](https://lordnordic-debug.github.io/StradaOS/?lang=en) · [Download](https://github.com/lordnordic-debug/StradaOS/releases/latest)
-
-### Português
-
-O **StradaOS** é um launcher grátis, sem anúncios e de código aberto para centrais Android de carro (Android 4.1+). Mapa ao vivo e **offline** com navegação guiada, temas, scanner OBD-II opcional, Android Auto e CarPlay, música, velocímetro, clima e um início que você personaliza. *Por que «OS»? Vem de **Open Source**: o StradaOS é um launcher, não um sistema operacional.* [Site](https://lordnordic-debug.github.io/StradaOS/?lang=pt) · [Baixar](https://github.com/lordnordic-debug/StradaOS/releases/latest)
+EvOS este un proiect independent, neafiliat cu Google, Apple sau vreun producător. *Android Auto* este marcă Google LLC, iar *CarPlay* este marcă Apple Inc. Nu-l folosi în timp ce conduci.

@@ -124,7 +124,7 @@ public class Scan {
     /** Recorre todo y devuelve el informe. Tarda entre 20 s y 2 min según el auto. */
     static String run(Elm elm, Progress p) throws java.io.IOException {
         StringBuilder r = new StringBuilder();
-        r.append("Informe OBD-II de StradaOS · ")
+        r.append("Informe OBD-II de EvOS · ")
             .append(new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.US).format(new java.util.Date())).append('\n');
         r.append("Escáner: ").append(elm.version).append('\n');
         r.append("Protocolo: ").append(elm.protocol).append(elm.can ? " (CAN)" : "").append('\n');

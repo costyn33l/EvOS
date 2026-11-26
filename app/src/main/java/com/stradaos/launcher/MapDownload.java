@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  * Descarga de mapas sin conexión (archivos .map de mapsforge, gratis, de download.mapsforge.org).
  *
  * - Lista continentes y países leyendo el índice del servidor (siempre al día, con tamaño y fecha).
- * - Descarga en segundo plano a Download/StradaOS/, en un archivo .part que se reanuda si se corta la señal
+ * - Descarga en segundo plano a Download/EvOS/, en un archivo .part que se reanuda si se corta la señal
  *   (el servidor acepta «Range»), incluso después de reiniciar la pantalla.
  * - Al terminar comprueba el archivo y lo deja como mapa sin conexión.
  * Usa la conexión segura de Net (TLS 1.2 y raíces actuales en Android 4.x); si el cifrado falla, usa http.
@@ -198,9 +198,9 @@ public class MapDownload {
 
     // ── archivos ──
 
-    /** Carpeta de los mapas: Download/StradaOS (se conserva al reinstalar y sirve para la versión de prueba). */
+    /** Carpeta de los mapas: Download/EvOS (se conserva al reinstalar y sirve para la versión de prueba). */
     static File folder(Context c) {
-        File d = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "StradaOS");
+        File d = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "EvOS");
         if ((d.isDirectory() || d.mkdirs()) && d.canWrite()) return d;
         File app = c.getExternalFilesDir(null);
         return app != null ? new File(app, "mapas") : new File(c.getFilesDir(), "mapas");

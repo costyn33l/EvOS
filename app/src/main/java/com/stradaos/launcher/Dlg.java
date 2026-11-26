@@ -31,7 +31,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 /**
- * Ventana de StradaOS (2.21): una tarjeta redondeada con los colores del tema, el acento y botones grandes para
+ * Ventana de EvOS (2.21): una tarjeta redondeada con los colores del tema, el acento y botones grandes para
  * tocar con el carro en marcha, igual en Android 4.1 que en Android 15. Reemplaza el contenido de las ventanas
  * del sistema (Holo en las pantallas viejas, Material en las nuevas), que no combinaban con el launcher.
  *
@@ -137,7 +137,7 @@ class Dlg extends AlertDialog {
             t.setEllipsize(TextUtils.TruncateAt.END);
             t.setPadding(px(28), 0, px(28), 0);
             card.addView(t);
-            // rayita con el color de acento: la firma de las ventanas de StradaOS
+            // rayita con el color de acento: la firma de las ventanas de EvOS
             FrameLayout line = new FrameLayout(c);
             View pill = new View(c);
             pill.setBackground(round(Main.RED, 2));

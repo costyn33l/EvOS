@@ -1,4 +1,4 @@
-# Explicación en español de los códigos genéricos más comunes (SAE J2012), escrita para StradaOS.
+# Explicación en español de los códigos genéricos más comunes (SAE J2012), escrita para EvOS.
 # código<TAB>gravedad (1 = se puede seguir, 2 = revisar pronto, 3 = detenerse o ir al taller ya)<TAB>qué es<TAB>qué hacer
 P0011	2	Árbol de levas de admisión adelantado más de lo esperado (variador CVVT).	Revisa nivel y estado del aceite: el variador funciona con presión de aceite. Si el aceite está bien, revisar la válvula solenoide OCV.
 P0012	2	Árbol de levas de admisión atrasado más de lo esperado (variador CVVT).	Revisa nivel y estado del aceite. Si sigue, revisar la válvula OCV y la cadena de distribución.

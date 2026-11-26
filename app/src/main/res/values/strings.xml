@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="acc_desc">Permite que StradaOS muestre la carátula y la pista de Android Auto leyendo la notificación de Open Headunit. No lee nada más.</string>
-    <string name="acc_label">Carátula de Android Auto</string>
-    <string name="obd_label">Vehículo</string>
+    <string name="acc_desc">Permite EvOS să afișeze coperta și piesa din Android Auto citind notificarea Open Headunit. Nu citește nimic altceva.</string>
+    <string name="acc_label">Coperta Android Auto</string>
+    <string name="obd_label">Vehicul</string>
 </resources>

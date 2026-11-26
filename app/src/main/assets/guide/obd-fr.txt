@@ -1,7 +1,7 @@
-# StradaOS · Guide du scanner OBD-II · français. Format : voir ObdGuide.java.
+# EvOS · Guide du scanner OBD-II · français. Format : voir ObdGuide.java.
 
 == comprar | Quel scanner acheter | Ceux qui fonctionnent et ceux à éviter
-StradaOS communique avec les scanners ELM327, le type le plus courant et le moins cher. Ils se connectent en Bluetooth ou en Wi-Fi.
+EvOS communique avec les scanners ELM327, le type le plus courant et le moins cher. Ils se connectent en Bluetooth ou en Wi-Fi.
 ### Ils fonctionnent
 - Bluetooth « classique » (aussi indiqué SPP, Bluetooth 2.0 ou 3.0) ou double mode. Recommandés : Vgate iCar Pro (version Bluetooth 3.0), Veepeak Mini Bluetooth, OBDLink LX et OBDLink MX+.
 - Wi-Fi : ils fonctionnent aussi, mais tant que l'écran est connecté au réseau du scanner, il n'a plus internet (carte en ligne, météo, IA).
@@ -40,8 +40,8 @@ Le panneau sort du côté conducteur : ouvrez-le avec l'onglet sur le bord, avec
 En dessous, trois petites données (par exemple vitesse, charge moteur ou carburant) : touchez-les pour voir leur graphique. Plus bas apparaissent les alertes actives et les codes défaut.
 >> panel | Ouvrir le panneau du véhicule
 
-== alertas | Les alertes et leurs seuils | Quand StradaOS prévient et comment le modifier
-StradaOS surveille les données pendant que vous conduisez et prévient à l'écran et à voix haute, même dans Waze ou avec de la musique.
+== alertas | Les alertes et leurs seuils | Quand EvOS prévient et comment le modifier
+EvOS surveille les données pendant que vous conduisez et prévient à l'écran et à voix haute, même dans Waze ou avec de la musique.
 - Avertissement (ambre) : quelque chose sort de l'ordinaire ; par exemple, le liquide de refroidissement au-dessus de 100 °C.
 - Alerte (rouge) : il faut agir ; par exemple, le liquide de refroidissement au-dessus de 106 °C ou une batterie qui ne charge pas. Si l'option est activée, le panneau s'ouvre tout seul.
 - Il prévient aussi si le liquide de refroidissement monte très vite et quand un nouveau code défaut apparaît.
@@ -67,21 +67,21 @@ Touchez un code pour voir ce qu'il signifie, sa gravité et quoi faire.
 Dans Données en direct, vous voyez chaque donnée que transmet votre voiture : vitesse, charge moteur, accélérateur, température de l'air, carburant, richesse et plus. Chaque voiture transmet des données différentes : si l'une n'apparaît pas, votre voiture ne la fournit pas.
 - Touchez une donnée pour ouvrir son graphique.
 - Les graphiques affichent jusqu'à 3 données à la fois, de 1 à 30 minutes.
-- Celles marquées « calculé » sont déduites par StradaOS d'autres données (par exemple, la consommation). Elles sont approximatives.
+- Celles marquées « calculé » sont déduites par EvOS d'autres données (par exemple, la consommation). Elles sont approximatives.
 Astuce : si votre moteur n'a pas de capteur MAF, indiquez sa cylindrée dans Avancé pour une consommation plus juste.
 >> obd_live | Aller à Données en direct
 
 == ia | Activer l'IA, étape par étape | Facultatif : explique les codes pour votre voiture
-L'IA est facultative : sans elle, StradaOS explique déjà les codes les plus courants. Avec elle, l'explication concerne votre voiture en particulier. Il vous faut votre propre clé (API key) et internet sur l'écran.
+L'IA est facultative : sans elle, EvOS explique déjà les codes les plus courants. Avec elle, l'explication concerne votre voiture en particulier. Il vous faut votre propre clé (API key) et internet sur l'écran.
 ### Groq (gratuit)
 - Allez sur console.groq.com et connectez-vous avec Google ou votre e-mail. Aucune carte demandée.
 - Allez dans « API Keys » → « Create API Key », donnez-lui un nom et copiez la clé (elle commence par gsk_). Elle n'est affichée qu'une fois.
-- Dans StradaOS : Intelligence artificielle → Fournisseur : Groq → API key : collez-la.
+- Dans EvOS : Intelligence artificielle → Fournisseur : Groq → API key : collez-la.
 Astuce : faites-le dans le navigateur du même écran pour copier-coller la clé. Sur le téléphone, il faudra la saisir avec soin.
 ### Claude ou OpenAI (payants)
 - Claude : platform.claude.com → Settings → API keys. Achetez d'abord des crédits dans Billing.
 - OpenAI : platform.openai.com → API keys. Fonctionne aussi avec des crédits prépayés.
-- Dans StradaOS, choisissez le fournisseur, collez la clé et, si on vous le demande, choisissez le modèle.
+- Dans EvOS, choisissez le fournisseur, collez la clé et, si on vous le demande, choisissez le modèle.
 ### Pour finir
 - Remplissez « Votre véhicule (pour l'IA) » : marque, modèle, année, moteur et boîte. La réponse sera plus précise.
 - Touchez « Tester l'IA ». Si elle répond, c'est bon.

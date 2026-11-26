@@ -15,7 +15,7 @@ import java.util.Locale;
 
 /**
  * Monitor OBD-II en vivo: lee los sensores del auto a través de {@link Elm}, decide cuándo algo está fuera de lo
- * normal y avisa con un tono y por voz, en el idioma de StradaOS. Corre en su propio hilo dentro de
+ * normal y avisa con un tono y por voz, en el idioma de EvOS. Corre en su propio hilo dentro de
  * {@link ObdService}, así que sigue avisando aunque esté abierta otra app (Waze, música…).
  *
  * Una alerta solo salta si el valor se mantiene fuera de rango un rato (hold), para no gritar por un pico de un
@@ -208,7 +208,7 @@ public class Obd {
     /** Calculado en litros por hora; también se usa para el combustible del viaje. */
     static final Sensor FUEL_H = new Sensor("fuel_h", "Consumo por hora", "L/h", -3, true, 0, 40);
     /**
-     * Odómetro del auto (PID A6, #52). Pocos autos lo entregan (sobre todo desde 2019); si lo hace, StradaOS usa ese
+     * Odómetro del auto (PID A6, #52). Pocos autos lo entregan (sobre todo desde 2019); si lo hace, EvOS usa ese
      * kilometraje exacto para los mantenimientos. Cambia despacio: se lee cada ~15 s.
      */
     static final Sensor ODO = new Sensor("odo", "Odómetro", "km", 0xA6, false, 0, 2000000);
@@ -854,12 +854,12 @@ public class Obd {
         } catch (Throwable ignored) { }
         if (app == null || !prefs(app).getBoolean("obd_voice", true) || tts == null || !ttsReady) return;
         try {
-            // la voz toma el idioma de StradaOS de ahora: si el usuario cambió de idioma, leía los números en el anterior
+            // la voz toma el idioma de EvOS de ahora: si el usuario cambió de idioma, leía los números en el anterior
             if (!I18n.loc.equals(ttsLoc)) { ttsLoc = I18n.loc; tts.setLanguage(I18n.loc); }
             HashMap<String, String> p = new HashMap<String, String>();
             p.put(TextToSpeech.Engine.KEY_PARAM_STREAM, String.valueOf(AudioManager.STREAM_MUSIC));
             sleepQuiet(level > OK ? 700 : 0);
-            //noinspection deprecation (la versión con Bundle es API 21; StradaOS corre desde 4.1)
+            //noinspection deprecation (la versión con Bundle es API 21; EvOS corre desde 4.1)
             tts.speak(text, level == CRIT ? TextToSpeech.QUEUE_FLUSH : TextToSpeech.QUEUE_ADD, p);
         } catch (Throwable ignored) { }
     }

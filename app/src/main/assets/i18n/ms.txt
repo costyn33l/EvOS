@@ -1,4 +1,4 @@
-# StradaOS · terjemahan ms. Format: español	terjemahan. Lihat I18n.java.
+# EvOS · terjemahan ms. Format: español	terjemahan. Lihat I18n.java.
 Radio	Radio
 Cámara	Kamera
 Archivos	Fail
@@ -33,7 +33,7 @@ Restablecer ({})	Tetapkan semula ({})
 Botón restablecido	Butang ditetapkan semula
 Cerrar	Tutup
 Cerrar  ✕	Tutup  ✕
-★  Funciones de StradaOS (Música, Navegación, Android Auto…)	★  Fungsi StradaOS (Muzik, Navigasi, Android Auto…)
+★  Funciones de EvOS (Música, Navegación, Android Auto…)	★  Fungsi EvOS (Muzik, Navigasi, Android Auto…)
 ¿Qué abre el botón {}?	Apakah yang dibuka butang {}?
 Función del botón {}	Fungsi butang {}
 Nombre del botón {} (vacío = el de la app)	Nama butang {} (kosong = nama aplikasi)
@@ -49,7 +49,7 @@ Buenas tardes	Selamat petang
 Buenas noches	Selamat malam
 Diagnóstico del reproductor	Diagnostik pemain
 Accesibilidad	Kebolehcapaian
-Activa «Carátula de Android Auto» (StradaOS)	Hidupkan «Kulit album Android Auto» (StradaOS)
+Activa «Carátula de Android Auto» (EvOS)	Hidupkan «Kulit album Android Auto» (EvOS)
 No se pudo abrir Accesibilidad	Tidak dapat membuka Kebolehcapaian
 Activa «Pista actual de AA» en Open Headunit	Hidupkan «Trek semasa AA» dalam Open Headunit
 «Ninguna aplic. funciona con este accesorio USB»	«Tiada aplikasi berfungsi dengan aksesori USB ini»
@@ -58,7 +58,7 @@ Abrir EasyConnection	Buka EasyConnection
 No hay apps de espejo instaladas	Tiada aplikasi cerminan dipasang
 Exportando… puede tardar un minuto	Mengeksport… mungkin ambil masa seminit
 Diagnóstico listo	Diagnostik siap
-Se guardó en:\n{}\n\nCopia la carpeta StradaDiag a una memoria USB y adjúntala en un «issue» del repositorio de StradaOS en GitHub.	Disimpan di:\n{}\n\nSalin folder StradaDiag ke pemacu USB dan lampirkannya dalam «issue» repositori StradaOS di GitHub.
+Se guardó en:\n{}\n\nCopia la carpeta StradaDiag a una memoria USB y adjúntala en un «issue» del repositorio de EvOS en GitHub.	Disimpan di:\n{}\n\nSalin folder StradaDiag ke pemacu USB dan lampirkannya dalam «issue» repositori EvOS di GitHub.
 12 horas	12 jam
 24 horas	24 jam
 Automático	Automatik
@@ -66,7 +66,7 @@ Automática	Automatik
 Auto	Auto
 12 horas (a.m./p.m.)	12 jam (a.m./p.m.)
 Formato de hora	Format masa
-Se aplicará al reiniciar StradaOS	Berkesan selepas StradaOS dimulakan semula
+Se aplicará al reiniciar EvOS	Berkesan selepas EvOS dimulakan semula
 Rojo	Merah
 Naranja	Oren
 Amarillo	Kuning
@@ -76,7 +76,7 @@ Azul	Biru
 Morado	Ungu
 Rosa	Merah jambu
 Plata	Perak
-Bienvenido a StradaOS	Selamat datang ke StradaOS
+Bienvenido a EvOS	Selamat datang ke EvOS
 Vamos a dejar el launcher a tu gusto: tu nombre, tu vehículo, el color y la foto. Toma menos de un minuto y lo puedes cambiar después en el engranaje ⚙.	Mari sesuaikan pelancar ikut citarasa anda: nama, kenderaan, warna dan gambar anda. Kurang dari seminit dan boleh ditukar kemudian dengan gear ⚙.
 Empezar	Mula
 ¿Cómo te llamas?	Siapa nama anda?
@@ -214,7 +214,7 @@ Audio Bluetooth	Audio Bluetooth
 Volver al Bluetooth al desconectar Android Auto	Kembali ke Bluetooth bila Android Auto diputuskan
 Al quitar el cable, abre un instante la app de música Bluetooth para que el sonido siga por Bluetooth	Bila kabel dicabut, buka sekejap aplikasi muzik Bluetooth supaya bunyi terus melalui Bluetooth
 Escuchar el Bluetooth	Dengar Bluetooth
-En esta pantalla, toca ▶ en el inicio: StradaOS pasa el sonido a Bluetooth (por ejemplo, si venías de la radio)	Pada skrin ini, ketik ▶ di utama: StradaOS mengalih bunyi ke Bluetooth (contohnya, jika sebelum ini dari radio)
+En esta pantalla, toca ▶ en el inicio: EvOS pasa el sonido a Bluetooth (por ejemplo, si venías de la radio)	Pada skrin ini, ketik ▶ di utama: EvOS mengalih bunyi ke Bluetooth (contohnya, jika sebelum ini dari radio)
 Pasar a Bluetooth al dar play en el celular (en prueba)	Alih ke Bluetooth bila tekan main di telefon (percubaan)
 Abre un instante «Audio Bluetooth» y vuelve. En algunas pantallas no detecta el play del celular	Buka sekejap «Audio Bluetooth» dan kembali. Sesetengah skrin tidak mengesan main dari telefon
 Probar ahora	Cuba sekarang
@@ -271,7 +271,7 @@ Si la pantalla lo trae	Jika skrin menyokongnya
 no detectado	tidak dikesan
 Pantalla con CarPlay o adaptador USB	Skrin dengan CarPlay atau penyesuai USB
 Mapa con internet seguro (TLS 1.2)	Peta dengan internet selamat (TLS 1.2)
-Android 4.1+ (StradaOS lo activa)	Android 4.1+ (StradaOS mengaktifkannya)
+Android 4.1+ (EvOS lo activa)	Android 4.1+ (EvOS mengaktifkannya)
 en Android 4.x solo algunos servidores de mapas responden	pada Android 4.x hanya sesetengah pelayan peta bertindak balas
 Instalar actualizaciones desde la app	Pasang kemas kini dari aplikasi
 pide permiso «Instalar apps desconocidas»	minta kebenaran «Pasang aplikasi tidak dikenali»
@@ -283,7 +283,7 @@ Gratis y de código abierto. Una nueva vida para las pantallas Android del carro
 Versión	Versi
 Android de la pantalla	Android skrin
 Real: {} · ver qué funciona aquí	Sebenar: {} · lihat apa yang berfungsi di sini
-Cierres inesperados o bloqueos de StradaOS en esta pantalla	Gantung atau sekat StradaOS yang tidak dijangka pada skrin ini
+Cierres inesperados o bloqueos de EvOS en esta pantalla	Gantung atau sekat EvOS yang tidak dijangka pada skrin ini
 Sin fallos	Tiada kegagalan
 Ver	Lihat
 Actualizaciones	Kemas kini
@@ -292,9 +292,9 @@ Las actualizaciones llegan por esa app	Kemas kini tiba melalui aplikasi itu
 Avisar también de versiones en GitHub	Maklumkan juga versi di GitHub
 Comprobar actualizaciones automáticamente	Semak kemas kini automatik
 Opcional: las descargas de GitHub no pasan por la revisión de la tienda	Pilihan: muat turun GitHub tidak melalui semakan kedai
-Al abrir StradaOS con internet, una vez al día	Bila StradaOS dibuka dengan internet, sekali sehari
+Al abrir EvOS con internet, una vez al día	Bila EvOS dibuka dengan internet, sekali sehari
 Actualizaciones desde GitHub	Kemas kini dari GitHub
-Instalaste StradaOS desde {}. Si activas esto, StradaOS revisará una vez al día las versiones publicadas en github.com/{} y te ofrecerá descargarlas desde ahí.\n\nEsas descargas no pasan por la revisión de la tienda. Puede que GitHub tenga una versión un poco antes que la tienda.	Anda memasang StradaOS dari {}. Jika dihidupkan, StradaOS akan menyemak versi yang diterbitkan di github.com/{} sekali sehari dan menawarkan muat turun dari sana.\n\nMuat turun itu tidak melalui semakan kedai. GitHub mungkin ada versi sedikit lebih awal daripada kedai.
+Instalaste EvOS desde {}. Si activas esto, EvOS revisará una vez al día las versiones publicadas en github.com/{} y te ofrecerá descargarlas desde ahí.\n\nEsas descargas no pasan por la revisión de la tienda. Puede que GitHub tenga una versión un poco antes que la tienda.	Anda memasang EvOS dari {}. Jika dihidupkan, EvOS akan menyemak versi yang diterbitkan di github.com/{} sekali sehari dan menawarkan muat turun dari sana.\n\nMuat turun itu tidak melalui semakan kedai. GitHub mungkin ada versi sedikit lebih awal daripada kedai.
 Activar	Hidupkan
 Canal de actualizaciones	Saluran kemas kini
 Buscar actualizaciones	Cari kemas kini
@@ -302,13 +302,13 @@ Aún no se ha comprobado	Belum disemak
 Última comprobación: {}	Semakan terakhir: {}
 Comunidad	Komuniti
 Dar una estrella en GitHub	Beri bintang di GitHub
-Ayuda a que más personas encuentren StradaOS	Bantu lebih ramai temui StradaOS
+Ayuda a que más personas encuentren EvOS	Bantu lebih ramai temui EvOS
 Dar una estrella ⭐	Beri bintang ⭐
 Abre el repositorio y toca «Star». ¡Gracias!	Buka repositori dan ketik «Star». Terima kasih!
 Donar	Derma
-Si StradaOS revivió tu pantalla, invítame un café	Jika StradaOS menghidupkan semula skrin anda, belanja saya kopi
+Si EvOS revivió tu pantalla, invítame un café	Jika EvOS menghidupkan semula skrin anda, belanja saya kopi
 Apoya el proyecto ☕	Sokong projek ☕
-StradaOS es gratis. Las donaciones ayudan a mantenerlo y a probarlo en más pantallas.	StradaOS adalah percuma. Derma membantu mengekalkannya dan mengujinya pada lebih banyak skrin.
+EvOS es gratis. Las donaciones ayudan a mantenerlo y a probarlo en más pantallas.	EvOS adalah percuma. Derma membantu mengekalkannya dan mengujinya pada lebih banyak skrin.
 Reportar un problema o sugerir algo	Laporkan masalah atau beri cadangan
 Crea un «issue» en GitHub (adjunta el diagnóstico)	Cipta «issue» di GitHub (lampirkan diagnostik)
 Reportar un problema	Laporkan masalah
@@ -336,7 +336,7 @@ error de red	ralat rangkaian
 tu tienda de apps	kedai aplikasi anda
 Tienes la {} · nueva: {}	Anda ada {} · baharu: {}
 Mejoras y correcciones.	Penambahbaikan dan pembetulan.
-Nueva versión de StradaOS	Versi baharu StradaOS
+Nueva versión de EvOS	Versi baharu EvOS
 Tienes la {} · en GitHub: {}\nActualiza desde {} cuando llegue. Descargar de GitHub omite la revisión de la tienda.	Anda ada {} · di GitHub: {}\nKemas kini dari {} bila tiba. Muat turun dari GitHub melangkau semakan kedai.
 Ver en GitHub	Lihat di GitHub
 Descarga desde GitHub:	Muat turun dari GitHub:
@@ -344,13 +344,13 @@ Descargar e instalar	Muat turun dan pasang
 Descarga la nueva versión desde:	Muat turun versi baharu dari:
 Omitir esta versión	Langkau versi ini
 Más tarde	Kemudian
-Descargando StradaOS {}…	Memuat turun StradaOS {}…
+Descargando EvOS {}…	Memuat turun EvOS {}…
 Descárgala desde tu celular	Muat turun dari telefon anda
 Esta pantalla no pudo descargar el archivo. Escanea el código, descarga el APK y pásalo por USB.	Skrin ini tidak dapat memuat turun fail. Imbas kod, muat turun APK dan pindahkan melalui USB.
-¿Disfrutando StradaOS?	Menikmati StradaOS?
-Si te gusta usar StradaOS, dale una estrella en GitHub. Y si revivió tu pantalla, considera invitarme un café ☕	Jika anda suka menggunakan StradaOS, beri bintang di GitHub. Dan jika ia menghidupkan semula skrin anda, pertimbangkan untuk belanja saya kopi ☕
+¿Disfrutando EvOS?	Menikmati EvOS?
+Si te gusta usar EvOS, dale una estrella en GitHub. Y si revivió tu pantalla, considera invitarme un café ☕	Jika anda suka menggunakan EvOS, beri bintang di GitHub. Dan jika ia menghidupkan semula skrin anda, pertimbangkan untuk belanja saya kopi ☕
 Dar una estrella	Beri bintang
-StradaOS es gratis. Las donaciones ayudan a mantenerlo.	StradaOS adalah percuma. Derma membantu mengekalkannya.
+EvOS es gratis. Las donaciones ayudan a mantenerlo.	EvOS adalah percuma. Derma membantu mengekalkannya.
 Escanéalo con la cámara de tu celular o entra a:	Imbas dengan kamera telefon anda atau pergi ke:
 Abrir aquí	Buka di sini
 No hay navegador disponible	Tiada pelayar tersedia
@@ -373,7 +373,7 @@ Conexión: {}. Cámbiala dejando presionado el botón.	Sambungan: {}. Tukarnya d
 el navegador	pelayar
 «{}» necesita un Android más nuevo que el de esta pantalla. Abro el navegador de fábrica.	«{}» memerlukan Android lebih baharu daripada skrin ini. Membuka pelayar kilang.
 No encontré un navegador. Déjalo presionado para elegir uno.	Tiada pelayar dijumpai. Tekan lama untuk pilih satu.
-Permite «Instalar apps desconocidas» para StradaOS y vuelve a tocar.	Benarkan «Pasang aplikasi tidak dikenali» untuk StradaOS dan ketik semula.
+Permite «Instalar apps desconocidas» para EvOS y vuelve a tocar.	Benarkan «Pasang aplikasi tidak dikenali» untuk EvOS dan ketik semula.
 Activa «Orígenes desconocidos» y vuelve a tocar.	Hidupkan «Sumber tidak dikenali» dan ketik semula.
 No se pudo preparar {}	Tidak dapat menyediakan {}
 No se pudo abrir el instalador para {}	Tidak dapat membuka pemasang untuk {}
@@ -389,30 +389,30 @@ Tormenta	Ribut
 Mapa en vivo apagado	Peta langsung dimatikan
 Rendimiento	Prestasi
 Apágalo si la pantalla va lenta: queda un mapa de adorno y el velocímetro sigue funcionando	Matikannya jika skrin perlahan: peta hiasan kekal dan meter kelajuan terus berfungsi
-StradaOS aún no es tu pantalla de inicio	StradaOS belum menjadi skrin utama anda
-Por eso al encender el carro o al tocar Inicio aparece el menú de fábrica.\n\nToca «Fijar ahora», elige StradaOS y luego «Siempre».	Sebab itu menu kilang muncul bila kereta dihidupkan atau bila ketik Utama.\n\nKetik «Tetapkan sekarang», pilih StradaOS kemudian «Sentiasa».
+EvOS aún no es tu pantalla de inicio	EvOS belum menjadi skrin utama anda
+Por eso al encender el carro o al tocar Inicio aparece el menú de fábrica.\n\nToca «Fijar ahora», elige EvOS y luego «Siempre».	Sebab itu menu kilang muncul bila kereta dihidupkan atau bila ketik Utama.\n\nKetik «Tetapkan sekarang», pilih EvOS kemudian «Sentiasa».
 Fijar ahora	Tetapkan sekarang
 Ahora no	Bukan sekarang
 No volver a preguntar	Jangan tanya lagi
-Elige StradaOS y toca «Siempre»	Pilih StradaOS dan ketik «Sentiasa»
-Listo: StradaOS es tu pantalla de inicio	Siap: StradaOS ialah skrin utama anda
-Fijar StradaOS a mano	Tetapkan StradaOS manual
-Algunas pantallas no muestran la lista para elegir. Prueba así:\n\n1. Toca el botón Inicio (la casita) de la pantalla. Si pregunta qué app usar, elige StradaOS → Siempre.\n2. Si no pregunta: en los ajustes de la pantalla busca Aplicaciones → Aplicaciones predeterminadas → Pantalla de inicio (o «App de inicio») y elige StradaOS.\n3. Con Android 10 o más nuevo, no lo elijas desde el modo fábrica de la pantalla («Launcher», «Interfaz» o «UI»): en algunas marcas eso deja las demás apps sin poder abrirse. En Android 4 a 9 sí puedes usar esa opción.\n\nSi tu pantalla siempre vuelve a su menú de fábrica al encender, activa «Abrir StradaOS al encender» en Ajustes → Sistema.	Sesetengah skrin tidak menunjukkan senarai pilihan. Cuba begini:\n\n1. Ketik butang Utama (rumah) skrin. Jika ditanya aplikasi mana, pilih StradaOS → Sentiasa.\n2. Jika tidak ditanya: dalam tetapan skrin cari Aplikasi → Aplikasi lalai → Skrin utama (atau «Aplikasi utama») dan pilih StradaOS.\n3. Pada Android 10 atau lebih baharu, jangan pilihnya dari mod kilang skrin («Launcher», «Antara muka» atau «UI»): pada sesetengah jenama, aplikasi lain tidak dapat dibuka. Pada Android 4 hingga 9 anda boleh guna pilihan itu.\n\nJika skrin anda sentiasa kembali ke menu kilang semasa dihidupkan, hidupkan «Buka StradaOS semasa dihidupkan» dalam Tetapan → Sistem.
+Elige EvOS y toca «Siempre»	Pilih EvOS dan ketik «Sentiasa»
+Listo: EvOS es tu pantalla de inicio	Siap: EvOS ialah skrin utama anda
+Fijar EvOS a mano	Tetapkan EvOS manual
+Algunas pantallas no muestran la lista para elegir. Prueba así:\n\n1. Toca el botón Inicio (la casita) de la pantalla. Si pregunta qué app usar, elige EvOS → Siempre.\n2. Si no pregunta: en los ajustes de la pantalla busca Aplicaciones → Aplicaciones predeterminadas → Pantalla de inicio (o «App de inicio») y elige EvOS.\n3. Con Android 10 o más nuevo, no lo elijas desde el modo fábrica de la pantalla («Launcher», «Interfaz» o «UI»): en algunas marcas eso deja las demás apps sin poder abrirse. En Android 4 a 9 sí puedes usar esa opción.\n\nSi tu pantalla siempre vuelve a su menú de fábrica al encender, activa «Abrir EvOS al encender» en Ajustes → Sistema.	Sesetengah skrin tidak menunjukkan senarai pilihan. Cuba begini:\n\n1. Ketik butang Utama (rumah) skrin. Jika ditanya aplikasi mana, pilih EvOS → Sentiasa.\n2. Jika tidak ditanya: dalam tetapan skrin cari Aplikasi → Aplikasi lalai → Skrin utama (atau «Aplikasi utama») dan pilih EvOS.\n3. Pada Android 10 atau lebih baharu, jangan pilihnya dari mod kilang skrin («Launcher», «Antara muka» atau «UI»): pada sesetengah jenama, aplikasi lain tidak dapat dibuka. Pada Android 4 hingga 9 anda boleh guna pilihan itu.\n\nJika skrin anda sentiasa kembali ke menu kilang semasa dihidupkan, hidupkan «Buka EvOS semasa dihidupkan» dalam Tetapan → Sistem.
 Pantalla de inicio	Skrin utama
 La que aparece al encender y al tocar Inicio	Yang muncul semasa dihidupkan dan bila ketik Utama
-StradaOS ✓	StradaOS ✓
+EvOS ✓	EvOS ✓
 Otra · toca para cambiar	Lain · ketik untuk tukar
-Abrir StradaOS al encender	Buka StradaOS semasa dihidupkan
+Abrir EvOS al encender	Buka EvOS semasa dihidupkan
 Para pantallas que siempre arrancan en su menú de fábrica (Android 4 a 9)	Untuk skrin yang sentiasa bermula pada menu kilang (Android 4 hingga 9)
 ¿La música Bluetooth se corta o no aparece?	Muzik Bluetooth terputus atau tidak muncul?
 Qué hacer en cada caso	Apa nak buat setiap keadaan
-• Se corta al salir de la app Bluetooth: sal con el botón Inicio (la casita), no con Atrás. Atrás cierra la app de fábrica y con ella la música.\n\n• No suena hasta abrir la app Bluetooth: activa «Abrir la app de música Bluetooth al conectar el celular» (aquí mismo). Abre la app un instante y vuelve al inicio.\n\n• La canción no aparece en el inicio (Android 5 o más nuevo): activa «Música de cualquier app» arriba y dale acceso a notificaciones a StradaOS.\n\n• Revisa en Ajustes → Accesos y apps que «Música Bluetooth» sea la app Bluetooth de tu pantalla.	• Terputus bila keluar dari aplikasi Bluetooth: keluar dengan butang Utama (rumah), bukan Kembali. Kembali menutup aplikasi kilang dan muzik bersamanya.\n\n• Tidak berbunyi sehingga aplikasi Bluetooth dibuka: hidupkan «Buka aplikasi muzik Bluetooth bila telefon disambung» (di sini). Buka aplikasi sekejap dan kembali ke utama.\n\n• Lagu tidak muncul di utama (Android 5 atau lebih baharu): hidupkan «Muzik dari mana-mana aplikasi» di atas dan beri StradaOS akses notifikasi.\n\n• Semak dalam Tetapan → Pintasan & aplikasi bahawa «Muzik Bluetooth» ialah aplikasi Bluetooth skrin anda.
+• Se corta al salir de la app Bluetooth: sal con el botón Inicio (la casita), no con Atrás. Atrás cierra la app de fábrica y con ella la música.\n\n• No suena hasta abrir la app Bluetooth: activa «Abrir la app de música Bluetooth al conectar el celular» (aquí mismo). Abre la app un instante y vuelve al inicio.\n\n• La canción no aparece en el inicio (Android 5 o más nuevo): activa «Música de cualquier app» arriba y dale acceso a notificaciones a EvOS.\n\n• Revisa en Ajustes → Accesos y apps que «Música Bluetooth» sea la app Bluetooth de tu pantalla.	• Terputus bila keluar dari aplikasi Bluetooth: keluar dengan butang Utama (rumah), bukan Kembali. Kembali menutup aplikasi kilang dan muzik bersamanya.\n\n• Tidak berbunyi sehingga aplikasi Bluetooth dibuka: hidupkan «Buka aplikasi muzik Bluetooth bila telefon disambung» (di sini). Buka aplikasi sekejap dan kembali ke utama.\n\n• Lagu tidak muncul di utama (Android 5 atau lebih baharu): hidupkan «Muzik dari mana-mana aplikasi» di atas dan beri EvOS akses notifikasi.\n\n• Semak dalam Tetapan → Pintasan & aplikasi bahawa «Muzik Bluetooth» ialah aplikasi Bluetooth skrin anda.
 Sin permiso	Tiada kebenaran
 GPS apagado	GPS dimatikan
 Unidades	Unit
 Automático: mph en EE. UU. y Reino Unido	Automatik: mph di AS dan UK
 Permisos → Ubicación → Permitir	Kebenaran → Lokasi → Benarkan
-Activa la ubicación para StradaOS en los ajustes de la pantalla	Hidupkan lokasi untuk StradaOS dalam tetapan skrin
+Activa la ubicación para EvOS en los ajustes de la pantalla	Hidupkan lokasi untuk EvOS dalam tetapan skrin
 Activa la ubicación (GPS)	Hidupkan lokasi (GPS)
 Activa la ubicación (GPS) en los ajustes de la pantalla	Hidupkan lokasi (GPS) dalam tetapan skrin
 Sin permiso de ubicación · toca aquí	Tiada kebenaran lokasi · ketik di sini
@@ -435,7 +435,7 @@ Corregir el kilometraje actual	Betulkan odometer semasa
 Cambiar cada cuánto se hace	Tukar kekerapan selang
 Desactivar el recordatorio	Matikan peringatan
 Recordatorio de cambio de aceite	Peringatan tukar minyak
-StradaOS no puede leer el kilometraje del tablero del carro. Escríbelo una vez y StradaOS le irá sumando lo que recorras con el GPS, para avisarte cuando toque el cambio.\n\nDe vez en cuando puedes corregirlo con el valor real del tablero.	StradaOS tidak dapat membaca odometer papan pemuka kereta. Tulis sekali dan StradaOS akan menambah jarak perjalanan anda dengan GPS, untuk mengingatkan bila tiba masa tukar.\n\nSekali-sekala anda boleh betulkannya dengan bacaan sebenar papan pemuka.
+EvOS no puede leer el kilometraje del tablero del carro. Escríbelo una vez y EvOS le irá sumando lo que recorras con el GPS, para avisarte cuando toque el cambio.\n\nDe vez en cuando puedes corregirlo con el valor real del tablero.	EvOS tidak dapat membaca odometer papan pemuka kereta. Tulis sekali dan EvOS akan menambah jarak perjalanan anda dengan GPS, untuk mengingatkan bila tiba masa tukar.\n\nSekali-sekala anda boleh betulkannya dengan bacaan sebenar papan pemuka.
 ¿A cuántos {} fue el último cambio de aceite?	Berapa {} odometer semasa tukar minyak terakhir?
 Kilometraje actual del tablero	Odometer semasa papan pemuka
 ¿Cada cuántos {} cambias el aceite?	Setiap berapa {} anda tukar minyak?
@@ -479,20 +479,20 @@ Se muestran todas las apps	Semua aplikasi dipaparkan
 Apps ocultas: {}	Aplikasi tersembunyi: {}
 # 2.14: desinstalar desde el cajón
 Desinstalar	Nyahpasang
-# 2.14: salir de StradaOS (issue #9)
-Salir de StradaOS	Keluar dari StradaOS
+# 2.14: salir de EvOS (issue #9)
+Salir de EvOS	Keluar dari EvOS
 Abrir el launcher de fábrica	Buka pelancar kilang
-Sale de StradaOS sin desinstalarlo	Keluar dari StradaOS tanpa menyahpasangnya
-Desactivar StradaOS	Nyahaktifkan StradaOS
-Si la pantalla quedó atrapada en StradaOS: se apaga solo, sin ventanas de Android	Jika skrin tersekat pada StradaOS: ia mematikan dirinya sendiri, tanpa tetingkap Android
-Desinstalar StradaOS	Nyahpasang StradaOS
+Sale de EvOS sin desinstalarlo	Keluar dari EvOS tanpa menyahpasangnya
+Desactivar EvOS	Nyahaktifkan EvOS
+Si la pantalla quedó atrapada en EvOS: se apaga solo, sin ventanas de Android	Jika skrin tersekat pada EvOS: ia mematikan dirinya sendiri, tanpa tetingkap Android
+Desinstalar EvOS	Nyahpasang EvOS
 Android pide confirmar	Android meminta pengesahan
 No encontré otra pantalla de inicio en este equipo	Tiada skrin utama lain ditemui pada peranti ini
 ¿Cuál es el launcher de fábrica?	Yang mana pelancar kilang?
 No se pudo abrir	Tidak dapat dibuka
-No encontré otra pantalla de inicio: StradaOS no se puede desactivar en este equipo	Tiada skrin utama lain ditemui: StradaOS tidak boleh dinyahaktifkan pada peranti ini
-¿Desactivar StradaOS?	Nyahaktifkan StradaOS?
-StradaOS deja de ser la pantalla de inicio, ya no se abre al encender y vuelve el launcher de fábrica. No pide confirmaciones de Android, así que sirve aunque la pantalla haya quedado atrapada.\n\nPara volver a usarlo después: desinstálalo desde los ajustes de la pantalla e instálalo de nuevo.	StradaOS tidak lagi menjadi skrin utama, tidak dibuka semasa dihidupkan dan pelancar kilang kembali. Ia tidak memerlukan pengesahan Android, jadi ia berfungsi walaupun skrin tersekat.\n\nUntuk menggunakannya semula: nyahpasang dari tetapan skrin dan pasang semula.
+No encontré otra pantalla de inicio: EvOS no se puede desactivar en este equipo	Tiada skrin utama lain ditemui: EvOS tidak boleh dinyahaktifkan pada peranti ini
+¿Desactivar EvOS?	Nyahaktifkan EvOS?
+EvOS deja de ser la pantalla de inicio, ya no se abre al encender y vuelve el launcher de fábrica. No pide confirmaciones de Android, así que sirve aunque la pantalla haya quedado atrapada.\n\nPara volver a usarlo después: desinstálalo desde los ajustes de la pantalla e instálalo de nuevo.	EvOS tidak lagi menjadi skrin utama, tidak dibuka semasa dihidupkan dan pelancar kilang kembali. Ia tidak memerlukan pengesahan Android, jadi ia berfungsi walaupun skrin tersekat.\n\nUntuk menggunakannya semula: nyahpasang dari tetapan skrin dan pasang semula.
 Desactivar	Nyahaktifkan
 # 2.15: diseño del inicio
 Diseño del inicio	Reka letak skrin utama
@@ -556,7 +556,7 @@ Pausar	Jeda
 Continuar	Sambung
 Cancelar descarga	Batalkan muat turun
 Descarga cancelada	Muat turun dibatalkan
-Este mapa lo descargó StradaOS. Puedes dejar de usarlo o borrarlo para liberar espacio.	Peta ini dimuat turun oleh StradaOS. Anda boleh berhenti menggunakannya atau memadamnya untuk mengosongkan ruang.
+Este mapa lo descargó EvOS. Puedes dejar de usarlo o borrarlo para liberar espacio.	Peta ini dimuat turun oleh EvOS. Anda boleh berhenti menggunakannya atau memadamnya untuk mengosongkan ruang.
 Puedes dejar de usar este mapa (el archivo no se borra).	Anda boleh berhenti menggunakan peta ini (fail tidak dipadam).
 Dejar de usarlo	Berhenti menggunakannya
 Borrar el archivo	Padam fail
@@ -609,7 +609,7 @@ apagado	mati
 encendida	hidup
 apagada	mati
 Última señal: {}	Isyarat terakhir: {}
-ninguna desde que abrió StradaOS	tiada sejak StradaOS dibuka
+ninguna desde que abrió EvOS	tiada sejak EvOS dibuka
 hace {} s	{} s lalu
 hace {} min	{} min lalu
 Buscando desde hace {} min	Mencari sejak {} min
@@ -740,7 +740,7 @@ Lo que llegue primero	Yang mana dahulu
 ¿A cuántos {} fue la última vez?	Pada berapa {} kali terakhir?
 ¿Cuándo fue la última vez?	Bilakah kali terakhir?
 Kilometraje del tablero	Odometer papan pemuka
-StradaOS no puede leer el kilometraje del carro. Escríbelo una vez y StradaOS le suma lo que recorras con el GPS.	StradaOS tidak boleh membaca odometer kereta. Taip sekali dan StradaOS menambah jarak perjalanan dengan GPS.
+EvOS no puede leer el kilometraje del carro. Escríbelo una vez y EvOS le suma lo que recorras con el GPS.	EvOS tidak boleh membaca odometer kereta. Taip sekali dan EvOS menambah jarak perjalanan dengan GPS.
 Escribirlo	Taip
 Última vez	Kali terakhir
 Cambiar cada cuánto	Tukar kekerapan
@@ -774,7 +774,7 @@ Diseño de la barra	Reka letak bar
 Botones (déjalos presionados en el inicio para cambiarlos)	Butang (tekan lama di skrin utama untuk menukarnya)
 Texto	Teks
 Kilometraje	Odometer
-Escríbelo una vez y StradaOS le suma lo que recorras con el GPS	Taip sekali dan StradaOS menambah jarak dengan GPS
+Escríbelo una vez y EvOS le suma lo que recorras con el GPS	Taip sekali dan EvOS menambah jarak dengan GPS
 Avisa cuando toca el cambio	Mengingatkan bila tiba masa tukar
 En el inicio	Di skrin utama
 Mantenimiento en el inicio	Penyelenggaraan di skrin utama
@@ -808,7 +808,7 @@ ninguna	tiada
 {} s, carátula {}, textos {}	{} s, kulit album {}, teks {}
 Open Headunit corriendo: {} · celular por USB en modo Android Auto: {}	Open Headunit berjalan: {} · telefon melalui USB dalam mod Android Auto: {}
 no se sabe	tidak diketahui
-Android Auto conectado (para StradaOS): {}	Android Auto disambung (untuk StradaOS): {}
+Android Auto conectado (para EvOS): {}	Android Auto disambung (untuk EvOS): {}
 App Bluetooth conectada: {}	Aplikasi Bluetooth disambung: {}
 Audio Bluetooth automático: {}	Audio Bluetooth automatik: {}
 desactivado	mati
@@ -830,7 +830,7 @@ activar audio falló: {}	gagal mengaktifkan audio: {}
 el celular empezó a sonar	telefon mula memainkan lagu
 revisión falló: {}	semakan gagal: {}
 otra fuente al frente: {}	sumber lain di hadapan: {}
-no se cambió: StradaOS acaba de arrancar	tidak ditukar: StradaOS baru sahaja dimulakan
+no se cambió: EvOS acaba de arrancar	tidak ditukar: EvOS baru sahaja dimulakan
 no se cambió: llamada en curso	tidak ditukar: panggilan sedang berlangsung
 no se cambió: Android Auto tiene el sonido	tidak ditukar: Android Auto memegang bunyi
 el sonido ya es Bluetooth	bunyi sudah pada Bluetooth
@@ -864,25 +864,25 @@ Al restablecer la pantalla de fábrica también se puede borrar su memoria: guar
 No se pudo leer el archivo	Tidak dapat membaca fail
 Buscando copias…	Mencari sandaran…
 No se encontró ninguna copia	Tiada sandaran dijumpai
-No hay copias de StradaOS en la memoria de la pantalla ni en las USB conectadas. El archivo se llama «StradaOS-backup» y termina en .json.	Tiada sandaran StradaOS dalam storan skrin atau pada pemacu USB yang disambung. Fail itu bernama «StradaOS-backup» dan berakhir dengan .json.
+No hay copias de EvOS en la memoria de la pantalla ni en las USB conectadas. El archivo se llama «EvOS-backup» y termina en .json.	Tiada sandaran EvOS dalam storan skrin atau pada pemacu USB yang disambung. Fail itu bernama «EvOS-backup» dan berakhir dengan .json.
 automática	automatik
 Buscar el archivo…	Cari fail…
 Elige la copia	Pilih sandaran
 No se pudo restaurar	Tidak dapat memulihkan
-Este archivo no es una copia de seguridad de StradaOS	Fail ini bukan sandaran StradaOS
+Este archivo no es una copia de seguridad de EvOS	Fail ini bukan sandaran EvOS
 Copia del	Sandaran dari
 Pantalla:	Skrin:
 Ajustes guardados:	Tetapan disimpan:
 con la foto del vehículo	dengan gambar kenderaan
-Se reemplaza toda la configuración actual de StradaOS por la de la copia.	Semua tetapan semasa StradaOS digantikan dengan tetapan daripada sandaran.
+Se reemplaza toda la configuración actual de EvOS por la de la copia.	Semua tetapan semasa EvOS digantikan dengan tetapan daripada sandaran.
 ¿Restaurar esta copia?	Pulihkan sandaran ini?
 Restaurar	Pulihkan
 Copia restaurada	Sandaran dipulihkan
-Esta copia se hizo con una versión más nueva de StradaOS. Actualiza StradaOS y vuelve a intentarlo	Sandaran ini dibuat dengan versi StradaOS yang lebih baharu. Kemas kini StradaOS dan cuba lagi
+Esta copia se hizo con una versión más nueva de EvOS. Actualiza EvOS y vuelve a intentarlo	Sandaran ini dibuat dengan versi EvOS yang lebih baharu. Kemas kini EvOS dan cuba lagi
 No se pudo guardar la configuración	Tidak dapat menyimpan tetapan
 La copia está dañada o incompleta	Sandaran rosak atau tidak lengkap
 Abrir una app al encender	Buka aplikasi semasa dihidupkan
-StradaOS la abre un momento al arrancar (por ejemplo la radio, para que empiece a sonar) y vuelve al inicio	StradaOS membukanya seketika semasa bermula (contohnya radio, supaya ia mula berbunyi) dan kembali ke skrin utama
+EvOS la abre un momento al arrancar (por ejemplo la radio, para que empiece a sonar) y vuelve al inicio	EvOS membukanya seketika semasa bermula (contohnya radio, supaya ia mula berbunyi) dan kembali ke skrin utama
 Copia de seguridad en un archivo (pantalla o USB)	Sandaran ke dalam fail (skrin atau USB)
 en Android 10+ la carpeta se elige con el selector de archivos	pada Android 10+ folder dipilih dengan pemilih fail
 Diseño vertical	Susun atur menegak
@@ -934,7 +934,7 @@ Gris suave	Kelabu lembut
 Ámbar	Ambar
 Ver ahora	Lihat sekarang
 Toca la pantalla para volver	Ketik skrin untuk kembali
-# 2.23: navegación en el mapa de StradaOS (código base de nothanks91, PR #31/#35)
+# 2.23: navegación en el mapa de EvOS (código base de nothanks91, PR #31/#35)
 Ir a…	Pergi ke…
 Recalculando…	Mengira semula…
 Llegaste a tu destino	Anda telah tiba di destinasi
@@ -961,11 +961,11 @@ Detener navegación	Henti navigasi
 Navegación en el mapa	Navigasi di peta
 Voz activada	Suara dihidupkan
 Voz silenciada	Suara disenyapkan
-En el mapa de StradaOS	Di peta StradaOS
+En el mapa de EvOS	Di peta EvOS
 Se abre con el botón del mapa (Waze, Maps, OsmAnd… o integrada en el mapa)	Dibuka dengan butang peta (Waze, Maps, OsmAnd… atau terbina dalam peta)
 Voz de navegación	Suara navigasi
 Indicaciones paso a paso habladas durante el recorrido	Arahan langkah demi langkah yang dituturkan semasa perjalanan
-★  En el mapa de StradaOS (integrada)	★  Di peta StradaOS (terbina dalam)
+★  En el mapa de EvOS (integrada)	★  Di peta EvOS (terbina dalam)
 Guardado: Navegación en el mapa	Disimpan: Navigasi di peta
 Coordenadas	Koordinat
 No se encontró ruta	Tiada laluan ditemui
@@ -1091,7 +1091,7 @@ Cambia el aspecto de la pantalla de inicio con un toque. Puedes seguir ajustando
 Temas gratis	Tema percuma
 Temas premium	Tema premium
 Próximamente	Akan datang
-Temas exclusivos para quienes apoyan StradaOS con una donación. Todas las funciones siguen siendo gratis.	Tema eksklusif untuk mereka yang menyokong StradaOS dengan derma. Semua fungsi kekal percuma.
+Temas exclusivos para quienes apoyan EvOS con una donación. Todas las funciones siguen siendo gratis.	Tema eksklusif untuk mereka yang menyokong EvOS dengan derma. Semua fungsi kekal percuma.
 En uso	Digunakan
 Tema aplicado:	Tema digunakan:
 Clásico	Klasik
@@ -1155,7 +1155,7 @@ Esta pantalla no informa su brillo	Skrin ini tidak melaporkan kecerahannya
 Países del Golfo	Negara Teluk
 Irlanda del Norte	Ireland Utara
 Islas Canarias	Kepulauan Canary
-Tiempo en StradaOS: {}	Masa dalam StradaOS: {}
+Tiempo en EvOS: {}	Masa dalam EvOS: {}
 Último tiempo por Bluetooth: {}	Masa terakhir melalui Bluetooth: {}
 # Bloque 16 (2.25): tema premium Faro
 Fondo carbón (o perla en claro) con un haz de luz diagonal. A la izquierda, el velocímetro y un carro visto desde arriba que enciende los faros de noche; en el centro, el mapa integrado al fondo; a la derecha, el clima por horas y tus próximos mantenimientos, con el reproductor y la barra de apps debajo.	Latar arang (atau mutiara dalam mod cerah) dengan alur cahaya pepenjuru. Di kiri, meter laju dan kereta dilihat dari atas yang menyalakan lampu hadapan pada waktu malam; di tengah, peta yang menyatu dengan latar; di kanan, cuaca setiap jam dan penyelenggaraan anda yang akan datang, dengan pemain dan bar aplikasi di bawah.
@@ -1174,7 +1174,7 @@ Navegar	Navigasi
 Música sonando	Muzik dimainkan
 Toca para ver la canción	Ketik untuk melihat lagu
 Ver la canción de tus apps	Lihat lagu dari aplikasi anda
-Para mostrar la canción, el artista y la carátula de Spotify, YouTube Music y otras apps, StradaOS necesita «Acceso a notificaciones». Solo lo usa para leer lo que suena: no guarda ni envía nada.	Untuk menunjukkan lagu, artis dan kulit album daripada Spotify, YouTube Music dan aplikasi lain, StradaOS memerlukan «Akses pemberitahuan». Ia hanya digunakan untuk membaca apa yang dimainkan: tiada apa yang disimpan atau dihantar.
+Para mostrar la canción, el artista y la carátula de Spotify, YouTube Music y otras apps, EvOS necesita «Acceso a notificaciones». Solo lo usa para leer lo que suena: no guarda ni envía nada.	Untuk menunjukkan lagu, artis dan kulit album daripada Spotify, YouTube Music dan aplikasi lain, EvOS memerlukan «Akses pemberitahuan». Ia hanya digunakan untuk membaca apa yang dimainkan: tiada apa yang disimpan atau dihantar.
 No volver a mostrar	Jangan tunjukkan lagi
 Esta pantalla no tiene el ajuste de «Acceso a notificaciones». Se puede activar una sola vez desde una computadora con ADB:	Skrin ini tiada tetapan «Akses pemberitahuan». Anda boleh mengaktifkannya sekali sahaja dari komputer dengan ADB:
 Spotify, YouTube Music y otras apps de la pantalla (acceso a notificaciones)	Spotify, YouTube Music dan aplikasi lain pada skrin (akses pemberitahuan)
@@ -1228,7 +1228,7 @@ Estado	Status
 Abrir el panel del vehículo	Buka panel kenderaan
 Medidores, alertas y códigos encima del tema que tengas	Meter, amaran dan kod di atas tema anda
 Diagnóstico	Diagnostik
-Qué vigila StradaOS y cuándo avisa por voz	Apa yang StradaOS pantau dan bila ia beri amaran suara
+Qué vigila EvOS y cuándo avisa por voz	Apa yang EvOS pantau dan bila ia beri amaran suara
 Todo normal	Semua normal
 Qué significan y qué hacer; borrarlos con el motor apagado	Maksudnya dan apa perlu dibuat; padam dengan enjin dimatikan
 Cada dato que entrega tu auto, con gráficos	Setiap data yang diberi kereta anda, dengan graf
@@ -1236,9 +1236,9 @@ Más	Lagi
 Opcional: explica los códigos para tu auto en particular	Pilihan: terangkan kod untuk kereta anda
 Motor, protocolo, panel y escaneo completo	Enjin, protokol, panel dan imbasan penuh
 Bluetooth emparejado, Wi-Fi (IP y puerto) o un auto simulado para probar	Bluetooth berpasangan, Wi-Fi (IP dan port) atau kereta simulasi untuk mencuba
-Empareja el escáner sin salir de StradaOS (clave 1234 o 0000)	Pasangkan pengimbas tanpa keluar dari StradaOS (PIN 1234 atau 0000)
+Empareja el escáner sin salir de EvOS (clave 1234 o 0000)	Pasangkan pengimbas tanpa keluar dari EvOS (PIN 1234 atau 0000)
 Reconectar	Sambung semula
-Conectar al iniciar StradaOS	Sambung apabila StradaOS bermula
+Conectar al iniciar EvOS	Sambung apabila EvOS bermula
 Las alertas funcionan aunque estés en otra app (con una notificación fija)	Amaran berfungsi walaupun dalam aplikasi lain (dengan pemberitahuan tetap)
 Cómo conectar el escáner	Cara menyambung pengimbas
 1. Enchufa el escáner ELM327 en el conector OBD (bajo el volante) y pon el contacto.\n2. Bluetooth: emparéjalo con la clave 1234 o 0000. Wi-Fi: conecta la pantalla a la red del escáner y escribe su IP y puerto (casi siempre 192.168.0.10:35000).\n3. Elígelo arriba en «Escáner».	1. Pasang pengimbas ELM327 pada soket OBD (di bawah stereng) dan hidupkan suis.\n2. Bluetooth: pasangkan dengan PIN 1234 atau 0000. Wi-Fi: sambungkan unit utama ke rangkaian pengimbas dan tulis IP dan port (hampir selalu 192.168.0.10:35000).\n3. Pilih di atas dalam «Pengimbas».
@@ -1672,7 +1672,7 @@ Guía del escáner	Panduan pengimbas
 Guía	Panduan
 Qué comprar, cómo conectarlo y qué significa cada cosa · sin internet	Apa yang perlu dibeli, cara menyambung dan maksud setiap perkara · tanpa internet
 Desbloquear	Buka kunci
-Se desbloquea con una donación. Todas las funciones de StradaOS siguen siendo gratis.	Dibuka dengan derma. Semua fungsi StradaOS kekal percuma.
+Se desbloquea con una donación. Todas las funciones de EvOS siguen siendo gratis.	Dibuka dengan derma. Semua fungsi EvOS kekal percuma.
 Desbloqueado en esta pantalla. ¡Gracias por tu donación!	Dibuka pada skrin ini. Terima kasih atas derma anda!
 Prueba: volver a aplicar sin código	Ujian: guna semula tanpa kod
 Prueba: desbloquear como en la versión normal	Ujian: buka kunci seperti versi biasa
@@ -1695,11 +1695,11 @@ Buscando la licencia en la pantalla y en las USB…	Mencari lesen pada skrin dan
 No encontramos la licencia	Lesen tidak dijumpai
 Copia el archivo que te enviamos (stradaos-licencia.txt) en la raíz de una USB, conéctala y vuelve a intentarlo. Tiene que ser para el ID {}.	Salin fail yang kami hantar (stradaos-licencia.txt) ke akar pemacu USB, sambungkannya dan cuba lagi. Ia mesti untuk ID {}.
 ¡Listo!	Siap!
-{} quedó desbloqueado en esta pantalla. Gracias por apoyar StradaOS.	{} kini dibuka pada skrin ini. Terima kasih kerana menyokong StradaOS.
+{} quedó desbloqueado en esta pantalla. Gracias por apoyar EvOS.	{} kini dibuka pada skrin ini. Terima kasih kerana menyokong EvOS.
 Aplicar ahora	Guna sekarang
 1. Dona en Ko-fi 5 USD por un tema o 8 USD por dos: escanea el código con tu celular o entra a {}.	1. Derma di Ko-fi 5 USD untuk satu tema atau 8 USD untuk dua: imbas kod dengan telefon anda atau pergi ke {}.
 2. En el mensaje de la donación escribe el ID de esta pantalla y qué temas quieres:	2. Dalam mesej derma, tulis ID skrin ini dan tema yang anda mahu:
-Se desbloquea con una donación de 5 USD, o 8 USD por dos temas. Todas las funciones de StradaOS siguen siendo gratis.	Dibuka dengan derma 5 USD, atau 8 USD untuk dua tema. Semua fungsi StradaOS kekal percuma.
+Se desbloquea con una donación de 5 USD, o 8 USD por dos temas. Todas las funciones de EvOS siguen siendo gratis.	Dibuka dengan derma 5 USD, atau 8 USD untuk dua tema. Semua fungsi EvOS kekal percuma.
 Usar la velocidad del escáner	Guna kelajuan pengimbas
 Con el escáner conectado, el inicio muestra la velocidad del carro en vez de la del GPS: más exacta y sin retraso	Dengan pengimbas disambung, skrin utama menunjukkan kelajuan kereta dan bukan kelajuan GPS: lebih tepat, tanpa lengah
 1. Enchufa el escáner ELM327 en el conector OBD (bajo el volante) y pon el contacto.\n2. Bluetooth: emparéjalo con la clave 1234 o 0000. Wi-Fi: conecta la pantalla a la red del escáner y escribe su IP y puerto (casi siempre 192.168.0.10:35000). Cable USB: conéctalo a la pantalla y acepta el permiso que pide Android.\n3. Elígelo arriba en «Escáner».	1. Pasang pengimbas ELM327 pada soket OBD (di bawah stereng) dan hidupkan suis.\n2. Bluetooth: pasangkan dengan PIN 1234 atau 0000. Wi-Fi: sambungkan unit utama ke rangkaian pengimbas dan tulis IP dan port (hampir selalu 192.168.0.10:35000). Kabel USB: sambungkan ke skrin dan terima kebenaran yang diminta Android.\n3. Pilih di atas dalam «Pengimbas».
@@ -1723,7 +1723,7 @@ Datos del panel	Data panel
 Máximo 6 datos	Maksimum 6 data
 Hasta 6 datos del escáner, por ejemplo RPM, velocidad, refrigerante y consumo	Sehingga 6 data pengimbas, contohnya RPM, kelajuan, penyejuk dan penggunaan bahan api
 Conecta tu escáner OBD-II	Sambungkan pengimbas OBD-II anda
-1. Enchufa el escáner ELM327 en el conector OBD (bajo el volante) y pon el contacto.\n2. Si es Bluetooth, emparéjalo primero en los ajustes de Bluetooth del equipo (clave 1234 o 0000).\n3. Toca ⚙ para elegirlo y luego Conectar.\n\nStradaOS vigila la temperatura, el voltaje, la mezcla y los códigos de falla, y te avisa por voz aunque estés en otra app.	1. Pasang pengimbas ELM327 pada soket OBD (di bawah stereng) dan hidupkan suis kunci.\n2. Jika Bluetooth, pasangkannya dahulu dalam tetapan Bluetooth peranti (PIN 1234 atau 0000).\n3. Ketik ⚙ untuk memilihnya, kemudian Sambung.\n\nStradaOS memantau suhu, voltan, campuran bahan api dan kod kerosakan, dan memberi amaran suara walaupun anda dalam aplikasi lain.
+1. Enchufa el escáner ELM327 en el conector OBD (bajo el volante) y pon el contacto.\n2. Si es Bluetooth, emparéjalo primero en los ajustes de Bluetooth del equipo (clave 1234 o 0000).\n3. Toca ⚙ para elegirlo y luego Conectar.\n\nEvOS vigila la temperatura, el voltaje, la mezcla y los códigos de falla, y te avisa por voz aunque estés en otra app.	1. Pasang pengimbas ELM327 pada soket OBD (di bawah stereng) dan hidupkan suis kunci.\n2. Jika Bluetooth, pasangkannya dahulu dalam tetapan Bluetooth peranti (PIN 1234 atau 0000).\n3. Ketik ⚙ untuk memilihnya, kemudian Sambung.\n\nEvOS memantau suhu, voltan, campuran bahan api dan kod kerosakan, dan memberi amaran suara walaupun anda dalam aplikasi lain.
 Elegir escáner	Pilih pengimbas
 Probar con un auto simulado	Cuba dengan kereta simulasi
 Todo normal por ahora.	Semua normal setakat ini.
@@ -1735,7 +1735,7 @@ Hace {} min	{} min lalu
 Para que una IA explique los códigos, pon tu API key (Claude, Groq, Gemini u otra) en ⚙ → Inteligencia artificial. Las explicaciones se guardan en el equipo y después funcionan sin internet.	Untuk AI menerangkan kod, masukkan kunci API anda (Claude, Groq, Gemini atau lain) di ⚙ → Kecerdasan buatan. Penerangan disimpan dalam peranti dan selepas itu berfungsi tanpa internet.
 Se apaga la luz del motor y se borran los datos que usa el taller para diagnosticar. Si la falla sigue, el código volverá a aparecer. Anota los códigos antes.	Lampu enjin padam dan data yang digunakan bengkel untuk diagnosis dipadam. Jika kerosakan berterusan, kod akan muncul semula. Catat kod-kod itu dahulu.
 Mi vehículo (para la IA)	Kenderaan saya (untuk AI)
-Encender el monitor al iniciar StradaOS	Hidupkan monitor apabila StradaOS bermula
+Encender el monitor al iniciar EvOS	Hidupkan monitor apabila EvOS bermula
 Ej.: Kia Sorento 2010 2.4 bencina 4x4 automático	Cth.: Kia Sorento 2010 2.4 petrol 4x4 automatik
 La IA recibe solo el código, el vehículo que escribiste y los datos del motor; nunca tu ubicación. Cada consulta la cobra tu proveedor con tu API key.	AI hanya menerima kod, kenderaan yang anda tulis dan data enjin; tidak sekali-kali lokasi anda. Setiap pertanyaan dicaj oleh pembekal anda melalui kunci API anda.
 alerta sobre	amaran atas
@@ -1913,7 +1913,7 @@ No compatible con esta pantalla	Tidak serasi dengan skrin ini
 Conviértelo a H.264 de 720p o 1080p horizontal, a 30 cuadros por segundo	Tukar kepada H.264 720p atau 1080p mendatar, 30 bingkai sesaat
 Sin miniatura	Tiada lakaran kecil
 Leer varios datos por consulta	Baca beberapa data setiap permintaan
-Tu escáner no lo entiende: StradaOS lee de a un dato. Actívalo para volver a probar	Pengimbas anda tidak menyokongnya: StradaOS membaca satu data pada satu masa. Hidupkan untuk mencuba semula
+Tu escáner no lo entiende: EvOS lee de a un dato. Actívalo para volver a probar	Pengimbas anda tidak menyokongnya: EvOS membaca satu data pada satu masa. Hidupkan untuk mencuba semula
 Más rápido. Apágalo si tu escáner se desconecta a cada rato	Lebih pantas. Matikan jika pengimbas anda kerap terputus
 Miniatura tomada del video	Lakaran kecil diambil daripada video
 Enorme	Sangat besar sekali

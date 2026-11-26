@@ -1,0 +1,1910 @@
+# EvOS · traducción ro (rumano, idioma predeterminado). Formato: español<TAB>traducción. Ver I18n.java.
+Radio	Radio
+Cámara	Cameră
+Archivos	Fișiere
+Ajustes	Setări
+Música	Muzică
+Navegación	Navigație
+Navegador	Browser
+Navegador web	Browser web
+Equipo	Unitate
+Elige primero la app de música Bluetooth	Alege mai întâi aplicația de muzică Bluetooth
+Música Bluetooth	Muzică Bluetooth
+No se pudo abrir la app	Aplicația nu a putut fi deschisă
+Mi app	Aplicația mea
+Mi vehículo	Vehiculul meu
+Toca para poner la foto de tu vehículo	Atinge pentru a pune fotografia vehiculului
+Velocidad	Viteză
+Diagnóstico del mapa	Diagnosticare hartă
+Buscando GPS…	Se caută GPS…
+Buscando GPS	Se caută GPS
+En vivo · sin internet	Live · fără internet
+Última posición · sin internet	Ultima poziție · fără internet
+Mapa en vivo	Hartă live
+Última posición conocida	Ultima poziție cunoscută
+Nada sonando	Nu se redă nimic
+Radio, Bluetooth o USB	Radio, Bluetooth sau USB
+Internet desde la pantalla	Internet pe ecran
+No se pudo abrir «{}». Déjalo presionado para elegir otra app.	„{}” nu a putut fi deschisă. Ține apăsat pentru a alege altă aplicație.
+Botón {} · {}	Butonul {} · {}
+Cambiar app o función	Schimbă aplicația sau funcția
+Cambiar el nombre	Redenumește
+Restablecer ({})	Resetează ({})
+Botón restablecido	Buton resetat
+Cerrar	Închide
+Cerrar  ✕	Închide  ✕
+★  Funciones de EvOS (Música, Navegación, Android Auto…)	★  Funcții EvOS (Muzică, Navigație, Android Auto…)
+¿Qué abre el botón {}?	Ce deschide butonul {}?
+Función del botón {}	Funcția butonului {}
+Nombre del botón {} (vacío = el de la app)	Numele butonului {} (gol = numele aplicației)
+Guardar	Salvează
+Cancelar	Anulează
+Guardado: {}	Salvat: {}
+Elige tu app de música	Alege aplicația de muzică
+Elige tu app de navegación	Alege aplicația de navigație
+Automático · {}	Automat · {}
+{}\n    → {}	{}\n    → {}
+Buenos días	Bună dimineața
+Buenas tardes	Bună ziua
+Buenas noches	Bună seara
+Diagnóstico del reproductor	Diagnosticare player
+Accesibilidad	Accesibilitate
+Activa «Carátula de Android Auto» (EvOS)	Activează „Coperta Android Auto” (EvOS)
+No se pudo abrir Accesibilidad	Accesibilitatea nu a putut fi deschisă
+Activa «Pista actual de AA» en Open Headunit	Activează „Piesa curentă AA” în Open Headunit
+«Ninguna aplic. funciona con este accesorio USB»	„Nicio aplicație nu funcționează cu acest accesoriu USB”
+Ese aviso lo causa una app de espejo de fábrica (EasyConnection/CarbitLink) que toma el USB antes que la app que elegiste.\n\n1. Desconecta el celular.\n2. Ajustes → Aplicaciones → EasyConnection → «Borrar datos».\n3. Apaga y enciende el carro.\n4. En Open Headunit → USB, si tu celular aparece como «Ignorado», tócalo para permitirlo.	Mesajul apare din cauza unei aplicații de oglindire din fabrică (EasyConnection/CarbitLink) care preia USB-ul înaintea aplicației alese.\n\n1. Deconectează telefonul.\n2. Setări → Aplicații → EasyConnection → „Șterge datele”.\n3. Oprește și pornește mașina.\n4. În Open Headunit → USB, dacă telefonul apare ca „Ignorat”, atinge-l ca să-l permiți.
+Abrir EasyConnection	Deschide EasyConnection
+No hay apps de espejo instaladas	Nu sunt instalate aplicații de oglindire
+Exportando… puede tardar un minuto	Se exportă… poate dura un minut
+Diagnóstico listo	Diagnosticare gata
+Se guardó en:\n{}\n\nCopia la carpeta StradaDiag a una memoria USB y adjúntala en un «issue» del repositorio de EvOS en GitHub.	Salvat în:\n{}\n\nCopiază folderul StradaDiag pe un stick USB și atașează-l la un „issue” în depozitul EvOS de pe GitHub.
+12 horas	12 ore
+24 horas	24 de ore
+Automático	Automat
+Automática	Automată
+Auto	Auto
+12 horas (a.m./p.m.)	12 ore (a.m./p.m.)
+Formato de hora	Format oră
+Se aplicará al reiniciar EvOS	Se aplică la repornirea EvOS
+Rojo	Roșu
+Naranja	Portocaliu
+Amarillo	Galben
+Verde	Verde
+Turquesa	Turcoaz
+Azul	Albastru
+Morado	Mov
+Rosa	Roz
+Plata	Argintiu
+Bienvenido a EvOS	Bine ai venit în EvOS
+Vamos a dejar el launcher a tu gusto: tu nombre, tu vehículo, el color y la foto. Toma menos de un minuto y lo puedes cambiar después en el engranaje ⚙.	Hai să configurăm launcherul după gustul tău: numele, vehiculul, culoarea și fotografia. Durează sub un minut și poți schimba totul mai târziu din rotița ⚙.
+Empezar	Începe
+¿Cómo te llamas?	Cum te numești?
+Nombre del vehículo (ej.: Mazda 2, Spark GT)	Numele vehiculului (ex.: Dacia Logan, Spring)
+Etiqueta corta (versión o placa). Déjalo vacío si no quieres	Etichetă scurtă (versiune sau număr). Las-o goală dacă nu vrei
+Después	Mai târziu
+No encontrada	Negăsită
+¿Qué app abre cada botón?	Ce aplicație deschide fiecare buton?
+Están bien	Sunt bune
+Siguiente	Înainte
+Color de acento	Culoare de accent
+Elegir otra foto	Alege altă fotografie
+Quitar la foto	Elimină fotografia
+Elegir foto	Alege fotografia
+Foto del vehículo	Fotografia vehiculului
+¿De dónde sacamos la foto?	De unde luăm fotografia?
+Consejo: usa una foto del carro de lado o de frente con fondo liso (blanco, gris o cielo). El fondo se quita solo.	Sfat: folosește o fotografie a mașinii din lateral sau din față, pe fundal uniform (alb, gri sau cer). Fundalul se elimină automat.
+Memoria / USB	Memorie / USB
+Galería	Galerie
+Elige la foto	Alege fotografia
+Buscando fotos…	Se caută fotografii…
+No encontré fotos (.jpg/.png). Cópialas a la memoria USB o a Download.	Nu am găsit fotografii (.jpg/.png). Copiază-le pe stickul USB sau în Download.
+Quitando el fondo…	Se elimină fundalul…
+No se pudo abrir la imagen	Imaginea nu a putut fi deschisă
+No se pudo abrir la imagen: {}	Imaginea nu a putut fi deschisă: {}
+La foto ya trae fondo transparente	Fotografia are deja fundal transparent
+No se detectó un fondo liso (se usará tal cual)	Nu s-a detectat un fundal uniform (se folosește așa cum e)
+Vista previa · nivel {} de 4	Previzualizare · nivelul {} din 4
+Vista previa · nivel {} de 4 (también quita el reflejo del piso)	Previzualizare · nivelul {} din 4 (elimină și reflexia de pe sol)
+Usar esta	Folosește-o
+Foto guardada	Fotografie salvată
+No se pudo guardar la foto	Fotografia nu a putut fi salvată
+Quitar más fondo	Elimină mai mult fundal
+Quitando más fondo…	Se elimină mai mult fundal…
+No es una imagen válida	Nu este o imagine validă
+App elegida	Aplicația aleasă
+CarPlay necesita un chip de autenticación de Apple dentro del equipo, así que no se puede activar solo con una app.\n\n• Si tu pantalla trae CarPlay integrado, deja presionado este botón y elige su app (ZLink, CarLink, TLink…).\n• Si no, puedes usar un adaptador CarPlay USB para pantallas Android (tipo Carlinkit/AutoKit): instala su app y este botón la abrirá.	CarPlay are nevoie de un cip de autentificare Apple în unitate, deci nu se poate activa doar cu o aplicație.\n\n• Dacă ecranul are CarPlay integrat, ține apăsat acest buton și alege aplicația lui (ZLink, CarLink, TLink…).\n• Dacă nu, poți folosi un adaptor CarPlay USB pentru ecrane Android (tip Carlinkit/AutoKit): instalează-i aplicația și acest buton o va deschide.
+Entendido	Am înțeles
+Elegir app	Alege aplicația
+Volver al inicio	Înapoi la ecranul principal
+Tu vehículo	Vehiculul tău
+Apariencia	Aspect
+Conexión	Conexiune
+Accesos y apps	Scurtături și aplicații
+Mapa y clima	Hartă și vreme
+Sistema	Sistem
+Acerca de	Despre
+Datos	Date
+Tu nombre	Numele tău
+Aparece en el saludo de la pantalla de inicio	Apare în salutul de pe ecranul principal
+Nombre del vehículo	Numele vehiculului
+Etiqueta	Etichetă
+Versión o placa. Déjala vacía para ocultarla	Versiune sau număr. Las-o goală ca să o ascunzi
+Etiqueta (vacío para ocultarla)	Etichetă (gol ca să o ascunzi)
+Foto	Fotografie
+Se recorta y se le quita el fondo automáticamente	Se decupează și i se elimină fundalul automat
+Configurada	Configurată
+Sin foto	Fără fotografie
+Idioma	Limbă
+Automático: el del sistema	Automat: limba sistemului
+Tema	Temă
+Modo	Mod
+Automático: claro de 6 a.m. a 6 p.m.	Automat: luminos între 6:00 și 18:00
+Oscuro	Întunecat
+Claro	Luminos
+Color	Culoare
+Botones, anillo del reproductor, ruta y etiquetas	Butoane, inelul playerului, traseu și etichete
+Reloj	Ceas
+Celular	Telefon
+Cómo conectar el celular	Cum conectezi telefonul
+La app que se abre al conectar por USB	Aplicația care se deschide la conectarea prin USB
+Preguntar	Întreabă
+App de Android Auto	Aplicația Android Auto
+Botón naranja de la tarjeta central	Butonul portocaliu din cardul central
+App de CarPlay	Aplicația CarPlay
+Requiere pantalla con CarPlay o un adaptador	Necesită ecran cu CarPlay sau un adaptor
+Ninguna	Niciuna
+Ninguno	Niciunul
+Ayuda	Ajutor
+El celular dice «Ninguna aplic. funciona…»	Telefonul spune „Nicio aplicație nu funcționează…”
+Cómo evitar que EasyConnection tome el USB	Cum împiedici EasyConnection să preia USB-ul
+Barra inferior (déjalos presionados en el inicio para cambiarlos)	Bara de jos (ține-le apăsate pe ecranul principal ca să le schimbi)
+App: {}	Aplicație: {}
+Función: {}	Funcție: {}
+Apps preferidas	Aplicații preferate
+Se abre al tocar el reproductor	Se deschide când atingi playerul
+Toca para elegir	Atinge pentru a alege
+Se abre con el botón del mapa	Se deschide cu butonul hărții
+Apps de cada función	Aplicația fiecărei funcții
+La app que hace sonar el Bluetooth (se usa para pasar el sonido)	Aplicația care redă sunetul Bluetooth (folosită pentru a comuta sunetul)
+Revisar todos los botones	Verifică toate butoanele
+Lista rápida de qué abre cada uno, como en el asistente	Listă rapidă cu ce deschide fiecare, ca în asistent
+Restablecer	Resetează
+Restablecer accesos	Resetează scurtăturile
+La barra vuelve a lo de siempre y se buscan las apps de fábrica	Bara revine la cea implicită și se caută din nou aplicațiile din fabrică
+Accesos restablecidos	Scurtături resetate
+Clima	Vreme
+Mostrar el clima	Arată vremea
+Arriba, junto al saludo (necesita internet)	Sus, lângă salut (necesită internet)
+Unidad	Unitate
+Ciudad	Oraș
+Vacío = automática por GPS	Gol = automat prin GPS
+{} (GPS)	{} (GPS)
+Ciudad (vacío = automática por GPS)	Oraș (gol = automat prin GPS)
+App de navegación preferida	Aplicația de navigație preferată
+Se abre con el botón del mapa (Waze, Maps, OsmAnd…)	Se deschide cu butonul hărții (Waze, Maps, OsmAnd…)
+Mapa	Hartă
+Brillo del mapa	Luminozitatea hărții
+Solo en modo oscuro	Doar în modul întunecat
+Bajo	Scăzută
+Medio	Medie
+Alto	Ridicată
+Fuentes probadas y errores	Surse încercate și erori
+Mapa no disponible	Harta nu este disponibilă
+Fuente del mapa (avanzado)	Sursa hărții (avansat)
+URL propia con {z}/{x}/{y}	URL propriu cu {z}/{x}/{y}
+Personalizada	Personalizată
+URL de teselas {z}/{x}/{y} (vacío = automático)	URL de dale {z}/{x}/{y} (gol = automat)
+© colaboradores de OpenStreetMap	© contribuitorii OpenStreetMap
+App de música	Aplicația de muzică
+App de música preferida	Aplicația de muzică preferată
+Se abre al tocar el reproductor del inicio	Se deschide când atingi playerul de pe ecranul principal
+Pista en reproducción	Piesa în redare
+Carátula de Android Auto	Coperta Android Auto
+Lee la notificación de Open Headunit (accesibilidad)	Citește notificarea Open Headunit (accesibilitate)
+Activada	Activată
+Desactivada	Dezactivată
+Activado	Activat
+Desactivado	Dezactivat
+Música de cualquier app	Muzică din orice aplicație
+Android 5+: acceso a notificaciones	Android 5+: acces la notificări
+No se pudo abrir el ajuste	Setarea nu a putut fi deschisă
+Fuente activa, lector de notificaciones y Bluetooth	Sursa activă, cititorul de notificări și Bluetooth
+Audio Bluetooth	Audio Bluetooth
+Volver al Bluetooth al desconectar Android Auto	Revino la Bluetooth când se deconectează Android Auto
+Al quitar el cable, abre un instante la app de música Bluetooth para que el sonido siga por Bluetooth	Când scoți cablul, deschide pentru o clipă aplicația de muzică Bluetooth ca sunetul să continue prin Bluetooth
+Escuchar el Bluetooth	Ascultă Bluetooth
+En esta pantalla, toca ▶ en el inicio: EvOS pasa el sonido a Bluetooth (por ejemplo, si venías de la radio)	Pe acest ecran, atinge ▶ pe ecranul principal: EvOS trece sunetul pe Bluetooth (de exemplu, dacă veneai de la radio)
+Pasar a Bluetooth al dar play en el celular (en prueba)	Treci pe Bluetooth când dai play pe telefon (în test)
+Abre un instante «Audio Bluetooth» y vuelve. En algunas pantallas no detecta el play del celular	Deschide pentru o clipă „Audio Bluetooth” și revine. Pe unele ecrane nu detectează play-ul de pe telefon
+Probar ahora	Încearcă acum
+Abre «Audio Bluetooth» un instante y vuelve al inicio	Deschide „Audio Bluetooth” pentru o clipă și revine la ecranul principal
+Abrir la app de música Bluetooth al conectar el celular	Deschide aplicația de muzică Bluetooth la conectarea telefonului
+Para pantallas que solo dejan sonar el Bluetooth con su app abierta: la abre un momento y vuelve al inicio	Pentru ecranele care redau Bluetooth doar cu aplicația lor deschisă: o deschide o clipă și revine la ecranul principal
+App de música Bluetooth	Aplicația de muzică Bluetooth
+La que hace sonar el Bluetooth en esta pantalla	Cea care redă Bluetooth pe acest ecran
+Tiempo antes de volver al inicio	Timp până la revenirea pe ecranul principal
+Súbelo si el audio se corta al volver	Mărește-l dacă sunetul se întrerupe la revenire
+Abre la app de música Bluetooth y vuelve al inicio	Deschide aplicația de muzică Bluetooth și revine la ecranul principal
+Avanzado	Avansat
+Avisos extra de música	Mesaje extra de muzică
+Nombres de avisos (broadcast) de otros equipos	Numele mesajelor (broadcast) de la alte unități
+Configurados	Configurate
+Acciones de aviso extra (separadas por coma)	Acțiuni broadcast extra (separate prin virgulă)
+Ajustes del equipo	Setările unității
+Los ajustes de la pantalla (los de la marca si los tiene)	Setările ecranului (cele ale mărcii, dacă există)
+Asistente de configuración inicial	Asistent de configurare inițială
+Nombre, vehículo, color y foto	Nume, vehicul, culoare și fotografie
+Compatibilidad	Compatibilitate
+Qué funciona en esta pantalla	Ce funcționează pe acest ecran
+Cada función, desde qué Android sirve y su estado aquí	Fiecare funcție, de la ce versiune Android merge și starea ei aici
+Soporte	Asistență
+Exportar diagnóstico	Exportă diagnosticarea
+Guarda información de las apps de audio en la memoria interna	Salvează informații despre aplicațiile audio în memoria internă
+Esta pantalla:	Acest ecran:
+Ojo: la pantalla dice Android {}, pero por dentro es {}.	Atenție: ecranul spune Android {}, dar în realitate e {}.
+Requiere:	Necesită:
+Aquí:	Aici:
+Inicio, mapa, clima, velocímetro	Ecran principal, hartă, vreme, vitezometru
+Pista y carátula por Bluetooth	Piesa și coperta prin Bluetooth
+app Bluetooth de fábrica detectada	aplicație Bluetooth din fabrică detectată
+depende de la marca	depinde de marcă
+Botón ▶ del inicio pasa el sonido a Bluetooth	Butonul ▶ de pe ecranul principal trece sunetul pe Bluetooth
+Pantallas Clinkway / Autochips	Ecrane Clinkway / Autochips
+funciona aunque vengas de la radio	funcționează chiar dacă vii de la radio
+en otras marcas: «Abrir la app de música Bluetooth al conectar»	la alte mărci: „Deschide aplicația de muzică Bluetooth la conectarea telefonului”
+activado	activat
+activada	activată
+desactivado; en algunas pantallas no detecta el play del celular	dezactivat; pe unele ecrane nu detectează play-ul de pe telefon
+Carátula de Android Auto (Open Headunit)	Coperta Android Auto (Open Headunit)
+Android 4.1+ · accesibilidad	Android 4.1+ · accesibilitate
+falta activar la accesibilidad	accesibilitatea nu e activată încă
+Música de cualquier app (Spotify, YouTube…)	Muzică din orice aplicație (Spotify, YouTube…)
+falta dar acceso a notificaciones	accesul la notificări nu e acordat încă
+no disponible en {}	indisponibil pe {}
+Android Auto con Open Headunit	Android Auto cu Open Headunit
+Android 4.1+ · cable USB	Android 4.1+ · cablu USB
+Open Headunit instalado	Open Headunit instalat
+falta instalar Open Headunit	Open Headunit nu e instalat încă
+Android Auto / CarPlay de la pantalla	Android Auto / CarPlay al ecranului
+Si la pantalla lo trae	Dacă ecranul îl are
+no detectado	nedetectat
+Pantalla con CarPlay o adaptador USB	Ecran cu CarPlay sau adaptor USB
+Mapa con internet seguro (TLS 1.2)	Hartă cu internet securizat (TLS 1.2)
+Android 4.1+ (EvOS lo activa)	Android 4.1+ (EvOS îl activează)
+en Android 4.x solo algunos servidores de mapas responden	pe Android 4.x răspund doar unele servere de hărți
+Instalar actualizaciones desde la app	Instalează actualizări din aplicație
+pide permiso «Instalar apps desconocidas»	cere permisiunea „Instalează aplicații necunoscute”
+No hay fallos registrados	Nu sunt erori înregistrate
+Registro de fallos	Jurnal de erori
+Borrar	Șterge
+Registro borrado	Jurnal șters
+Gratis y de código abierto. Una nueva vida para las pantallas Android del carro.	Gratuit și open source. O viață nouă pentru ecranele Android din mașină.
+Versión	Versiune
+Android de la pantalla	Android-ul ecranului
+Real: {} · ver qué funciona aquí	Real: {} · vezi ce funcționează aici
+Cierres inesperados o bloqueos de EvOS en esta pantalla	Închideri neașteptate sau blocări ale EvOS pe acest ecran
+Sin fallos	Fără erori
+Ver	Vezi
+Actualizaciones	Actualizări
+Instalado desde {}	Instalat din {}
+Las actualizaciones llegan por esa app	Actualizările vin prin acea aplicație
+Avisar también de versiones en GitHub	Anunță și versiunile de pe GitHub
+Comprobar actualizaciones automáticamente	Verifică automat actualizările
+Opcional: las descargas de GitHub no pasan por la revisión de la tienda	Opțional: descărcările de pe GitHub nu trec prin verificarea magazinului
+Al abrir EvOS con internet, una vez al día	La deschiderea EvOS cu internet, o dată pe zi
+Actualizaciones desde GitHub	Actualizări de pe GitHub
+Instalaste EvOS desde {}. Si activas esto, EvOS revisará una vez al día las versiones publicadas en github.com/{} y te ofrecerá descargarlas desde ahí.\n\nEsas descargas no pasan por la revisión de la tienda. Puede que GitHub tenga una versión un poco antes que la tienda.	Ai instalat EvOS din {}. Dacă activezi asta, EvOS va verifica o dată pe zi versiunile publicate pe github.com/{} și îți va oferi să le descarci de acolo.\n\nAceste descărcări nu trec prin verificarea magazinului. Se poate ca GitHub să aibă o versiune puțin înaintea magazinului.
+Activar	Activează
+Canal de actualizaciones	Canal de actualizări
+Buscar actualizaciones	Caută actualizări
+Aún no se ha comprobado	Încă nu s-a verificat
+Última comprobación: {}	Ultima verificare: {}
+Comunidad	Comunitate
+Dar una estrella en GitHub	Dă o stea pe GitHub
+Ayuda a que más personas encuentren EvOS	Ajută mai mulți oameni să găsească EvOS
+Dar una estrella ⭐	Dă o stea ⭐
+Abre el repositorio y toca «Star». ¡Gracias!	Deschide depozitul și atinge „Star”. Mulțumim!
+Donar	Donează
+Si EvOS revivió tu pantalla, invítame un café	Dacă EvOS ți-a readus ecranul la viață, fă-mi cinste cu o cafea
+Apoya el proyecto ☕	Susține proiectul ☕
+EvOS es gratis. Las donaciones ayudan a mantenerlo y a probarlo en más pantallas.	EvOS e gratuit. Donațiile ajută la întreținerea lui și la testarea pe mai multe ecrane.
+Reportar un problema o sugerir algo	Raportează o problemă sau sugerează ceva
+Crea un «issue» en GitHub (adjunta el diagnóstico)	Creează un „issue” pe GitHub (atașează diagnosticarea)
+Reportar un problema	Raportează o problemă
+Cuenta tu modelo de pantalla y su versión de Android. Puedes adjuntar la carpeta StradaDiag (Sistema → Exportar diagnóstico).	Spune-ne modelul ecranului și versiunea de Android. Poți atașa folderul StradaDiag (Sistem → Exportă diagnosticarea).
+Código fuente	Cod sursă
+Licencia GPL-3.0	Licență GPL-3.0
+Créditos y licencias	Credite și licențe
+Licencia	Licență
+Mapas	Hărți
+© colaboradores de OpenStreetMap, OpenTopoMap, Esri	© contribuitorii OpenStreetMap, OpenTopoMap, Esri
+Open Headunit (GPL-3.0) · Android Auto es marca de Google	Open Headunit (GPL-3.0) · Android Auto este marcă Google
+Códigos QR	Coduri QR
+Íconos	Pictograme
+Certificados raíz	Certificate rădăcină
+Buscando actualizaciones…	Se caută actualizări…
+No se pudo comprobar	Verificarea nu a reușit
+Esta pantalla no logró conectarse con GitHub ({}). Puedes revisar las versiones desde tu celular:	Acest ecran nu s-a putut conecta la GitHub ({}). Poți verifica versiunile de pe telefon:
+Tienes la última versión ({})	Ai cea mai nouă versiune ({})
+Fuentes consultadas:\n{}	Surse consultate:\n{}
+cifrado no compatible	criptare incompatibilă
+sin internet	fără internet
+sin internet / DNS	fără internet / DNS
+tiempo agotado	timp expirat
+error de red	eroare de rețea
+tu tienda de apps	magazinul tău de aplicații
+Tienes la {} · nueva: {}	Ai {} · nouă: {}
+Mejoras y correcciones.	Îmbunătățiri și corecturi.
+Nueva versión de EvOS	Versiune nouă EvOS
+Tienes la {} · en GitHub: {}\nActualiza desde {} cuando llegue. Descargar de GitHub omite la revisión de la tienda.	Ai {} · pe GitHub: {}\nActualizează din {} când apare acolo. Descărcarea de pe GitHub ocolește verificarea magazinului.
+Ver en GitHub	Vezi pe GitHub
+Descarga desde GitHub:	Descarcă de pe GitHub:
+Descargar e instalar	Descarcă și instalează
+Descarga la nueva versión desde:	Descarcă noua versiune de la:
+Omitir esta versión	Sari peste această versiune
+Más tarde	Mai târziu
+Descargando EvOS {}…	Se descarcă EvOS {}…
+Descárgala desde tu celular	Descarc-o de pe telefon
+Esta pantalla no pudo descargar el archivo. Escanea el código, descarga el APK y pásalo por USB.	Acest ecran nu a putut descărca fișierul. Scanează codul, descarcă APK-ul și copiază-l prin USB.
+¿Disfrutando EvOS?	Îți place EvOS?
+Si te gusta usar EvOS, dale una estrella en GitHub. Y si revivió tu pantalla, considera invitarme un café ☕	Dacă îți place să folosești EvOS, dă-i o stea pe GitHub. Iar dacă ți-a readus ecranul la viață, ia în calcul să-mi faci cinste cu o cafea ☕
+Dar una estrella	Dă o stea
+EvOS es gratis. Las donaciones ayudan a mantenerlo.	EvOS e gratuit. Donațiile ajută la întreținerea lui.
+Escanéalo con la cámara de tu celular o entra a:	Scanează-l cu camera telefonului sau intră pe:
+Abrir aquí	Deschide aici
+No hay navegador disponible	Nu există niciun browser disponibil
+Open Headunit · USB	Open Headunit · USB
+Toca para instalar	Atinge pentru instalare
+Pantalla o adaptador	Ecran sau adaptor
+Elige la app de ajustes de tu pantalla	Alege aplicația de setări a ecranului
+No se pudieron abrir los ajustes	Setările nu au putut fi deschise
+No encontré la app de {}. Elígela de la lista.	Nu am găsit aplicația {}. Alege-o din listă.
+↺  Automático (por defecto)	↺  Automat (implicit)
+¿Qué app abre «{}»?	Ce aplicație deschide „{}”?
+Restablecido	Resetat
+Esta pantalla no trae Android Auto integrado.\n\nInstala la app gratuita «Open Headunit» (github.com/andreknieriem/headunit-revived): copia su APK en la memoria USB o en Download y vuelve a tocar el botón. Luego conecta el celular por cable USB.	Acest ecran nu are Android Auto integrat.\n\nInstalează aplicația gratuită „Open Headunit” (github.com/andreknieriem/headunit-revived): copiază APK-ul pe stickul USB sau în Download și atinge din nou butonul. Apoi conectează telefonul prin cablu USB.
+Android Auto por cable USB (necesita la app Android Auto en el celular)	Android Auto prin cablu USB (necesită aplicația Android Auto pe telefon)
+Espejo de pantalla (necesita la app CarbitLink en el celular)	Oglindirea ecranului (necesită aplicația CarbitLink pe telefon)
+Android Auto / CarPlay integrados en la pantalla	Android Auto / CarPlay integrate în ecran
+Otra app…	Altă aplicație…
+¿Cómo quieres conectar tu celular?	Cum vrei să conectezi telefonul?
+Conexión: {}. Cámbiala dejando presionado el botón.	Conexiune: {}. O schimbi ținând apăsat butonul.
+el navegador	browserul
+«{}» necesita un Android más nuevo que el de esta pantalla. Abro el navegador de fábrica.	„{}” are nevoie de un Android mai nou decât cel al acestui ecran. Deschid browserul din fabrică.
+No encontré un navegador. Déjalo presionado para elegir uno.	Nu am găsit niciun browser. Ține apăsat ca să alegi unul.
+Permite «Instalar apps desconocidas» para EvOS y vuelve a tocar.	Permite „Instalează aplicații necunoscute” pentru EvOS și atinge din nou.
+Activa «Orígenes desconocidos» y vuelve a tocar.	Activează „Surse necunoscute” și atinge din nou.
+No se pudo preparar {}	{} nu a putut fi pregătit
+No se pudo abrir el instalador para {}	Programul de instalare pentru {} nu a putut fi deschis
+Aplicaciones  ·  Android {} (API {})	Aplicații  ·  Android {} (API {})
+Despejado	Senin
+Parcialmente nublado	Parțial noros
+Nublado	Noros
+Niebla	Ceață
+Llovizna	Burniță
+Lluvia	Ploaie
+Nieve	Ninsoare
+Tormenta	Furtună
+Mapa en vivo apagado	Harta live e oprită
+Rendimiento	Performanță
+Apágalo si la pantalla va lenta: queda un mapa de adorno y el velocímetro sigue funcionando	Oprește-o dacă ecranul merge greu: rămâne o hartă decorativă, iar vitezometrul funcționează în continuare
+EvOS aún no es tu pantalla de inicio	EvOS nu este încă ecranul tău principal
+Por eso al encender el carro o al tocar Inicio aparece el menú de fábrica.\n\nToca «Fijar ahora», elige EvOS y luego «Siempre».	De aceea, când pornești mașina sau atingi Acasă, apare meniul din fabrică.\n\nAtinge „Setează acum”, alege EvOS și apoi „Întotdeauna”.
+Fijar ahora	Setează acum
+Ahora no	Nu acum
+No volver a preguntar	Nu mai întreba
+Elige EvOS y toca «Siempre»	Alege EvOS și atinge „Întotdeauna”
+Listo: EvOS es tu pantalla de inicio	Gata: EvOS este ecranul tău principal
+Fijar EvOS a mano	Setează EvOS manual
+Algunas pantallas no muestran la lista para elegir. Prueba así:\n\n1. Toca el botón Inicio (la casita) de la pantalla. Si pregunta qué app usar, elige EvOS → Siempre.\n2. Si no pregunta: en los ajustes de la pantalla busca Aplicaciones → Aplicaciones predeterminadas → Pantalla de inicio (o «App de inicio») y elige EvOS.\n3. Con Android 10 o más nuevo, no lo elijas desde el modo fábrica de la pantalla («Launcher», «Interfaz» o «UI»): en algunas marcas eso deja las demás apps sin poder abrirse. En Android 4 a 9 sí puedes usar esa opción.\n\nSi tu pantalla siempre vuelve a su menú de fábrica al encender, activa «Abrir EvOS al encender» en Ajustes → Sistema.	Unele ecrane nu arată lista din care să alegi. Încearcă așa:\n\n1. Atinge butonul Acasă (căsuța) al ecranului. Dacă întreabă ce aplicație să folosească, alege EvOS → Întotdeauna.\n2. Dacă nu întreabă: în setările ecranului caută Aplicații → Aplicații implicite → Ecran de pornire (sau „Aplicație de pornire”) și alege EvOS.\n3. Pe Android 10 sau mai nou, nu-l alege din modul fabrică al ecranului („Launcher”, „Interfață” sau „UI”): la unele mărci asta face ca celelalte aplicații să nu se mai deschidă. Pe Android 4–9 poți folosi acea opțiune.\n\nDacă ecranul revine mereu la meniul din fabrică la pornire, activează „Deschide EvOS la pornire” în Setări → Sistem.
+Pantalla de inicio	Ecran principal
+La que aparece al encender y al tocar Inicio	Cel care apare la pornire și când atingi Acasă
+EvOS ✓	EvOS ✓
+Otra · toca para cambiar	Altul · atinge pentru a schimba
+Abrir EvOS al encender	Deschide EvOS la pornire
+Para pantallas que siempre arrancan en su menú de fábrica (Android 4 a 9)	Pentru ecranele care pornesc mereu în meniul din fabrică (Android 4–9)
+¿La música Bluetooth se corta o no aparece?	Muzica Bluetooth se întrerupe sau nu apare?
+Qué hacer en cada caso	Ce faci în fiecare caz
+• Se corta al salir de la app Bluetooth: sal con el botón Inicio (la casita), no con Atrás. Atrás cierra la app de fábrica y con ella la música.\n\n• No suena hasta abrir la app Bluetooth: activa «Abrir la app de música Bluetooth al conectar el celular» (aquí mismo). Abre la app un instante y vuelve al inicio.\n\n• La canción no aparece en el inicio (Android 5 o más nuevo): activa «Música de cualquier app» arriba y dale acceso a notificaciones a EvOS.\n\n• Revisa en Ajustes → Accesos y apps que «Música Bluetooth» sea la app Bluetooth de tu pantalla.	• Se întrerupe când ieși din aplicația Bluetooth: ieși cu butonul Acasă (căsuța), nu cu Înapoi. Înapoi închide aplicația din fabrică și, odată cu ea, muzica.\n\n• Nu se aude până nu deschizi aplicația Bluetooth: activează „Deschide aplicația de muzică Bluetooth la conectarea telefonului” (chiar aici). Deschide aplicația o clipă și revine la ecranul principal.\n\n• Piesa nu apare pe ecranul principal (Android 5 sau mai nou): activează „Muzică din orice aplicație” mai sus și dă-i EvOS acces la notificări.\n\n• Verifică în Setări → Scurtături și aplicații că „Muzică Bluetooth” este aplicația Bluetooth a ecranului.
+Sin permiso	Fără permisiune
+GPS apagado	GPS oprit
+Unidades	Unități
+Automático: mph en EE. UU. y Reino Unido	Automat: mph în SUA și Marea Britanie
+Permisos → Ubicación → Permitir	Permisiuni → Locație → Permite
+Activa la ubicación para EvOS en los ajustes de la pantalla	Activează locația pentru EvOS în setările ecranului
+Activa la ubicación (GPS)	Activează locația (GPS)
+Activa la ubicación (GPS) en los ajustes de la pantalla	Activează locația (GPS) în setările ecranului
+Sin permiso de ubicación · toca aquí	Fără permisiune de locație · atinge aici
+Ubicación apagada · toca aquí	Locația e oprită · atinge aici
+Sin señal GPS · toca aquí	Fără semnal GPS · atinge aici
+Versión de prueba	Versiune de test
+Simular pantalla	Simulează ecranul
+Para probar otros tamaños en una tablet o celular	Pentru a testa alte dimensiuni pe o tabletă sau pe telefon
+Real	Real
+Aceite	Ulei
+Configurar	Configurează
+¡Cambiar!	De schimbat!
+Kilometraje estimado	Kilometraj estimat
+Próximo cambio	Următorul schimb
+Faltan {}	Mai sunt {}
+¡Ya toca!	E timpul!
+Cambio de aceite	Schimb de ulei
+Ya hice el cambio de aceite	Am făcut schimbul de ulei
+Corregir el kilometraje actual	Corectează kilometrajul actual
+Cambiar cada cuánto se hace	Schimbă intervalul
+Desactivar el recordatorio	Dezactivează memento-ul
+Recordatorio de cambio de aceite	Memento schimb de ulei
+EvOS no puede leer el kilometraje del tablero del carro. Escríbelo una vez y EvOS le irá sumando lo que recorras con el GPS, para avisarte cuando toque el cambio.\n\nDe vez en cuando puedes corregirlo con el valor real del tablero.	EvOS nu poate citi kilometrajul din bordul mașinii. Scrie-l o dată, iar EvOS va adăuga distanța parcursă cu GPS-ul, ca să te anunțe când e timpul pentru schimb.\n\nDin când în când îl poți corecta cu valoarea reală din bord.
+¿A cuántos {} fue el último cambio de aceite?	La câți {} a fost ultimul schimb de ulei?
+Kilometraje actual del tablero	Kilometrajul actual din bord
+¿Cada cuántos {} cambias el aceite?	La câți {} schimbi uleiul?
+Escribe un número válido	Scrie un număr valid
+Kilometraje del tablero al hacer el cambio	Kilometrajul din bord la schimb
+Es hora del cambio de aceite	E timpul pentru schimbul de ulei
+El kilometraje estimado es ≈ {} y ya toca el cambio de aceite (cada {}).	Kilometrajul estimat este ≈ {} și e timpul pentru schimbul de ulei (la fiecare {}).
+¿Ya lo hiciste?	L-ai făcut deja?
+Ya lo hice	Da, l-am făcut
+Aún no	Încă nu
+Se muestra al lado de la velocidad y avisa cuando toca	Apare lângă viteză și te anunță când e timpul
+Kilometraje actual	Kilometraj actual
+Estimado con el GPS. Corrígelo con el del tablero cuando quieras	Estimat cu GPS-ul. Corectează-l cu cel din bord oricând vrei
+Cada cuánto	Interval
+Orientación del mapa	Orientarea hărții
+El mapa apunta	Harta indică
+Según tu dirección: gira con el carro mientras te mueves	După direcția ta: se rotește odată cu mașina în timp ce te deplasezi
+Norte arriba	Nordul sus
+Según tu dirección	După direcția ta
+Último cambio	Ultimul schimb
+Corregir el último cambio	Corectează ultimul schimb
+¿Tu tablero marca kilómetros o millas?	Bordul tău arată kilometri sau mile?
+Kilómetros (km)	Kilometri (km)
+Millas (mi)	Mile (mi)
+Revisa el último cambio	Verifică ultimul schimb
+El último cambio ({}) queda por encima del kilometraje actual ({}). ¿Lo escribiste en otra unidad?	Ultimul schimb ({}) e mai mare decât kilometrajul actual ({}). L-ai scris în altă unitate?
+Corregir	Corectează
+Guardar igual	Salvează oricum
+Kilometraje del tablero cuando se hizo	Kilometrajul din bord când s-a făcut
+Ocultas: {}	Ascunse: {}
+Ocultar del cajón	Ascunde din sertar
+Información de la app	Informații despre aplicație
+Oculta. Para volver a verla: Ajustes → Accesos y apps → Apps ocultas	Ascunsă. Ca s-o vezi din nou: Setări → Scurtături și aplicații → Aplicații ascunse
+Cajón de apps	Sertarul de aplicații
+Apps ocultas	Aplicații ascunse
+No se ven en el cajón, pero siguen instaladas y se pueden poner en los botones	Nu apar în sertar, dar rămân instalate și pot fi puse pe butoane
+Buscar app	Caută aplicația
+Apps ocultas en el cajón	Aplicații ascunse din sertar
+Se muestran todas las apps	Se afișează toate aplicațiile
+Apps ocultas: {}	Aplicații ascunse: {}
+Desinstalar	Dezinstalează
+Salir de EvOS	Ieși din EvOS
+Abrir el launcher de fábrica	Deschide launcherul din fabrică
+Sale de EvOS sin desinstalarlo	Iese din EvOS fără să-l dezinstaleze
+Desactivar EvOS	Dezactivează EvOS
+Si la pantalla quedó atrapada en EvOS: se apaga solo, sin ventanas de Android	Dacă ecranul a rămas blocat în EvOS: se oprește singur, fără ferestre Android
+Desinstalar EvOS	Dezinstalează EvOS
+Android pide confirmar	Android cere confirmare
+No encontré otra pantalla de inicio en este equipo	Nu am găsit alt ecran principal pe această unitate
+¿Cuál es el launcher de fábrica?	Care este launcherul din fabrică?
+No se pudo abrir	Nu s-a putut deschide
+No encontré otra pantalla de inicio: EvOS no se puede desactivar en este equipo	Nu am găsit alt ecran principal: EvOS nu poate fi dezactivat pe această unitate
+¿Desactivar EvOS?	Dezactivezi EvOS?
+EvOS deja de ser la pantalla de inicio, ya no se abre al encender y vuelve el launcher de fábrica. No pide confirmaciones de Android, así que sirve aunque la pantalla haya quedado atrapada.\n\nPara volver a usarlo después: desinstálalo desde los ajustes de la pantalla e instálalo de nuevo.	EvOS nu mai este ecranul principal, nu se mai deschide la pornire și revine launcherul din fabrică. Nu cere confirmări Android, deci funcționează chiar dacă ecranul a rămas blocat.\n\nCa să-l folosești din nou mai târziu: dezinstalează-l din setările ecranului și instalează-l din nou.
+Desactivar	Dezactivează
+Diseño del inicio	Aspectul ecranului principal
+Reproductor de música	Player de muzică
+Ponlo del lado del conductor para tenerlo a la mano	Pune-l pe partea șoferului, ca să-l ai la îndemână
+Derecha	Dreapta
+Izquierda	Stânga
+Tarjeta del vehículo	Cardul vehiculului
+Si la ocultas, la velocidad pasa arriba y el mapa y el reproductor ganan espacio	Dacă îl ascunzi, viteza urcă sus, iar harta și playerul primesc mai mult spațiu
+Barra de botones	Bara de butoane
+Lateral: los botones van al costado y todo se ve más grande en pantallas bajas como 1280×480	Laterală: butoanele trec în lateral și totul arată mai mare pe ecranele joase, ca 1280×480
+Normal	Normală
+Compacta	Compactă
+Lateral	Laterală
+Aceite: configurar	Ulei: configurează
+¡Cambiar aceite!	Schimbă uleiul!
+Aceite: {}	Ulei: {}
+Mapa sin conexión	Hartă offline
+Archivo del mapa	Fișierul hărții
+Un archivo .map (p. ej. colombia.map) en la memoria de la pantalla o en una USB: el mapa se ve sin internet	Un fișier .map (ex.: romania.map) în memoria ecranului sau pe un stick USB: harta merge fără internet
+Error	Eroare
+No se pudo abrir: {}	Nu s-a putut deschide: {}
+Toca para dejar de usarlo	Atinge pentru a nu-l mai folosi
+Mapa sin conexión quitado	Harta offline a fost scoasă
+¿Dónde consigo el mapa?	De unde iau harta?
+Mapas gratis de OpenStreetMap por país	Hărți gratuite OpenStreetMap pe țări
+Buscando mapas…	Se caută hărți…
+No se encontró ningún mapa	Nu s-a găsit nicio hartă
+No hay archivos .map en la memoria de la pantalla ni en las USB conectadas. Toca «Cómo conseguirlo» para ver de dónde bajarlo.	Nu există fișiere .map în memoria ecranului sau pe stickurile USB conectate. Atinge „Cum o obțin” ca să vezi de unde o descarci.
+Cómo conseguirlo	Cum o obțin
+Elige el mapa	Alege harta
+No se pudo usar este archivo	Acest fișier nu poate fi folosit
+Debe ser un mapa de mapsforge (.map) copiado completo.	Trebuie să fie o hartă mapsforge (.map), copiată complet.
+Mapa sin conexión listo: {}	Harta offline e gata: {}
+Sin permiso de almacenamiento no se pueden buscar mapas	Fără permisiune de stocare nu se pot căuta hărți
+Última posición · mapa sin conexión	Ultima poziție · hartă offline
+no se encuentra el archivo	fișierul nu a fost găsit
+sin permiso para leer el archivo	fără permisiune de citire a fișierului
+no es un mapa de mapsforge (.map)	nu este o hartă mapsforge (.map)
+el archivo está incompleto (¿se copió entero?)	fișierul e incomplet (a fost copiat în întregime?)
+1. En un computador o celular, descarga el mapa de tu país (formato mapsforge, gratis):\ndownload.mapsforge.org/maps/v5\n\nColombia:\ndownload.mapsforge.org/maps/v5/south-america/colombia.map\n\n2. Cópialo a una memoria USB o a la carpeta Download de la pantalla.\n\n3. En Ajustes → Mapa y clima → Mapa sin conexión, toca «Archivo del mapa» y elígelo.\n\nEl mapa se usa en el inicio incluso con internet. Para actualizarlo, descarga uno nuevo y reemplaza el archivo.	1. Pe un calculator sau telefon, descarcă harta țării tale (format mapsforge, gratuit):\ndownload.mapsforge.org/maps/v5\n\nRomânia:\ndownload.mapsforge.org/maps/v5/europe/romania.map\n\n2. Copiaz-o pe un stick USB sau în folderul Download al ecranului.\n\n3. În Setări → Hartă și vreme → Hartă offline, atinge „Fișierul hărții” și alege-o.\n\nHarta se folosește pe ecranul principal chiar și cu internet. Ca s-o actualizezi, descarcă una nouă și înlocuiește fișierul.
+Toca para dejar de usarlo o borrarlo	Atinge pentru a nu o mai folosi sau a o șterge
+Descargar un mapa	Descarcă o hartă
+Elige tu país: se descarga gratis de OpenStreetMap (mapsforge) y se usa sin internet	Alege-ți țara: se descarcă gratuit de la OpenStreetMap (mapsforge) și merge fără internet
+Cargando la lista de mapas…	Se încarcă lista de hărți…
+No se pudo cargar la lista de mapas	Lista de hărți nu a putut fi încărcată
+Revisa la conexión a internet e inténtalo de nuevo.	Verifică conexiunea la internet și încearcă din nou.
+por regiones	pe regiuni
+Elige el continente	Alege continentul
+Tamaño	Dimensiune
+Se guarda en	Se salvează în
+Espacio libre	Spațiu liber
+memoria	memorie
+Usa datos: mejor con WiFi o un plan amplio. Puedes seguir usando la pantalla; si se corta la señal o la apagas, la descarga continúa después.	Folosește date mobile: mai bine pe WiFi sau cu un abonament generos. Poți folosi ecranul în continuare; dacă se pierde semnalul sau îl oprești, descărcarea continuă mai târziu.
+No hay espacio suficiente en la memoria.	Nu e destul spațiu în memorie.
+Descargar	Descarcă
+Descargando el mapa… puedes seguir usando la pantalla	Se descarcă harta… poți folosi ecranul în continuare
+Descarga en curso	Descărcare în curs
+Descarga en pausa	Descărcare în pauză
+Pausar	Pauză
+Continuar	Continuă
+Cancelar descarga	Anulează descărcarea
+Descarga cancelada	Descărcare anulată
+Este mapa lo descargó EvOS. Puedes dejar de usarlo o borrarlo para liberar espacio.	Această hartă a fost descărcată de EvOS. Poți să nu o mai folosești sau s-o ștergi ca să eliberezi spațiu.
+Puedes dejar de usar este mapa (el archivo no se borra).	Poți să nu mai folosești această hartă (fișierul nu se șterge).
+Dejar de usarlo	Nu o mai folosi
+Borrar el archivo	Șterge fișierul
+Mapa borrado	Hartă ștearsă
+Mapa descargado y listo: {}	Hartă descărcată și gata: {}
+Descargando	Se descarcă
+África	Africa
+Australia y Oceanía	Australia și Oceania
+Centroamérica y el Caribe	America Centrală și Caraibe
+Europa	Europa
+Norteamérica	America de Nord
+Rusia	Rusia
+Sudamérica	America de Sud
+sin conexión, reintentando…	fără conexiune, se reîncearcă…
+el archivo quedó incompleto	fișierul a rămas incomplet
+no se pudo guardar el archivo	fișierul nu a putut fi salvat
+no hay espacio suficiente	nu e destul spațiu
+se cortó la descarga	descărcarea s-a întrerupt
+Sin señal GPS · mapa sin conexión	Fără semnal GPS · hartă offline
+Sin señal GPS ni internet	Fără semnal GPS și fără internet
+Sin señal GPS · última posición	Fără semnal GPS · ultima poziție
+Auto: por horario. Sistema: sigue el modo oscuro de la pantalla (algunas lo cambian al encender las luces)	Auto: după program. Sistem: urmează modul întunecat al ecranului (unele îl schimbă când aprinzi farurile)
+Oscuro desde	Întunecat de la
+Claro desde	Luminos de la
+Íconos de Wi-Fi y Bluetooth	Pictogramele Wi-Fi și Bluetooth
+Arriba, junto al clima. Toca para encender o apagar; déjalo presionado para abrir sus ajustes	Sus, lângă vreme. Atinge pentru a porni sau opri; ține apăsat ca să deschizi setările
+¿Apagar el Wi-Fi?	Oprești Wi-Fi-ul?
+La pantalla se queda sin internet (mapa en vivo, clima y actualizaciones).	Ecranul rămâne fără internet (hartă live, vreme și actualizări).
+Apagar	Oprește
+Esta pantalla no deja cambiar el Wi-Fi desde otra app: abre sus ajustes	Acest ecran nu permite altor aplicații să schimbe Wi-Fi-ul: îi deschid setările
+Encendiendo el Wi-Fi…	Se pornește Wi-Fi-ul…
+Wi-Fi apagado	Wi-Fi oprit
+¿Apagar el Bluetooth?	Oprești Bluetooth-ul?
+Se desconecta el celular (música y llamadas).	Telefonul se va deconecta (muzică și apeluri).
+Esta pantalla no deja cambiar el Bluetooth desde otra app: abre sus ajustes	Acest ecran nu permite altor aplicații să schimbe Bluetooth-ul: îi deschid setările
+Encendiendo el Bluetooth…	Se pornește Bluetooth-ul…
+Bluetooth apagado	Bluetooth oprit
+Lado de la barra lateral	Partea barei laterale
+Automático: del lado del reproductor	Automat: pe partea playerului
+Nombres de los botones	Numele butoanelor
+Debajo de cada ícono de la barra	Sub fiecare pictogramă din bară
+Permiso de ubicación: {}	Permisiune de locație: {}
+NO (toca el letrero del mapa)	NU (atinge eticheta de pe hartă)
+sí	da
+GPS del equipo: {} · ubicación por red: {}	GPS-ul unității: {} · locație prin rețea: {}
+no encontrado	negăsit
+encendido	pornit
+apagado	oprit
+encendida	pornită
+apagada	oprită
+Última señal: {}	Ultimul semnal: {}
+ninguna desde que abrió EvOS	niciunul de la deschiderea EvOS
+hace {} s	acum {} s
+hace {} min	acum {} min
+Buscando desde hace {} min	Se caută de {} min
+Posición: {}	Poziție: {}
+sin GPS	fără GPS
+Zoom: {}	Zoom: {}
+Mapa sin conexión: {}	Hartă offline: {}
+ninguno	niciuna
+error: {}	eroare: {}
+{} · en uso	{} · în uz
+{} · fuera del área del archivo	{} · în afara zonei fișierului
+Teselas dibujadas desde el archivo: {} · {} ms cada una	Dale desenate din fișier: {} · {} ms fiecare
+Proveedor: {}	Furnizor: {}
+{} · ninguna fuente respondió ({} vueltas)	{} · nicio sursă n-a răspuns ({} runde)
+Teselas descargadas: {} · en caché: {}	Dale descărcate: {} · în cache: {}
+Errores seguidos: {}	Erori la rând: {}
+Último error: {}	Ultima eroare: {}
+Fuentes probadas:	Surse încercate:
+• {}: {}	• {}: {}
+sin probar	neîncercat
+certificado	certificat
+OSM Alemania	OSM Germania
+OSM Francia	OSM Franța
+OSM Humanitario	OSM Umanitar
+Esri gris oscuro	Esri gri închis
+sin iniciar	nepornit
+TLS listo ({}), {} raíces	TLS gata ({}), {} rădăcini
+TLS listo ({}), {} raíces, {} omitidas	TLS gata ({}), {} rădăcini, {} omise
+TLS no disponible: {}	TLS indisponibil: {}
+Íconos de Wi-Fi y Bluetooth arriba	Pictogramele Wi-Fi și Bluetooth sus
+Bluetooth: estado del celular desde la app de fábrica; toca para abrirla	Bluetooth: starea telefonului din aplicația din fabrică; atinge ca s-o deschizi
+Tema según el modo oscuro del sistema	Tema urmează modul întunecat al sistemului
+Pantallas que lo cambian (p. ej. con las luces)	Ecrane care îl schimbă (de ex. cu farurile)
+el sistema está en modo oscuro	sistemul este în modul întunecat
+el sistema está en modo claro	sistemul este în modul luminos
+Cargando…	Se încarcă…
+Esperando la ubicación…	Se așteaptă locația…
+Máx {} · Mín {}	Max {} · Min {}
+Sensación {}	Se simte {}
+Humedad {}	Umiditate {}
+Viento {}	Vânt {}
+PRÓXIMAS HORAS	URMĂTOARELE ORE
+PRÓXIMOS DÍAS	URMĂTOARELE ZILE
+Ahora	Acum
+Hoy	Azi
+El clima está apagado en Ajustes → Mapa y clima	Vremea e oprită în Setări → Hartă și vreme
+Esperando la ubicación para el clima…	Se așteaptă locația pentru vreme…
+Cargando el clima…	Se încarcă vremea…
+Velocidad y servicio	Viteză și service
+En la tarjeta del vehículo (o arriba si la ocultas). Apágalo si tu carro o pantalla no tiene GPS: la foto ocupa ese espacio	Pe cardul vehiculului (sau sus, dacă îl ascunzi). Oprește-l dacă mașina sau ecranul nu are GPS: fotografia ocupă acel spațiu
+Aceite en el inicio	Uleiul pe ecranul principal
+Junto a la velocidad. Aunque lo ocultes, el aviso del cambio de aceite sigue saliendo	Lângă viteză. Chiar dacă îl ascunzi, alerta de schimb de ulei apare în continuare
+Tarjeta del reproductor	Cardul playerului
+Si la ocultas, el mapa gana espacio	Dacă îl ascunzi, harta primește mai mult spațiu
+Botones de conexión	Butoane de conexiune
+Con uno o ninguno, el clima ocupa el espacio libre del mapa	Cu unul sau niciunul, vremea ocupă spațiul liber de pe hartă
+Android Auto y CarPlay	Android Auto și CarPlay
+Solo Android Auto	Doar Android Auto
+Solo CarPlay	Doar CarPlay
+Botón del navegador	Butonul de navigație
+El botón redondo del mapa que abre tu app de navegación	Butonul rotund de pe hartă care deschide aplicația de navigație
+Grande	Mare
+Muy grande	Foarte mare
+Oculto	Ascuns
+Lado del botón del navegador	Partea butonului de navigație
+Automático: del lado del reproductor (el del conductor)	Automat: pe partea playerului (a șoferului)
+Usar la foto original, sin recortar ni quitar el fondo	Folosește fotografia originală, fără decupare și fără eliminarea fundalului
+Se le quita el fondo automáticamente, o la puedes usar tal cual	Fundalul se elimină automat sau o poți folosi așa cum e
+Lluvia {}	Ploaie {}
+Abriendo la foto…	Se deschide fotografia…
+Vista previa	Previzualizare
+Sin fondo · nivel {} de 4	Fără fundal · nivelul {} din 4
+Sin fondo · nivel {} de 4 (también quita el reflejo del piso)	Fără fundal · nivelul {} din 4 (elimină și reflexia de pe sol)
+Usar la foto original, con fondo	Folosește fotografia originală, cu fundal
+Quitar el fondo	Elimină fundalul
+No se detectó un fondo liso: se usa la foto tal cual	Nu s-a detectat un fundal uniform: fotografia se folosește așa cum e
+Se usa tal cual; si quieres, le puedes quitar el fondo	Se folosește așa cum e; dacă vrei, îi poți elimina fundalul
+Cantidad de botones	Numărul de butoane
+«Apps» siempre queda al final	„Aplicații” rămâne mereu ultimul
+Tamaño de los íconos	Mărimea pictogramelor
+Pequeño	Mică
+Pequeña	Mică
+Íconos de la barra	Pictogramele barei
+Apps: el ícono de la app que abre cada botón (radio, cámara…)	Aplicații: pictograma aplicației pe care o deschide fiecare buton (radio, cameră…)
+Pack de íconos	Pachet de pictograme
+Instala uno (los de Nova o ADW sirven) y elígelo aquí	Instalează unul (cele pentru Nova sau ADW merg) și alege-l aici
+Cambia los íconos de la barra y del cajón de apps	Schimbă pictogramele barei și ale sertarului de aplicații
+Ninguno (íconos de siempre)	Niciunul (pictogramele obișnuite)
+No hay packs de íconos instalados	Nu sunt instalate pachete de pictograme
+Ese pack no trae la lista de íconos (appfilter)	Acest pachet nu are lista de pictograme (appfilter)
+Pack listo: {} íconos	Pachet gata: {} pictograme
+Lateral: los botones van al costado y todo se ve más grande en pantallas bajas como 1280×480. Oculta: el botón Apps va arriba	Laterală: butoanele trec în lateral și totul arată mai mare pe ecranele joase, ca 1280×480. Ascunsă: butonul Aplicații urcă sus
+Oculta	Ascunsă
+Tamaño de la letra	Mărimea textului
+Para leer mejor de lejos o que quepa más	Ca să citești mai bine de la distanță sau să încapă mai mult
+Velocímetro	Vitezometru
+En la tarjeta del vehículo. Toma el color de acento	Pe cardul vehiculului. Preia culoarea de accent
+Digital	Digital
+Analógico	Analogic
+Mixto	Mixt
+Velocímetro sobre el mapa	Vitezometru pe hartă
+Redondo, en una esquina del mapa (en vez de la velocidad de arriba)	Rotund, într-un colț al hărții (în locul vitezei de sus)
+Mantenimiento	Întreținere
+Otros mantenimientos	Alte operațiuni de întreținere
+Agregar mantenimiento	Adaugă o operațiune de întreținere
+Filtros, bujías, frenos, correa, SOAT… Avisa por kilómetros, por tiempo o lo que llegue primero	Filtre, bujii, frâne, curea, RCA… Te anunță după kilometri, după timp sau după ce vine primul
+Filtro de aire	Filtru de aer
+Bujías	Bujii
+Pastillas de freno	Plăcuțe de frână
+Líquido de frenos	Lichid de frână
+Refrigerante	Antigel
+Correa de distribución	Curea de distribuție
+Rotación de llantas	Rotirea anvelopelor
+Alineación y balanceo	Geometrie și echilibrare
+Revisión de la batería	Verificarea bateriei
+Seguro obligatorio (SOAT)	Asigurare RCA
+Revisión técnico-mecánica	ITP
+Otro (escribe el nombre)	Altele (scrie numele)
+Nombre del mantenimiento	Numele operațiunii
+Por kilómetros	După kilometri
+Por tiempo	După timp
+Lo que llegue primero	Ce vine primul
+¿Cada cuántos meses?	La câte luni?
+¿Cada cuántos {}?	La câți {}?
+¿A cuántos {} fue la última vez?	La câți {} a fost ultima dată?
+¿Cuándo fue la última vez?	Când a fost ultima dată?
+Kilometraje del tablero	Kilometrajul din bord
+EvOS no puede leer el kilometraje del carro. Escríbelo una vez y EvOS le suma lo que recorras con el GPS.	EvOS nu poate citi kilometrajul mașinii. Scrie-l o dată, iar EvOS adaugă distanța parcursă cu GPS-ul.
+Escribirlo	Scrie-l
+Última vez	Ultima dată
+Cambiar cada cuánto	Schimbă intervalul
+Corregir la última vez	Corectează ultima dată
+¿Borrar «{}»?	Ștergi „{}”?
+Kilometraje del tablero al hacerlo	Kilometrajul din bord când s-a făcut
+Es hora de: {}	E timpul pentru: {}
+¡Toca: {}!	De făcut: {}!
+Cada {}	La fiecare {}
+cada {} mes	la fiecare {} lună
+cada {} meses	la fiecare {} luni
+¿Cada cuánto tiempo?	Cât de des?
+Días	Zile
+Semanas	Săptămâni
+Meses	Luni
+cada día	în fiecare zi
+cada semana	în fiecare săptămână
+cada mes	în fiecare lună
+cada {} días	la fiecare {} zile
+cada {} semanas	la fiecare {} săptămâni
+(lo primero)	(ce vine primul)
+{} meses	{} luni
+{} día	{} zi
+{} días	{} zile
+Mantenimientos	Întreținere
+Barra de apps	Bara de aplicații
+Tarjetas	Carduri
+Barra de arriba	Bara de sus
+Diseño de la barra	Aspectul barei
+Botones (déjalos presionados en el inicio para cambiarlos)	Butoane (ține-le apăsate pe ecranul principal ca să le schimbi)
+Texto	Text
+Kilometraje	Kilometraj
+Escríbelo una vez y EvOS le suma lo que recorras con el GPS	Scrie-l o dată, iar EvOS adaugă distanța parcursă cu GPS-ul
+Avisa cuando toca el cambio	Te anunță când e timpul pentru schimb
+En el inicio	Pe ecranul principal
+Mantenimiento en el inicio	Întreținerea pe ecranul principal
+Junto a la velocidad se ve el más próximo (el aceite u otro). Los avisos siguen saliendo aunque lo ocultes	Lângă viteză se vede cea mai apropiată (uleiul sau alta). Alertele apar chiar dacă o ascunzi
+Se muestra junto a la velocidad: activa «Velocidad y servicio» en Pantalla de inicio	Apare lângă viteză: activează „Viteză și service” în Ecran principal
+Aceite, filtros, SOAT y más	Ulei, filtre, RCA și altele
+Ahora están en su propia sección	Acum au propria secțiune
+Al encender	La pornire
+Launcher predeterminado	Launcher implicit
+Esquina del velocímetro	Colțul vitezometrului
+Automático: arriba, en el lado contrario al botón del navegador	Automat: sus, pe partea opusă butonului de navigație
+Arriba a la izquierda	Sus în stânga
+Arriba a la derecha	Sus în dreapta
+Abajo a la izquierda	Jos în stânga
+Abajo a la derecha	Jos în dreapta
+Tamaño del velocímetro	Mărimea vitezometrului
+En pantallas bajas se limita para no tapar el mapa	Pe ecranele joase e limitată ca să nu acopere harta
+Elige un ícono	Alege o pictogramă
+Cambiar el ícono	Schimbă pictograma
+Filtro de combustible	Filtru de combustibil
+Aire acondicionado	Aer condiționat
+Lavado	Spălătorie
+Fuente: {}	Sursă: {}
+Pista: {}	Piesă: {}
+Carátula: {}	Copertă: {}
+Lector de notificaciones (accesibilidad): {}	Cititor de notificări (accesibilitate): {}
+ACTIVO	ACTIV
+Última notificación de Open Headunit: {}	Ultima notificare Open Headunit: {}
+ninguna	niciuna
+{} s, carátula {}, textos {}	{} s, copertă {}, texte {}
+Open Headunit corriendo: {} · celular por USB en modo Android Auto: {}	Open Headunit rulează: {} · telefon pe USB în modul Android Auto: {}
+no se sabe	nu se știe
+Android Auto conectado (para EvOS): {}	Android Auto conectat (pentru EvOS): {}
+App Bluetooth conectada: {}	Aplicația Bluetooth conectată: {}
+Audio Bluetooth automático: {}	Audio Bluetooth automat: {}
+desactivado	dezactivat
+no aplica (otra marca)	nu se aplică (altă marcă)
+App de música Bluetooth: {} · abrir al conectar: {}	Aplicația de muzică Bluetooth: {} · deschide la conectare: {}
+no encontrada	negăsită
+Sonido en Bluetooth (estimado): {} · app al frente: {}	Sunet pe Bluetooth (estimat): {} · aplicația din față: {}
+Activaciones: {}	Activări: {}
+Eventos Bluetooth:	Evenimente Bluetooth:
+(sin eventos)	(fără evenimente)
+no	nu
+conectado a la app Bluetooth	conectat la aplicația Bluetooth
+la app Bluetooth se cerró	aplicația Bluetooth s-a închis
+se reinicia muy seguido: pausa de 15 min	repornește prea des: pauză de 15 min
+activar audio: el celular no está conectado por Bluetooth	activare audio: telefonul nu e conectat prin Bluetooth
+activar audio: el celular está en pausa	activare audio: telefonul e pe pauză
+modo de audio Bluetooth solicitado	mod audio Bluetooth solicitat
+activar audio falló: {}	activarea audio a eșuat: {}
+el celular empezó a sonar	telefonul a început să redea
+revisión falló: {}	verificarea a eșuat: {}
+otra fuente al frente: {}	altă sursă în față: {}
+no se cambió: EvOS acaba de arrancar	nu s-a schimbat: EvOS tocmai a pornit
+no se cambió: llamada en curso	nu s-a schimbat: apel în curs
+no se cambió: Android Auto tiene el sonido	nu s-a schimbat: Android Auto are sunetul
+el sonido ya es Bluetooth	sunetul e deja pe Bluetooth
+celular conectado por Bluetooth	telefon conectat prin Bluetooth
+no se abrió la app BT: cámara de reversa al frente	aplicația BT nu s-a deschis: camera de marșarier e în față
+no se abrió la app BT: no sé qué app está al frente	aplicația BT nu s-a deschis: nu știu ce aplicație e în față
+no se abrió la app BT: ajustes abiertos	aplicația BT nu s-a deschis: setările sunt deschise
+abierta {} para tomar el sonido (luego vuelve a {})	deschisă {} pentru a prelua sunetul (apoi revine la {})
+abierta {} para tomar el sonido	deschisă {} pentru a prelua sunetul
+no se volvió: el usuario abrió {}	nu s-a revenit: utilizatorul a deschis {}
+Android Auto se desconectó	Android Auto s-a deconectat
+Registro técnico para enviar al desarrollador (se guarda en español).	Jurnal tehnic de trimis dezvoltatorului (se păstrează în spaniolă).
+Preparando {}…	Se pregătește {}…
+Copia de seguridad	Copie de siguranță
+Guardar una copia	Salvează o copie
+Ajustes, mantenimientos, kilometraje y la foto del vehículo en un archivo, en la pantalla o en una USB. Nada se sube a internet	Setări, întreținere, kilometraj și fotografia vehiculului într-un fișier, pe ecran sau pe un stick USB. Nimic nu se urcă pe internet
+Restaurar una copia	Restaurează o copie
+Recupera todo después de restablecer la pantalla, o pásalo a otra pantalla	Recuperezi totul după resetarea ecranului sau muți totul pe alt ecran
+Copia automática	Copie automată
+Cada vez que cambias algo se actualiza una copia en la pantalla y en la USB que esté conectada	De fiecare dată când schimbi ceva, se actualizează o copie pe ecran și pe stickul USB conectat
+Memoria de la pantalla	Memoria ecranului
+Memoria USB	Stick USB
+Elegir otra carpeta…	Alege alt folder…
+¿Dónde guardar la copia?	Unde salvez copia?
+No se pudo abrir el selector de archivos	Selectorul de fișiere nu a putut fi deschis
+No se pudo guardar la copia	Copia nu a putut fi salvată
+Esa memoria no dejó escribir el archivo. Prueba con otra memoria o con «Elegir otra carpeta…».	Această memorie nu a permis scrierea fișierului. Încearcă alta sau „Alege alt folder…”.
+Copia guardada	Copie salvată
+Se guardó en:	Salvată în:
+Al restablecer la pantalla de fábrica también se puede borrar su memoria: guarda otra copia en una USB para tenerla a salvo.	Resetarea din fabrică a ecranului îi poate șterge și memoria: păstrează o copie și pe un stick USB, ca să fie în siguranță.
+No se pudo leer el archivo	Fișierul nu a putut fi citit
+Buscando copias…	Se caută copii…
+No se encontró ninguna copia	Nu s-a găsit nicio copie
+No hay copias de EvOS en la memoria de la pantalla ni en las USB conectadas. El archivo se llama «EvOS-backup» y termina en .json.	Nu există copii EvOS în memoria ecranului sau pe stickurile USB conectate. Fișierul se numește „EvOS-backup” și se termină în .json.
+automática	automată
+Buscar el archivo…	Caută fișierul…
+Elige la copia	Alege copia
+No se pudo restaurar	Nu s-a putut restaura
+Este archivo no es una copia de seguridad de EvOS	Acest fișier nu este o copie de siguranță EvOS
+Copia del	Copie din
+Pantalla:	Ecran:
+Ajustes guardados:	Setări salvate:
+con la foto del vehículo	cu fotografia vehiculului
+Se reemplaza toda la configuración actual de EvOS por la de la copia.	Toată configurația actuală EvOS se înlocuiește cu cea din copie.
+¿Restaurar esta copia?	Restaurezi această copie?
+Restaurar	Restaurează
+Copia restaurada	Copie restaurată
+Esta copia se hizo con una versión más nueva de EvOS. Actualiza EvOS y vuelve a intentarlo	Această copie a fost făcută cu o versiune mai nouă de EvOS. Actualizează EvOS și încearcă din nou
+No se pudo guardar la configuración	Configurația nu a putut fi salvată
+La copia está dañada o incompleta	Copia este deteriorată sau incompletă
+Abrir una app al encender	Deschide o aplicație la pornire
+EvOS la abre un momento al arrancar (por ejemplo la radio, para que empiece a sonar) y vuelve al inicio	EvOS o deschide o clipă la pornire (de exemplu radioul, ca să înceapă să cânte) și revine la ecranul principal
+Copia de seguridad en un archivo (pantalla o USB)	Copie de siguranță într-un fișier (ecran sau USB)
+en Android 10+ la carpeta se elige con el selector de archivos	pe Android 10+ folderul se alege cu selectorul de fișiere
+Diseño vertical	Aspect vertical
+Pantallas en vertical (tipo Tesla)	Ecrane verticale (tip Tesla)
+en uso	în uz
+esta pantalla es horizontal	acest ecran este orizontal
+Pantalla completa	Ecran complet
+Ocultar la barra del sistema	Ascunde bara sistemului
+Esconde también la barra de navegación de tu pantalla (abajo o al costado). Desliza desde el borde para verla un momento	Ascunde și bara de navigare a ecranului (jos sau în lateral). Glisează de la margine ca s-o vezi pentru o clipă
+Corrección del velocímetro	Corecția vitezometrului
+Suma o resta a la velocidad del GPS para que coincida con el tablero de tu carro	Adună sau scade din viteza GPS ca să se potrivească cu bordul mașinii
+Diseño	Aspect
+Diseño de la pantalla	Aspectul ecranului
+Automático: según la forma de la pantalla. Elige Vertical si tu pantalla es vertical y se ve chica en el medio	Automat: după forma ecranului. Alege Vertical dacă ecranul tău e vertical și se vede mic la mijloc
+Horizontal	Orizontal
+Vertical	Vertical
+se puede elegir en Ajustes → Pantalla de inicio → Diseño	se poate alege în Setări → Ecran principal → Aspect
+Área útil de la pantalla:	Zona utilă a ecranului:
+Horario	Program
+Amanecer y atardecer: se calcula con el GPS, sin internet	Răsărit și apus: calculate cu GPS-ul, fără internet
+Horas fijas	Ore fixe
+Amanecer y atardecer	Răsărit și apus
+Amanecer	Răsărit
+Atardecer	Apus
+oscuro desde el atardecer hasta el amanecer	întunecat de la apus până la răsărit
+Esperando la ubicación del GPS	Se așteaptă locația GPS
+Mientras tanto usa las horas fijas	Între timp folosește orele fixe
+Orden	Ordine
+Usadas recientemente	Folosite recent
+Instaladas recientemente	Instalate recent
+A mano	Manual
+Orden de las apps	Ordinea aplicațiilor
+Deja presionada una app y elige «Mover» para cambiarla de lugar	Ține apăsată o aplicație și alege „Mută” ca s-o schimbi de loc
+Mover	Mută
+Toca el lugar donde quieres poner «{}»	Atinge locul unde vrei să pui „{}”
+Pantalla en reposo	Ecran în repaus
+Si no tocas la pantalla un rato, se pone negra con la hora, la fecha y la velocidad. Un toque la quita	Dacă nu atingi ecranul o vreme, devine negru cu ora, data și viteza. O atingere îl readuce
+1 minuto	1 minut
+{} minutos	{} minute
+Después de	După
+Tiempo sin tocar la pantalla	Timp fără atingerea ecranului
+Con el diseño de velocímetro que prefieras	Cu stilul de vitezometru preferat
+Sin velocidad	Fără viteză
+Color de la letra	Culoarea textului
+Blanco	Alb
+Gris suave	Gri deschis
+Ámbar	Chihlimbar
+Ver ahora	Vezi acum
+Toca la pantalla para volver	Atinge ecranul ca să revii
+Ir a…	Mergi la…
+Recalculando…	Se recalculează…
+Llegaste a tu destino	Ai ajuns la destinație
+Activa el mapa en vivo en Ajustes → Mapa y clima	Activează harta live în Setări → Hartă și vreme
+Escribe una dirección o lugar	Scrie o adresă sau un loc
+RECIENTES	RECENTE
+¿A dónde vamos?	Unde mergem?
+Buscar	Caută
+Detener	Oprește
+Buscando…	Se caută…
+No se pudo buscar	Căutarea nu a reușit
+No se encontraron resultados	Nu s-au găsit rezultate
+Resultados	Rezultate
+Esperando señal GPS para calcular la ruta	Se așteaptă semnal GPS pentru calcularea traseului
+Calculando ruta…	Se calculează traseul…
+No se pudo calcular la ruta	Traseul nu a putut fi calculat
+Cambiar destino	Schimbă destinația
+Silenciar voz de guía	Oprește vocea de ghidare
+Activar voz de guía	Pornește vocea de ghidare
+Vista Norte arriba	Vedere cu nordul sus
+Vista en dirección de marcha	Vedere în direcția de mers
+Abrir en otra app	Deschide în altă aplicație
+Detener navegación	Oprește navigația
+Navegación en el mapa	Navigație pe hartă
+Voz activada	Voce pornită
+Voz silenciada	Voce oprită
+En el mapa de EvOS	Pe harta EvOS
+Se abre con el botón del mapa (Waze, Maps, OsmAnd… o integrada en el mapa)	Se deschide cu butonul hărții (Waze, Maps, OsmAnd… sau integrată în hartă)
+Voz de navegación	Vocea de navigație
+Indicaciones paso a paso habladas durante el recorrido	Indicații vocale pas cu pas în timpul traseului
+★  En el mapa de EvOS (integrada)	★  Pe harta EvOS (integrată)
+Guardado: Navegación en el mapa	Salvat: Navigație pe hartă
+Coordenadas	Coordonate
+No se encontró ruta	Nu s-a găsit niciun traseu
+Ruta recalculada	Traseu recalculat
+Sal por {}	Pornește pe {}
+Inicia el recorrido	Pornește la drum
+En la rotonda, salida {} hacia {}	În sensul giratoriu, ieșirea {} spre {}
+En la rotonda, toma la salida {}	În sensul giratoriu, ia ieșirea {}
+En la rotonda, sigue hacia {}	În sensul giratoriu, continuă spre {}
+En la rotonda, toma la salida	În sensul giratoriu, ia ieșirea
+Haz un giro en U en {}	Întoarce pe {}
+Haz un giro en U	Întoarce
+Gira levemente a la derecha en {}	Virează ușor la dreapta pe {}
+Gira levemente a la derecha	Virează ușor la dreapta
+Gira a la derecha en {}	Virează la dreapta pe {}
+Gira a la derecha	Virează la dreapta
+Gira fuerte a la derecha en {}	Virează strâns la dreapta pe {}
+Gira fuerte a la derecha	Virează strâns la dreapta
+Gira levemente a la izquierda en {}	Virează ușor la stânga pe {}
+Gira levemente a la izquierda	Virează ușor la stânga
+Gira a la izquierda en {}	Virează la stânga pe {}
+Gira a la izquierda	Virează la stânga
+Gira fuerte a la izquierda en {}	Virează strâns la stânga pe {}
+Gira fuerte a la izquierda	Virează strâns la stânga
+Incorpórate a {}	Intră pe {}
+Toma el desvío	Ia bretea
+Continúa por {}	Continuă pe {}
+Sigue recto	Mergi înainte
+En 500 metros	Peste 500 de metri
+En 150 metros	Peste 150 de metri
+En 500 pies	Peste 500 de picioare
+En un cuarto de milla	Peste un sfert de milă
+En {}	Peste {}
+Sin conexión · vuelve a la ruta	Offline · revino pe traseu
+Casa	Acasă
+Trabajo	Serviciu
+Toca para guardar GPS	Atinge pentru a salva poziția GPS
+Ir ahora	Mergi acum
+Actualizar con GPS actual	Actualizează cu poziția GPS curentă
+Eliminado	Eliminat
+Esperando señal GPS para guardar ubicación	Se așteaptă semnal GPS pentru salvarea locației
+Guardado en Casa	Salvat ca Acasă
+Guardado en Trabajo	Salvat ca Serviciu
+Gasolina	Benzinărie
+Salud	Sănătate
+Parqueo	Parcare
+Comida	Mâncare
+FAVORITOS	FAVORITE
+Quitar de favoritos	Elimină din favorite
+Añadir a favoritos	Adaugă la favorite
+Guardar como Casa	Salvează ca Acasă
+Guardar como Trabajo	Salvează ca Serviciu
+Añadido a favoritos	Adăugat la favorite
+Quitado de favoritos	Eliminat din favorite
+Ruta aproximada (mapa local sin conexión)	Traseu aproximativ (hartă locală offline)
+Ruta guardada (sin conexión)	Traseu salvat (offline)
+Recalcular ruta	Recalculează traseul
+ruta guardada	traseu salvat
+sin conexión · aproximada	offline · aproximativ
+aproximada	aproximativ
+Para rutas largas o sin mapa local hace falta internet	Pentru trasee lungi sau fără hartă locală e nevoie de internet
+Mapa local	Hartă locală
+Pueblo	Localitate
+Barrio	Cartier
+Calle	Stradă
+Estación de servicio	Benzinărie
+Hospital	Spital
+Clínica	Clinică
+Farmacia	Farmacie
+Parqueadero	Parcare
+Restaurante	Restaurant
+Cafetería	Cafenea
+Supermercado	Supermarket
+Hotel	Hotel
+Aeropuerto	Aeroport
+Estación	Gară
+Lugar	Loc
+con tráfico	cu trafic
+Tráfico en vivo activado	Trafic live activat
+Tráfico en vivo	Trafic live
+Muestra congestión en el mapa y evita trancones (usa clave gratis de TomTom)	Arată aglomerația pe hartă și evită ambuteiajele (folosește o cheie gratuită TomTom)
+Clave gratis de TomTom	Cheie gratuită TomTom
+Para capas de tráfico y rutas con tráfico (regístrate gratis en developer.tomtom.com)	Pentru straturi de trafic și trasee cu trafic (înregistrare gratuită pe developer.tomtom.com)
+Clave API gratis de TomTom	Cheie API gratuită TomTom
+Capa de tráfico propia (avanzado)	Strat de trafic propriu (avansat)
+URL transparente de tráfico con {z}/{x}/{y}	URL transparent de trafic cu {z}/{x}/{y}
+URL capa de tráfico {z}/{x}/{y} (vacío = automático)	URL strat de trafic {z}/{x}/{y} (gol = automat)
+Servidor de rutas OSRM (avanzado)	Server de trasee OSRM (avansat)
+URL propia compatible con OSRM (vacío = automático)	URL propriu compatibil OSRM (gol = automat)
+URL servidor OSRM (vacío = automático)	URL server OSRM (gol = automat)
+Compatibilidad TLS en rutas	Compatibilitate TLS pentru trasee
+Para radios antiguas donde falle el HTTPS de rutas o búsqueda	Pentru unitățile mai vechi unde HTTPS-ul pentru trasee sau căutare nu merge
+Mostrando hora de llegada	Se arată ora sosirii
+Mostrando tiempo restante	Se arată timpul rămas
+Radar	Radar
+Ir a Casa	Mergi Acasă
+Ir a Trabajo	Mergi la Serviciu
+Configura «{}» primero en Navegación	Configurează mai întâi „{}” în Navigație
+PARADAS	OPRIRI
+Limpiar	Golește
++ Añadir parada intermedia	+ Adaugă o oprire pe traseu
+Modo parada activo: elige una parada	Mod oprire activ: alege o oprire
+Buscar parada intermedia	Caută o oprire pe traseu
+Añadir parada en ruta	Adaugă o oprire pe traseu
+Elegir destino final	Alege destinația finală
+Añadir como parada	Adaugă ca oprire
+Parada añadida	Oprire adăugată
+Elegir parada	Alege oprirea
+Elegir ruta	Alege traseul
+Ruta	Traseu
+Más rápida	Cel mai rapid
+incidente	incident
+incidentes	incidente
+incidente en la ruta	incident pe traseu
+incidentes en la ruta	incidente pe traseu
+Incidentes en la ruta	Incidente pe traseu
+Mostrar tiempo restante	Arată timpul rămas
+Mostrar hora de llegada	Arată ora sosirii
+Evitar peajes	Evită taxele de drum
+Intenta evitar vías de peaje al calcular la ruta	Încearcă să evite drumurile cu taxă la calcularea traseului
+Evitar autopistas	Evită autostrăzile
+Intenta evitar autopistas o vías rápidas	Încearcă să evite autostrăzile sau drumurile expres
+Rutas alternativas	Trasee alternative
+Muestra 2 o 3 opciones de ruta antes de iniciar	Arată 2 sau 3 variante de traseu înainte de pornire
+Muestra la hora estimada en lugar del tiempo restante	Arată ora estimată a sosirii în locul timpului rămas
+Consulta cierres o accidentes una sola vez al calcular ruta (TomTom)	Verifică o singură dată, la calcularea traseului, drumurile închise sau accidentele (TomTom)
+Límite y alerta de velocidad	Limită și alertă de viteză
+Muestra la señal de límite en el mapa y avisa al excederlo	Arată indicatorul de limită pe hartă și avertizează la depășire
+Tolerancia de exceso	Toleranță la depășire
+Margen sobre el límite antes de activar alerta	Marja peste limită înainte de alertă
+Sonido al exceder límite	Sunet la depășirea limitei
+Pitido de alerta cuando superas la tolerancia	Un bip de alertă când depășești toleranța
+Alertas de radares sin conexión	Alerte radar offline
+Avisa al acercarse a radares del mapa local .map	Avertizează la apropierea de radarele din harta locală .map
+Vía cerrada	Drum închis
+Carril cerrado	Bandă închisă
+Accidente	Accident
+Obras en la vía	Lucrări pe drum
+Tráfico detenido	Trafic oprit
+Incidente en la vía	Incident pe drum
+Radar de velocidad adelante	Radar de viteză în față
+Personalización	Personalizare
+Cambia el aspecto de la pantalla de inicio con un toque. Puedes seguir ajustando cada detalle en las demás secciones.	Schimbă aspectul ecranului principal cu o atingere. Poți ajusta în continuare fiecare detaliu în celelalte secțiuni.
+Temas gratis	Teme gratuite
+Temas premium	Teme premium
+Próximamente	În curând
+Temas exclusivos para quienes apoyan EvOS con una donación. Todas las funciones siguen siendo gratis.	Teme exclusive pentru cei care susțin EvOS cu o donație. Toate funcțiile rămân gratuite.
+En uso	În uz
+Tema aplicado:	Temă aplicată:
+Clásico	Clasic
+Música a la izquierda	Muzica în stânga
+Mapa amplio	Hartă lată
+Minimalista	Minimalist
+Vehículo a la izquierda, mapa en el centro y música a la derecha	Vehiculul în stânga, harta în centru și muzica în dreapta
+Mapa arriba; debajo, vehículo a la izquierda y música a la derecha	Harta sus; dedesubt, vehiculul în stânga și muzica în dreapta
+Música a la izquierda, mapa en el centro y vehículo a la derecha	Muzica în stânga, harta în centru și vehiculul în dreapta
+Mapa arriba; debajo, música a la izquierda y vehículo a la derecha	Harta sus; dedesubt, muzica în stânga și vehiculul în dreapta
+Sin tarjeta del vehículo: mapa más ancho, velocímetro abajo a la izquierda y música a la derecha	Fără cardul vehiculului: hartă mai lată, vitezometrul jos în stânga și muzica în dreapta
+Sin tarjeta del vehículo: mapa más alto con el velocímetro abajo a la izquierda y la música a lo ancho	Fără cardul vehiculului: hartă mai înaltă, cu vitezometrul jos în stânga și muzica pe toată lățimea
+Música a la izquierda, velocímetro abajo a la derecha, panel de conexión plegado y barra compacta	Muzica în stânga, vitezometrul jos în dreapta, panoul de conexiune strâns și bară compactă
+Mapa casi completo: velocímetro abajo a la derecha, panel de conexión plegado, música a lo ancho y barra compacta	Hartă aproape completă: vitezometrul jos în dreapta, panoul de conexiune strâns, muzica pe toată lățimea și bară compactă
+Cada tema se adapta solo a la orientación de la pantalla.	Fiecare temă se adaptează singură la orientarea ecranului.
+Tema premium	Temă premium
+Aurora en uso	Aurora în uz
+El tema arma la pantalla de inicio. Las tarjetas, la barra y el velocímetro de aquí se usan otra vez al quitarlo en Personalización.	Tema construiește ecranul principal. Cardurile, bara și vitezometrul de aici se folosesc din nou când o scoți din Personalizare.
+Tema premium quitado	Tema premium a fost scoasă
+Premium	Premium
+Fondo con un arco de color difuminado y granulado, tarjetas translúcidas, la hora en grande con música, vehículo y clima arriba, el mapa a lo ancho y una barra tipo píldora. El botón «Solo mapa» agranda el mapa.	Fundal cu un arc de culoare difuz și granulat, carduri translucide, ora în mare cu muzica, vehiculul și vremea sus, harta pe toată lățimea și o bară în formă de pastilă. Butonul „Doar harta” mărește harta.
+Sigue el modo claro u oscuro de Apariencia.	Urmează modul luminos sau întunecat din Aspect.
+Quitar el tema premium	Scoate tema premium
+Aplicar	Aplică
+Versión de prueba: se puede aplicar sin código.	Versiune de test: se poate aplica fără cod.
+Disponible pronto con una donación. Todas las funciones siguen siendo gratis.	Disponibil în curând cu o donație. Toate funcțiile rămân gratuite.
+Cobalto	Cobalt
+Azul noche en tres columnas: el mapa se difumina hasta el reproductor de carátula redonda, y tu vehículo muestra el velocímetro arriba, su foto en el medio y el mantenimiento abajo. La temperatura va sobre el mapa.	Albastru de noapte în trei coloane: harta se estompează până la playerul cu copertă rotundă, iar vehiculul arată vitezometrul sus, fotografia la mijloc și întreținerea jos. Temperatura stă deasupra hărții.
+Gratis	Gratuit
+Gratis para todos. Los próximos temas premium se desbloquearán con una donación.	Gratuit pentru toată lumea. Următoarele teme premium se vor debloca printr-o donație.
+Brillo de la pantalla	Luminozitatea ecranului
+Amanecer y atardecer: se calcula con el GPS, sin internet. Brillo: para pantallas que bajan el brillo al encender las luces	Răsărit și apus: calculate cu GPS-ul, fără internet. Luminozitate: pentru ecranele care își reduc luminozitatea când aprinzi luminile
+Brillo actual	Luminozitatea actuală
+Prende y apaga las luces del carro para ver cuánto cambia	Aprinde și stinge luminile mașinii ca să vezi cât se schimbă
+Oscuro con brillo menor a	Întunecat când luminozitatea e sub
+Elige un nivel entre el brillo de día y el de noche	Alege un nivel între luminozitatea de zi și cea de noapte
+Esta pantalla no informa su brillo	Acest ecran nu raportează luminozitatea
+Países del Golfo	Țările din Golf
+Irlanda del Norte	Irlanda de Nord
+Islas Canarias	Insulele Canare
+Tiempo en EvOS: {}	Timp în EvOS: {}
+Último tiempo por Bluetooth: {}	Ultimul timp prin Bluetooth: {}
+Fondo carbón (o perla en claro) con un haz de luz diagonal. A la izquierda, el velocímetro y un carro visto desde arriba que enciende los faros de noche; en el centro, el mapa integrado al fondo; a la derecha, el clima por horas y tus próximos mantenimientos, con el reproductor y la barra de apps debajo.	Fundal cărbune (sau perlă în modul luminos) cu un fascicul diagonal de lumină. În stânga, vitezometrul și o mașină văzută de sus care își aprinde farurile noaptea; în centru, harta integrată în fundal; în dreapta, vremea pe ore și următoarele operațiuni de întreținere, cu playerul și bara de aplicații dedesubt.
+Color del carro	Culoarea mașinii
+El carro del tema Faro, visto desde arriba. También se cambia con una presión larga sobre el carro.	Mașina din tema Faro, văzută de sus. O poți schimba și ținând apăsat pe mașină.
+Intensidad del mapa	Intensitatea hărții
+Qué tan visible es el mapa sobre el fondo. Auto lo pone más fuerte en las pantallas sencillas de los radios y suave en las de alta gama. Súbela si al sol no se ve bien.	Cât de vizibilă e harta peste fundal. Auto o face mai puternică pe ecranele simple ale unităților radio și mai discretă pe cele de top. Mărește-o dacă nu se vede bine în soare.
+Baja	Scăzută
+Media	Medie
+Alta	Ridicată
+Negro	Negru
+Sin mantenimientos programados	Nicio operațiune de întreținere programată
+Toca para agregar uno	Atinge pentru a adăuga una
+Navegar	Navighează
+Música sonando	Se redă muzică
+Toca para ver la canción	Atinge ca să vezi melodia
+Ver la canción de tus apps	Vezi melodia din aplicațiile tale
+Para mostrar la canción, el artista y la carátula de Spotify, YouTube Music y otras apps, EvOS necesita «Acceso a notificaciones». Solo lo usa para leer lo que suena: no guarda ni envía nada.	Ca să arate melodia, artistul și coperta din Spotify, YouTube Music și alte aplicații, EvOS are nevoie de „Acces la notificări”. Îl folosește doar ca să citească ce se redă: nu salvează și nu trimite nimic.
+No volver a mostrar	Nu mai afișa
+Esta pantalla no tiene el ajuste de «Acceso a notificaciones». Se puede activar una sola vez desde una computadora con ADB:	Acest ecran nu are setarea „Acces la notificări”. Se poate activa o singură dată de pe un calculator cu ADB:
+Spotify, YouTube Music y otras apps de la pantalla (acceso a notificaciones)	Spotify, YouTube Music și alte aplicații de pe ecran (acces la notificări)
+Encendidas	Aprinse
+Apagadas	Stinse
+Espera para pasar a oscuro	Întârziere până la trecerea pe întunecat
+Cuánto debe durar el cambio (luces encendidas, poco brillo…) antes de oscurecer	Cât trebuie să dureze schimbarea (lumini aprinse, luminozitate scăzută…) înainte de întunecare
+Espera para pasar a claro	Întârziere până la trecerea pe luminos
+Útil si al apagar el carro de noche se apagan las luces y la pantalla pasa a claro de golpe	Util dacă, atunci când oprești mașina noaptea, luminile se sting și ecranul trece brusc pe luminos
+Sin espera	Fără întârziere
+Marca de la pantalla	Marca ecranului
+Genérica	Generică
+Detectada:	Detectată:
+No se detectó una marca con funciones propias	Nu s-a detectat o marcă cu funcții proprii
+Datos del carro	Datele mașinii
+Lectura actual	Citirea actuală
+Servicio com.syu.ms:	Serviciul com.syu.ms:
+sin caja CAN	fără cutie CAN
+Esperando datos	Se așteaptă date
+Luces del carro	Luminile mașinii
+Sin datos	Fără date
+sin conectar	neconectat
+conectando	se conectează
+conectado	conectat
+desconectado	deconectat
+no se encontró com.syu.ms	com.syu.ms nu a fost găsit
+com.syu.ms no respondió	com.syu.ms nu a răspuns
+com.syu.ms se reinició	com.syu.ms a repornit
+Tema según las luces, batería y temperatura exterior	Temă după lumini, baterie și temperatura exterioară
+Pantallas FYT (com.syu.ms)	Unități FYT (com.syu.ms)
+luces detectadas	lumini detectate
+Auto: por horario. Sistema: sigue las luces del carro (pantalla FYT)	Auto: după program. Sistem: urmează luminile mașinii (unitate FYT)
+Espera para cambiar de tema	Întârziere la schimbarea temei
+Evita cambios de golpe, p. ej. al apagar el carro de noche	Evită schimbările bruște, de ex. când oprești mașina noaptea
+Para seguirlas, elige Apariencia → Tema → Modo → Sistema	Ca să le urmeze, alege Aspect → Temă → Mod → Sistem
+Elige qué datos del carro se ven arriba, junto al Wi-Fi	Alege ce date ale mașinii apar sus, lângă Wi-Fi
+Tensión de la batería	Tensiunea bateriei
+Medida por la pantalla; no necesita la caja CAN	Măsurată de ecran; nu necesită cutia CAN
+Temperatura exterior	Temperatura exterioară
+Del sensor del carro; necesita la caja CAN	De la senzorul mașinii; necesită cutia CAN
+pantalla FYT detectada: elígela en Tu vehículo → Equipo	ecran FYT detectat: alege-l în Vehiculul tău → Unitate
+esta pantalla no informa las luces	acest ecran nu raportează luminile
+Vehículo	Vehicul
+Monitor del vehículo	Monitorul vehiculului
+Batería	Baterie
+Carga del motor	Sarcina motorului
+Acelerador	Accelerație
+Aire de admisión	Aer de admisie
+Combustible	Combustibil
+Mezcla corta	Corecție amestec scurtă
+Mezcla larga	Corecție amestec lungă
+Flujo de aire	Debit de aer
+Presión del múltiple	Presiunea în galerie
+Consumo del motor	Consumul motorului
+Consumo por hora	Consum pe oră
+Aceite del motor	Uleiul motorului
+Panel de datos	Panou de date
+Datos del panel	Datele panoului
+Datos del motor	Datele motorului
+Cilindrada del motor	Cilindreea motorului
+Cilindrada del motor (litros)	Cilindreea motorului (litri)
+Protocolo	Protocol
+CAN 11 bits · 500 kbps	CAN 11 biți · 500 kbps
+CAN 29 bits · 500 kbps	CAN 29 biți · 500 kbps
+CAN 11 bits · 250 kbps	CAN 11 biți · 250 kbps
+CAN 29 bits · 250 kbps	CAN 29 biți · 250 kbps
+Escribe un número entre 0,5 y 8	Scrie un număr între 0,5 și 8
+Máximo 6 datos	Maximum 6 valori
+Hasta 6 datos del escáner, por ejemplo RPM, velocidad, refrigerante y consumo	Până la 6 valori de la scaner, de exemplu RPM, viteză, lichid de răcire și consum
+Conectando con el escáner…	Se conectează la scaner…
+Conectado	Conectat
+Esperando al auto (¿contacto apagado?)	Se așteaptă mașina (contactul e luat?)
+Escáner conectado. Vigilando el motor.	Scaner conectat. Se monitorizează motorul.
+Se perdió la conexión con el escáner.	S-a pierdut conexiunea cu scanerul.
+Códigos borrados.	Coduri șterse.
+El auto no aceptó borrar los códigos.	Mașina nu a acceptat ștergerea codurilor.
+El escáner no logra hablar con el auto. ¿Está el contacto puesto?	Scanerul nu reușește să comunice cu mașina. E contactul pus?
+El escáner no responde	Scanerul nu răspunde
+El escáner cerró la conexión	Scanerul a închis conexiunea
+El Bluetooth está apagado	Bluetooth-ul e oprit
+Este equipo no tiene Bluetooth	Această unitate nu are Bluetooth
+No se pudo conectar	Conectarea nu a reușit
+Motor sobrecalentado: {}	Motor supraîncălzit: {}
+Refrigerante alto: {}	Lichid de răcire fierbinte: {}
+El refrigerante sube rápido: {} °C	Lichidul de răcire se încălzește repede: {} °C
+Voltaje alto: {}	Tensiune ridicată: {}
+Voltaje bajo: {}	Tensiune scăzută: {}
+RPM muy altas: {}	Turații foarte mari: {}
+Motor muy exigido: {}	Motor foarte solicitat: {}
+Aire de admisión muy caliente: {}	Aer de admisie foarte fierbinte: {}
+Poco combustible: {}	Combustibil puțin: {}
+Mezcla pobre ({}): {}	Amestec sărac ({}): {}
+Mezcla rica ({}): {}	Amestec bogat ({}): {}
+Aceite del motor muy caliente: {}	Ulei de motor foarte fierbinte: {}
+Código de falla {}	Cod de eroare {}
+Código pendiente {}	Cod în așteptare {}
+revisa el detalle en la pantalla	vezi detaliile pe ecran
+Detente en un lugar seguro y apaga el motor. No abras la tapa del radiador en caliente. Espera que enfríe y revisa el nivel de refrigerante, el electroventilador y la correa.	Oprește într-un loc sigur și oprește motorul. Nu deschide bușonul radiatorului cât e fierbinte. Așteaptă să se răcească și verifică nivelul lichidului de răcire, electroventilatorul și cureaua.
+Baja la exigencia: usa una marcha más baja, apaga el aire acondicionado y, si sigue subiendo, pon la calefacción al máximo y busca dónde parar.	Redu solicitarea: folosește o treaptă mai mică, oprește aerul condiționat și, dacă tot crește, pune încălzirea la maximum și caută unde să oprești.
+Baja la exigencia: usa una marcha más baja, apaga el aire acondicionado y vigila que el electroventilador encienda.	Redu solicitarea: folosește o treaptă mai mică, oprește aerul condiționat și verifică dacă pornește electroventilatorul.
+El alternador está cargando de más y puede dañar la batería. Revísalo pronto.	Alternatorul încarcă prea mult și poate strica bateria. Verifică-l curând.
+El alternador no está cargando bien: apaga lo que no necesites (aire, luces extra) y ve a un taller antes de que se descargue la batería. Revisa la correa.	Alternatorul nu încarcă bine: oprește ce nu-ți trebuie (aer condiționat, lumini suplimentare) și mergi la un service înainte să se descarce bateria. Verifică cureaua.
+Baja la velocidad o usa una marcha más alta. En bajadas, frena con motor sin pasar la zona roja.	Redu viteza sau folosește o treaptă mai mare. La coborâre, frânează cu motorul fără să intri în zona roșie.
+El motor va al máximo hace rato. En cuestas largas usa una marcha más baja y deja descansar el motor y la caja.	Motorul merge la maximum de ceva vreme. Pe urcușuri lungi folosește o treaptă mai mică și lasă motorul și cutia să se odihnească.
+El aire que entra al motor está muy caliente: pierde potencia. Si estás detenido, avanza para que circule aire.	Aerul care intră în motor e foarte fierbinte: motorul pierde putere. Dacă stai pe loc, înaintează ca să circule aerul.
+Carga combustible en la próxima estación. En la montaña puede no haber más adelante.	Alimentează la următoarea benzinărie. La munte s-ar putea să nu mai fie alta în față.
+El motor recibe menos combustible del que necesita: puede ser una fuga de vacío, el filtro de combustible o el sensor MAF. Puede perder fuerza en subidas.	Motorul primește mai puțin combustibil decât îi trebuie: poate fi o priză de aer, filtrul de combustibil sau senzorul MAF. Poate pierde putere în urcare.
+El motor recibe más combustible del necesario: revisa el filtro de aire, el sensor MAF o un inyector que gotee.	Motorul primește mai mult combustibil decât îi trebuie: verifică filtrul de aer, senzorul MAF sau un injector care picură.
+Baja la exigencia y revisa el nivel de aceite cuando puedas parar.	Redu solicitarea și verifică nivelul uleiului când poți opri.
+código	cod
+códigos	coduri
+Carrocería (airbag, cinturones, luces, cierre…)	Caroserie (airbag, centuri, lumini, închidere…)
+Chasis (frenos ABS, dirección, suspensión, 4x4)	Șasiu (frâne ABS, direcție, suspensie, 4x4)
+Comunicación entre computadores del auto	Comunicare între calculatoarele mașinii
+Motor: mezcla de aire y combustible	Motor: amestec aer-combustibil
+Motor: encendido y fallas de encendido	Motor: aprindere și rateuri
+Control de emisiones	Controlul emisiilor
+Velocidad, ralentí y entradas auxiliares	Viteză, ralanti și intrări auxiliare
+Computador del motor y sus salidas	Calculatorul motorului și ieșirile lui
+Caja de cambios	Cutie de viteze
+Motor o caja (sistema híbrido u otro)	Motor sau cutie (sistem hibrid sau altul)
+código propio de la marca	cod specific mărcii
+La API key no es válida	Cheia API nu este validă
+La IA está ocupada o sin saldo. Intenta más tarde.	IA este ocupată sau fără credit. Încearcă mai târziu.
+La IA no quiso responder	IA a refuzat să răspundă
+La IA respondió vacío	IA a dat un răspuns gol
+Luz del motor	Martor motor
+Conectar	Conectează
+Auto simulado	Mașină simulată
+Apagado	Oprit
+En vivo	Live
+Conecta tu escáner OBD-II	Conectează scanerul OBD-II
+1. Enchufa el escáner ELM327 en el conector OBD (bajo el volante) y pon el contacto.\n2. Si es Bluetooth, emparéjalo primero en los ajustes de Bluetooth del equipo (clave 1234 o 0000).\n3. Toca ⚙ para elegirlo y luego Conectar.\n\nEvOS vigila la temperatura, el voltaje, la mezcla y los códigos de falla, y te avisa por voz aunque estés en otra app.	1. Pune scanerul ELM327 în mufa OBD (sub volan) și ia contactul.\n2. Dacă e Bluetooth, împerechează-l mai întâi din setările Bluetooth ale unității (PIN 1234 sau 0000).\n3. Atinge ⚙ ca să-l alegi, apoi Conectează.\n\nEvOS urmărește temperatura, tensiunea, amestecul și codurile de eroare și te anunță vocal chiar dacă ești în altă aplicație.
+Elegir escáner	Alege scanerul
+Probar con un auto simulado	Încearcă cu o mașină simulată
+Alertas	Alerte
+Todo normal por ahora.	Totul e normal deocamdată.
+Sin monitor activo.	Monitorul nu este activ.
+Códigos de falla	Coduri de eroare
+El auto no tiene códigos guardados.	Mașina nu are coduri salvate.
+Se revisan al conectar y cada 30 segundos.	Se verifică la conectare și la fiecare 30 de secunde.
+Pendiente	În așteptare
+Grave	Grav
+Leve	Minor
+Revisar	De verificat
+Toca para ver qué hacer	Atinge ca să vezi ce ai de făcut
+Borrar códigos	Șterge codurile
+Hace {} min	Acum {} min
+Qué hacer	Ce ai de făcut
+Explicación de la IA	Explicația IA
+Este código no está en la tabla sin conexión: suele ser un código propio de la marca. La IA puede explicarlo.	Acest cod nu e în tabelul offline: de obicei e un cod specific mărcii. IA îl poate explica.
+Ojo: los códigos de airbag, ABS y carrocería normalmente no se leen con OBD-II genérico; si aparece aquí es porque el auto lo reporta al computador del motor.	Atenție: codurile de airbag, ABS și caroserie de obicei nu se citesc cu OBD-II generic; dacă apare aici, e pentru că mașina îl raportează calculatorului motorului.
+Volver a preguntar a la IA	Întreabă din nou IA
+Explicar con IA	Explică cu IA
+Para que una IA explique los códigos, pon tu API key (Claude, Groq, Gemini u otra) en ⚙ → Inteligencia artificial. Las explicaciones se guardan en el equipo y después funcionan sin internet.	Ca o IA să explice codurile, pune cheia ta API (Claude, Groq, Gemini sau alta) în ⚙ → Inteligență artificială. Explicațiile se salvează pe unitate și apoi merg fără internet.
+Preguntando a la IA…	Se întreabă IA…
+No se pudo consultar la IA	IA nu a putut fi consultată
+Apaga el motor y deja solo el contacto puesto para borrar los códigos.	Oprește motorul și lasă doar contactul pus ca să ștergi codurile.
+¿Borrar los códigos de falla?	Ștergi codurile de eroare?
+Se apaga la luz del motor y se borran los datos que usa el taller para diagnosticar. Si la falla sigue, el código volverá a aparecer. Anota los códigos antes.	Martorul motorului se stinge și se șterg datele pe care service-ul le folosește pentru diagnosticare. Dacă defectul persistă, codul va apărea din nou. Notează codurile înainte.
+Escáner	Scaner
+Mi vehículo (para la IA)	Vehiculul meu (pentru IA)
+Inteligencia artificial	Inteligență artificială
+Sin configurar	Neconfigurat
+Avisos por voz	Alerte vocale
+Sí	Da
+Encender el monitor al iniciar EvOS	Pornește monitorul la pornirea EvOS
+Registro de la conexión	Jurnalul conexiunii
+Ajustes del vehículo	Setările vehiculului
+Tu vehículo: marca, modelo, año, motor y caja	Vehiculul tău: marcă, model, an, motor și cutie
+Ej.: Kia Sorento 2010 2.4 bencina 4x4 automático	Ex.: Dacia Duster 2018 1.5 dCi 4x4 manuală
+Escáner Wi-Fi (escribir IP y puerto)	Scaner Wi-Fi (scrie IP-ul și portul)
+Auto simulado (para probar)	Mașină simulată (pentru test)
+No hay escáneres Bluetooth emparejados: emparéjalo en los ajustes del equipo	Nu există scanere Bluetooth împerecheate: împerechează-l din setările unității
+Elige tu escáner	Alege scanerul
+IP y puerto del escáner Wi-Fi	IP-ul și portul scanerului Wi-Fi
+Escribe IP:puerto, por ejemplo 192.168.0.10:35000	Scrie IP:port, de exemplu 192.168.0.10:35000
+Proveedor	Furnizor
+Modelo	Model
+Dirección de la API	Adresa API
+Borrar la API key	Șterge cheia API
+La IA recibe solo el código, el vehículo que escribiste y los datos del motor; nunca tu ubicación. Cada consulta la cobra tu proveedor con tu API key.	IA primește doar codul, vehiculul scris de tine și datele motorului; niciodată locația ta. Fiecare cerere e taxată de furnizor pe cheia ta API.
+Aviso sobre	Avertizare peste
+alerta sobre	alertă peste
+Aviso bajo	Avertizare sub
+alerta bajo	alertă sub
+Aviso sobre ±	Avertizare peste ±
+alerta sobre ±	alertă peste ±
+Con el motor en marcha debe estar entre 13,5 y 14,8 V. Con el motor apagado, 12,4 a 12,8 V es normal.	Cu motorul pornit trebuie să fie între 13,5 și 14,8 V. Cu motorul oprit, 12,4–12,8 V e normal.
+Normal en marcha: 85 a 98 °C. También avisa si sube más de 4 °C por minuto sobre 95 °C.	Normal în mers: 85–98 °C. Te anunță și dacă crește cu peste 4 °C pe minut peste 95 °C.
+Cuánto corrige el computador la mezcla. Positivo = le falta combustible (fuga de aire); negativo = le sobra.	Cât corectează calculatorul amestecul. Pozitiv = îi lipsește combustibil (priză de aer); negativ = are prea mult.
+Solo informativo: este dato no genera alertas.	Doar informativ: această valoare nu generează alerte.
+Otra compatible con OpenAI	Altul compatibil OpenAI
+elegir…	alege…
+Probar la IA	Testează IA
+Primero escribe la API key	Scrie mai întâi cheia API
+Buscando los modelos del proveedor…	Se caută modelele furnizorului…
+recomendado	recomandat
+Escribir otro…	Scrie altul…
+Preguntando por el código de ejemplo P0711…	Se întreabă despre codul de exemplu P0711…
+La IA funciona · P0711 de ejemplo	IA funcționează · P0711 de exemplu
+Volver	Înapoi
+Elige el modelo de la IA en los ajustes	Alege modelul IA în setări
+Escribe la dirección de la API en los ajustes	Scrie adresa API în setări
+Escaneando	Se scanează
+Escaneo terminado.	Scanare terminată.
+El escaneo se cortó	Scanarea s-a întrerupt
+Escanear todo lo que entrega el auto	Scanează tot ce oferă mașina
+Conecta el escáner con el contacto puesto (mejor con el motor en marcha) y vuelve a intentarlo.	Conectează scanerul cu contactul pus (ideal cu motorul pornit) și încearcă din nou.
+Pregunta al auto por cada dato estándar y por los datos propios de la marca del motor y la caja. Tarda hasta 2 minutos y mientras tanto las alertas se pausan: hazlo detenido. Solo lee, no cambia nada en el auto.	Întreabă mașina de fiecare valoare standard și de datele specifice mărcii pentru motor și cutie. Durează până la 2 minute, iar între timp alertele sunt puse pe pauză: fă-o cu mașina oprită. Doar citește, nu schimbă nimic în mașină.
+Escanear	Scanează
+Guardado en	Salvat în
+Lo que entrega tu auto	Ce oferă mașina ta
+Consumo	Consum
+calculado	calculat
+Panel	Bord
+Todos los datos	Toate datele
+Datos en vivo	Date live
+Monitores de emisiones	Monitoare de emisii
+✓ listo · ✗ aún no termina su prueba (normal después de borrar códigos o desconectar la batería).	✓ gata · ✗ testul nu s-a terminat încă (normal după ștergerea codurilor sau deconectarea bateriei).
+Fallas de encendido	Rateuri
+Sistema de combustible	Sistem de combustibil
+Componentes	Componente
+Catalizador	Catalizator
+Catalizador calefaccionado	Catalizator încălzit
+Vapores de combustible (EVAP)	Vapori de combustibil (EVAP)
+Aire secundario	Aer secundar
+Sensores de oxígeno	Sonde de oxigen
+Calefactor de sensores de oxígeno	Încălzirea sondelor de oxigen
+Recirculación de gases (EGR)	Recircularea gazelor (EGR)
+Preguntar a la IA	Întreabă IA
+Ajustar esta alerta	Ajustează această alertă
+Alertas a vigilar	Alerte de urmărit
+Subida rápida del refrigerante	Creștere rapidă a temperaturii lichidului de răcire
+Códigos de falla nuevos (aviso por voz)	Coduri de eroare noi (alertă vocală)
+aviso	avertizare
+alerta	alertă
+bajo	sub
+Vigilar	Urmărește
+Valores de fábrica	Valori din fabrică
+Escribe un número	Scrie un număr
+Datos del motor cuando se registró la falla	Datele motorului când s-a înregistrat defectul
+Buscar escáneres Bluetooth cercanos	Caută scanere Bluetooth din apropiere
+Emparejado	Împerecheat
+emparejado	împerecheat
+No se pudo emparejar. Prueba con la clave 1234 o 0000.	Împerecherea nu a reușit. Încearcă PIN-ul 1234 sau 0000.
+Sin el permiso de ubicación Android no deja buscar equipos Bluetooth	Fără permisiunea de locație, Android nu permite căutarea dispozitivelor Bluetooth
+No se encontraron equipos. ¿Está el escáner enchufado y el contacto puesto?	Nu s-au găsit dispozitive. E scanerul în mufă și contactul pus?
+Buscando… (enchufa el escáner y pon el contacto)	Se caută… (pune scanerul în mufă și ia contactul)
+Emparejando… si pide clave, escribe 1234 o 0000	Se împerechează… dacă cere PIN, scrie 1234 sau 0000
+Emparéjalo en los ajustes de Bluetooth del equipo	Împerechează-l din setările Bluetooth ale unității
+Los escáneres suelen llamarse OBDII, OBD2, V-LINK o Vgate.	Scanerele se numesc de obicei OBDII, OBD2, V-LINK sau Vgate.
+Buscar de nuevo	Caută din nou
+Gráficos en vivo	Grafice live
+Desliza el dedo sobre un gráfico para ver el valor de cada momento. Toca los datos de arriba para comparar hasta 3.	Glisează degetul pe un grafic ca să vezi valoarea din fiecare moment. Atinge datele de sus ca să compari până la 3.
+mín	min
+máx	max
+prom	medie
+ahora	acum
+hace	în urmă
+Esperando datos…	Se așteaptă date…
+Monitor apagado · toca para conectar	Monitor oprit · atinge pentru a conecta
+monitor apagado	monitor oprit
+VEHÍCULO	VEHICUL
+Qué muestra cada tarjeta	Ce arată fiecare card
+Música, el monitor del vehículo (temperatura, voltaje, RPM y alertas) o un gráfico en vivo	Muzică, monitorul vehiculului (temperatură, tensiune, RPM și alerte) sau un grafic live
+Gráfico en vivo	Grafic live
+Gráfico del reproductor	Graficul playerului
+Dato del escáner que se grafica (últimos 5 minutos)	Valoarea de la scaner afișată în grafic (ultimele 5 minute)
+Tarjeta del centro	Cardul din centru
+El mapa, el monitor del vehículo o un gráfico en vivo. Sin el mapa, Android Auto y CarPlay se abren desde la barra de botones	Harta, monitorul vehiculului sau un grafic live. Fără hartă, Android Auto și CarPlay se deschid din bara de butoane
+Gráfico del centro	Graficul din centru
+Velocidad (GPS)	Viteză (GPS)
+Recuadro de la velocidad	Caseta vitezei
+La velocidad del GPS o, en grande, otro dato del escáner (por ejemplo la temperatura del refrigerante)	Viteza GPS sau, cu cifre mari, altă valoare de la scaner (de exemplu temperatura lichidului de răcire)
+Esta tarjeta	Acest card
+Cambiar esta tarjeta…	Schimbă acest card…
+¿Qué dato graficar?	Ce valoare afișezi în grafic?
+Monitor apagado	Monitor oprit
+Cambiar qué muestra…	Schimbă ce arată…
+◀  Mover a la izquierda	◀  Mută la stânga
+Mover a la derecha  ▶	Mută la dreapta  ▶
+Ancho de la tarjeta…	Lățimea cardului…
+Ancho de la tarjeta	Lățimea cardului
+Volver al orden y tamaño de siempre	Revino la ordinea și mărimea obișnuite
+Ya está a la izquierda	E deja în stânga
+Ya está a la derecha	E deja în dreapta
+Ancha	Lat
+Muy ancha	Foarte lat
+✋  Ajustar con el dedo (mover y cambiar tamaño)	✋  Ajustează cu degetul (mută și redimensionează)
+Arrastra la manija entre dos tarjetas para cambiar el ancho · arrastra una tarjeta para moverla	Trage mânerul dintre două carduri ca să schimbi lățimea · trage un card ca să-l muți
+Listo	Gata
+límite	limită
+se ajusta solo	se ajustează singur
+ancho	lățime
+VIAJE	CĂLĂTORIE
+ALTITUD	ALTITUDINE
+APPS	APLICAȚII
+pendiente —	pantă —
+normal	normal
+Mantén presionado para reiniciar el viaje o cambiar los widgets	Ține apăsat ca să resetezi călătoria sau să schimbi widgeturile
+Quitar este acceso	Elimină această scurtătură
+Acceso directo {}	Scurtătura {}
+Altitud, pendiente y rumbo	Altitudine, pantă și direcție
+Viaje (km, tiempo, consumo)	Călătorie (km, timp, consum)
+Dato del vehículo…	Valoare a vehiculului…
+Accesos directos (3 apps)	Scurtături (3 aplicații)
+Dato del vehículo	Valoare a vehiculului
+Widget	Widget
+Reiniciar el viaje	Resetează călătoria
+Quitar la franja	Elimină banda
+Franja de widgets	Bandă de widgeturi
+¿Qué dato mostrar?	Ce valoare afișezi?
+Viaje reiniciado	Călătorie resetată
+Quitar la franja de widgets de abajo	Elimină banda de widgeturi de jos
+Franja de widgets debajo (altitud, viaje, apps…)	Bandă de widgeturi dedesubt (altitudine, călătorie, aplicații…)
+Arrastra las manijas para cambiar tamaños · arrastra una tarjeta para moverla · toca un widget para cambiarlo	Trage mânerele ca să schimbi mărimile · trage un card ca să-l muți · atinge un widget ca să-l schimbi
+Agregar franja de widgets	Adaugă o bandă de widgeturi
+Agregar un widget	Adaugă un widget
+Ajustar tamaños con el dedo	Ajustează mărimile cu degetul
+Quitar este widget	Elimină acest widget
+Accesos directos (apps)	Scurtături (aplicații)
+MÚSICA	MUZICĂ
+Música (canción y controles)	Muzică (melodie și comenzi)
+Arrastra las manijas para cambiar tamaños · arrastra una tarjeta para moverla · toca un widget para cambiarlo · ✕ oculta una tarjeta	Trage mânerele ca să schimbi mărimile · trage un card ca să-l muți · atinge un widget ca să-l schimbi · ✕ ascunde un card
+Ocultar la tarjeta del vehículo	Ascunde cardul vehiculului
+Ocultar la tarjeta de música	Ascunde cardul de muzică
+Mostrar la tarjeta del vehículo	Arată cardul vehiculului
+Mostrar la tarjeta de música	Arată cardul de muzică
+Avance del encendido	Avans la aprindere
+Sonda O2 banco 1	Sonda O2 bancul 1
+Sonda O2 banco 1 sensor 2	Sonda O2 bancul 1 senzorul 2
+Tiempo de marcha	Timp de funcționare
+Distancia con la luz del motor	Distanță cu martorul motorului aprins
+EGR comandada	EGR comandat
+Arranques desde borrar códigos	Porniri de la ștergerea codurilor
+Distancia desde borrar códigos	Distanță de la ștergerea codurilor
+Presión barométrica	Presiune barometrică
+Catalizador banco 1	Catalizator bancul 1
+Catalizador banco 1 sensor 2	Catalizator bancul 1 senzorul 2
+Carga absoluta	Sarcină absolută
+Mezcla comandada	Amestec comandat
+Acelerador relativo	Accelerație relativă
+Acelerador B	Clapetă B
+Pedal D	Pedala D
+Pedal E	Pedala E
+Acelerador comandado	Clapetă comandată
+Tiempo con la luz del motor	Timp cu martorul motorului aprins
+Tiempo desde borrar códigos	Timp de la ștergerea codurilor
+Mezcla O2 banco 1	Corecție O2 bancul 1
+Mezcla O2 banco 1 sensor 2	Corecție O2 bancul 1 senzorul 2
+API key	Cheie API
+Enviar el VIN a la IA	Trimite VIN-ul către IA
+La IA recibe solo el código, el vehículo que escribiste y los datos del motor; nunca tu ubicación. El VIN solo se envía si lo activas aquí. Cada consulta la cobra tu proveedor con tu API key.	IA primește doar codul, vehiculul scris de tine și datele motorului; niciodată locația ta. VIN-ul se trimite doar dacă activezi asta aici. Fiecare cerere e taxată de furnizor pe cheia ta API.
+RPM	RPM
+Escáner OBD-II	Scaner OBD-II
+Enciende el monitor del motor en «Escáner OBD-II»	Pornește monitorul motorului din „Scaner OBD-II”
+Conectando…	Se conectează…
+Monitor del motor	Monitorul motorului
+Está apagado: enciéndelo para conectar el escáner	E oprit: pornește-l ca să conectezi scanerul
+Estado	Stare
+Abrir el panel del vehículo	Deschide panoul vehiculului
+Medidores, alertas y códigos encima del tema que tengas	Indicatoare, alerte și coduri peste tema pe care o ai
+Diagnóstico	Diagnosticare
+Qué vigila EvOS y cuándo avisa por voz	Ce urmărește EvOS și când te anunță vocal
+Todo normal	Totul e normal
+Qué significan y qué hacer; borrarlos con el motor apagado	Ce înseamnă și ce ai de făcut; șterge-le cu motorul oprit
+Cada dato que entrega tu auto, con gráficos	Fiecare valoare oferită de mașină, cu grafice
+Más	Mai mult
+Opcional: explica los códigos para tu auto en particular	Opțional: explică codurile pentru mașina ta
+Motor, protocolo, panel y escaneo completo	Motor, protocol, panou și scanare completă
+Bluetooth emparejado, Wi-Fi (IP y puerto) o un auto simulado para probar	Bluetooth împerecheat, Wi-Fi (IP și port) sau o mașină simulată pentru test
+Empareja el escáner sin salir de EvOS (clave 1234 o 0000)	Împerechează scanerul fără să ieși din EvOS (PIN 1234 sau 0000)
+Reconectar	Reconectează
+Conectar al iniciar EvOS	Conectează la pornirea EvOS
+Las alertas funcionan aunque estés en otra app (con una notificación fija)	Alertele funcționează chiar dacă ești în altă aplicație (cu o notificare permanentă)
+Cómo conectar el escáner	Cum conectezi scanerul
+1. Enchufa el escáner ELM327 en el conector OBD (bajo el volante) y pon el contacto.\n2. Bluetooth: emparéjalo con la clave 1234 o 0000. Wi-Fi: conecta la pantalla a la red del escáner y escribe su IP y puerto (casi siempre 192.168.0.10:35000).\n3. Elígelo arriba en «Escáner».	1. Pune scanerul ELM327 în mufa OBD (sub volan) și ia contactul.\n2. Bluetooth: împerechează-l cu PIN-ul 1234 sau 0000. Wi-Fi: conectează ecranul la rețeaua scanerului și scrie IP-ul și portul (aproape mereu 192.168.0.10:35000).\n3. Alege-l mai sus, la „Scaner”.
+Lo que respondió el escáner (para reportar un problema)	Ce a răspuns scanerul (pentru raportarea unei probleme)
+Todo normal por ahora	Totul e normal deocamdată
+Alerta	Alertă
+Aviso	Avertizare
+Avisos	Avertizări
+Habla aunque estés en Waze o con música	Vorbește chiar dacă ești în Waze sau asculți muzică
+Abrir el panel con una alerta grave	Deschide panoul la o alertă gravă
+Por ejemplo, el motor muy caliente o la batería que no carga	De exemplu, motorul foarte fierbinte sau bateria care nu se încarcă
+Más de 4 °C por minuto con el motor caliente	Peste 4 °C pe minut cu motorul cald
+Cuándo avisa cada dato	Când alertează fiecare valoare
+Códigos guardados en el auto	Coduri salvate în mașină
+El auto no tiene códigos guardados	Mașina nu are coduri salvate
+Se revisan al conectar y cada 30 segundos	Se verifică la conectare și la fiecare 30 de secunde
+Luz del motor encendida	Martorul motorului e aprins
+El computador del motor confirmó una falla	Calculatorul motorului a confirmat un defect
+Con el motor apagado y el contacto puesto. Anota los códigos antes: no se puede deshacer	Cu motorul oprit și contactul pus. Notează codurile înainte: nu se poate anula
+Conecta el escáner para ver los datos	Conectează scanerul ca să vezi datele
+Gráficos	Grafice
+Hasta 3 datos a la vez, de 1 a 30 minutos	Până la 3 valori deodată, de la 1 la 30 de minute
+La tuya: cada consulta la cobra tu proveedor	A ta: fiecare cerere e taxată de furnizor
+Privacidad	Confidențialitate
+Qué se envía	Ce se trimite
+Solo el código, el vehículo que escribas y los datos del motor de ese momento; nunca tu ubicación. Las respuestas se guardan en la pantalla	Doar codul, vehiculul pe care îl scrii și datele motorului din acel moment; niciodată locația ta. Răspunsurile se salvează pe ecran
+Tu vehículo (para la IA)	Vehiculul tău (pentru IA)
+Marca, modelo, año, motor y caja	Marcă, model, an, motor și cutie
+Identifica tu auto de forma única. Apagado por defecto	Identifică unic mașina ta. Oprit implicit
+Probar	Testează
+Pregunta por un código de ejemplo	Întreabă despre un cod de exemplu
+Motor	Motor
+Para calcular el consumo en motores sin sensor MAF	Pentru calculul consumului la motoarele fără senzor MAF
+Automático casi siempre; fuerza uno si el escáner no lo detecta	Aproape mereu automat; forțează unul dacă scanerul nu îl detectează
+Panel del vehículo	Panoul vehiculului
+Lado del panel	Partea panoului
+Pestaña en el borde	Filă pe margine
+Toca o desliza la pestaña para abrir el panel. Sin ella, ábrelo con un botón de la barra	Atinge sau glisează fila ca să deschizi panoul. Fără ea, deschide-l cu un buton din bară
+Informe de cada dato estándar y los propios de la marca. Solo lee	Raport cu fiecare valoare standard și cele specifice mărcii. Doar citește
+Ver el último informe	Vezi ultimul raport
+Con un escáner ELM327 por Wi-Fi o Bluetooth: temperatura, batería, alertas por voz y códigos de falla	Cu un scaner ELM327 prin Wi-Fi sau Bluetooth: temperatură, baterie, alerte vocale și coduri de eroare
+También con la pestaña del borde o con un botón de la barra	Și cu fila de pe margine sau cu un buton din bară
+Vehículo (OBD-II)	Vehicul (OBD-II)
+Sin elegir	Neales
+Apagada	Oprită
+Alerta sobre	Alertă peste
+Alerta bajo	Alertă sub
+Alerta sobre ±	Alertă peste ±
+No	Nu
+Para que una IA explique los códigos, pon tu API key (Claude, Groq, Gemini u otra) en Ajustes → Tu vehículo → Escáner OBD-II → Inteligencia artificial. Las explicaciones se guardan en el equipo y después funcionan sin internet.	Ca o IA să explice codurile, pune cheia ta API (Claude, Groq, Gemini sau alta) în Setări → Vehiculul tău → Scaner OBD-II → Inteligență artificială. Explicațiile se salvează pe unitate și apoi merg fără internet.
+Se apaga la luz del motor y se borran los datos que usa el taller para diagnosticar; también se reinician los monitores de emisiones. No se puede deshacer y, si la falla sigue, el código volverá a aparecer. Anota los códigos antes.	Martorul motorului se stinge și se șterg datele pe care service-ul le folosește pentru diagnosticare; se resetează și monitoarele de emisii. Nu se poate anula și, dacă defectul persistă, codul va apărea din nou. Notează codurile înainte.
+Ej.: Kia Picanto 2019 1.2 gasolina mecánico	Ex.: Dacia Logan 2019 1.0 benzină manuală
+Sin poner	Nesetat
+Escaneando… el avance se ve en el estado del escáner	Se scanează… progresul apare în starea scanerului
+Todavía no hay un informe	Încă nu există un raport
+Sin monitor activo	Niciun monitor activ
+Sin códigos guardados	Fără coduri salvate
+Se revisan al conectar	Se verifică la conectare
+Ver todo	Vezi tot
+1 activa	1 activă
+{} activas	{} active
+Parada intermedia	Oprire intermediară
+Árbol de levas de admisión adelantado más de lo esperado (variador CVVT).	Axul cu came de admisie e mai avansat decât ar trebui (variator CVVT).
+Revisa nivel y estado del aceite: el variador funciona con presión de aceite. Si el aceite está bien, revisar la válvula solenoide OCV.	Verifică nivelul și starea uleiului: variatorul funcționează cu presiunea uleiului. Dacă uleiul e în regulă, verifică electrovalva OCV.
+Árbol de levas de admisión atrasado más de lo esperado (variador CVVT).	Axul cu came de admisie e mai întârziat decât ar trebui (variator CVVT).
+Revisa nivel y estado del aceite. Si sigue, revisar la válvula OCV y la cadena de distribución.	Verifică nivelul și starea uleiului. Dacă persistă, verifică valva OCV și lanțul de distribuție.
+Árbol de levas de escape adelantado más de lo esperado.	Axul cu came de evacuare e mai avansat decât ar trebui.
+Revisa nivel y estado del aceite. Si sigue, revisar la válvula OCV de escape.	Verifică nivelul și starea uleiului. Dacă persistă, verifică valva OCV de evacuare.
+La posición del cigüeñal y del árbol de levas no coinciden.	Poziția arborelui cotit și a axului cu came nu corespund.
+Puede ser la cadena de distribución estirada o saltada. Evita exigir el motor y llévalo al taller pronto.	Poate fi lanțul de distribuție întins sau sărit. Evită să soliciți motorul și du-l curând la service.
+El sensor de flujo de aire (MAF) marca fuera de lo esperado.	Senzorul de debit de aer (MAF) indică valori anormale.
+Revisa el filtro de aire y que no haya mangueras sueltas después del sensor. Limpiar el MAF con limpiador especial.	Verifică filtrul de aer și să nu fie furtunuri desprinse după senzor. Curăță MAF-ul cu un spray special.
+Señal baja del sensor de flujo de aire (MAF).	Semnal slab de la senzorul de debit de aer (MAF).
+Revisa el conector y el cableado del MAF.	Verifică mufa și cablajul MAF-ului.
+Señal alta del sensor de flujo de aire (MAF).	Semnal ridicat de la senzorul de debit de aer (MAF).
+El sensor de presión del múltiple (MAP) marca fuera de lo esperado.	Senzorul de presiune din galerie (MAP) indică valori anormale.
+Revisa mangueras de vacío y el conector del sensor MAP.	Verifică furtunurile de vacuum și mufa senzorului MAP.
+El sensor de temperatura del aire de admisión marca fuera de lo esperado.	Senzorul de temperatură a aerului de admisie indică valori anormale.
+Revisa el conector del sensor. No suele dejarte botado.	Verifică mufa senzorului. De obicei nu te lasă în drum.
+Señal baja del sensor de temperatura del aire de admisión.	Semnal slab de la senzorul de temperatură a aerului de admisie.
+Revisa el conector y el cableado del sensor.	Verifică mufa și cablajul senzorului.
+Señal alta del sensor de temperatura del aire de admisión.	Semnal ridicat de la senzorul de temperatură a aerului de admisie.
+El sensor de temperatura del refrigerante marca fuera de lo esperado.	Senzorul de temperatură a lichidului de răcire indică valori anormale.
+No confíes en el indicador de temperatura hasta revisarlo. Vigila que el electroventilador encienda.	Nu te baza pe indicatorul de temperatură până nu-l verifici. Urmărește dacă pornește electroventilatorul.
+Señal baja del sensor de temperatura del refrigerante.	Semnal slab de la senzorul de temperatură a lichidului de răcire.
+Sin este dato el motor puede sobrecalentarse sin avisar. Revisa nivel de refrigerante y el conector del sensor.	Fără această valoare motorul se poate supraîncălzi fără avertizare. Verifică nivelul lichidului de răcire și mufa senzorului.
+Señal alta del sensor de temperatura del refrigerante.	Semnal ridicat de la senzorul de temperatură a lichidului de răcire.
+El sensor de posición del acelerador marca fuera de lo esperado.	Senzorul de poziție a clapetei indică valori anormale.
+El motor puede entrar en modo de emergencia (poca potencia). Revisa el cuerpo de aceleración y su conector.	Motorul poate intra în modul de avarie (putere redusă). Verifică corpul clapetei și mufa lui.
+Señal baja del sensor de posición del acelerador.	Semnal slab de la senzorul de poziție a clapetei.
+Puede entrar en modo de emergencia. Revisa el conector del cuerpo de aceleración.	Poate intra în modul de avarie. Verifică mufa corpului clapetei.
+Señal alta del sensor de posición del acelerador.	Semnal ridicat de la senzorul de poziție a clapetei.
+El motor tarda mucho en llegar a temperatura para el control de mezcla.	Motorul ajunge prea greu la temperatura necesară controlului amestecului.
+Suele ser el termostato abierto o el sensor de temperatura. Revisa en el taller.	De obicei e termostatul blocat deschis sau senzorul de temperatură. Verifică la service.
+El refrigerante no llega a la temperatura del termostato.	Lichidul de răcire nu ajunge la temperatura termostatului.
+Casi siempre es el termostato pegado abierto. Gasta más combustible y calienta poco la cabina; cámbialo cuando puedas.	Aproape mereu e termostatul blocat deschis. Consumă mai mult și încălzește slab habitaclul; schimbă-l când poți.
+Falla en el circuito del sensor de oxígeno delantero (banco 1).	Defect în circuitul sondei de oxigen din față (bancul 1).
+Revisa el conector del sensor. Gastarás algo más de combustible.	Verifică mufa senzorului. Vei consuma ceva mai mult combustibil.
+El sensor de oxígeno delantero responde lento.	Sonda de oxigen din față răspunde lent.
+El sensor está viejo. Cámbialo cuando puedas.	Senzorul e uzat. Schimbă-l când poți.
+Falla en el calentador del sensor de oxígeno delantero.	Defect la încălzirea sondei de oxigen din față.
+Revisa el fusible y el conector del sensor. Se puede seguir.	Verifică siguranța și mufa senzorului. Poți continua drumul.
+Falla en el calentador del sensor de oxígeno trasero.	Defect la încălzirea sondei de oxigen din spate.
+Mezcla pobre: entra más aire o llega menos combustible de lo que debería.	Amestec sărac: intră mai mult aer sau ajunge mai puțin combustibil decât ar trebui.
+Busca fugas de vacío (mangueras, junta de admisión), revisa el MAF, la presión de combustible y el filtro. En subidas largas puede perder fuerza.	Caută prize de aer (furtunuri, garnitura de admisie), verifică MAF-ul, presiunea combustibilului și filtrul. Pe urcușuri lungi poate pierde putere.
+Mezcla rica: llega más combustible del que debería.	Amestec bogat: ajunge mai mult combustibil decât ar trebui.
+Revisa el filtro de aire, el MAF, inyectores que goteen y el regulador de presión.	Verifică filtrul de aer, MAF-ul, injectoarele care picură și regulatorul de presiune.
+Temperatura del motor excesiva.	Temperatura motorului e prea mare.
+Detente en un lugar seguro y apaga el motor. No abras la tapa del radiador en caliente. Revisa refrigerante, ventilador y correa.	Oprește într-un loc sigur și oprește motorul. Nu deschide bușonul radiatorului cât e fierbinte. Verifică lichidul de răcire, ventilatorul și cureaua.
+Falla en el circuito del relé de la bomba de combustible.	Defect în circuitul releului pompei de combustibil.
+El motor puede apagarse sin aviso. Revisa relé y fusible de la bomba.	Motorul se poate opri fără avertizare. Verifică releul și siguranța pompei.
+Falla en el inyector del cilindro {}.	Defect la injectorul cilindrului {}.
+Puede fallar el cilindro {}. Revisa el conector del inyector.	Cilindrul {} poate avea rateuri. Verifică mufa injectorului.
+Fallas de encendido en varios cilindros.	Rateuri la mai mulți cilindri.
+Si la luz del motor parpadea, baja la velocidad y no exijas el motor: el catalizador se puede dañar. Revisa bujías, bobinas, combustible y fugas de vacío.	Dacă martorul motorului clipește, redu viteza și nu solicita motorul: catalizatorul se poate deteriora. Verifică bujiile, bobinele, combustibilul și prizele de aer.
+Falla de encendido en el cilindro {}.	Rateuri la cilindrul {}.
+Si la luz parpadea, no exijas el motor. Intercambia la bobina del cilindro {} con otra para ver si la falla se mueve; revisa la bujía.	Dacă martorul clipește, nu solicita motorul. Schimbă bobina cilindrului {} cu alta ca să vezi dacă defectul se mută; verifică bujia.
+Falla en el circuito del sensor de detonación.	Defect în circuitul senzorului de detonație.
+El motor se protege atrasando el encendido: tendrá menos fuerza. Usa el combustible recomendado y revisa el conector del sensor.	Motorul se protejează întârziind aprinderea: va avea mai puțină putere. Folosește combustibilul recomandat și verifică mufa senzorului.
+Falla en el sensor de posición del cigüeñal.	Defect la senzorul de poziție a arborelui cotit.
+El motor puede apagarse o no volver a arrancar. Evita lugares aislados y revisa el sensor y su conector.	Motorul se poate opri sau poate să nu mai pornească. Evită locurile izolate și verifică senzorul și mufa lui.
+El sensor de posición del cigüeñal marca fuera de lo esperado.	Senzorul de poziție a arborelui cotit indică valori anormale.
+El motor puede apagarse o no volver a arrancar. Revisa el sensor y su conector.	Motorul se poate opri sau poate să nu mai pornească. Verifică senzorul și mufa lui.
+Falla en el sensor de posición del árbol de levas.	Defect la senzorul de poziție a axului cu came.
+Puede costar arrancar o apagarse. Revisa el sensor y su conector.	Poate porni greu sau se poate opri. Verifică senzorul și mufa lui.
+El sensor del árbol de levas marca fuera de lo esperado.	Senzorul axului cu came indică valori anormale.
+Revisa el sensor, su conector y la distribución.	Verifică senzorul, mufa lui și distribuția.
+Falla en el circuito de la bobina del cilindro {}.	Defect în circuitul bobinei cilindrului {}.
+Puede fallar el cilindro {}. Revisa la bobina y su conector.	Cilindrul {} poate avea rateuri. Verifică bobina și mufa ei.
+El catalizador (banco 1) ya no limpia los gases como debería.	Catalizatorul (bancul 1) nu mai curăță gazele cum ar trebui.
+Se puede seguir manejando. Antes de cambiarlo, descarta fallas de encendido, fugas de escape y sensores de oxígeno.	Poți conduce în continuare. Înainte să-l schimbi, exclude rateurile, scăpările de evacuare și sondele de oxigen.
+Flujo incorrecto en el sistema de vapores de combustible (EVAP).	Debit incorect în sistemul de vapori de combustibil (EVAP).
+No afecta cómo maneja. Revisa la válvula de purga.	Nu afectează felul în care merge mașina. Verifică supapa de purjare.
+Pequeña fuga en el sistema de vapores de combustible (EVAP).	Mică scurgere în sistemul de vapori de combustibil (EVAP).
+Revisa que la tapa del estanque cierre bien. No afecta cómo maneja.	Verifică dacă bușonul rezervorului se închide bine. Nu afectează felul în care merge mașina.
+Fuga grande en el sistema de vapores de combustible (EVAP).	Scurgere mare în sistemul de vapori de combustibil (EVAP).
+Revisa que la tapa del estanque esté puesta y bien cerrada.	Verifică dacă bușonul rezervorului e pus și bine închis.
+Fuga muy pequeña en el sistema de vapores de combustible (EVAP).	Scurgere foarte mică în sistemul de vapori de combustibil (EVAP).
+Revisa la tapa del estanque. No afecta cómo maneja.	Verifică bușonul rezervorului. Nu afectează felul în care merge mașina.
+Falla en el sensor de velocidad del vehículo.	Defect la senzorul de viteză al vehiculului.
+La caja automática puede cambiar mal y el velocímetro fallar. Revisa el sensor y su conector.	Cutia automată poate schimba prost, iar vitezometrul poate da erori. Verifică senzorul și mufa lui.
+Falla en el control de ralentí.	Defect la controlul ralantiului.
+El motor puede quedar acelerado o apagarse en ralentí. Limpia el cuerpo de aceleración.	Motorul poate rămâne turat sau se poate opri la ralanti. Curăță corpul clapetei.
+Ralentí más bajo de lo esperado.	Ralanti mai mic decât ar trebui.
+Limpia el cuerpo de aceleración y revisa fugas de vacío.	Curăță corpul clapetei și verifică prizele de aer.
+Ralentí más alto de lo esperado.	Ralanti mai mare decât ar trebui.
+Suele ser una fuga de vacío o el cuerpo de aceleración sucio.	De obicei e o priză de aer sau corpul clapetei murdar.
+Voltaje del sistema bajo.	Tensiunea sistemului e scăzută.
+El alternador puede no estar cargando. Revisa la correa, los bornes de la batería y el alternador antes de un viaje largo.	Alternatorul poate să nu încarce. Verifică cureaua, bornele bateriei și alternatorul înainte de un drum lung.
+Voltaje del sistema alto.	Tensiunea sistemului e ridicată.
+El regulador del alternador puede estar fallando y dañar la batería. Revísalo pronto.	Regulatorul alternatorului se poate defecta și poate strica bateria. Verifică-l curând.
+Falla de comunicación interna del computador del motor.	Defect de comunicare internă în calculatorul motorului.
+Revisa masas (tierras) y conectores del computador.	Verifică masele și mufele calculatorului.
+Falla de memoria del computador del motor.	Defect de memorie în calculatorul motorului.
+Llévalo al taller.	Du-o la service.
+La caja automática registró una falla (pide leer el computador de la caja).	Cutia automată a înregistrat un defect (citește calculatorul cutiei).
+Hay otro código guardado en el computador de la caja. Si la caja queda en un solo cambio (modo de emergencia), maneja suave hasta el taller.	Mai e un cod salvat în calculatorul cutiei. Dacă cutia rămâne într-o singură treaptă (mod de avarie), condu ușor până la service.
+Falla en el sensor de posición de la palanca de cambios.	Defect la senzorul de poziție a manetei schimbătorului.
+Puede no arrancar en P o N o mostrar mal el cambio. Revisa el interruptor de rango.	Poate să nu pornească în P sau N sau să afișeze greșit treapta. Verifică comutatorul de poziție.
+Falla en el circuito del sensor de temperatura del aceite de la caja automática.	Defect în circuitul senzorului de temperatură a uleiului cutiei automate.
+La caja puede cambiar brusco. Revisa el nivel y el color del aceite de la caja y el conector del sensor. Evita remolcar o subir pendientes largas exigiendo la caja.	Cutia poate schimba brusc. Verifică nivelul și culoarea uleiului cutiei și mufa senzorului. Evită tractarea sau urcușurile lungi care solicită cutia.
+El sensor de temperatura del aceite de la caja automática marca fuera de lo esperado.	Senzorul de temperatură a uleiului cutiei automate indică valori anormale.
+La caja puede cambiar brusco o quedar en modo de emergencia. Revisa nivel y color del aceite de la caja (oscuro u olor a quemado es mala señal) y el conector del sensor. En subidas largas usa una marcha baja y descansa la caja.	Cutia poate schimba brusc sau poate intra în modul de avarie. Verifică nivelul și culoarea uleiului cutiei (închis la culoare sau cu miros de ars e semn rău) și mufa senzorului. Pe urcușuri lungi folosește o treaptă mică și lasă cutia să se odihnească.
+Señal baja del sensor de temperatura del aceite de la caja automática.	Semnal slab de la senzorul de temperatură a uleiului cutiei automate.
+Revisa el conector y el cableado del sensor. La caja puede cambiar brusco.	Verifică mufa și cablajul senzorului. Cutia poate schimba brusc.
+Señal alta del sensor de temperatura del aceite de la caja automática.	Semnal ridicat de la senzorul de temperatură a uleiului cutiei automate.
+Falla en el sensor de velocidad de entrada de la caja.	Defect la senzorul de turație de intrare al cutiei.
+La caja puede cambiar brusco o quedar en modo de emergencia. Revisa el sensor y su conector.	Cutia poate schimba brusc sau poate intra în modul de avarie. Verifică senzorul și mufa lui.
+Falla en el sensor de velocidad de salida de la caja.	Defect la senzorul de turație de ieșire al cutiei.
+La caja puede cambiar brusco y el velocímetro fallar. Revisa el sensor y su conector.	Cutia poate schimba brusc, iar vitezometrul poate da erori. Verifică senzorul și mufa lui.
+La relación de cambios no es la correcta (la caja patina).	Raportul de transmisie nu e corect (cutia patinează).
+Revisa el nivel del aceite de la caja de inmediato. Maneja suave: seguir exigiéndola puede dañarla.	Verifică imediat nivelul uleiului din cutie. Condu ușor: dacă o soliciți în continuare, se poate defecta.
+Relación incorrecta en 1ª: la caja patina en primera.	Raport incorect în treapta 1: cutia patinează în prima.
+Revisa el nivel del aceite de la caja. Maneja suave hasta el taller.	Verifică nivelul uleiului din cutie. Condu ușor până la service.
+Relación incorrecta en 2ª: la caja patina en segunda.	Raport incorect în treapta 2: cutia patinează în a doua.
+Relación incorrecta en 3ª: la caja patina en tercera.	Raport incorect în treapta 3: cutia patinează în a treia.
+Relación incorrecta en 4ª: la caja patina en cuarta.	Raport incorect în treapta 4: cutia patinează în a patra.
+Falla en el circuito del embrague del convertidor de torque.	Defect în circuitul ambreiajului convertizorului de cuplu.
+Gastará más combustible y la caja se calentará más. Revisa el aceite de la caja.	Va consuma mai mult combustibil, iar cutia se va încălzi mai tare. Verifică uleiul cutiei.
+El embrague del convertidor de torque no acopla o patina.	Ambreiajul convertizorului de cuplu nu cuplează sau patinează.
+La caja se calienta más: evita subidas largas exigentes y revisa el aceite de la caja.	Cutia se încălzește mai tare: evită urcușurile lungi și grele și verifică uleiul cutiei.
+Falla eléctrica en el embrague del convertidor de torque.	Defect electric la ambreiajul convertizorului de cuplu.
+Revisa el conector de la caja. Gastará más combustible.	Verifică mufa cutiei. Va consuma mai mult combustibil.
+Falla en el solenoide de cambio {}.	Defect la electrovalva de schimbare {}.
+La caja puede quedar en un solo cambio. Maneja suave hasta el taller.	Cutia poate rămâne într-o singură treaptă. Condu ușor până la service.
+El sensor de oxígeno trasero ve mezcla pobre después del catalizador.	Sonda de oxigen din spate vede amestec sărac după catalizator.
+Revisa fugas de escape antes del sensor.	Verifică scăpările de evacuare dinaintea senzorului.
+El sensor de oxígeno trasero ve mezcla rica después del catalizador.	Sonda de oxigen din spate vede amestec bogat după catalizator.
+Revisa sensores de oxígeno y el catalizador.	Verifică sondele de oxigen și catalizatorul.
+Mezcla pobre en ralentí.	Amestec sărac la ralanti.
+Suele ser una fuga de vacío. Revisa mangueras y la válvula PCV.	De obicei e o priză de aer. Verifică furtunurile și supapa PCV.
+Mezcla rica en ralentí.	Amestec bogat la ralanti.
+Revisa inyectores y la válvula de purga del EVAP.	Verifică injectoarele și supapa de purjare EVAP.
+Escaneando: {}	Se scanează: {}
+Datos estándar (modo 01)…	Date standard (modul 01)…
+Información del vehículo (modo 09)…	Informații despre vehicul (modul 09)…
+Modo 01 · PID {}	Modul 01 · PID {}
+Sin conexión	Fără conexiune
+Interrumpido	Întrerupt
+Dirección no válida: {}	Adresă invalidă: {}
+Apps	Aplicații
+Guía del escáner	Ghidul scanerului
+Guía	Ghid
+Qué comprar, cómo conectarlo y qué significa cada cosa · sin internet	Ce să cumperi, cum îl conectezi și ce înseamnă fiecare lucru · fără internet
+Desbloquear	Deblochează
+Se desbloquea con una donación. Todas las funciones de EvOS siguen siendo gratis.	Se deblochează cu o donație. Toate funcțiile EvOS rămân gratuite.
+Desbloqueado en esta pantalla. ¡Gracias por tu donación!	Deblocat pe acest ecran. Mulțumim pentru donație!
+Prueba: volver a aplicar sin código	Test: aplică din nou fără cod
+Prueba: desbloquear como en la versión normal	Test: deblochează ca în versiunea normală
+1. Dona 5 USD en Ko-fi: escanea el código con tu celular o entra a {}.	1. Donează 5 USD pe Ko-fi: scanează codul cu telefonul sau intră pe {}.
+2. En el mensaje de la donación escribe el ID de esta pantalla:	2. În mesajul donației scrie ID-ul acestui ecran:
+3. Te enviamos un código STRD-XXXX-XXXX, casi siempre el mismo día. Escríbelo en «Tengo un código».	3. Îți trimitem un cod STRD-XXXX-XXXX, de obicei în aceeași zi. Scrie-l la „Am un cod”.
+El tema queda en esta pantalla. Si cambias de radio o la restableces, escríbenos con el ID nuevo y te enviamos otro código sin costo.	Tema rămâne pe acest ecran. Dacă schimbi unitatea sau o resetezi, scrie-ne cu noul ID și îți trimitem gratuit alt cod.
+Desbloquear {}	Deblochează {}
+Tengo un código	Am un cod
+Archivo por USB	Fișier prin USB
+ID de esta pantalla: {}. Necesitas internet solo esta vez.	ID-ul acestui ecran: {}. Ai nevoie de internet doar acum.
+Escribe tu código	Scrie codul
+El código tiene 8 letras o números después de STRD, por ejemplo STRD-7KQ2-M9XA.	Codul are 8 litere sau cifre după STRD, de exemplu STRD-7KQ2-M9XA.
+Comprobando el código…	Se verifică codul…
+No hay internet. Conéctate un momento (por ejemplo, con el celular como módem) y vuelve a intentarlo, o pide el archivo de licencia y pásalo por USB.	Nu ai internet. Conectează-te pentru o clipă (de exemplu, cu telefonul ca hotspot) și încearcă din nou, sau cere fișierul de licență și copiază-l prin USB.
+No encontramos ese código para esta pantalla. Revisa que esté bien escrito y que el ID que enviaste sea {}.	Nu am găsit acest cod pentru acest ecran. Verifică dacă e scris corect și dacă ID-ul trimis este {}.
+No se pudo desbloquear	Deblocarea nu a reușit
+Intentar de nuevo	Încearcă din nou
+Buscando la licencia en la pantalla y en las USB…	Se caută licența pe ecran și pe stickurile USB…
+No encontramos la licencia	Nu am găsit licența
+Copia el archivo que te enviamos (stradaos-licencia.txt) en la raíz de una USB, conéctala y vuelve a intentarlo. Tiene que ser para el ID {}.	Copiază fișierul primit (stradaos-licencia.txt) în rădăcina unui stick USB, conectează-l și încearcă din nou. Trebuie să fie pentru ID-ul {}.
+¡Listo!	Gata!
+{} quedó desbloqueado en esta pantalla. Gracias por apoyar EvOS.	{} a fost deblocat pe acest ecran. Mulțumim că susții EvOS.
+Aplicar ahora	Aplică acum
+1. Dona en Ko-fi 5 USD por un tema o 8 USD por dos: escanea el código con tu celular o entra a {}.	1. Donează pe Ko-fi 5 USD pentru o temă sau 8 USD pentru două: scanează codul cu telefonul sau intră pe {}.
+2. En el mensaje de la donación escribe el ID de esta pantalla y qué temas quieres:	2. În mesajul donației scrie ID-ul acestui ecran și ce teme vrei:
+Se desbloquea con una donación de 5 USD, o 8 USD por dos temas. Todas las funciones de EvOS siguen siendo gratis.	Se deblochează cu o donație de 5 USD, sau 8 USD pentru două teme. Toate funcțiile EvOS rămân gratuite.
+Usar la velocidad del escáner	Folosește viteza de la scaner
+Con el escáner conectado, el inicio muestra la velocidad del carro en vez de la del GPS: más exacta y sin retraso	Cu scanerul conectat, ecranul principal arată viteza mașinii în locul celei GPS: mai exactă și fără întârziere
+1. Enchufa el escáner ELM327 en el conector OBD (bajo el volante) y pon el contacto.\n2. Bluetooth: emparéjalo con la clave 1234 o 0000. Wi-Fi: conecta la pantalla a la red del escáner y escribe su IP y puerto (casi siempre 192.168.0.10:35000). Cable USB: conéctalo a la pantalla y acepta el permiso que pide Android.\n3. Elígelo arriba en «Escáner».	1. Pune scanerul ELM327 în mufa OBD (sub volan) și ia contactul.\n2. Bluetooth: împerechează-l cu PIN-ul 1234 sau 0000. Wi-Fi: conectează ecranul la rețeaua scanerului și scrie IP-ul și portul (aproape mereu 192.168.0.10:35000). Cablu USB: conectează-l la ecran și acceptă permisiunea cerută de Android.\n3. Alege-l mai sus, la „Scaner”.
+Escáner por cable USB	Scaner prin cablu USB
+Cable ELM327 USB (chips CH340, FTDI, PL2303 o CP2102)	Cablu ELM327 USB (cipuri CH340, FTDI, PL2303 sau CP2102)
+Bluetooth emparejado, Wi-Fi (IP y puerto), cable USB o un auto simulado para probar	Bluetooth împerecheat, Wi-Fi (IP și port), cablu USB sau o mașină simulată pentru test
+No veo ningún escáner USB conectado. Conecta el cable ELM327 USB a la pantalla (si hace falta, con un adaptador OTG), enchúfalo en el conector OBD con el contacto puesto y vuelve a intentar. Sirven los cables con chip CH340, FTDI, PL2303 o CP2102.	Nu văd niciun scaner USB conectat. Conectează cablul ELM327 USB la ecran (cu un adaptor OTG, dacă e nevoie), pune-l în mufa OBD cu contactul luat și încearcă din nou. Merg cablurile cu cip CH340, FTDI, PL2303 sau CP2102.
+No veo el cable USB del escáner: revisa que esté conectado	Nu văd cablul USB al scanerului: verifică dacă e conectat
+Falta el permiso para usar el cable USB: acéptalo en la pantalla	Lipsește permisiunea de a folosi cablul USB: accept-o pe ecran
+El cable USB no responde como un escáner ELM327	Cablul USB nu răspunde ca un scaner ELM327
+Este cable USB no parece un escáner	Acest cablu USB nu pare un scaner
+Android no dejó abrir el cable USB	Android nu a permis deschiderea cablului USB
+Este equipo no tiene USB para accesorios	Această unitate nu are USB pentru accesorii
+No se pudo preparar el cable USB	Cablul USB nu a putut fi pregătit
+El cable USB no tiene canal de datos	Cablul USB nu are canal de date
+Otra app está usando el cable USB	Altă aplicație folosește cablul USB
+El cable USB no aceptó la velocidad	Cablul USB nu a acceptat viteza
+Se desconectó el cable USB	Cablul USB s-a deconectat
+Apps de Android Auto / CarPlay con notificación: {} · multimedia: {}	Aplicații Android Auto / CarPlay cu notificare: {} · multimedia: {}
+▶ sin nada sonando abre tu app de música: {}	▶ fără nimic în redare deschide aplicația ta de muzică: {}
+no (Android Auto / CarPlay conectado)	nu (Android Auto / CarPlay conectat)
+Música de cualquier app (Android 5+): {}	Muzică din orice aplicație (Android 5+): {}
+no aplica en este Android	nu se aplică pe acest Android
+acceso a notificaciones {} · lector conectado {}	acces la notificări {} · cititor conectat {}
+SÍ	DA
+NO	NU
+Sonido de música en el sistema: {}	Sunetul muzicii în sistem: {}
+Sesiones multimedia: {}	Sesiuni multimedia: {}
+ninguna (ninguna app publica lo que suena)	niciuna (nicio aplicație nu publică ce se redă)
+el lector no arrancó	cititorul nu a pornit
+sin acceso ({})	fără acces ({})
+Pantalla HCN (servicio sourceinfo): {}	Ecran HCN (serviciul sourceinfo): {}
+no aplica (esta pantalla no es HCN)	nu se aplică (acest ecran nu e HCN)
+no se probó	netestat
+conectado, se consulta cada 2 s (sin avisos)	conectat, se interoghează la 2 s (fără evenimente)
+conectado, con avisos del servicio	conectat, cu evenimente de la serviciu
+Bluetooth del sistema (AVRCP): {}	Bluetooth-ul sistemului (AVRCP): {}
+ningún aviso	niciun eveniment
+{} avisos, el último hace {} s: {}	{} evenimente, ultimul acum {} s: {}
+Tráfico en vivo: {}	Trafic live: {}
+activo	activ
+inactivo	inactiv
+fuente del equipo: {}	sursa unității: {}
+última lectura: {}	ultima citire: {}
+avisos recibidos: {}	evenimente primite: {}
+etiquetas del archivo: {}	etichetele fișierului: {}
+{} s, hace {} s	{} s, acum {} s
+simulado (gancho de prueba)	simulat (cârlig de test)
+leída: «{}» — {} · {}/{} s · {}	citită: «{}» — {} · {}/{} s · {}
+«{}» — {} · {} · {} s	«{}» — {} · {} · {} s
+sonando	în redare
+en pausa	pe pauză
+estado ?	stare ?
+Gris magnético	Gri magnetic
+Blanco perla	Alb perlat
+Negro profundo	Negru intens
+Gris platino	Gri platină
+Grafito	Grafit
+Rojo carrera	Roșu de curse
+Azul ártico	Albastru arctic
+Beige moderno	Bej modern
+Próximo mantenimiento	Următoarea operațiune de întreținere
+El carro del tema Carbono, visto desde arriba. También se cambia con una presión larga sobre el carro.	Mașina din tema Carbono, văzută de sus. O poți schimba și ținând apăsat pe mașină.
+Tarjetas limpias sobre un fondo carbón con textura y una luz suave desde abajo (o gris perla en claro). Tu vehículo en grande con el velocímetro y los dos mantenimientos más cercanos, el mapa con el reproductor y el clima flotando encima, y una barra de apps tipo píldora.	Carduri curate pe un fundal de carbon texturat, cu o lumină discretă de jos (sau gri perlat în modul luminos). Vehiculul tău în mare, cu vitezometrul și cele mai apropiate două operațiuni de întreținere, harta cu playerul și vremea plutind deasupra și o bară de aplicații în formă de pastilă.
+Revoluciones junto al velocímetro	Turații lângă vitezometru
+Un cuentarrevoluciones chico al lado, con las RPM del escáner OBD (solo mientras está conectado)	Un turometru mic alături, cu turațiile de la scanerul OBD (doar cât timp e conectat)
+Odómetro	Odometru
+Kilometraje del auto (escáner OBD)	Kilometrajul mașinii (scaner OBD)
+El kilometraje del auto es {} y ya toca el cambio de aceite (cada {}).	Kilometrajul mașinii este {} și e timpul pentru schimbul de ulei (la fiecare {}).
+En la tarjeta del centro	În cardul din centru
+Mapa y video: desliza la tarjeta para pasar del mapa a los videos de la memoria y las USB	Hartă și video: glisează cardul ca să treci de la hartă la videoclipurile din memorie și de pe stickurile USB
+Mapa y video	Hartă și video
+Carpeta de videos	Folderul cu videoclipuri
+Toca para elegir. Si no eliges una, busca en toda la memoria y en las USB	Atinge pentru a alege. Dacă nu alegi unul, caută în toată memoria și pe stickurile USB
+Todas	Toate
+Video en movimiento	Video în mers
+Sobre 5 km/h. La ley prohíbe ver video mientras se conduce	Peste 5 km/h. Legea interzice vizionarea de video în timpul condusului
+Tapar siempre	Acoperă mereu
+Sin permiso de almacenamiento no se pueden buscar videos	Fără permisiune de stocare nu se pot căuta videoclipuri
+Buscando videos…	Se caută videoclipuri…
+videos	videoclipuri
+No se puede reproducir aquí	Nu se poate reda aici
+ábrelo en pantalla completa	deschide-l pe ecran complet
+Buscando videos en la memoria y las USB…	Se caută videoclipuri în memorie și pe stickurile USB…
+No hay videos. Copia videos (MP4 o MKV) a la memoria o a una USB, o elige la carpeta en Ajustes → Mapa y clima.	Nu există videoclipuri. Copiază videoclipuri (MP4 sau MKV) în memorie sau pe un stick USB, ori alege folderul în Setări → Hartă și vreme.
+Ver en pantalla completa	Vezi pe ecran complet
+No hay una app de video para la pantalla completa	Nu există o aplicație video pentru ecran complet
+¿Quieres seguir viendo el video?	Vrei să continui vizionarea?
+Imagen en pausa mientras manejas · el audio sigue	Imagine oprită cât conduci · sunetul continuă
+Solo se muestra con el carro detenido	Se afișează doar cu mașina oprită
+Sin GPS ni escáner no se sabe si el carro va andando	Fără GPS sau scaner nu se știe dacă mașina e în mers
+Elegir video	Alege videoclipul
+Cuidado al manejar	Atenție la condus
+Mantén la vista en el camino. Ver video mientras manejas es peligroso y en muchos países está prohibido. Si sigues, lo haces bajo tu responsabilidad.	Ține-ți privirea pe drum. Vizionarea de video în timp ce conduci e periculoasă și în multe țări e interzisă. Dacă continui, o faci pe propria răspundere.
+Seguir viendo	Continuă vizionarea
+Almacenamientos	Spații de stocare
+No hay videos en esta carpeta	Nu există videoclipuri în acest folder
+Sin videos	Fără videoclipuri
+Reproduciendo	Se redă
+Miniatura en curso: se abre igual	Miniatură în curs: se deschide oricum
+Abrir	Deschide
+reintento	reîncercare
+Preparado	Pregătit
+Primer cuadro	Primul cadru
+sin imagen	fără imagine
+La pantalla no puede mostrar la imagen de este video	Ecranul nu poate afișa imaginea acestui videoclip
+Mantén presionado el botón de pantalla completa para abrirlo en VLC u otra app	Ține apăsat butonul de ecran complet ca să-l deschizi în VLC sau în altă aplicație
+Ningún video de la lista se pudo abrir	Niciun videoclip din listă nu a putut fi deschis
+sin video	fără video
+Diagnóstico del video	Diagnosticare video
+Formato de cada video y lo que decodifica la pantalla	Formatul fiecărui videoclip și ce poate decoda ecranul
+Decodificadores de video	Decodoare video
+Últimos videos	Ultimele videoclipuri
+Todavía no se ha abierto ningún video	Încă nu s-a deschis niciun videoclip
+Se guarda en StradaDiag/video.txt	Se salvează în StradaDiag/video.txt
+se leen con el video detenido	se citesc cu videoclipul oprit
+la pantalla no tiene decodificador	ecranul nu are decodor pentru
+pide más de lo que decodifica la pantalla	cere mai mult decât poate decoda ecranul
+No compatible con esta pantalla	Incompatibil cu acest ecran
+Conviértelo a H.264 de 720p o 1080p horizontal, a 30 cuadros por segundo	Convertește-l în H.264, 720p sau 1080p orizontal, la 30 de cadre pe secundă
+Sin miniatura	Fără miniatură
+Leer varios datos por consulta	Citește mai multe valori per cerere
+Tu escáner no lo entiende: EvOS lee de a un dato. Actívalo para volver a probar	Scanerul tău nu suportă asta: EvOS citește câte o valoare. Activează ca să încerci din nou
+Más rápido. Apágalo si tu escáner se desconecta a cada rato	Mai rapid. Oprește-l dacă scanerul se deconectează des
+Miniatura tomada del video	Miniatură luată din videoclip
+Enorme	Uriaș
+«Muy grande» y «Enorme» también agrandan los nombres	„Foarte mare” și „Uriaș” măresc și numele
+Buscar carátulas en internet	Caută coperți pe internet
+Si la canción llega sin carátula (p. ej. por Bluetooth), la busca en MusicBrainz y Cover Art Archive y, si no está, en iTunes o Deezer. Solo se envían el título y el artista	Dacă melodia vine fără copertă (de ex. prin Bluetooth), o caută pe MusicBrainz și Cover Art Archive și, dacă nu e acolo, pe iTunes sau Deezer. Se trimit doar titlul și artistul
+Borrar carátulas guardadas	Șterge coperțile salvate
+Las que se bajaron de internet y se guardaron en el equipo	Cele descărcate de pe internet și salvate pe unitate
+Carátulas borradas	Coperți șterse
+Probando…	Se testează…
+Probar la búsqueda de carátulas	Testează căutarea de coperți
+Prueba cada servidor con la canción que suena y muestra el error exacto	Testează fiecare server cu melodia care se redă și arată eroarea exactă
+Prueba de carátulas	Test coperți
+Se guarda en StradaDiag/caratulas.txt	Se salvează în StradaDiag/caratulas.txt
+Navegar hasta aquí	Navighează până aici
+Posición del carro	Poziția mașinii
+Abajo: al navegar ves más camino por delante (con el mapa según tu dirección)	Jos: când navighezi vezi mai mult din drumul din față (cu harta după direcția ta)
+Centro	Centru
+Abajo	Jos

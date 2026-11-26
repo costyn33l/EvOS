@@ -1,6 +1,6 @@
 name: Compilar (debug)
 
-# Compila la versión de prueba («StradaOS Prueba», paquete com.stradaos.launcher.debug) en cada push.
+# Compila la versión de prueba («EvOS Test», paquete com.evos.launcher.debug) en cada push.
 # En main (o al lanzarlo a mano desde una rama) la publica en el Release «prueba» (prerelease, no cuenta como versión nueva) para instalarla en un
 # celular o en la pantalla junto a la normal. Se firma con la llave de siempre, así cada prueba se instala encima.
 on:
@@ -40,7 +40,7 @@ jobs:
         run: ./gradlew --no-daemon assembleDebug
       - uses: actions/upload-artifact@v4
         with:
-          name: StradaOS-debug
+          name: EvOS-debug
           path: app/build/outputs/apk/debug/*.apk
       - name: Publicar en el Release «prueba»
         # en main al hacer push, o a mano desde cualquier rama (para probar una versión antes de publicarla)
@@ -48,15 +48,15 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cp app/build/outputs/apk/debug/*.apk StradaOS-prueba.apk
+          cp app/build/outputs/apk/debug/*.apk EvOS-test.apk
           SHORT=$(git rev-parse --short HEAD)
           MSG=$(git log -1 --pretty=%s)
-          NOTES=$(printf 'Versión de prueba de StradaOS (se instala junto a la normal como «StradaOS Prueba»).\n\nCompilada del commit %s: %s\n\nNo avisa actualizaciones: vuelve a esta página o usa el enlace fijo:\nhttps://github.com/%s/releases/download/prueba/StradaOS-prueba.apk' "$SHORT" "$MSG" "$GITHUB_REPOSITORY")
+          NOTES=$(printf 'Versión de prueba de EvOS (se instala junto a la normal como «EvOS Test»).\n\nCompilada del commit %s: %s\n\nNo avisa actualizaciones: vuelve a esta página o usa el enlace fijo:\nhttps://github.com/%s/releases/download/prueba/EvOS-test.apk' "$SHORT" "$MSG" "$GITHUB_REPOSITORY")
           git tag -f prueba
           git push -f origin refs/tags/prueba
           if gh release view prueba >/dev/null 2>&1; then
-            gh release upload prueba StradaOS-prueba.apk --clobber
+            gh release upload prueba EvOS-test.apk --clobber
             gh release edit prueba --title "Prueba · $SHORT" --notes "$NOTES" --prerelease --latest=false
           else
-            gh release create prueba StradaOS-prueba.apk --title "Prueba · $SHORT" --notes "$NOTES" --prerelease --latest=false
+            gh release create prueba EvOS-test.apk --title "Prueba · $SHORT" --notes "$NOTES" --prerelease --latest=false
           fi

@@ -1,7 +1,7 @@
-# StradaOS · Przewodnik po skanerze OBD-II · polski. Format: zob. ObdGuide.java.
+# EvOS · Przewodnik po skanerze OBD-II · polski. Format: zob. ObdGuide.java.
 
 == comprar | Jaki skaner kupić | Te, które działają, i te, których unikać
-StradaOS współpracuje ze skanerami ELM327, najpopularniejszym i najtańszym rodzajem. Łączą się przez Bluetooth lub Wi-Fi.
+EvOS współpracuje ze skanerami ELM327, najpopularniejszym i najtańszym rodzajem. Łączą się przez Bluetooth lub Wi-Fi.
 ### Działają
 - „Klasyczny” Bluetooth (oznaczany też jako SPP, Bluetooth 2.0 lub 3.0) albo dwutrybowy. Polecane: Vgate iCar Pro (wersja Bluetooth 3.0), Veepeak Mini Bluetooth, OBDLink LX i OBDLink MX+.
 - Wi-Fi: też działają, ale dopóki ekran jest połączony z siecią skanera, nie ma internetu (mapa online, pogoda, AI).
@@ -40,8 +40,8 @@ Panel wysuwa się od strony kierowcy: otwórz go zakładką przy krawędzi, przy
 Pod nimi są trzy małe wartości (np. prędkość, obciążenie silnika lub paliwo): dotknij ich, aby zobaczyć wykres. Niżej pojawiają się aktywne alerty i kody usterek.
 >> panel | Otwórz panel pojazdu
 
-== alertas | Alerty i ich progi | Kiedy StradaOS ostrzega i jak to zmienić
-StradaOS obserwuje dane podczas jazdy i ostrzega na ekranie i głosowo, nawet gdy jesteś w Waze lub słuchasz muzyki.
+== alertas | Alerty i ich progi | Kiedy EvOS ostrzega i jak to zmienić
+EvOS obserwuje dane podczas jazdy i ostrzega na ekranie i głosowo, nawet gdy jesteś w Waze lub słuchasz muzyki.
 - Ostrzeżenie (bursztynowe): coś odbiega od normy, np. płyn chłodzący powyżej 100 °C.
 - Alert (czerwony): trzeba zareagować, np. płyn chłodzący powyżej 106 °C albo akumulator, który się nie ładuje. Jeśli to włączysz, panel otworzy się sam.
 - Ostrzega też, gdy płyn chłodzący bardzo szybko się nagrzewa i gdy pojawi się nowy kod usterki.
@@ -67,21 +67,21 @@ Dotknij kodu, aby zobaczyć, co oznacza, jak jest poważny i co zrobić.
 W Dane na żywo widzisz każdą wartość, którą podaje twój samochód: prędkość, obciążenie silnika, przepustnicę, temperaturę powietrza, paliwo, mieszankę i więcej. Każdy samochód podaje inne dane: jeśli któraś się nie pojawia, twój samochód jej nie udostępnia.
 - Dotknij wartości, aby otworzyć jej wykres.
 - Na wykresach widzisz do 3 wartości naraz, od 1 do 30 minut.
-- Wartości oznaczone jako „obliczone” StradaOS wylicza z innych danych (np. zużycie paliwa). Są przybliżone.
+- Wartości oznaczone jako „obliczone” EvOS wylicza z innych danych (np. zużycie paliwa). Są przybliżone.
 Wskazówka: jeśli twój silnik nie ma czujnika MAF, wpisz jego pojemność w Zaawansowane, aby zużycie paliwa było dokładniejsze.
 >> obd_live | Przejdź do Danych na żywo
 
 == ia | Włączanie AI krok po kroku | Opcjonalnie: wyjaśnia kody dla twojego samochodu
-AI jest opcjonalna: bez niej StradaOS i tak wyjaśnia najczęstsze kody. Z nią wyjaśnienie dotyczy twojego konkretnego samochodu. Potrzebujesz własnego klucza (API key) i internetu na ekranie.
+AI jest opcjonalna: bez niej EvOS i tak wyjaśnia najczęstsze kody. Z nią wyjaśnienie dotyczy twojego konkretnego samochodu. Potrzebujesz własnego klucza (API key) i internetu na ekranie.
 ### Groq (za darmo)
 - Wejdź na console.groq.com i zaloguj się przez Google lub e-mail. Karta nie jest potrzebna.
 - Przejdź do „API Keys” → „Create API Key”, nadaj nazwę i skopiuj klucz (zaczyna się od gsk_). Pokazuje się tylko raz.
-- W StradaOS: Sztuczna inteligencja → Dostawca: Groq → Klucz API: wklej go.
+- W EvOS: Sztuczna inteligencja → Dostawca: Groq → Klucz API: wklej go.
 Wskazówka: zrób to w przeglądarce na tym samym ekranie, żeby skopiować i wkleić klucz. Jeśli zrobisz to w telefonie, trzeba będzie go starannie przepisać.
 ### Claude lub OpenAI (płatne)
 - Claude: platform.claude.com → Settings → API keys. Najpierw kup środki w Billing.
 - OpenAI: platform.openai.com → API keys. Również działa na środki przedpłacone.
-- W StradaOS wybierz dostawcę, wklej klucz i, jeśli trzeba, wybierz model.
+- W EvOS wybierz dostawcę, wklej klucz i, jeśli trzeba, wybierz model.
 ### Na koniec
 - Wypełnij „Twój pojazd (dla AI)”: marka, model, rok, silnik i skrzynia biegów. Dzięki temu odpowiedź będzie dokładniejsza.
 - Dotknij „Przetestuj AI”. Jeśli odpowie, gotowe.
