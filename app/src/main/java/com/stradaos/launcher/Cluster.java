@@ -229,7 +229,7 @@ final class Cluster extends View {
             if (obd && !Float.isNaN(d.thr)) {
                 String lt = up("Acelerador") + " %";
                 text(c, lt, lx, gy - 3 * k, 11 * k, FM, MU, Paint.Align.LEFT, 0.14f);
-                lx += width(lt, 11 * k, FM) * 1.18f + 30 * k;
+                lx += width(lt, 11 * k, FM) + lt.length() * 11 * k * 0.14f + 34 * k;
             } else lx = px + 16 * k;
             p.setColor(TX); c.drawRect(lx - 16 * k, gy - 9 * k, lx - 6 * k, gy - 6 * k, p);
             text(c, up("Velocidad"), lx, gy - 3 * k, 11 * k, FM, MU, Paint.Align.LEFT, 0.14f);
@@ -245,7 +245,7 @@ final class Cluster extends View {
             if (obd) line(c, d.hThr, d.hN, px, y0, w - 2 * px, y1 - y0, 100, 0xFFFFA31A, 2 * k, true);
             if (d.hN > 0) {
                 float yy = y1 - (y1 - y0) * Math.min(1, d.hSpeed[d.hN - 1] / mx);
-                p.setColor(TX); c.drawCircle(w - px - (w - 2 * px) * (60 - d.hN) / 59f, yy, 4 * k, p);
+                p.setColor(TX); c.drawCircle(w - px, yy, 4 * k, p);
             }
         }
         // fila de abajo

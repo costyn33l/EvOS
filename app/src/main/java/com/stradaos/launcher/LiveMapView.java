@@ -1399,7 +1399,7 @@ public class LiveMapView extends View {
                             try {
                                 data = Net.get(url, 8000);
                             } catch (Throwable ex) {
-                                lastError = "[" + NAMES[pv] + "] " + ex;
+                                lastError = "[" + I18n.t(NAMES[pv]) + "] " + ex;
                                 if (layer == 0) ERR[pv] = shortErr(ex);
                                 // Sin internet (no resuelve el nombre) no es culpa de la fuente: no se cambia de fuente,
                                 // y si hay una tesela guardada de otra fuente se muestra esa.
@@ -1441,7 +1441,7 @@ public class LiveMapView extends View {
                     }
                 } catch (Throwable e) {
                     if (layer != L_FILE && layer != L_TRAFFIC) { netErrors++; netOffline = netErrors >= 3; }
-                    else if (layer == L_FILE) lastError = "[archivo] " + e;
+                    else if (layer == L_FILE) lastError = "[" + I18n.t("archivo") + "] " + e;
                 }
                 final long fk = k;
                 final Bitmap fb = b;

@@ -1994,3 +1994,4 @@ afuera	afară
 Tanque	Rezervor
 medio	mediu
 autonomía	autonomie
+archivo	fișier

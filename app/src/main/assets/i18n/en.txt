@@ -2024,3 +2024,4 @@ afuera	outside
 Tanque	Tank
 medio	average
 autonomía	range
+archivo	file
