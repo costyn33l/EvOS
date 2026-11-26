@@ -503,6 +503,7 @@ public class Main extends Activity {
         }
         if (mediaWatcher != null) mediaWatcher.start();
         if (srOn()) { h.removeCallbacks(srTick); h.post(srTick); }
+        if (!clusters.isEmpty()) { h.removeCallbacks(clTick); h.post(clTick); }
         guardUsb();
         maybeWeather();
         h.postDelayed(new Runnable() { public void run() { autoChecks(); } }, 4000);
@@ -674,7 +675,8 @@ public class Main extends Activity {
         stopGps();
         h.removeCallbacks(ticker);
         h.removeCallbacks(srTick);
-        srTickAt = 0;
+        h.removeCallbacks(clTick);
+        srTickAt = 0; tripStepAt = 0;
         try { srTripSave(); } catch (Throwable ignored) { }
         h.removeCallbacks(progressTick);
     }
@@ -878,6 +880,11 @@ public class Main extends Activity {
                     closeDrawer();
                     if (vpanel != null && vpanel.isOpen()) vpanel.closeNow();
                     if (srOn()) srShow(Integer.parseInt(q[1])); else srSec = Integer.parseInt(q[1]);
+                }
+                else if (v.startsWith("cl:")) {     // «cl:home:sport», «cl:instr:telemetry»
+                    String[] q = v.split(":");
+                    prefs.edit().putString("home".equals(q[1]) ? "cl_home" : "cl_instr", q[2]).apply();
+                    rebuild();
                 }
                 else if (v.startsWith("sr-modelo:")) {
                     String[] q = v.split(":");
@@ -1338,6 +1345,7 @@ public class Main extends Activity {
 
     private void build0(int W, int H) {
         srSecs[0] = null;
+        clusters.clear();
         if (evObdPage != null) { Obd.removeListener(evObdL); evObdPage = null; evCells.clear(); }
         root.removeAllViews();
         idleView = null; idleClock = idleDate = idleSpeedTv = null; idleGauge = null;
@@ -1498,6 +1506,85 @@ public class Main extends Activity {
      * pantalla horizontal de 9") y tan alto como la pantalla. Se reparten así, de arriba abajo: barra de arriba (64),
      * mapa (lo que sobra), fila de tarjetas y barra de botones.
      */
+
+    // ══════════ Cuadros de instrumentos (Telemetría, Sport, Clásico) ══════════
+
+    private final List<Cluster> clusters = new ArrayList<Cluster>();
+    private float clSpeed = Float.NaN;
+    private boolean clSpeedObd;
+
+    private String clHome() { String v = prefs.getString("cl_home", Cluster.THEME); return java.util.Arrays.asList(Cluster.STYLES).contains(v) ? v : Cluster.THEME; }
+    private String clInstr() { String v = prefs.getString("cl_instr", Cluster.EVOS); return java.util.Arrays.asList(Cluster.STYLES).contains(v) ? v : Cluster.EVOS; }
+
+    private Cluster newCluster(String style) {
+        Cluster c = new Cluster(this, style, s, RED);
+        clusters.add(c);
+        clFill();
+        h.removeCallbacks(clTick);
+        h.post(clTick);
+        return c;
+    }
+
+    /** Llena Cluster.D con lo que hay ahora: velocidad (GPS u OBD) y los datos que el carro entrega de verdad. */
+    private void clFill() {
+        Cluster.Data d = Cluster.D;
+        d.mph = useMph();
+        d.unitDist = unit();
+        d.speed = clSpeed;
+        d.speedObd = clSpeedObd;
+        boolean live = obdOn() && Obd.status == Obd.LIVE;
+        d.obd = live;
+        d.rpm = live && Obd.RPM.has() ? Obd.RPM.value : Float.NaN;
+        d.thr = live && Obd.THROTTLE.has() ? Obd.THROTTLE.value : Float.NaN;
+        d.load = live && Obd.LOAD.has() ? Obd.LOAD.value : Float.NaN;
+        d.cool = live && Obd.COOLANT.has() ? Obd.COOLANT.value : Float.NaN;
+        d.intake = live && Obd.INTAKE.has() ? Obd.INTAKE.value : Float.NaN;
+        d.volt = live && Obd.VOLT.has() ? Obd.VOLT.value : Float.NaN;
+        d.cons = live && Obd.CONSUMPTION.has() ? Obd.CONSUMPTION.value : Float.NaN;
+        d.fuelPct = live && Obd.FUEL.has() ? Obd.FUEL.value : Float.NaN;
+        d.tankL = prefs.getFloat("tank_l", 0);
+        srTripLoad();
+        d.avg = live && srTripM > 5000 && srTripL > 0.05f ? srTripL / (srTripM / 1000f) * 100f : Float.NaN;
+        float amb = live && Obd.AMBIENT.has() ? Obd.AMBIENT.value : Float.NaN;
+        Weather.Now wn = weatherNow;
+        if (Float.isNaN(amb) && wn != null && !Double.isNaN(wn.temp))
+            amb = (float) (wn.unit != null && wn.unit.contains("F") ? (wn.temp - 32) * 5 / 9 : wn.temp);
+        d.amb = amb;
+        d.clock = new java.text.SimpleDateFormat(android.text.format.DateFormat.is24HourFormat(this) ? "H:mm" : "h:mm", Locale.US).format(new Date());
+    }
+
+    private void clRefresh() {
+        if (clusters.isEmpty()) return;
+        clFill();
+        for (Cluster c : clusters) c.invalidate();
+    }
+
+    /** Cada segundo con un cuadro en pantalla: la hora, el gráfico de 60 s y (fuera del Showroom) el viaje. */
+    private final Runnable clTick = new Runnable() { public void run() {
+        if (clusters.isEmpty()) return;
+        if (!srOn()) tripStep();
+        clFill();
+        Cluster.D.sample();
+        for (Cluster c : clusters) c.invalidate();
+        h.postDelayed(this, 1000);
+    }};
+
+    /** Elegir el cuadro del inicio o de Instrumentos (desde Ajustes o desde la página). */
+    private void chooseCluster(final boolean home) {
+        final String[] keys = home ? new String[]{Cluster.THEME, Cluster.TELE, Cluster.SPORT, Cluster.CLASSIC}
+            : new String[]{Cluster.EVOS, Cluster.TELE, Cluster.SPORT, Cluster.CLASSIC};
+        String[] names = new String[keys.length];
+        for (int i = 0; i < keys.length; i++) names[i] = I18n.t(Cluster.name(keys[i]));
+        new TB(this, dlg()).raw().setTitle(I18n.t(home ? "Cuadro en el inicio" : "Cuadro en Instrumentos"))
+            .setItems(names, new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) {
+                prefs.edit().putString(home ? "cl_home" : "cl_instr", keys[w]).apply();
+                boolean inSettings = settingsView != null;
+                rebuild();
+                if (inSettings) showSettings(C_STYLE);
+            }})
+            .setNegativeButton(I18n.t("Cancelar"), null).show();
+    }
+
     // ══════════════════════════ Tema Showroom (EvOS 1.1) ══════════════════════════
     // Menú lateral (Inicio, Mapa, Música, Vehículo, Apps, Ajustes) y secciones a pantalla completa. Usa las funciones de
     // siempre: el mapa es la tarjeta del mapa a todo el ancho, la música es el reproductor con otra distribución y lo
@@ -1770,7 +1857,13 @@ public class Main extends Activity {
         car.setOnLongClickListener(new View.OnLongClickListener() { public boolean onLongClick(View v) { srOpenModel(); return true; } });
 
         float rx = W - 334, y = 24;
-        if (carSpeed) {
+        boolean clOn = carSpeed && !Cluster.THEME.equals(clHome());
+        if (clOn) {
+            Cluster cl = newCluster(clHome());
+            place(sec, cl, rx - 18, 10, 344, 300);
+            srSpeedTv = null; srSpeedSrc = null; srLimitTv = null;
+            y = 318;
+        } else if (carSpeed) {
             srSpeedSrc = srLabel("Velocidad · GPS", 12, MUTED);
             place(sec, srSpeedSrc, rx, y, 260, 16);
             LinearLayout sp = new LinearLayout(this);
@@ -1794,7 +1887,7 @@ public class Main extends Activity {
             y += 144;
         } else { srSpeedTv = null; srSpeedSrc = null; srLimitTv = null; }
         boolean obd = obdOn();
-        if (obd) {
+        if (obd && !clOn) {
             srRpmBar = new Show.Segs(this, 28, RED, s);
             place(sec, srRpmBar, rx, y, 306, 10);
             srRpmTv = srLabel("— rpm", 13, MUTED);
@@ -2144,11 +2237,33 @@ public class Main extends Activity {
     /** Vehículo › Instrumentos: turómetro y velocímetro dibujados, y abajo cuatro datos con su barra. */
     private void srBuildGauges(FrameLayout p) {
         float W = srPW;
+        // selector del cuadro (arriba a la derecha)
+        LinearLayout chips = new LinearLayout(this);
+        chips.setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
+        final String[] ks = {Cluster.EVOS, Cluster.TELE, Cluster.SPORT, Cluster.CLASSIC};
+        String cur = clInstr();
+        for (final String k : ks) {
+            TextView t = srLabel(Cluster.name(k), 12, k.equals(cur) ? TEXT : 0xFF8E8E8E);
+            t.setGravity(Gravity.CENTER);
+            t.setPadding((int) (12 * s), 0, (int) (12 * s), 0);
+            if (k.equals(cur)) t.setBackground(Show.tileOn(s, RED));
+            t.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {
+                prefs.edit().putString("cl_instr", k).apply();
+                rebuild();
+            }});
+            chips.addView(t, new LinearLayout.LayoutParams(-2, (int) (34 * s)));
+        }
+        place(p, chips, W - 460, 10, 446, 34);
+        if (!Cluster.EVOS.equals(cur)) {
+            srTach = null; srSpeedo = null; srGaugeRow = null;
+            place(p, newCluster(cur), 0, 50, W, 490);
+            return;
+        }
         boolean obd = obdOn();
         float D = 330;
         if (obd) {
             srTach = new Show.Dial(this, s, 8000, 1000, 250, 6000, 1000, "RPM", RED);
-            place(p, srTach, W * 0.265f - D / 2, 70, D, D);
+            place(p, srTach, W * 0.265f - D / 2, 72, D, D);
         }
         boolean mph = useMph();
         srSpeedo = new Show.Dial(this, s, mph ? 140 : 220, mph ? 20 : 20, mph ? 5 : 5, 0, 1, mph ? "MPH" : "KM/H", RED);
@@ -2488,15 +2603,7 @@ public class Main extends Activity {
         float dt = srTickAt == 0 ? 0 : Math.min(5f, (now - srTickAt) / 1000f);
         srTickAt = now;
         float v = currentKmh();
-        boolean moving = !Float.isNaN(v) && v >= 3;
-        srTripLoad();
-        if (dt > 0 && moving) {
-            srTripM += v / 3.6f * dt;
-            srTripS += dt;
-            if (obdOn() && Obd.status == Obd.LIVE && Obd.FUEL_H.has() && now - Obd.FUEL_H.at < 5000)
-                srTripL += Obd.FUEL_H.value / 3600f * dt;
-            if (now - srTripSavedAt > 30000) { srTripSave(); srTripSavedAt = now; }
-        }
+        tripAdd(dt, v, now);
         if (now - srTripSampleAt >= 15000) {
             srTripSampleAt = now;
             if (srTripN == srTripHist.length) { System.arraycopy(srTripHist, 1, srTripHist, 0, srTripHist.length - 1); srTripN--; }
@@ -2505,6 +2612,28 @@ public class Main extends Activity {
         if (srSec == 3 && srSub == 5 && (now / 1000) % 2 == 0) srBuildTrip();
         h.postDelayed(this, 1000);
     }};
+
+    private long tripStepAt;
+
+    /** Suma un tramo al viaje (velocidad v en km/h durante dt segundos) y lo guarda cada 30 s. */
+    private void tripAdd(float dt, float v, long now) {
+        srTripLoad();
+        if (dt > 0 && !Float.isNaN(v) && v >= 3) {
+            srTripM += v / 3.6f * dt;
+            srTripS += dt;
+            if (obdOn() && Obd.status == Obd.LIVE && Obd.FUEL_H.has() && now - Obd.FUEL_H.at < 5000)
+                srTripL += Obd.FUEL_H.value / 3600f * dt;
+            if (now - srTripSavedAt > 30000) { srTripSave(); srTripSavedAt = now; }
+        }
+    }
+
+    /** El viaje cuando no hay Showroom en pantalla (lo llama el tic de los cuadros). */
+    private void tripStep() {
+        long now = SystemClock.elapsedRealtime();
+        float dt = tripStepAt == 0 ? 0 : Math.min(5f, (now - tripStepAt) / 1000f);
+        tripStepAt = now;
+        tripAdd(dt, currentKmh(), now);
+    }
 
     private void srBuildTrip() {
         FrameLayout p = srTripBox;
@@ -3250,7 +3379,12 @@ public class Main extends Activity {
             place(card, cs, pad, top, W - 2 * pad, artH);
             cs.setOnLongClickListener(new View.OnLongClickListener() { public boolean onLongClick(View v) { photoMenu(); return true; } });
         }
-        if (carSpeed) {
+        if (carSpeed && !Cluster.THEME.equals(clHome())) {
+            Cluster cl = newCluster(clHome());
+            if (aero) place(card, cl, pad, top + artH + 8, W - 2 * pad, regionH - artH - 8);
+            else place(card, cl, pad + inset, top, W - 2 * (pad + inset), regionH);
+            cl.bringToFront();
+        } else if (carSpeed) {
             evGauge = new Ev.Gauge(this, s, LIGHT, useMph(), TEXT, MUTED, EV_GLOW, BTN, neon && photo == null);
             if (aero) place(card, evGauge, pad, top + artH + 8, W - 2 * pad, regionH - artH - 8);
             else place(card, evGauge, pad + inset, top, W - 2 * (pad + inset), regionH);
@@ -9484,6 +9618,8 @@ public class Main extends Activity {
         if (evGauge != null) evGauge.setSpeed(kmh < 2 ? 0 : v, ok, fromObd, Nav.active != null && Nav.curSpeedLimitKmh > 0
             ? (useMph() ? Math.max(5, (int) (Math.round((Nav.curSpeedLimitKmh / 1.60934) / 5.0) * 5)) : Nav.curSpeedLimitKmh) : 0);
         if (mapGauge != null) mapGauge.setSpeed(kmh < 2 ? 0 : v, ok);
+        clSpeed = ok ? (kmh < 2 ? 0 : v) : Float.NaN; clSpeedObd = fromObd;
+        clRefresh();
         if (srOn()) srSpeed(kmh < 2 ? 0 : v, ok, fromObd, Nav.active != null && Nav.curSpeedLimitKmh > 0
             ? (useMph() ? Math.max(5, (int) (Math.round((Nav.curSpeedLimitKmh / 1.60934) / 5.0) * 5)) : Nav.curSpeedLimitKmh) : 0);
         if (faroGauge != null) {
@@ -11414,6 +11550,17 @@ public class Main extends Activity {
         }
         // opciones de los temas EvOS
         LinearLayout c = section(body, "Opciones del tema");
+        row(c, "Cuadro en el inicio", I18n.t(Cluster.name(clHome())), null, new Runnable() { public void run() { chooseCluster(true); } });
+        if (Ev.show()) row(c, "Cuadro en Instrumentos", I18n.t(Cluster.name(clInstr())), null, new Runnable() { public void run() { chooseCluster(false); } });
+        float tk = prefs.getFloat("tank_l", 0);
+        row(c, "Capacidad del tanque", tk > 0 ? Math.round(tk) + " L" : I18n.t("Sin indicar: el cuadro muestra el % y no la autonomía"), null,
+            new Runnable() { public void run() {
+                askNumber(I18n.t("Capacidad del tanque (litros)"), prefs.getFloat("tank_l", 0) > 0 ? prefs.getFloat("tank_l", 0) : -1, new NumCb() { public void on(float v) {
+                    prefs.edit().putFloat("tank_l", Math.max(0, Math.min(200, v))).apply();
+                    clRefresh();
+                    showSettings(C_STYLE);
+                }});
+            }});
         if (Ev.show()) {
             row(c, "Modelo del carro", I18n.t(Show.PHOTO.equals(srModel()) ? "Tu foto" : Show.modelName(srModel())) + " · " + I18n.t(Show.paintName(srPaint())), null,
                 new Runnable() { public void run() { srOpenModel(); } });
@@ -11429,11 +11576,12 @@ public class Main extends Activity {
                         applyAccent(); rebuild(); showSettings(C_STYLE);
                     }}).show();
             }});
-        } else
-        toggle(c, "Música Bluetooth en la pantalla", "Si la apagas, el mapa, Android Auto y CarPlay ocupan todo el espacio",
-            prefs.getBoolean("show_player", true), new IntCb() { public void on(int i) {
-                prefs.edit().putBoolean("show_player", i == 1).apply(); rebuild(); showSettings(C_STYLE);
-            }});
+        } else {
+            toggle(c, "Música Bluetooth en la pantalla", "Si la apagas, el mapa, Android Auto y CarPlay ocupan todo el espacio",
+                prefs.getBoolean("show_player", true), new IntCb() { public void on(int i) {
+                    prefs.edit().putBoolean("show_player", i == 1).apply(); rebuild(); showSettings(C_STYLE);
+                }});
+        }
         segmented(c, "Datos del escáner en la tarjeta del vehículo", "Los demás se ven al tocar o deslizar la tarjeta",
             new String[]{"2", "4"}, evObdCount() == 4 ? 1 : 0, new IntCb() { public void on(int i) {
                 prefs.edit().putInt("ev_obd_n", i == 1 ? 4 : 2).apply(); rebuild(); showSettings(C_STYLE);
@@ -14453,6 +14601,7 @@ public class Main extends Activity {
         showRpm();
         if (evGauge != null) evGauge.invalidate();
         try { srObd(); } catch (Throwable e) { Guard.log("Showroom OBD: " + e); }
+        try { clRefresh(); } catch (Throwable e) { Guard.log("Cuadro: " + e); }
         if (!evTiles.isEmpty()) updateEvTiles();
         java.util.HashSet<String> now = new java.util.HashSet<String>();
         boolean fresh = false;

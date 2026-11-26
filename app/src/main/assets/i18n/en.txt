@@ -2007,3 +2007,20 @@ Desde	Since
 Se mide mientras EvOS está en pantalla, con el GPS o el escáner. El consumo viene del escáner.	Measured while EvOS is on screen, with GPS or the scanner. Consumption comes from the scanner.
 del tablero (OBD)	from the dashboard (OBD)
 estimado con GPS	estimated with GPS
+Telemetría	Telemetry
+Del tema	Theme's own
+Cuadro en el inicio	Gauge on the home screen
+Cuadro en Instrumentos	Gauge in Gauges page
+Capacidad del tanque	Fuel tank capacity
+Capacidad del tanque (litros)	Fuel tank capacity (litres)
+Sin indicar: el cuadro muestra el % y no la autonomía	Not set: the gauge shows % and no range
+Revoluciones	Revs
+Carga	Load
+Admisión	Intake
+Autonomía	Range
+Hora	Time
+afuera	outside
+últimos 60 s	last 60 s
+Tanque	Tank
+medio	average
+autonomía	range

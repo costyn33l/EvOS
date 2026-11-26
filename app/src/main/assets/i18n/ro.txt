@@ -1977,3 +1977,20 @@ Desde	De la
 Se mide mientras EvOS está en pantalla, con el GPS o el escáner. El consumo viene del escáner.	Se măsoară cât timp EvOS e pe ecran, cu GPS-ul sau scanerul. Consumul vine de la scaner.
 del tablero (OBD)	din bord (OBD)
 estimado con GPS	estimat cu GPS
+Telemetría	Telemetrie
+Del tema	Al temei
+Cuadro en el inicio	Cadranul de pe ecranul principal
+Cuadro en Instrumentos	Cadranul din Instrumente
+Capacidad del tanque	Capacitatea rezervorului
+Capacidad del tanque (litros)	Capacitatea rezervorului (litri)
+Sin indicar: el cuadro muestra el % y no la autonomía	Neindicată: cadranul arată % și nu autonomia
+Revoluciones	Turație
+Carga	Sarcină
+Admisión	Admisie
+Autonomía	Autonomie
+Hora	Ora
+afuera	afară
+últimos 60 s	ultimele 60 s
+Tanque	Rezervor
+medio	mediu
+autonomía	autonomie

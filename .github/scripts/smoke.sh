@@ -64,6 +64,15 @@ go sr:3:1 6;   shot 74-sr-instrumentos
 go sr:3:2 8;   shot 75-sr-parametros
 go sr:3:3 6;   shot 76-sr-diagnostico
 go sr:3:5 6;   shot 78-sr-viaje
+# cuadros de instrumentos (1.2): en Instrumentos, en el inicio del Showroom y en el de un tema EvOS
+for c in telemetry sport classic; do go cl:instr:$c 8; go sr:3:1 6; shot 90-cl-instr-$c; done
+go cl:instr:evos 4
+for c in telemetry sport classic; do go cl:home:$c 8; go sr:0 5; shot 91-cl-sr-$c; done
+go tema-ev:inferno 8
+for c in telemetry sport classic; do go cl:home:$c 8; shot 92-cl-inferno-$c; done
+go tema-ev:aero 8; shot 93-cl-aero-classic
+go cl:home:theme 4
+go tema-ev:showroom 8
 go sr-modelo:suv:blue 8; go sr:3:6 6; shot 79-sr-modelo
 for m in sedan wagon coupe mpv; do go sr-modelo:$m:red 6; go sr:0 4; shot 80-sr-$m; done
 go sr-modelo:hatch:silver 6
