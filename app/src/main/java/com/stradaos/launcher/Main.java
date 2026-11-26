@@ -868,6 +868,7 @@ public class Main extends Activity {
                     if (q.length > 2) srSub = Integer.parseInt(q[2]);
                     if (settingsView != null) closeSettings();
                     closeDrawer();
+                    if (vpanel != null && vpanel.isOpen()) vpanel.closeNow();
                     if (srOn()) srShow(Integer.parseInt(q[1])); else srSec = Integer.parseInt(q[1]);
                 }
                 else if (v.startsWith("sr-modelo:")) {
@@ -1752,8 +1753,9 @@ public class Main extends Activity {
     private void srBuildHome(FrameLayout sec) {
         float W = srCW;
         sec.addView(new Show.Floor(this, 0.28f, 0.36f), new FrameLayout.LayoutParams(-1, -1));
-        place(sec, srLabel("Mi vehículo", 12, MUTED), 28, 24, 400, 16);
-        placeWrap(sec, srNameRow(26), 28, 42);
+        boolean named = prefs.getString("car_name", "").trim().length() > 0;
+        if (named) place(sec, srLabel("Mi vehículo", 12, MUTED), 28, 24, 400, 16);
+        placeWrap(sec, srNameRow(26), 28, named ? 42 : 30);
         final Show.Car car = srCarView(true);
         place(sec, car, 38, 166, Math.min(520, W - 380), 266);
         car.setOnClickListener(new View.OnClickListener() { public void onClick(View v) { srSub = 0; srShow(3); } });
@@ -1846,7 +1848,8 @@ public class Main extends Activity {
         LinearLayout r = new LinearLayout(this);
         r.setGravity(Gravity.CENTER_VERTICAL);
         TextView n = tv("", size, TEXT, true);
-        n.setText(prefs.getString("car_name", I18n.t("Mi vehículo")));
+        String cn = prefs.getString("car_name", "").trim();
+        n.setText(cn.length() > 0 ? cn : I18n.t("Mi vehículo"));
         r.addView(n);
         String tag = prefs.getString("car_tag", "").trim();
         if (tag.length() > 0) {
@@ -2014,7 +2017,9 @@ public class Main extends Activity {
             FrameLayout.LayoutParams ilp = new FrameLayout.LayoutParams((int) (28 * s), (int) (28 * s), Gravity.CENTER_HORIZONTAL | Gravity.TOP);
             ilp.topMargin = (int) (17 * s);
             b.addView(iv, ilp);
-            TextView l = srLabel(SR_SUBS[i], 13, 0xFF9A9A9A);
+            TextView l = srLabel(SR_SUBS[i], 12, 0xFF9A9A9A);
+            if (SDK >= 21) l.setLetterSpacing(0.04f);
+            l.setEllipsize(null);
             l.setGravity(Gravity.CENTER);
             FrameLayout.LayoutParams llp = new FrameLayout.LayoutParams(-1, -2, Gravity.TOP);
             llp.topMargin = (int) (54 * s);
@@ -14361,7 +14366,7 @@ public class Main extends Activity {
         int at = settingsView != null && settingsView.getParent() == root ? root.indexOfChild(settingsView) : -1;
         if (at >= 0) root.addView(vpanel, at, new FrameLayout.LayoutParams(-1, -1));
         else root.addView(vpanel, new FrameLayout.LayoutParams(-1, -1));
-        if (prefs.getBoolean("obd_handle", true)) {
+        if (prefs.getBoolean("obd_handle", true) && !srOn()) {   // Showroom: el vehículo está en el menú
             vhandle = new VehiclePanel.Handle(this, s, left, new Runnable() { public void run() { openVehiclePanel(); } });
             FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams((int) (26 * s), (int) (120 * s));
             lp.gravity = (left ? Gravity.LEFT : Gravity.RIGHT) | Gravity.CENTER_VERTICAL;
