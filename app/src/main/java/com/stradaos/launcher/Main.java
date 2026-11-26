@@ -856,7 +856,7 @@ public class Main extends Activity {
                     int n = Integer.parseInt(v.substring(12)) - 1;
                     if (n >= 0 && n < FREE_THEMES.length) applyFreeTheme(FREE_THEMES[n]);
                 }
-                else if (v.startsWith("tema-ev:")) applyEv(v.substring(8));
+                else if (v.startsWith("tema-ev:")) applyEv(v.substring(8), false);
                 else if ("ev-datos".equals(v)) openEvObd();
                 else if (v.startsWith("ev-n:")) { prefs.edit().putInt("ev_obd_n", Integer.parseInt(v.substring(5))).apply(); rebuild(); }
                 else if (v.startsWith("musica-ev:")) { prefs.edit().putBoolean("show_player", v.endsWith("1")).apply(); rebuild(); }
@@ -10140,7 +10140,9 @@ public class Main extends Activity {
 
     // ── Personalización: temas EvOS ──
 
-    private void applyEv(String id) {
+    private void applyEv(String id) { applyEv(id, true); }
+
+    private void applyEv(String id, boolean show) {
         id = Ev.valid(id);
         String was = Ev.id;
         SharedPreferences.Editor e = prefs.edit().putString("ev_theme", id == null ? "none" : id).remove("premium_theme");
@@ -10151,6 +10153,7 @@ public class Main extends Activity {
         applyThemeNow();
         applyAccent();
         rebuild();
+        if (!show) return;
         showSettings(C_STYLE);
         toast(I18n.t("Tema aplicado:") + " " + (id == null ? I18n.t("Clásico") : Ev.name(id)));
     }

@@ -374,7 +374,7 @@ final class Ev {
 
     /** Llamas en el borde de abajo (tres capas) y chispas que suben. */
     static void flames(Canvas c, int w, int h, Paint p) {
-        float fh = h * 0.26f;
+        float fh = h * 0.22f;
         int[][] layers = {{0x00B3170A, 0xC0B3170A, 0xFFE0300F}, {0x00FF6A1A, 0xD0FF6A1A, 0xFFFF9A2E}, {0x00FFD36B, 0x90FFD36B, 0xD0FFE08A}};
         float[] amp = {1f, 0.66f, 0.35f};
         int[] count = {20, 28, 38};
