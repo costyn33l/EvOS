@@ -5,7 +5,7 @@
 # que corren en paralelo. Uso: regresion.sh API APK CARPETA [PARTE: 1, 2, 3 o all]
 API=$1; APK=$2; OUT=$3; PART=${4:-all}; mkdir -p $OUT
 part() { [ "$PART" = all ] || [ "$PART" = "$1" ]; }
-PKG=com.stradaos.launcher.debug
+PKG=com.evos.launcher.debug
 ACT=$PKG/com.stradaos.launcher.Main
 adb wait-for-device
 for i in $(seq 1 100); do [ "$(adb shell getprop sys.boot_completed | tr -d '\r')" = "1" ] && break; sleep 3; done

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Ajustes: al cambiar un ajuste la página debe quedarse donde estaba, sin parpadeo. Graba la pantalla mientras se
 # tocan interruptores y opciones en varias secciones (ya desplazadas) y deja los videos en salida/.
-PKG=com.stradaos.launcher.debug
+PKG=com.evos.launcher.debug
 ACT=$PKG/com.stradaos.launcher.Main
 OUT=salida; mkdir -p $OUT
 adb wait-for-device

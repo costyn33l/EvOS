@@ -1938,3 +1938,24 @@ Posición del carro	Car position
 Abajo: al navegar ves más camino por delante (con el mapa según tu dirección)	Bottom: while navigating, see more of the road ahead (with the map in direction of travel)
 Centro	Center
 Abajo	Bottom
+Parámetros del motor	Engine parameters
+Mantén presionado para ponerlo en la pantalla de inicio	Long-press to put it on the home screen
+Mantén presionado un dato para ponerlo en la pantalla de inicio · desliza a la derecha para volver	Long-press a value to put it on the home screen · swipe right to go back
+Ya está en la pantalla de inicio	It's already on the home screen
+¿En lugar de cuál?	Instead of which one?
+En la pantalla de inicio:	On the home screen:
+Datos en la tarjeta del vehículo	Values on the vehicle card
+Temas EvOS	EvOS themes
+El inicio de siempre, con el color de acento que elijas. Tiene versión clara.	The usual home screen, with the accent color you choose. Has a light version.
+Tarjetas de vidrio esmerilado sobre un fondo oscuro, acentos verde menta y la velocidad en grande con una barra de energía. Tiene versión clara.	Frosted-glass cards on a dark background, mint accents and a big speed readout with an energy bar. Has a light version.
+Instrumento de precisión: negro mate, líneas finas en lugar de tarjetas, la velocidad enorme y una regla con aguja. Tiene versión clara.	Precision instrument: matte black, hairlines instead of cards, a huge speed readout and a needle ruler. Has a light version.
+Cuadrante de auto eléctrico con tres arcos: velocidad, revoluciones y refrigerante, en rosa, violeta y cian. Tiene versión clara.	Electric-car dial with three arcs: speed, RPM and coolant, in pink, violet and cyan. Has a light version.
+Bordes de neón con el color de acento que elijas, barra de apps lateral y el carro con los faros encendidos sobre una rejilla de luz. Siempre oscuro.	Neon edges in the accent color you choose, a side app bar and the car with its headlights on over a light grid. Always dark.
+Rojo y negro: llamas en el borde de abajo, fibra de carbono, luces de cambio de marcha y un tacómetro de carreras con zona roja. Siempre oscuro.	Red and black: flames along the bottom edge, carbon fiber, shift lights and a racing tachometer with a red zone. Always dark.
+Opciones del tema	Theme options
+Música Bluetooth en la pantalla	Bluetooth music on screen
+Si la apagas, el mapa, Android Auto y CarPlay ocupan todo el espacio	If you turn it off, the map, Android Auto and CarPlay take up all the space
+Datos del escáner en la tarjeta del vehículo	Scanner values on the vehicle card
+Los demás se ven al tocar o deslizar la tarjeta	The rest show when you tap or swipe the card
+Elegir los datos	Choose the values
+Todos los datos del escáner en vivo	All scanner values, live

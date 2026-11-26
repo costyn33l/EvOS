@@ -2,7 +2,7 @@
 # Bloque 5 (2.17): capturas del inicio con las opciones nuevas (íconos Wi-Fi/Bluetooth, barra compacta, sin nombres,
 # lateral a cada lado, velocidad arriba sin GPS), Apariencia, diagnóstico del mapa en inglés, árabe y tema del sistema.
 API=$1; OUT=$2; mkdir -p $OUT
-PKG=com.stradaos.launcher.debug
+PKG=com.evos.launcher.debug
 ACT=$PKG/com.stradaos.launcher.Main
 adb wait-for-device
 for i in $(seq 1 100); do [ "$(adb shell getprop sys.boot_completed | tr -d '\r')" = "1" ] && break; sleep 3; done

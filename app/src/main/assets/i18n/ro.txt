@@ -1908,3 +1908,24 @@ Posición del carro	Poziția mașinii
 Abajo: al navegar ves más camino por delante (con el mapa según tu dirección)	Jos: când navighezi vezi mai mult din drumul din față (cu harta după direcția ta)
 Centro	Centru
 Abajo	Jos
+Parámetros del motor	Parametri motor
+Mantén presionado para ponerlo en la pantalla de inicio	Ține apăsat ca să-l pui pe ecranul principal
+Mantén presionado un dato para ponerlo en la pantalla de inicio · desliza a la derecha para volver	Ține apăsat pe o valoare ca s-o pui pe ecranul principal · glisează spre dreapta ca să revii
+Ya está en la pantalla de inicio	E deja pe ecranul principal
+¿En lugar de cuál?	În locul căreia?
+En la pantalla de inicio:	Pe ecranul principal:
+Datos en la tarjeta del vehículo	Valori pe cardul vehiculului
+Temas EvOS	Teme EvOS
+El inicio de siempre, con el color de acento que elijas. Tiene versión clara.	Ecranul principal obișnuit, cu culoarea de accent aleasă de tine. Are și variantă luminoasă.
+Tarjetas de vidrio esmerilado sobre un fondo oscuro, acentos verde menta y la velocidad en grande con una barra de energía. Tiene versión clara.	Carduri din sticlă mată pe fundal întunecat, accente verde-mentă și viteza mare, cu o bară de energie. Are și variantă luminoasă.
+Instrumento de precisión: negro mate, líneas finas en lugar de tarjetas, la velocidad enorme y una regla con aguja. Tiene versión clara.	Instrument de precizie: negru mat, linii fine în loc de carduri, viteza uriașă și o riglă cu ac. Are și variantă luminoasă.
+Cuadrante de auto eléctrico con tres arcos: velocidad, revoluciones y refrigerante, en rosa, violeta y cian. Tiene versión clara.	Cadran de mașină electrică cu trei arce: viteză, turații și antigel, în roz, violet și cyan. Are și variantă luminoasă.
+Bordes de neón con el color de acento que elijas, barra de apps lateral y el carro con los faros encendidos sobre una rejilla de luz. Siempre oscuro.	Margini neon în culoarea de accent aleasă, bară de aplicații laterală și mașina cu farurile aprinse pe o grilă de lumină. Mereu întunecată.
+Rojo y negro: llamas en el borde de abajo, fibra de carbono, luces de cambio de marcha y un tacómetro de carreras con zona roja. Siempre oscuro.	Roșu și negru: flăcări pe marginea de jos, fibră de carbon, lumini de schimbare a treptei și un turometru de curse cu zonă roșie. Mereu întunecată.
+Opciones del tema	Opțiunile temei
+Música Bluetooth en la pantalla	Muzică Bluetooth pe ecran
+Si la apagas, el mapa, Android Auto y CarPlay ocupan todo el espacio	Dacă o oprești, harta, Android Auto și CarPlay ocupă tot spațiul
+Datos del escáner en la tarjeta del vehículo	Valori OBD pe cardul vehiculului
+Los demás se ven al tocar o deslizar la tarjeta	Restul apar când atingi sau glisezi cardul
+Elegir los datos	Alege valorile
+Todos los datos del escáner en vivo	Toate valorile scanerului, live

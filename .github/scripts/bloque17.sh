@@ -2,7 +2,7 @@
 # Bloque 17 (2.30): clima sin internet (#46), volver al inicio tras la app Bluetooth (#47), ▶ con Android Auto (#50)
 # y un recorrido por los ajustes para ver que nada se rompió. Uso: bloque17.sh API APK CARPETA
 API=$1; APK=$2; OUT=$3; mkdir -p $OUT
-PKG=com.stradaos.launcher.debug
+PKG=com.evos.launcher.debug
 ACT=$PKG/com.stradaos.launcher.Main
 adb wait-for-device
 for i in $(seq 1 100); do [ "$(adb shell getprop sys.boot_completed | tr -d '\r')" = "1" ] && break; sleep 3; done

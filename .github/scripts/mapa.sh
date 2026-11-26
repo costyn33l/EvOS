@@ -2,7 +2,7 @@
 # Mapa sin conexión en el emulador: copia colombia.map, corta el internet y toma capturas del mapa
 # (Medellín como ciudad de ejemplo) en oscuro y claro, a varios zooms, y del diagnóstico.
 API=${API:-30}
-PKG=com.stradaos.launcher.debug
+PKG=com.evos.launcher.debug
 ACT=$PKG/com.stradaos.launcher.Main
 OUT=salida; mkdir -p $OUT
 adb wait-for-device

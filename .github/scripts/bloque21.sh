@@ -4,7 +4,7 @@
 # revoluciones junto al velocímetro en los temas.
 # Uso: bloque21.sh API APK CARPETA
 API=$1; APK=$2; OUT=$3; mkdir -p $OUT
-PKG=com.stradaos.launcher.debug
+PKG=com.evos.launcher.debug
 ACT=$PKG/com.stradaos.launcher.Main
 adb wait-for-device
 for i in $(seq 1 100); do [ "$(adb shell getprop sys.boot_completed | tr -d '\r')" = "1" ] && break; sleep 3; done

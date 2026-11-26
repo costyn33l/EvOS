@@ -62,6 +62,7 @@ import java.util.Locale;
 public class Main extends Activity {
 
     static int RED = 0xFFFE3211;   // color de acento (configurable)
+    static int EV_GLOW = 0xFFFE3211;   // temas EvOS: color de luz (adornos)
     static int BG = 0xFF15171C;
     static int CARD = 0xFF1E2128;
     static int INNER = 0xFF262A33;
@@ -855,6 +856,10 @@ public class Main extends Activity {
                     int n = Integer.parseInt(v.substring(12)) - 1;
                     if (n >= 0 && n < FREE_THEMES.length) applyFreeTheme(FREE_THEMES[n]);
                 }
+                else if (v.startsWith("tema-ev:")) applyEv(v.substring(8));
+                else if ("ev-datos".equals(v)) openEvObd();
+                else if (v.startsWith("ev-n:")) { prefs.edit().putInt("ev_obd_n", Integer.parseInt(v.substring(5))).apply(); rebuild(); }
+                else if (v.startsWith("musica-ev:")) { prefs.edit().putBoolean("show_player", v.endsWith("1")).apply(); rebuild(); }
                 else if (v.startsWith("tema-premium:")) {
                     // tema-premium:aurora lo aplica; «tema-premium:» lo quita
                     applyPremium(v.length() > 13 ? v.substring(13) : null);
@@ -1135,6 +1140,7 @@ public class Main extends Activity {
 
     @Override
     public void onBackPressed() {
+        if (evObdPage != null) { closeEvObd(); return; }
         if (videoBig != null && videoCard != null) { videoMode(videoCard, 0); return; }
         if (liveMap != null && liveMap.isExploring()) { liveMap.follow(); return; }
         if (vpanel != null && vpanel.isOpen()) { vpanel.close(); return; }
@@ -1299,6 +1305,7 @@ public class Main extends Activity {
     }
 
     private void build0(int W, int H) {
+        if (evObdPage != null) { Obd.removeListener(evObdL); evObdPage = null; evCells.clear(); }
         root.removeAllViews();
         idleView = null; idleClock = idleDate = idleSpeedTv = null; idleGauge = null;
         // versión de prueba: simular otra pantalla (p. ej. una ancha de 1920x720 en una tablet)
@@ -1402,13 +1409,20 @@ public class Main extends Activity {
             android.graphics.drawable.BitmapDrawable ab = new android.graphics.drawable.BitmapDrawable(getResources(), premBg);
             premBgHolder = sim > 0 && root.getChildCount() > 0 ? root.getChildAt(0) : root;
             premBgHolder.setBackground(ab);
+        } else if (Ev.on()) {
+            // temas EvOS: fondo propio (degradados, rejilla de luz, llamas…) pintado una vez a media resolución
+            premBg = Ev.background(Math.max(1, W), Math.max(1, H), LIGHT, EV_GLOW);
+            android.graphics.drawable.BitmapDrawable ab = new android.graphics.drawable.BitmapDrawable(getResources(), premBg);
+            premBgHolder = sim > 0 && root.getChildCount() > 0 ? root.getChildAt(0) : root;
+            premBgHolder.setBackground(ab);
         } else { premBg = null; premBgHolder = null; }
+        evGauge = null; evTiles.clear();
         board = new FrameLayout(this);
         FrameLayout.LayoutParams blp = new FrameLayout.LayoutParams((int) ((dw + ex) * s), (int) (dh * s));
         blp.gravity = Gravity.CENTER;
         root.addView(board, blp);
 
-        if (!sideDock && !noDock && !premium) {
+        if (!sideDock && !noDock && !premium && !Ev.on()) {
             // franja del dock a todo el ancho (aunque la pantalla no sea 1024x600)
             View dockBg = new View(this);
             dockBg.setBackgroundColor(DOCK);
@@ -1811,6 +1825,7 @@ public class Main extends Activity {
     }
 
     private void buildCarCard() {
+        if (Ev.on()) { buildEvCar(); return; }
         final FrameLayout card = card(carX, rowY, 300, cardH, CARD);
         carCard = card;
         // barra de abajo compacta: la foto crece y la velocidad baja; sin velocidad (carros sin GPS) la foto llena el resto
@@ -1920,6 +1935,497 @@ public class Main extends Activity {
         // Oculta: se arma igual (la velocidad y el aceite siguen actualizándose sin fallar) pero no se muestra.
         if (!showCar) board.removeView(card);
         setGps(false, 0);
+    }
+
+    // ───────────────────────── temas EvOS: tarjeta del vehículo y página de datos en vivo ─────────────────────────
+    // La tarjeta lleva el nombre y la placa, el instrumento del tema y 2 o 4 datos del escáner OBD elegidos por el
+    // usuario (o el mantenimiento más cercano si el escáner está apagado). Tocar la tarjeta o deslizarla hacia la
+    // izquierda abre «Parámetros del motor»: todos los datos que entrega el auto, en vivo.
+
+    private Ev.Gauge evGauge;
+    /** {clave, valor, unidad, barra (relleno), ancho de la barra (lienzo)} */
+    private final List<Object[]> evTiles = new ArrayList<Object[]>();
+
+    private static Obd.Sensor obdSensor(String k) {
+        if (k == null) return null;
+        for (Obd.Sensor x : Obd.ALL) if (x.key.equals(k)) return x;
+        return null;
+    }
+
+    private int evObdCount() { return prefs.getInt("ev_obd_n", 2) >= 4 ? 4 : 2; }
+
+    /** Datos del escáner que se ven en la tarjeta del vehículo (los elegidos y, si faltan, los de fábrica). */
+    private String[] evKeys() {
+        int n = evObdCount();
+        String[] def = {"coolant", "consumption", "rpm", "volt"};
+        List<String> out = new ArrayList<String>();
+        String raw = prefs.getString("ev_obd_keys", null);
+        if (raw != null) for (String k : raw.split(",")) if (obdSensor(k) != null && !out.contains(k)) out.add(k);
+        for (String k : def) { if (out.size() >= n) break; if (!out.contains(k)) out.add(k); }
+        while (out.size() > n) out.remove(out.size() - 1);
+        return out.toArray(new String[0]);
+    }
+
+    private void saveEvKeys(String[] keys) {
+        StringBuilder b = new StringBuilder();
+        for (String k : keys) { if (b.length() > 0) b.append(','); b.append(k); }
+        prefs.edit().putString("ev_obd_keys", b.toString()).apply();
+    }
+
+    /** Fondo de los recuadros de datos según el tema. */
+    private Drawable evTileBg(float r) {
+        if (Ev.is(Ev.MONO)) {
+            GradientDrawable g = new GradientDrawable();
+            g.setColor(LIGHT ? 0x08000000 : 0x06FFFFFF);
+            g.setStroke(Math.max(1, (int) s), LIGHT ? 0xFFD3CFC6 : 0xFF2A2824);
+            g.setCornerRadius(2 * s);
+            return g;
+        }
+        if (Ev.is(Ev.INFERNO)) return Ev.card(s, LIGHT, EV_GLOW, false, 6);
+        GradientDrawable g = round(LIGHT ? 0x0D000000 : 0x0FFFFFFF, r);
+        g.setStroke(Math.max(1, (int) s), Ev.is(Ev.NEON) ? Ev.alpha(EV_GLOW, 0x55) : LIGHT ? 0x10000000 : 0x12FFFFFF);
+        return g;
+    }
+
+    private void buildEvCar() {
+        final FrameLayout card = card(carX, rowY, 300, cardH, CARD);
+        carCard = card;
+        final float W = 300, H = cardH, pad = 16;
+        carTv = tv(prefs.getString("car_name", "Mi vehículo"), Ev.is(Ev.MONO) ? 22 : 18, TEXT, true);
+        String tag = prefs.getString("car_tag", "").trim();
+        // placa con la franja azul (estilo europeo), a la derecha del nombre
+        LinearLayout plate = new LinearLayout(this);
+        plate.setGravity(Gravity.CENTER_VERTICAL);
+        GradientDrawable pb = round(0xFFF4F6F8, 3);
+        pb.setStroke(Math.max(1, (int) s), 0xFF2B3340);
+        plate.setBackground(pb);
+        TextView band = tv("RO", 7, Color.WHITE, true);
+        band.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
+        band.setBackgroundColor(0xFF1F4FBF);
+        band.setPadding(0, 0, 0, (int) (2 * s));
+        plate.addView(band, new LinearLayout.LayoutParams((int) (13 * s), (int) (20 * s)));
+        chipTv = tv(tag, 11, 0xFF111418, true);
+        chipTv.setPadding((int) (6 * s), 0, (int) (6 * s), 0);
+        plate.addView(chipTv);
+        plate.setVisibility(tag.length() == 0 ? View.GONE : View.VISIBLE);
+        place(card, carTv, pad + 2, 16, tag.length() == 0 ? W - 2 * pad : 160, 26);
+        FrameLayout.LayoutParams plp = new FrameLayout.LayoutParams(-2, (int) (22 * s));
+        plp.gravity = Gravity.TOP | Gravity.RIGHT;
+        plp.topMargin = (int) (17 * s);
+        plp.rightMargin = (int) ((Ev.is(Ev.NEON) ? pad + 6 : pad) * s);
+        card.addView(plate, plp);
+
+        // abajo: los datos del escáner o, sin escáner, el mantenimiento más cercano
+        final boolean obd = obdOn();
+        final String[] keys = evKeys();
+        float bottom = 0;
+        if (obd) bottom = keys.length == 4 ? 116 : 64;
+        else if (oilHome) bottom = 34;
+        float inset = Ev.is(Ev.NEON) ? 6 : 0;
+        float top = 50, by = H - 14 - inset - bottom, regionH = by - top - (bottom > 0 ? 10 : 0);
+
+        // velocidad y GPS: el instrumento los dibuja; los de siempre quedan ocultos (showSpeed los sigue usando)
+        speedTv = tv("0", 12, TEXT, true);
+        speedTv.setVisibility(View.GONE);
+        card.addView(speedTv);
+        gpsDot = new View(this);
+        gpsDot.setVisibility(View.GONE);
+        card.addView(gpsDot);
+        gpsTv = tv("GPS", 11, MUTED, false);
+        gpsTv.setVisibility(View.GONE);
+        card.addView(gpsTv);
+        carGauge = null;
+
+        Bitmap photo = CarPhoto.load(this);
+        boolean aero = Ev.is(Ev.AERO), neon = Ev.is(Ev.NEON);
+        float artH = 0;
+        if ((aero || neon) && carSpeed) artH = Math.min(aero ? 112 : regionH * 0.5f, regionH * 0.5f);
+        if (!carSpeed) artH = regionH;   // sin velocidad: la foto ocupa todo
+        if (photo != null && artH > 0) {
+            ImageView car = new ImageView(this);
+            boolean cutout = false;
+            try { cutout = CarPhoto.hasTransparency(photo); } catch (Throwable ignored) { }
+            if (cutout) car.setImageBitmap(photo);
+            else car.setImageBitmap(CarPhoto.cardCrop(photo, (int) ((W - 2 * pad) * s), (int) (artH * s), 14 * s));
+            car.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            place(card, car, pad, top + (neon ? 4 : 0), W - 2 * pad, artH);
+            car.setOnLongClickListener(new View.OnLongClickListener() { public boolean onLongClick(View v) { photoMenu(); return true; } });
+        } else if (aero && artH > 0) {
+            View cs = new Ev.CarSide(this, EV_GLOW);
+            place(card, cs, pad, top, W - 2 * pad, artH);
+            cs.setOnLongClickListener(new View.OnLongClickListener() { public boolean onLongClick(View v) { photoMenu(); return true; } });
+        }
+        if (carSpeed) {
+            evGauge = new Ev.Gauge(this, s, LIGHT, useMph(), TEXT, MUTED, EV_GLOW, BTN, neon && photo == null);
+            if (aero) place(card, evGauge, pad, top + artH + 8, W - 2 * pad, regionH - artH - 8);
+            else place(card, evGauge, pad + inset, top, W - 2 * (pad + inset), regionH);
+            if (neon && photo != null) evGauge.bringToFront();
+        }
+
+        evTiles.clear();
+        oilValTv = null; oilBar = null; oilBarBg = null; oilLblTv = null; oilIc = null;
+        if (obd) {
+            int cols = 2, rows = keys.length / 2;
+            float gap = 8, tw = (W - 2 * (pad + inset) - gap) / 2, th = keys.length == 4 ? 54 : 64;
+            for (int i = 0; i < keys.length; i++) {
+                final Obd.Sensor sn = obdSensor(keys[i]);
+                if (sn == null) continue;
+                FrameLayout tile = new FrameLayout(this);
+                tile.setBackground(evTileBg(12));
+                float tx = pad + inset + (i % cols) * (tw + gap), ty = by + (i / cols) * (th + gap);
+                place(card, tile, tx, ty, tw, th);
+                LinearLayout lr = new LinearLayout(this);
+                lr.setGravity(Gravity.CENTER_VERTICAL);
+                View dot = new View(this);
+                dot.setBackground(round(Ev.sensorColor(sn.key), 3));
+                lr.addView(dot, new LinearLayout.LayoutParams((int) (6 * s), (int) (6 * s)));
+                TextView lb = tv(sn.label, 11, MUTED, false);
+                lb.setPadding((int) (5 * s), 0, 0, 0);
+                lr.addView(lb, new LinearLayout.LayoutParams(-1, -2));
+                place(tile, lr, 10, 7, tw - 18, 16);
+                LinearLayout vr = new LinearLayout(this);
+                vr.setBaselineAligned(true);
+                TextView val = tv("—", th < 60 ? 18 : 21, TEXT, true);
+                val.setTypeface(Ev.numFace());
+                vr.addView(val);
+                TextView un = tv(sn.unit, 10, MUTED, false);
+                un.setPadding((int) (4 * s), 0, 0, 0);
+                vr.addView(un);
+                placeWrap(tile, vr, 10, th < 60 ? 23 : 26);
+                FrameLayout track = new FrameLayout(this);
+                track.setBackground(round(LIGHT ? 0x14000000 : 0x14FFFFFF, 2));
+                View fill = new View(this);
+                fill.setBackground(round(Ev.sensorColor(sn.key), 2));
+                track.addView(fill, new FrameLayout.LayoutParams(0, -1));
+                float bw = tw - 20;
+                place(tile, track, 10, th - 9, bw, 3);
+                evTiles.add(new Object[]{sn.key, val, un, fill, bw});
+            }
+            updateEvTiles();
+        } else if (oilHome) {
+            buildOilStrip(card, pad + inset, by, W - 2 * (pad + inset), 34);
+        }
+
+        // tocar la tarjeta o deslizarla hacia la izquierda abre los datos en vivo
+        card.setOnClickListener(new View.OnClickListener() { public void onClick(View v) { openEvObd(); } });
+        card.setOnTouchListener(new View.OnTouchListener() {
+            float x0, y0;
+            public boolean onTouch(View v, MotionEvent e) {
+                if (e.getActionMasked() == MotionEvent.ACTION_DOWN) { x0 = e.getX(); y0 = e.getY(); return false; }
+                if (e.getActionMasked() != MotionEvent.ACTION_UP) return false;
+                float dx = e.getX() - x0, dy = e.getY() - y0;
+                if (Math.abs(dx) < 50 * s || Math.abs(dx) < 1.5f * Math.abs(dy)) return false;
+                MotionEvent c = MotionEvent.obtain(e);
+                c.setAction(MotionEvent.ACTION_CANCEL);
+                v.onTouchEvent(c);
+                c.recycle();
+                openEvObd();
+                return true;
+            }
+        });
+        if (!showCar) board.removeView(card);
+        setGps(false, 0);
+    }
+
+    /** Los datos de la tarjeta con la última lectura del escáner. */
+    private void updateEvTiles() {
+        for (Object[] o : evTiles) {
+            Obd.Sensor sn = obdSensor((String) o[0]);
+            if (sn == null) continue;
+            boolean fresh = sn.has() && Obd.status == Obd.LIVE;
+            String v = fresh ? sn.text() : "—";
+            TextView tv = (TextView) o[1];
+            if (!v.contentEquals(tv.getText())) tv.setText(v);
+            View fill = (View) o[3];
+            float frac = fresh ? Math.max(0, Math.min(1, (sn.value - sn.min) / Math.max(0.0001f, sn.max - sn.min))) : 0;
+            int w = (int) (frac * (Float) o[4] * s);
+            ViewGroup.LayoutParams lp = fill.getLayoutParams();
+            if (lp.width != w) { lp.width = w; fill.setLayoutParams(lp); }
+        }
+    }
+
+    // ── «Parámetros del motor»: todos los datos en vivo ──
+
+    private FrameLayout evObdPage;
+    private LinearLayout evGrid;
+    private TextView evStatusTv, evClockTv;
+    private View evStatusDot;
+    private String evGridKey = "";
+    /** {clave, valor, barra, ancho} */
+    private final List<Object[]> evCells = new ArrayList<Object[]>();
+
+    private final Obd.Listener evObdL = new Obd.Listener() { public void onObd() {
+        try { refreshEvObd(); } catch (Throwable e) { Guard.log("Datos en vivo: " + e); }
+    }};
+
+    private void openEvObd() {
+        if (evObdPage != null || root == null) return;
+        final float dragMin = 80 * s;
+        FrameLayout page = new FrameLayout(this) {
+            float x0, y0; boolean drag;
+            @Override public boolean onInterceptTouchEvent(MotionEvent e) {
+                if (e.getActionMasked() == MotionEvent.ACTION_DOWN) { x0 = e.getX(); y0 = e.getY(); drag = false; }
+                else if (e.getActionMasked() == MotionEvent.ACTION_MOVE) {
+                    float dx = e.getX() - x0, dy = e.getY() - y0;
+                    if (dx > dragMin && dx > 2 * Math.abs(dy)) drag = true;
+                }
+                return drag;
+            }
+            @Override public boolean onTouchEvent(MotionEvent e) {
+                if (drag && e.getActionMasked() == MotionEvent.ACTION_UP) { closeEvObd(); return true; }
+                return true;
+            }
+        };
+        evObdPage = page;
+        if (premBg != null) page.setBackground(new android.graphics.drawable.BitmapDrawable(getResources(), premBg));
+        else page.setBackgroundColor(BG);
+        root.addView(page, new FrameLayout.LayoutParams(-1, -1));
+        LinearLayout col = new LinearLayout(this);
+        col.setOrientation(LinearLayout.VERTICAL);
+        page.addView(col, new FrameLayout.LayoutParams(-1, -1));
+        // cabecera: atrás, título, estado del escáner y la hora
+        LinearLayout head = new LinearLayout(this);
+        head.setGravity(Gravity.CENTER_VERTICAL);
+        head.setPadding((int) (12 * s), (int) (10 * s), (int) (20 * s), (int) (10 * s));
+        FrameLayout back = circleIcon("arrow_back", 46, 24, BTN);
+        if (!Ev.is(Ev.MONO)) back.setBackground(round(BTN, 14));
+        back.setOnClickListener(new View.OnClickListener() { public void onClick(View v) { closeEvObd(); } });
+        head.addView(back, new LinearLayout.LayoutParams((int) (72 * s), (int) (42 * s)));
+        TextView title = tv("Parámetros del motor", 18, TEXT, true);
+        title.setPadding((int) (16 * s), 0, 0, 0);
+        head.addView(title, new LinearLayout.LayoutParams(0, -2, 1));
+        evStatusDot = new View(this);
+        head.addView(evStatusDot, new LinearLayout.LayoutParams((int) (8 * s), (int) (8 * s)));
+        evStatusTv = tv("OBD", 13, MUTED, true);
+        evStatusTv.setPadding((int) (6 * s), 0, (int) (18 * s), 0);
+        head.addView(evStatusTv);
+        evClockTv = tv("", 18, TEXT, true);
+        head.addView(evClockTv);
+        col.addView(head, new LinearLayout.LayoutParams(-1, -2));
+        View hr = new View(this);
+        hr.setBackgroundColor(LIGHT ? 0x14000000 : 0x14FFFFFF);
+        col.addView(hr, new LinearLayout.LayoutParams(-1, Math.max(1, (int) s)));
+        android.widget.ScrollView sc = new android.widget.ScrollView(this);
+        sc.setVerticalScrollBarEnabled(false);
+        evGrid = new LinearLayout(this);
+        evGrid.setOrientation(LinearLayout.VERTICAL);
+        evGrid.setPadding((int) (12 * s), (int) (12 * s), (int) (12 * s), (int) (12 * s));
+        sc.addView(evGrid, new FrameLayout.LayoutParams(-1, -2));
+        col.addView(sc, new LinearLayout.LayoutParams(-1, 0, 1));
+        evGridKey = "-";
+        refreshEvObd();
+        Obd.addListener(evObdL);
+        page.setTranslationX(root.getWidth());
+        page.animate().translationX(0).setDuration(220);
+    }
+
+    private void closeEvObd() {
+        final FrameLayout page = evObdPage;
+        if (page == null) return;
+        evObdPage = null;
+        Obd.removeListener(evObdL);
+        evCells.clear();
+        page.animate().translationX(root.getWidth()).setDuration(200).withEndAction(new Runnable() {
+            public void run() { if (page.getParent() != null) ((ViewGroup) page.getParent()).removeView(page); }
+        });
+    }
+
+    /** Estructura de la grilla (qué datos hay): si cambia, se vuelve a armar; si no, solo cambian los números. */
+    private String evGridStructure() {
+        StringBuilder b = new StringBuilder(obdOn() ? "1" : "0").append(Obd.status == Obd.LIVE ? 'L' : '-');
+        b.append(TextUtils.join(",", evKeys()));
+        for (Obd.Sensor sn : Obd.ALL) if (sn.has()) b.append(',').append(sn.key);
+        return b.toString();
+    }
+
+    private void refreshEvObd() {
+        if (evObdPage == null) return;
+        boolean live = obdOn() && Obd.status == Obd.LIVE;
+        evStatusDot.setBackground(round(live ? 0xFF3DDC84 : obdOn() ? 0xFFFFB547 : MUTED, 4));
+        evStatusTv.setText(live ? "OBD" : I18n.t(obdOn() ? "Conectando…" : "Apagado"));
+        evStatusTv.setTextColor(live ? 0xFF3DDC84 : MUTED);
+        evClockTv.setText(I18n.sdf(android.text.format.DateFormat.is24HourFormat(this) ? "HH:mm" : "h:mm").format(new java.util.Date()));
+        String k = evGridStructure();
+        if (!k.equals(evGridKey)) { evGridKey = k; buildEvGrid(); return; }
+        for (Object[] o : evCells) {
+            Obd.Sensor sn = obdSensor((String) o[0]);
+            if (sn == null) continue;
+            String v = sn.has() ? sn.text() : "—";
+            TextView tv = (TextView) o[1];
+            if (!v.contentEquals(tv.getText())) tv.setText(v);
+            float frac = sn.has() ? Math.max(0, Math.min(1, (sn.value - sn.min) / Math.max(0.0001f, sn.max - sn.min))) : 0;
+            View fill = (View) o[2];
+            int w = (int) (frac * (Float) o[3] * s);
+            ViewGroup.LayoutParams lp = fill.getLayoutParams();
+            if (lp.width != w) { lp.width = w; fill.setLayoutParams(lp); }
+        }
+    }
+
+    private void buildEvGrid() {
+        evGrid.removeAllViews();
+        evCells.clear();
+        List<Obd.Sensor> list = new ArrayList<Obd.Sensor>();
+        for (Obd.Sensor sn : Obd.ALL) if (sn.has()) list.add(sn);
+        if (list.isEmpty()) {
+            LinearLayout box = new LinearLayout(this);
+            box.setOrientation(LinearLayout.VERTICAL);
+            box.setGravity(Gravity.CENTER_HORIZONTAL);
+            box.setBackground(evTileBg(18));
+            box.setPadding((int) (24 * s), (int) (28 * s), (int) (24 * s), (int) (28 * s));
+            ImageView ic = icon("directions_car", 48);
+            ic.setAlpha(0.5f);
+            box.addView(ic, new LinearLayout.LayoutParams((int) (48 * s), (int) (48 * s)));
+            TextView t = tv(obdOn() ? "Esperando datos…" : "Conecta el escáner para ver los datos", 16, TEXT, true);
+            multiLine(t);
+            t.setGravity(Gravity.CENTER);
+            t.setPadding(0, (int) (12 * s), 0, (int) (6 * s));
+            box.addView(t);
+            TextView sub = tv(obdOn() ? Obd.statusMsg : "Con un escáner ELM327 por Wi-Fi o Bluetooth: temperatura, batería, alertas por voz y códigos de falla", 13, MUTED, false);
+            multiLine(sub);
+            sub.setGravity(Gravity.CENTER);
+            box.addView(sub);
+            TextView go = tv(obdOn() ? "Escáner OBD-II" : "Conectar", 14, Color.WHITE, true);
+            go.setBackground(round(RED, 12));
+            go.setPadding((int) (20 * s), (int) (10 * s), (int) (20 * s), (int) (10 * s));
+            LinearLayout.LayoutParams glp = new LinearLayout.LayoutParams(-2, -2);
+            glp.topMargin = (int) (16 * s);
+            box.addView(go, glp);
+            go.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {
+                closeEvObd();
+                settingsSub = "obd";
+                showSettings(C_VEHICLE);
+            }});
+            LinearLayout.LayoutParams blp = new LinearLayout.LayoutParams(-1, -2);
+            blp.topMargin = (int) (40 * s);
+            blp.leftMargin = blp.rightMargin = (int) (120 * s);
+            if (vertical) blp.leftMargin = blp.rightMargin = (int) (24 * s);
+            evGrid.addView(box, blp);
+            return;
+        }
+        float avail = root.getWidth() / s - 24;
+        int cols = avail >= 900 ? 4 : avail >= 640 ? 3 : 2;
+        float gap = 10, cw = (avail - gap * (cols - 1)) / cols, ch = 100;
+        java.util.List<String> home = java.util.Arrays.asList(evKeys());
+        LinearLayout row = null;
+        for (int i = 0; i < list.size(); i++) {
+            final Obd.Sensor sn = list.get(i);
+            if (i % cols == 0) {
+                row = new LinearLayout(this);
+                LinearLayout.LayoutParams rlp = new LinearLayout.LayoutParams(-1, (int) (ch * s));
+                if (i > 0) rlp.topMargin = (int) (gap * s);
+                evGrid.addView(row, rlp);
+            }
+            FrameLayout cell = new FrameLayout(this);
+            cell.setBackground(evTileBg(14));
+            LinearLayout.LayoutParams clp = new LinearLayout.LayoutParams((int) (cw * s), -1);
+            if (i % cols != 0) clp.leftMargin = (int) (gap * s);
+            row.addView(cell, clp);
+            LinearLayout lr = new LinearLayout(this);
+            lr.setGravity(Gravity.CENTER_VERTICAL);
+            View dot = new View(this);
+            dot.setBackground(round(Ev.sensorColor(sn.key), 4));
+            lr.addView(dot, new LinearLayout.LayoutParams((int) (8 * s), (int) (8 * s)));
+            TextView lb = tv(sn.label, 14, SOFT, false);
+            lb.setPadding((int) (7 * s), 0, 0, 0);
+            lr.addView(lb, new LinearLayout.LayoutParams(0, -2, 1));
+            if (home.contains(sn.key)) {
+                TextView pin = tv("★", 13, EV_GLOW, true);
+                lr.addView(pin);
+            }
+            place(cell, lr, 14, 12, cw - 28, 20);
+            LinearLayout vr = new LinearLayout(this);
+            vr.setBaselineAligned(true);
+            TextView val = tv(sn.text(), 32, TEXT, true);
+            if (Ev.on()) val.setTypeface(Ev.numFace());
+            vr.addView(val);
+            TextView un = tv(sn.unit, 13, MUTED, false);
+            un.setPadding((int) (6 * s), 0, 0, 0);
+            vr.addView(un);
+            placeWrap(cell, vr, 14, 40);
+            FrameLayout track = new FrameLayout(this);
+            track.setBackground(round(LIGHT ? 0x14000000 : 0x14FFFFFF, 2));
+            View fill = new View(this);
+            fill.setBackground(round(Ev.sensorColor(sn.key), 2));
+            track.addView(fill, new FrameLayout.LayoutParams(0, -1));
+            float bw = cw - 28;
+            place(cell, track, 14, ch - 16, bw, 4);
+            evCells.add(new Object[]{sn.key, val, fill, bw});
+            // mantener presionado: ponerlo en la tarjeta del vehículo en lugar de otro
+            cell.setOnLongClickListener(new View.OnLongClickListener() { public boolean onLongClick(View v) { pinEvKey(sn.key); return true; } });
+            cell.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {
+                toast(I18n.t("Mantén presionado para ponerlo en la pantalla de inicio"));
+            }});
+        }
+        TextView hint = tv("Mantén presionado un dato para ponerlo en la pantalla de inicio · desliza a la derecha para volver", 12, MUTED, false);
+        multiLine(hint);
+        hint.setGravity(Gravity.CENTER);
+        hint.setPadding(0, (int) (14 * s), 0, (int) (4 * s));
+        evGrid.addView(hint, new LinearLayout.LayoutParams(-1, -2));
+        refreshEvObd();
+    }
+
+    /** Pone un dato en la tarjeta del vehículo en lugar de uno de los que están. */
+    private void pinEvKey(final String key) {
+        final String[] cur = evKeys();
+        for (String k : cur) if (k.equals(key)) { toast("Ya está en la pantalla de inicio"); return; }
+        String[] names = new String[cur.length];
+        for (int i = 0; i < cur.length; i++) { Obd.Sensor sn = obdSensor(cur[i]); names[i] = sn != null ? I18n.t(sn.label) : cur[i]; }
+        new TB(this, dlg())
+            .setTitle("¿En lugar de cuál?")
+            .setItems(names, new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) {
+                cur[w] = key;
+                saveEvKeys(cur);
+                evGridKey = "-";
+                rebuildKeepEvObd();
+                Obd.Sensor sn = obdSensor(key);
+                toast(I18n.t("En la pantalla de inicio:") + " " + I18n.t(sn != null ? sn.label : key));
+            }})
+            .setNegativeButton("Cancelar", null)
+            .show();
+    }
+
+    /** Reconstruye el inicio (la tarjeta del vehículo cambia) sin cerrar la página de datos. */
+    private void rebuildKeepEvObd() {
+        boolean open = evObdPage != null;
+        if (open) { Obd.removeListener(evObdL); evObdPage = null; }
+        rebuild();
+        if (open) {
+            openEvObd();
+            if (evObdPage != null) { evObdPage.animate().cancel(); evObdPage.setTranslationX(0); }
+        }
+    }
+
+    /** Ajustes → Personalización: elegir cuáles datos se ven en la tarjeta (cada casilla, uno por uno). */
+    private void chooseEvKeys(final Runnable done) {
+        final String[] cur = evKeys();
+        String[] slots = new String[cur.length];
+        for (int i = 0; i < cur.length; i++) {
+            Obd.Sensor sn = obdSensor(cur[i]);
+            slots[i] = (i + 1) + ".  " + (sn != null ? I18n.t(sn.label) : cur[i]);
+        }
+        new TB(this, dlg()).raw()
+            .setTitle(I18n.t("Datos en la tarjeta del vehículo"))
+            .setItems(slots, new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, final int slot) {
+                final List<Obd.Sensor> all = new ArrayList<Obd.Sensor>();
+                for (Obd.Sensor sn : Obd.ALL)
+                    if (sn != Obd.ODO && sn != Obd.RUN_TIME && sn != Obd.WARMUPS && sn != Obd.MIL_TIME && sn != Obd.CLEAR_TIME) all.add(sn);
+                String[] names = new String[all.size()];
+                for (int i = 0; i < all.size(); i++) names[i] = I18n.t(all.get(i).label) + (all.get(i).unit.length() > 0 ? "  (" + all.get(i).unit + ")" : "");
+                new TB(Main.this, dlg()).raw()
+                    .setTitle(I18n.t("¿Qué dato mostrar?"))
+                    .setItems(names, new DialogInterface.OnClickListener() { public void onClick(DialogInterface d2, int w) {
+                        String k = all.get(w).key;
+                        for (int i = 0; i < cur.length; i++) if (cur[i].equals(k)) cur[i] = cur[slot];   // si ya estaba, se intercambian
+                        cur[slot] = k;
+                        saveEvKeys(cur);
+                        rebuild();
+                        if (done != null) done.run();
+                    }})
+                    .setNegativeButton("Cancelar", null)
+                    .show();
+            }})
+            .setNegativeButton("Cerrar", null)
+            .show();
     }
 
     // ───────────────────────── recordatorio de cambio de aceite ─────────────────────────
@@ -2960,12 +3466,14 @@ public class Main extends Activity {
             centerPager.addPage(vp);
         }
         // fondo decorativo mientras no hay GPS; encima, el mapa en vivo (Faro: sin dibujo de relleno, el área queda limpia)
-        if (!(premium && Prem.faroFam())) card.addView(new MapView(this, s, 20 * s), new FrameLayout.LayoutParams(-1, -1));
-        if (!prefs.getBoolean("map_live", true)) { liveMap = null; seedLastLocation(); buildAaCardRest(card); startCenterPager(); return; }
-        liveMap = new LiveMapView(this, s, 20 * s);
+        final float mapR = !premium && Ev.on() ? Ev.cardRadius() * s : 20 * s;
+        if (!(premium && Prem.faroFam())) card.addView(new MapView(this, s, mapR), new FrameLayout.LayoutParams(-1, -1));
+        if (!prefs.getBoolean("map_live", true)) { liveMap = null; seedLastLocation(); buildAaCardRest(card); startCenterPager(); evMapFrame(); return; }
+        liveMap = new LiveMapView(this, s, mapR);
         card.addView(liveMap, new FrameLayout.LayoutParams(-1, -1));
         // Aurora: esquinas redondas de verdad sobre el fondo y el mapa un poco translúcido
         if (premium && premBg != null) liveMap.setBackdrop(premBg, premBgHolder, Prem.mapAlpha(LIGHT));
+        if (!premium && Ev.on() && premBg != null) liveMap.setBackdrop(premBg, premBgHolder, 1f);
         if (premium && Prem.faroFam()) { liveMap.setAttribution(14 * s, 70 * s); liveMap.setTone(Faro.mapTone(LIGHT)); }
         // Cobalto: el mapa se difumina hasta donde empieza el reproductor (abajo, hacia las tarjetas, en vertical)
         if (premium && Prem.cob() && !mapOnly && premBg != null) liveMap.setFade(vertical ? 2 : 1, (vertical ? 150 : Math.max(260, mapW * 0.5f)) * s);
@@ -2987,6 +3495,15 @@ public class Main extends Activity {
 
         buildAaCardRest(card);
         startCenterPager();
+        evMapFrame();
+    }
+
+    /** Temas EvOS: el marco del tema encima del mapa (borde de neón, filo rojo de Inferno, línea fina de Monolith…). */
+    private void evMapFrame() {
+        if (premium || !Ev.on() || !(mapCardView instanceof FrameLayout)) return;
+        View fr = new View(this);
+        fr.setBackground(Ev.card(s, LIGHT, EV_GLOW, true));
+        ((FrameLayout) mapCardView).addView(fr, new FrameLayout.LayoutParams(-1, -1));
     }
 
     /** Deja el carrusel en la página de la última vez (el video solo se activa si se ve). */
@@ -4120,8 +4637,19 @@ public class Main extends Activity {
         final float cs = cs0;          // círculo
         if (sideDock) {
             View rail = new View(this);
-            rail.setBackground(round(DOCK, 20));
+            rail.setBackground(Ev.on() ? Ev.card(s, LIGHT, EV_GLOW, false) : round(DOCK, 20));
             place(board, rail, railX, 12, RAIL, boardH - 24);
+        } else if (Ev.on() && !Ev.is(Ev.INFERNO)) {
+            // temas EvOS: la barra de apps flota sobre el fondo (vidrio, neón o una línea fina en Monolith)
+            View bd = new View(this);
+            if (Ev.is(Ev.MONO)) {
+                bd.setBackgroundColor(LIGHT ? 0xFFD3CFC6 : 0xFF2A2824);
+                place(board, bd, 0, dockTop, 1024 + ex, 1);
+            } else {
+                bd.setBackground(Ev.card(s, LIGHT, EV_GLOW, false, compactDock ? 22 : 30));
+                float bx = vertical ? 12 : 64, by = dockTop + (compactDock ? 4 : 10);
+                place(board, bd, bx, by, (vertical ? 720 - 24 : 1024 + ex - 128), boardH - by - (compactDock ? 4 : 10));
+            }
         }
         for (int i = 0; i < n; i++) {
             final int idx = i;
@@ -4145,7 +4673,9 @@ public class Main extends Activity {
                 b.addView(f, new LinearLayout.LayoutParams((int) (cs * s), (int) (cs * s)));
             } else {
                 String id = t.startsWith("fn:") ? t.substring(3) : dockDefault(i);
-                b.addView(circleIcon(dockFn(id)[2], cs, cs * 0.44f, CIRCLE), new LinearLayout.LayoutParams((int) (cs * s), (int) (cs * s)));
+                FrameLayout ci = circleIcon(dockFn(id)[2], cs, cs * (Ev.on() ? 0.5f : 0.44f), CIRCLE);
+                if (Ev.on()) ci.setBackground(Ev.dockButton(s, LIGHT, EV_GLOW));
+                b.addView(ci, new LinearLayout.LayoutParams((int) ((Ev.is(Ev.INFERNO) ? cs * 1.5f : cs) * s), (int) (cs * s)));
             }
             if (dockLabels) {
                 TextView l = tv(dockName(i), lblSize, SOFT, false);
@@ -7564,7 +8094,7 @@ public class Main extends Activity {
         v.setIncludeFontPadding(false);
         v.setSingleLine(true);
         v.setEllipsize(TextUtils.TruncateAt.END);
-        v.setTypeface(Typeface.create(medium ? "sans-serif-medium" : "sans-serif", Typeface.NORMAL));
+        v.setTypeface(Ev.on() ? Ev.face(medium) : Typeface.create(medium ? "sans-serif-medium" : "sans-serif", Typeface.NORMAL));
         return v;
     }
 
@@ -7593,7 +8123,7 @@ public class Main extends Activity {
 
     private FrameLayout card(float x, float y, float w, float hh, int color) {
         FrameLayout c = new FrameLayout(this);
-        c.setBackground(round(color, 20));
+        c.setBackground(Ev.on() && color == CARD ? Ev.card(s, LIGHT, EV_GLOW, false) : round(color, 20));
         place(board, c, x, y, w, hh);
         return c;
     }
@@ -7754,6 +8284,8 @@ public class Main extends Activity {
         float v = conv;
         speedTv.setText(ok ? String.valueOf(Math.round(kmh < 2 ? 0 : v)) : "--");
         if (carGauge != null) carGauge.setSpeed(kmh < 2 ? 0 : v, ok);
+        if (evGauge != null) evGauge.setSpeed(kmh < 2 ? 0 : v, ok, fromObd, Nav.active != null && Nav.curSpeedLimitKmh > 0
+            ? (useMph() ? Math.max(5, (int) (Math.round((Nav.curSpeedLimitKmh / 1.60934) / 5.0) * 5)) : Nav.curSpeedLimitKmh) : 0);
         if (mapGauge != null) mapGauge.setSpeed(kmh < 2 ? 0 : v, ok);
         if (faroGauge != null) {
             faroGauge.setSpeed(kmh < 2 ? 0 : v, ok);
@@ -8458,6 +8990,8 @@ public class Main extends Activity {
 
     private void applyAccent() {
         RED = prefs.getInt("accent", 0xFFFE3211);
+        EV_GLOW = Ev.on() ? Ev.glow(Ev.id, RED) : RED;
+        if (Ev.on()) RED = Ev.accent(Ev.id, RED);
         int r = (RED >> 16) & 255, g = (RED >> 8) & 255, b = RED & 255;
         int br = (BG >> 16) & 255, bgc = (BG >> 8) & 255, bb = BG & 255, pct = LIGHT ? 16 : 18;
         RED_DARK = 0xFF000000 | ((r * pct / 100 + br * (100 - pct) / 100) << 16) | ((g * pct / 100 + bgc * (100 - pct) / 100) << 8) | (b * pct / 100 + bb * (100 - pct) / 100);
@@ -8919,12 +9453,19 @@ public class Main extends Activity {
     private void applyTheme() {
         String mode = prefs.getString("theme", "dark");
         LIGHT = !themeDark(mode);
+        // Temas EvOS (1.0): piel sobre el inicio de siempre; Neon e Inferno son siempre oscuros
+        Ev.id = premiumActive() ? null : Ev.valid(prefs.getString("ev_theme", Ev.AERO));
+        if (Ev.on() && Ev.forcesDark(Ev.id)) LIGHT = false;
         if (LIGHT) {
             BG = 0xFFE9ECF1; CARD = 0xFFFFFFFF; INNER = 0xFFF1F3F7; BTN = 0xFFE2E6EC; DOCK = 0xFFDDE1E8;
             TEXT = 0xFF14161B; MUTED = 0xFF6B7280; SOFT = 0xFF3A404C; CIRCLE = 0xFFFFFFFF; ICON = 0xFF2B303A;
         } else {
             BG = 0xFF15171C; CARD = 0xFF1E2128; INNER = 0xFF262A33; BTN = 0xFF2A2E37; DOCK = 0xFF0D0E11;
             TEXT = 0xFFF2F3F5; MUTED = 0xFF8B9099; SOFT = 0xFFC5C8CE; CIRCLE = 0xFF23262E; ICON = 0xFFFFFFFF;
+        }
+        if (Ev.on()) {
+            int[] c = Ev.palette(Ev.id, LIGHT);
+            BG = c[0]; CARD = c[1]; INNER = c[2]; BTN = c[3]; DOCK = c[4]; TEXT = c[5]; MUTED = c[6]; SOFT = c[7]; CIRCLE = c[8]; ICON = c[9];
         }
     }
 
@@ -9597,12 +10138,106 @@ public class Main extends Activity {
         toast(I18n.t("Tema aplicado:") + " " + I18n.t(t.name));
     }
 
+    // ── Personalización: temas EvOS ──
+
+    private void applyEv(String id) {
+        id = Ev.valid(id);
+        String was = Ev.id;
+        SharedPreferences.Editor e = prefs.edit().putString("ev_theme", id == null ? "none" : id).remove("premium_theme");
+        // Neon trae la barra de apps al costado (como su referencia); al salir de Neon vuelve la de abajo
+        if (Ev.NEON.equals(id)) e.putString("dock_mode", "side");
+        else if (Ev.NEON.equals(was) && "side".equals(prefs.getString("dock_mode", "normal"))) e.putString("dock_mode", "normal");
+        e.apply();
+        applyThemeNow();
+        applyAccent();
+        rebuild();
+        showSettings(C_STYLE);
+        toast(I18n.t("Tema aplicado:") + " " + (id == null ? I18n.t("Clásico") : Ev.name(id)));
+    }
+
+    private void evGallery(LinearLayout body, boolean portrait) {
+        TextView h2 = tv(I18n.t("Temas EvOS").toUpperCase(I18n.loc), 11, MUTED, true);
+        h2.setPadding((int) (6 * s), (int) (10 * s), 0, (int) (8 * s));
+        body.addView(h2);
+        String cur = premiumActive() ? null : Ev.valid(prefs.getString("ev_theme", Ev.AERO));
+        boolean classicInUse = !premiumActive() && cur == null;
+        String[] ids = {Ev.AERO, Ev.MONO, Ev.PULSE, Ev.NEON, Ev.INFERNO, null};
+        int perRow = portrait ? 2 : 3;
+        float cellGap = 12;
+        int userAccent = prefs.getInt("accent", 0xFFFE3211);
+        LinearLayout rowL = null;
+        for (int i = 0; i < ids.length; i++) {
+            final String id = ids[i];
+            if (i % perRow == 0) {
+                rowL = new LinearLayout(this);
+                LinearLayout.LayoutParams rlp = new LinearLayout.LayoutParams(-1, -2);
+                rlp.bottomMargin = (int) (cellGap * s);
+                body.addView(rowL, rlp);
+            }
+            boolean inUse = id == null ? classicInUse : id.equals(cur);
+            LinearLayout cell = new LinearLayout(this);
+            cell.setOrientation(LinearLayout.VERTICAL);
+            cell.setBackground(round(inUse ? RED_DARK : CARD, 16));
+            if (inUse) ((GradientDrawable) cell.getBackground()).setStroke(Math.max(1, (int) (1.5f * s)), RED);
+            int cp = (int) (10 * s);
+            cell.setPadding(cp, cp, cp, (int) (12 * s));
+            View th;
+            if (id != null) {
+                boolean l = LIGHT && !Ev.forcesDark(id);
+                th = new Ev.Thumb(this, id, l, Ev.glow(id, userAccent), s);
+            } else th = new ThemeThumb(this, s, false, true, false, false, false, false, false, true, true, true);
+            cell.addView(th, new LinearLayout.LayoutParams(-1, -2));
+            LinearLayout nameRow = new LinearLayout(this);
+            nameRow.setGravity(Gravity.CENTER_VERTICAL);
+            nameRow.setPadding((int) (4 * s), (int) (10 * s), (int) (4 * s), 0);
+            TextView nm = tv(id == null ? "Clásico" : Ev.name(id), 15, TEXT, true);
+            nameRow.addView(nm, new LinearLayout.LayoutParams(0, -2, 1));
+            if (inUse) {
+                TextView badge = tv("En uso", 11, 0xFFFFFFFF, true);
+                badge.setBackground(round(RED, 10));
+                badge.setPadding((int) (8 * s), (int) (2 * s), (int) (8 * s), (int) (2 * s));
+                nameRow.addView(badge);
+            }
+            cell.addView(nameRow);
+            TextView ds = tv(id == null ? "El inicio de siempre, con el color de acento que elijas. Tiene versión clara." : Ev.desc(id), 12, MUTED, false);
+            multiLine(ds);
+            ds.setLineSpacing(2 * s, 1f);
+            ds.setPadding((int) (4 * s), (int) (3 * s), (int) (4 * s), 0);
+            cell.addView(ds);
+            LinearLayout.LayoutParams clp = new LinearLayout.LayoutParams(0, -1, 1f);
+            if (i % perRow != perRow - 1) clp.rightMargin = (int) (cellGap * s);
+            rowL.addView(cell, clp);
+            cell.setOnClickListener(new View.OnClickListener() { public void onClick(View v) { applyEv(id); } });
+        }
+        // opciones de los temas EvOS
+        LinearLayout c = section(body, "Opciones del tema");
+        toggle(c, "Música Bluetooth en la pantalla", "Si la apagas, el mapa, Android Auto y CarPlay ocupan todo el espacio",
+            prefs.getBoolean("show_player", true), new IntCb() { public void on(int i) {
+                prefs.edit().putBoolean("show_player", i == 1).apply(); rebuild(); showSettings(C_STYLE);
+            }});
+        segmented(c, "Datos del escáner en la tarjeta del vehículo", "Los demás se ven al tocar o deslizar la tarjeta",
+            new String[]{"2", "4"}, evObdCount() == 4 ? 1 : 0, new IntCb() { public void on(int i) {
+                prefs.edit().putInt("ev_obd_n", i == 1 ? 4 : 2).apply(); rebuild(); showSettings(C_STYLE);
+            }});
+        StringBuilder names = new StringBuilder();
+        for (String k : evKeys()) { Obd.Sensor sn = obdSensor(k); if (sn == null) continue; if (names.length() > 0) names.append(" · "); names.append(I18n.t(sn.label)); }
+        row(c, "Elegir los datos", names.toString(), null, new Runnable() { public void run() {
+            chooseEvKeys(new Runnable() { public void run() { showSettings(C_STYLE); } });
+        }});
+        row(c, "Parámetros del motor", "Todos los datos del escáner en vivo", null, new Runnable() { public void run() {
+            closeSettings();
+            openEvObd();
+        }});
+    }
+
     private void catStyle(LinearLayout body) {
         TextView intro = tv("Cambia el aspecto de la pantalla de inicio con un toque. Puedes seguir ajustando cada detalle en las demás secciones.", 13, MUTED, false);
         multiLine(intro);
         intro.setPadding((int) (6 * s), 0, (int) (6 * s), (int) (6 * s));
         body.addView(intro);
-        TextView h2 = tv(I18n.t("Temas gratis").toUpperCase(I18n.loc), 11, MUTED, true);
+        if (stylePreview >= 0 && stylePreviewFor != vertical) stylePreview = -1;
+        evGallery(body, stylePreview < 0 ? vertical : stylePreview == 1);
+        TextView h2 = tv(I18n.t("Diseño del inicio").toUpperCase(I18n.loc), 11, MUTED, true);
         h2.setPadding((int) (6 * s), (int) (10 * s), 0, (int) (8 * s));
         body.addView(h2);
 
@@ -12596,6 +13231,8 @@ public class Main extends Activity {
         try { odoFromObd(); } catch (Throwable ignored) { }
         if (speedFromObd || !Float.isNaN(obdKmh())) showSpeed();   // velocímetro del inicio con la velocidad del escáner
         showRpm();
+        if (evGauge != null) evGauge.invalidate();
+        if (!evTiles.isEmpty()) updateEvTiles();
         java.util.HashSet<String> now = new java.util.HashSet<String>();
         boolean fresh = false;
         synchronized (Obd.alerts) {

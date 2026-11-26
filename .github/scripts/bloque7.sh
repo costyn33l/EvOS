@@ -1,7 +1,7 @@
 #!/bin/bash
 # Bloque 7 (2.19): cantidad y tamaño de botones, íconos de apps, pack de íconos, barra oculta y tamaño de letra.
 API=$1; OUT=$2; mkdir -p $OUT
-PKG=com.stradaos.launcher.debug
+PKG=com.evos.launcher.debug
 ACT=$PKG/com.stradaos.launcher.Main
 adb wait-for-device
 for i in $(seq 1 100); do [ "$(adb shell getprop sys.boot_completed | tr -d '\r')" = "1" ] && break; sleep 3; done

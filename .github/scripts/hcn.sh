@@ -2,7 +2,7 @@
 # Issue #5 (2.24.2): pantallas HCN / Hengchen. Simula el servicio «sourceinfo» del equipo (archivo local, estado y
 # tiempo) y los avisos del Bluetooth del sistema (AVRCP, Android 5+). Uso: hcn.sh API APK CARPETA
 API=$1; APK=$2; OUT=$3; mkdir -p $OUT
-PKG=com.stradaos.launcher.debug
+PKG=com.evos.launcher.debug
 ACT=$PKG/com.stradaos.launcher.Main
 adb wait-for-device
 for i in $(seq 1 100); do [ "$(adb shell getprop sys.boot_completed | tr -d '\r')" = "1" ] && break; sleep 3; done

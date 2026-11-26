@@ -1,6 +1,6 @@
 #!/bin/bash
 # Prueba «Desactivar StradaOS»: debe volver el launcher de fábrica y StradaOS no debe poder abrirse.
-P=com.stradaos.launcher.debug
+P=com.evos.launcher.debug
 adb wait-for-device
 for i in $(seq 1 60); do [ "$(adb shell getprop sys.boot_completed | tr -d '\r')" = "1" ] && break; sleep 3; done
 sleep 10

@@ -3,7 +3,7 @@
 # y las traducciones de navegación (PR #38 + 7 idiomas). Además, el inicio de siempre y los temas, para ver que nada cambió.
 # Uso: bloque15.sh API APK CARPETA
 API=$1; APK=$2; OUT=$3; mkdir -p $OUT
-PKG=com.stradaos.launcher.debug
+PKG=com.evos.launcher.debug
 ACT=$PKG/com.stradaos.launcher.Main
 adb wait-for-device
 for i in $(seq 1 100); do [ "$(adb shell getprop sys.boot_completed | tr -d '\r')" = "1" ] && break; sleep 3; done

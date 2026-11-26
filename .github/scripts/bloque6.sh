@@ -2,7 +2,7 @@
 # Bloque 6 (2.18): botones de conexión, clima en el panel y su detalle, ocultar velocidad/aceite/reproductor,
 # botón del navegador (tamaño y lado) y Apariencia.
 API=$1; OUT=$2; mkdir -p $OUT
-PKG=com.stradaos.launcher.debug
+PKG=com.evos.launcher.debug
 ACT=$PKG/com.stradaos.launcher.Main
 adb wait-for-device
 for i in $(seq 1 100); do [ "$(adb shell getprop sys.boot_completed | tr -d '\r')" = "1" ] && break; sleep 3; done

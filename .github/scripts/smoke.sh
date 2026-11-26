@@ -2,7 +2,7 @@
 # Prueba de humo en un emulador: instala la versión de prueba, abre cada pantalla, toma capturas y revisa
 # que no haya cierres. Uso: smoke.sh API APK CARPETA
 API=$1; APK=$2; OUT=$3
-PKG=com.stradaos.launcher.debug
+PKG=com.evos.launcher.debug
 ACT=$PKG/com.stradaos.launcher.Main
 mkdir -p "$OUT"
 adb wait-for-device
@@ -41,6 +41,22 @@ adb shell am start -n $ACT >/dev/null; sleep 12
 shot 01-asistente
 back
 go saltar 10;      shot 02-inicio
+# temas EvOS (1.0): los cinco temas, sin música, 4 datos, auto simulado y la página de datos en vivo
+for t in aero monolith pulse neon inferno; do go tema-ev:$t 8; shot 60-ev-$t; done
+go musica-ev:0 6;  shot 61-ev-inferno-sin-musica
+go obd-demo 25
+go tema-ev:inferno 10; shot 62-ev-inferno-obd
+go ev-n:4 8;       shot 63-ev-inferno-4-datos
+go ev-datos 8;     shot 64-ev-datos-en-vivo
+back
+go tema-ev:pulse 10; shot 65-ev-pulse-obd
+go tema-ev:aero 10;  shot 66-ev-aero-obd
+go tema-ev:neon 10;  shot 67-ev-neon-obd
+go tema-ev:monolith 10; shot 68-ev-monolith-obd
+go ajustes:11 6;   shot 69-ev-personalizacion
+go musica-ev:1 4
+go ev-n:2 4
+go tema-ev:aero 6
 go boton:3;        shot 03-menu-boton
 back
 go elegir:3;       shot 04-elegir-app

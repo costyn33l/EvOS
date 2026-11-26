@@ -2,7 +2,7 @@
 # Bloque 11 (2.22): pantalla en reposo, orden de apps, diseño forzado, tema por amanecer y chino.
 # Uso: bloque11.sh API APK CARPETA
 API=$1; APK=$2; OUT=$3; mkdir -p $OUT
-PKG=com.stradaos.launcher.debug
+PKG=com.evos.launcher.debug
 ACT=$PKG/com.stradaos.launcher.Main
 adb wait-for-device
 for i in $(seq 1 100); do [ "$(adb shell getprop sys.boot_completed | tr -d '\r')" = "1" ] && break; sleep 3; done
