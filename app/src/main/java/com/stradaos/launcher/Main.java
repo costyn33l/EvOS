@@ -1877,7 +1877,12 @@ public class Main extends Activity {
     private String srModel() { return Show.validModel(prefs.getString("sr_model", Show.MODEL_KEYS[0])); }
     /** Lo que se ve de verdad: la foto solo si existe. */
     private String srModelShown = "";
-    private String srPaint() { return prefs.getString("sr_paint", "silver"); }
+    /** Color elegido; sin elegir, el original de la foto del modelo. */
+    private String srPaint() {
+        String p = Show.validPaint(prefs.getString("sr_paint", null));
+        String m = srModel();
+        return p != null ? p : Show.srcPaint(this, Show.PHOTO.equals(m) ? Show.MODEL_KEYS[0] : m);
+    }
 
     /** El carro de la pantalla: el modelo y el color elegidos o la foto (si se eligió y existe). */
     private Show.Car srCarView(boolean reflect) {
@@ -1886,8 +1891,8 @@ public class Main extends Activity {
         String m = srModel();
         Bitmap ph = Show.PHOTO.equals(m) ? CarPhoto.load(this) : null;
         srModelShown = ph != null ? Show.PHOTO : m;
-        if (ph != null) c.set(null, 0, ph);
-        else c.set(Show.model(this, Show.PHOTO.equals(m) ? Show.MODEL_KEYS[0] : m), Show.paint(srPaint()), null);
+        if (ph != null) c.set(null, null, ph);
+        else c.set(Show.PHOTO.equals(m) ? Show.MODEL_KEYS[0] : m, srPaint(), null);
         return c;
     }
 
@@ -2621,7 +2626,8 @@ public class Main extends Activity {
             } else {
                 Show.Car mc = new Show.Car(this);
                 mc.reflect = false;
-                mc.set(Show.model(this, key), on ? Show.paint(paint) : Show.paint("silver"), null);
+                mc.thumb = true;
+                mc.set(key, on ? paint : null, null);
                 FrameLayout.LayoutParams mlp = new FrameLayout.LayoutParams((int) ((tw - 12) * s), (int) (54 * s), Gravity.CENTER_HORIZONTAL | Gravity.TOP);
                 mlp.topMargin = (int) (22 * s);
                 t.addView(mc, mlp);

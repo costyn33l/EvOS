@@ -892,14 +892,11 @@ final class Ev {
             for (int i = -6; i <= 6; i++) c.drawLine(vx, vy, vx + i * 130 * k, h, p);
             for (int j = 1; j <= 4; j++) { float t = j / 4f, yy = vy + (h - vy) * t * t; c.drawLine(112 * k, yy, w, yy, p); }
             p.setStyle(Paint.Style.FILL);
-            Show.Model m = Show.model(getContext(), "hatch");
-            if (m != null) {
-                c.save();
-                float sk = 520 * k / (m.x1 - m.x0);
-                c.translate(150 * k - m.x0 * sk, 200 * k - m.y0 * sk);
-                c.scale(sk, sk);
-                Show.drawCar(c, m, 0xFFA9B0B8, true);
-                c.restore();
+            Bitmap car = Show.render(getContext(), "hatch", "silver", 2);
+            if (car != null) {
+                float cw = 560 * k, ch = cw * Show.CH / Show.CW;
+                c.drawBitmap(car, null, new RectF(130 * k, 430 * k - ch * Show.GROUND / Show.CH, 130 * k + cw, 430 * k - ch * Show.GROUND / Show.CH + ch),
+                    new Paint(Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG));
             }
             p.setColor(0xFFF2F2F2);
             p.setTypeface(Typeface.create("sans-serif-condensed", Typeface.BOLD));

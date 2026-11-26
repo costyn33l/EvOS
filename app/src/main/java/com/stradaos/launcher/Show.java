@@ -37,6 +37,9 @@ final class Show {
     static final int[] ACCENTS = {0xFFFF6A1A, 0xFFE5261A, 0xFFF5C518, 0xFF3DDC84, 0xFF2EA8FF, 0xFFA64DFF};
 
     // ── modelos ──
+    // Seis carrocerías a partir de imágenes de estudio de perfil (assets/showroom/<modelo>.png), todas con la misma
+    // escala (px/m) y la misma línea del piso, sin emblemas. <modelo>_paint.png es la máscara de la pintura: el color
+    // se cambia en el teléfono conservando la luz y los reflejos de la foto (la laca refleja igual en cualquier color).
 
     static final String PHOTO = "photo";
     static final String[] MODEL_KEYS = {"hatch", "sedan", "wagon", "suv", "coupe", "mpv"};
@@ -49,6 +52,10 @@ final class Show {
     static int paint(String key) {
         for (int i = 0; i < PAINT_KEYS.length; i++) if (PAINT_KEYS[i].equals(key)) return PAINT[i];
         return PAINT[1];
+    }
+    static String validPaint(String key) {
+        for (String k : PAINT_KEYS) if (k.equals(key)) return k;
+        return null;
     }
     static String paintName(String key) {
         for (int i = 0; i < PAINT_KEYS.length; i++) if (PAINT_KEYS[i].equals(key)) return PAINT_NAMES[i];
@@ -65,15 +72,13 @@ final class Show {
     }
 
     static final class Model {
-        String key;
-        float x0, y0, x1, y1, ground, arch, sill;
+        String key, src;
+        float yr;
         float[][] wheels;
-        float[][] handles;
-        Path body, glass, head, tail, mirror, intake, diffuser;
-        Path[] pillars, lines, cladding;
     }
 
     private static Model[] models;
+    static int CW = 768, CH = 300, GROUND = 282;
 
     static synchronized Model model(Context c, String key) {
         if (models == null) {
@@ -83,6 +88,12 @@ final class Show {
         return models.length > 0 ? models[0] : null;
     }
 
+    /** Color original de la foto del modelo (sin elegir color se muestra ese). */
+    static String srcPaint(Context c, String key) {
+        Model m = model(c, key);
+        return m != null ? m.src : "silver";
+    }
+
     private static Model[] load(Context c) throws Exception {
         InputStream in = c.getAssets().open("showroom/cars.json");
         java.io.ByteArrayOutputStream bo = new java.io.ByteArrayOutputStream();
@@ -90,85 +101,112 @@ final class Show {
         int n;
         while ((n = in.read(buf)) > 0) bo.write(buf, 0, n);
         in.close();
-        org.json.JSONArray a = new org.json.JSONObject(bo.toString("UTF-8")).getJSONArray("cars");
+        org.json.JSONObject root = new org.json.JSONObject(bo.toString("UTF-8"));
+        CW = root.optInt("w", 768); CH = root.optInt("h", 300); GROUND = root.optInt("ground", 282);
+        org.json.JSONArray a = root.getJSONArray("cars");
         Model[] out = new Model[a.length()];
         for (int i = 0; i < a.length(); i++) {
             org.json.JSONObject o = a.getJSONObject(i);
             Model m = new Model();
             m.key = o.getString("key");
-            org.json.JSONArray b = o.getJSONArray("box");
-            m.x0 = (float) b.getDouble(0); m.y0 = (float) b.getDouble(1); m.x1 = (float) b.getDouble(2); m.y1 = (float) b.getDouble(3);
-            m.ground = (float) o.getDouble("ground");
-            m.arch = (float) o.getDouble("arch");
-            m.sill = (float) o.getDouble("sill");
-            m.wheels = nums(o.getJSONArray("wheels"));
-            m.handles = nums(o.getJSONArray("handles"));
-            m.body = path(o.getString("body"));
-            m.glass = path(o.getString("glass"));
-            m.head = path(o.getString("head"));
-            m.tail = path(o.getString("tail"));
-            m.mirror = path(o.getString("mirror"));
-            m.intake = path(o.getString("intake"));
-            m.diffuser = path(o.getString("diffuser"));
-            m.pillars = paths(o.optJSONArray("pillars"));
-            m.lines = paths(o.optJSONArray("lines"));
-            m.cladding = paths(o.optJSONArray("cladding"));
+            m.src = o.optString("src", "silver");
+            m.yr = (float) o.getDouble("yr");
+            org.json.JSONArray w = o.getJSONArray("wheels");
+            m.wheels = new float[w.length()][];
+            for (int j = 0; j < w.length(); j++) {
+                org.json.JSONArray e = w.getJSONArray(j);
+                m.wheels[j] = new float[]{(float) e.getDouble(0), (float) e.getDouble(1), (float) e.getDouble(2)};
+            }
             out[i] = m;
         }
         return out;
     }
 
-    private static float[][] nums(org.json.JSONArray a) throws Exception {
-        float[][] r = new float[a.length()][];
-        for (int i = 0; i < a.length(); i++) {
-            org.json.JSONArray e = a.getJSONArray(i);
-            r[i] = new float[e.length()];
-            for (int j = 0; j < e.length(); j++) r[i][j] = (float) e.getDouble(j);
-        }
-        return r;
+    private static Bitmap asset(Context c, String path, int sample) {
+        try {
+            InputStream in = c.getAssets().open(path);
+            android.graphics.BitmapFactory.Options o = new android.graphics.BitmapFactory.Options();
+            o.inSampleSize = sample;
+            o.inPreferredConfig = Bitmap.Config.ARGB_8888;
+            Bitmap b = android.graphics.BitmapFactory.decodeStream(in, null, o);
+            in.close();
+            return b;
+        } catch (Throwable e) { return null; }
     }
 
-    private static Path[] paths(org.json.JSONArray a) throws Exception {
-        if (a == null) return new Path[0];
-        Path[] r = new Path[a.length()];
-        for (int i = 0; i < a.length(); i++) r[i] = path(a.getString(i));
-        return r;
+    private static float[] LIN;
+    private static byte[] SRGB;
+
+    private static void tables() {
+        if (LIN != null) return;
+        float[] l = new float[256];
+        for (int i = 0; i < 256; i++) {
+            double c = i / 255.0;
+            l[i] = (float) (c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4));
+        }
+        byte[] s = new byte[4097];
+        for (int i = 0; i <= 4096; i++) {
+            double c = i / 4096.0;
+            double v = c <= 0.0031308 ? c * 12.92 : 1.055 * Math.pow(c, 1 / 2.4) - 0.055;
+            s[i] = (byte) Math.max(0, Math.min(255, Math.round(v * 255)));
+        }
+        SRGB = s; LIN = l;
     }
 
-    /** Lee una ruta SVG con comandos absolutos M, L, C y Z (lo único que generan las maquetas). */
-    static Path path(String d) {
-        Path p = new Path();
-        int i = 0, n = d.length();
-        char cmd = 'M';
-        float[] v = new float[6];
-        while (i < n) {
-            char ch = d.charAt(i);
-            if (ch == 'M' || ch == 'L' || ch == 'C' || ch == 'Z') {
-                cmd = ch; i++;
-                if (ch == 'Z') { p.close(); continue; }
-            }
-            int need = cmd == 'C' ? 6 : 2;
-            int got = 0;
-            while (got < need && i < n) {
-                char c = d.charAt(i);
-                if (c == ' ' || c == ',') { i++; continue; }
-                if (Character.isLetter(c)) break;
-                int st = i;
-                i++;
-                while (i < n) {
-                    char q = d.charAt(i);
-                    if ((q >= '0' && q <= '9') || q == '.') i++;
-                    else break;
-                }
-                v[got++] = Float.parseFloat(d.substring(st, i));
-            }
-            if (got < need) continue;
-            if (cmd == 'M') { p.moveTo(v[0], v[1]); cmd = 'L'; }
-            else if (cmd == 'L') p.lineTo(v[0], v[1]);
-            else p.cubicTo(v[0], v[1], v[2], v[3], v[4], v[5]);
+    private static int enc(float v) { return SRGB[(int) (Math.max(0f, Math.min(1f, v)) * 4096 + 0.5f)] & 0xFF; }
+
+    private static String cacheKey;
+    private static Bitmap cacheBm;
+
+    /**
+     * El modelo con la pintura elegida. Sombra = luminancia / luminancia de la pintura original: se multiplica por el
+     * color nuevo; lo que brilla más que la pintura (reflejos de la laca) queda blanco. Misma fórmula que las maquetas.
+     * sample = 1 a tamaño completo, 4 para las miniaturas.
+     */
+    static synchronized Bitmap render(Context c, String key, String paintKey, int sample) {
+        String ck = key + ":" + paintKey + ":" + sample;
+        if (ck.equals(cacheKey) && cacheBm != null && !cacheBm.isRecycled()) return cacheBm;
+        Model m = model(c, key);
+        if (m == null) return null;
+        Bitmap base = asset(c, "showroom/" + key + ".png", sample);
+        if (base == null) return null;
+        if (paintKey == null || paintKey.equals(m.src)) { if (sample == 1) { cacheKey = ck; cacheBm = base; } return base; }
+        Bitmap mask = asset(c, "showroom/" + key + "_paint.png", sample);
+        if (mask == null) return base;
+        tables();
+        int w = base.getWidth(), h = base.getHeight();
+        int[] px = new int[w * h], mk = new int[w * h];
+        base.getPixels(px, 0, w, 0, 0, w, h);
+        mask.getPixels(mk, 0, w, 0, 0, Math.min(w, mask.getWidth()), Math.min(h, mask.getHeight()));
+        int col = paint(paintKey);
+        float tr = LIN[Color.red(col)], tg = LIN[Color.green(col)], tb = LIN[Color.blue(col)];
+        float yt = 0.2126f * tr + 0.7152f * tg + 0.0722f * tb;
+        float yr = m.yr, specK = (yr < 0.3f ? 1f : 0.6f) * (1 - Math.min(0.6f, yt * 2));
+        for (int i = 0; i < px.length; i++) {
+            int a = (mk[i] >> 16) & 0xFF;          // máscara en gris: cualquier canal
+            if (a == 0) continue;
+            int p = px[i];
+            float r = LIN[(p >> 16) & 0xFF], g = LIN[(p >> 8) & 0xFF], b = LIN[p & 0xFF];
+            float y = 0.2126f * r + 0.7152f * g + 0.0722f * b;
+            float sh = y / yr, sp = Math.max(0f, y - yr * 1.15f) * specK;
+            float or = tr * sh + sp, og = tg * sh + sp, ob = tb * sh + sp;
+            float ex = Math.max(0f, Math.max(or, Math.max(og, ob)) - 1) * 0.4f;
+            or = Math.min(1f, or) + ex; og = Math.min(1f, og) + ex; ob = Math.min(1f, ob) + ex;
+            float t = a / 255f;
+            px[i] = (p & 0xFF000000) | (enc(r + (or - r) * t) << 16) | (enc(g + (og - g) * t) << 8) | enc(b + (ob - b) * t);
         }
-        return p;
+        mask.recycle();
+        Bitmap out = base.isMutable() ? base : base.copy(Bitmap.Config.ARGB_8888, true);
+        out.setPixels(px, 0, w, 0, 0, w, h);
+        if (out != base) base.recycle();
+        if (sample == 1) {
+            if (cacheBm != null && cacheBm != out && !ck.equals(cacheKey)) { /* el anterior puede seguir en pantalla: no se recicla */ }
+            cacheKey = ck; cacheBm = out;
+        }
+        return out;
     }
+
+    static int alpha(int c, int a) { return (c & 0x00FFFFFF) | (a << 24); }
 
     static int mix(int a, int b, float t) {
         int r = Math.round(Color.red(a) + (Color.red(b) - Color.red(a)) * t);
@@ -177,153 +215,36 @@ final class Show {
         return Color.rgb(r, g, bl);
     }
 
-    static int alpha(int c, int a) { return (c & 0x00FFFFFF) | (a << 24); }
+    static final float REFL = 72;
 
-    static final float REFL = 60;
-
-    /** Dibuja el carro (sin reflejo) en unidades del modelo. */
-    static void drawCar(Canvas c, Model m, int col, boolean shadow) {
+    /** Sombra de contacto bajo el carro (las fotos están recortadas sin piso). k = escala, (ox, oy) = esquina de la pantalla. */
+    static void shadow(Canvas c, Model m, float ox, float oy, float k) {
+        if (m == null || m.wheels.length < 2) return;
         Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
-        float G = m.ground, L = m.x1 - m.x0;
-        if (shadow) {
-            p.setShader(new RadialGradient(0, 0, 1, new int[]{0xD9000000, 0x59000000, 0}, new float[]{0, 0.7f, 1}, Shader.TileMode.CLAMP));
-            c.save();
-            c.translate((m.x0 + m.x1) / 2, G);
-            c.scale(L * 0.56f, 9);
-            c.drawCircle(0, 0, 1, p);
-            c.restore();
-            p.setShader(null);
-        }
-        // pasajes de las ruedas (hasta un poco más abajo del centro)
-        c.save();
-        c.clipRect(m.x0, m.y0, m.x1, m.wheels[0][1] + m.wheels[0][2] * 0.55f);
-        p.setColor(0xFF050506);
-        for (float[] w : m.wheels) c.drawCircle(w[0], w[1], m.arch - 1, p);
-        c.restore();
-        float top = m.y0 + 4;
-        int W = Color.WHITE, K = Color.BLACK;
-        p.setShader(new LinearGradient(0, top, 0, G,
-            new int[]{mix(col, W, .45f), mix(col, W, .12f), col, mix(col, W, .30f), col, mix(col, K, .35f), mix(col, K, .65f)},
-            new float[]{0, .18f, .36f, .44f, .52f, .78f, 1}, Shader.TileMode.CLAMP));
-        c.drawPath(m.body, p);
-        p.setShader(null);
-        c.save();
-        c.clipPath(m.body);
-        p.setShader(new LinearGradient(0, m.sill - 11, 0, m.sill, 0, 0x8C000000, Shader.TileMode.CLAMP));
-        c.drawRect(m.x0, m.sill - 11, m.x1, m.sill, p);
-        p.setShader(null);
-        p.setColor(0xCC0B0C0E);
-        c.drawPath(m.intake, p);
-        p.setColor(0xB30B0C0E);
-        c.drawPath(m.diffuser, p);
-        p.setColor(0xD915171A);
-        for (Path cl : m.cladding) c.drawPath(cl, p);
-        RectF gb = new RectF();
-        m.glass.computeBounds(gb, true);
-        p.setShader(new LinearGradient(0, gb.top, 0, gb.bottom, 0xFF3A434D, 0xFF0A0D11, Shader.TileMode.CLAMP));
-        c.drawPath(m.glass, p);
-        p.setShader(new LinearGradient(gb.left, gb.top, gb.right, gb.bottom, new int[]{0, 0x29FFFFFF, 0}, new float[]{.25f, .42f, .58f}, Shader.TileMode.CLAMP));
-        c.drawPath(m.glass, p);
-        p.setShader(null);
-        p.setColor(0xFF0A0C0F);
-        for (Path pl : m.pillars) c.drawPath(pl, p);
-        p.setStyle(Paint.Style.STROKE);
-        p.setStrokeCap(Paint.Cap.ROUND);
-        p.setStrokeWidth(0.9f);
-        for (int i = 0; i < m.lines.length; i++) {
-            boolean last = i == m.lines.length - 1;
-            p.setColor(last ? 0x38000000 : 0x61000000);
-            c.drawPath(m.lines[i], p);
-            if (last) {
-                c.save(); c.translate(0, -1.2f);
-                p.setColor(0x38FFFFFF);
-                c.drawPath(m.lines[i], p);
-                c.restore();
-            }
-        }
-        p.setStyle(Paint.Style.FILL);
-        RectF hb = new RectF();
-        m.head.computeBounds(hb, true);
-        p.setShader(new LinearGradient(hb.left, hb.top, hb.right, hb.bottom, 0xFFFFFFFF, 0xFF8E99A6, Shader.TileMode.CLAMP));
-        c.drawPath(m.head, p);
-        m.tail.computeBounds(hb, true);
-        p.setShader(new LinearGradient(0, hb.top, 0, hb.bottom, 0xFFE0262E, 0xFF5A0508, Shader.TileMode.CLAMP));
-        c.drawPath(m.tail, p);
-        p.setShader(null);
-        p.setStyle(Paint.Style.STROKE);
-        p.setStrokeWidth(0.7f);
-        p.setColor(0xFF2A2F35);
-        c.drawPath(m.head, p);
-        p.setColor(0xFF2A0003);
-        c.drawPath(m.tail, p);
-        p.setStyle(Paint.Style.FILL);
-        p.setColor(mix(col, K, .45f));
-        RectF hr = new RectF();
-        for (float[] h : m.handles) { hr.set(h[0] - 6.5f, h[1] - 1.3f, h[0] + 6.5f, h[1] + 1.3f); c.drawRoundRect(hr, 1.3f, 1.3f, p); }
-        c.restore();
-        p.setColor(mix(col, K, .2f));
-        c.drawPath(m.mirror, p);
+        float[] f = m.wheels[0], r = m.wheels[m.wheels.length - 1];
+        float x0 = f[0] - f[2] * 1.6f, x1 = r[0] + r[2] * 1.5f, gy = oy + GROUND * k;
+        p.setShader(new RadialGradient(0, 0, 1, new int[]{0xCC000000, 0x55000000, 0}, new float[]{0, 0.6f, 1}, Shader.TileMode.CLAMP));
+        c.save(); c.translate(ox + (x0 + x1) / 2 * k, gy); c.scale((x1 - x0) / 2 * k * 1.08f, 9 * k); c.drawCircle(0, 0, 1, p); c.restore();
         for (float[] w : m.wheels) {
-            p.setColor(Color.BLACK);
-            c.save(); c.translate(w[0], G); c.scale(w[2] * 0.9f, 2.6f); c.drawCircle(0, 0, 1, p); c.restore();
-            wheel(c, p, w[0], w[1], w[2]);
+            c.save(); c.translate(ox + w[0] * k, gy); c.scale(w[2] * 0.95f * k, 3.2f * k); c.drawCircle(0, 0, 1, p); c.restore();
         }
-    }
-
-    private static void wheel(Canvas c, Paint p, float cx, float cy, float R) {
-        p.setStyle(Paint.Style.FILL);
-        p.setColor(0xFF0C0C0D);
-        c.drawCircle(cx, cy, R, p);
-        p.setStyle(Paint.Style.STROKE);
-        p.setStrokeWidth(R * 0.05f);
-        p.setColor(0xFF1E2023);
-        c.drawCircle(cx, cy, R * 0.88f, p);
-        p.setStyle(Paint.Style.FILL);
-        float r2 = R * 0.71f, r1 = R * 0.22f;
-        p.setShader(new RadialGradient(cx - r2 * 0.1f, cy - r2 * 0.2f, r2 * 1.4f, new int[]{0xFFEEF1F4, 0xFFA2AAB3, 0xFF5E656D}, new float[]{0, .6f, 1}, Shader.TileMode.CLAMP));
-        c.drawCircle(cx, cy, r2, p);
-        p.setShader(null);
-        p.setColor(0xFF15171A);
-        float ro = r2 * 0.9f, ri = r1 * 1.15f;
-        RectF o = new RectF(cx - ro, cy - ro, cx + ro, cy + ro), in = new RectF(cx - ri, cy - ri, cx + ri, cy + ri);
-        Path w = new Path();
-        for (int i = 0; i < 5; i++) {
-            float a0 = i * 72 + 13 - 90, a1 = i * 72 + 59 - 90;
-            w.reset();
-            w.arcTo(o, a0, a1 - a0, true);
-            w.arcTo(in, a1 - 7, -(a1 - a0 - 14), false);
-            w.close();
-            c.drawPath(w, p);
-        }
-        p.setStyle(Paint.Style.STROKE);
-        p.setStrokeWidth(0.9f);
-        p.setColor(0xB3D5DBE0);
-        c.drawCircle(cx, cy, r2 - 0.5f, p);
-        p.setStyle(Paint.Style.FILL);
-        p.setColor(0xFF2B2F34);
-        c.drawCircle(cx, cy, R * 0.11f, p);
-        p.setStyle(Paint.Style.STROKE);
-        p.setStrokeWidth(0.7f);
-        p.setColor(0xFF9AA3AD);
-        c.drawCircle(cx, cy, R * 0.11f, p);
-        p.setStyle(Paint.Style.FILL);
     }
 
     /**
-     * El carro expuesto: un modelo estándar con su color, o la foto del usuario (recortada). Con reflejo en el piso.
+     * El carro expuesto: un modelo con su color, o la foto del usuario (recortada). Con sombra y reflejo en el piso.
      * Se pinta una vez en un bitmap (también en Android 4.1, sin aceleración por hardware).
      */
     static final class Car extends View {
-        Model model;
-        int color;
+        String key, paintKey;
         Bitmap photo;
-        boolean reflect = true;
+        boolean reflect = true, thumb = false;
         private Bitmap frame;
 
         Car(Context c) { super(c); }
 
-        void set(Model m, int col, Bitmap ph) {
-            model = m; color = col; photo = ph;
+        /** key = modelo (null con foto); paintKey = color (null = el original de la foto del modelo). */
+        void set(String key, String paintKey, Bitmap ph) {
+            this.key = key; this.paintKey = paintKey; photo = ph;
             frame = null;
             invalidate();
         }
@@ -342,23 +263,25 @@ final class Show {
         private Bitmap render(int w, int h) {
             Bitmap out = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
             Canvas c = new Canvas(out);
-            if (photo != null && model == null) { drawPhoto(c, w, h); return out; }
-            Model m = model;
-            if (m == null) return out;
-            float bw = m.x1 - m.x0, bh = (m.y1 - m.y0) + (reflect ? REFL : 0);
-            float k = Math.min(w / bw, h / bh);
-            float ox = (w - bw * k) / 2 - m.x0 * k, oy = (h - bh * k) / 2 - m.y0 * k;
+            if (photo != null && key == null) { drawPhoto(c, w, h); return out; }
+            if (key == null) return out;
+            Model m = model(getContext(), key);
+            Bitmap car = Show.render(getContext(), key, paintKey, thumb ? 4 : 1);
+            if (m == null || car == null) return out;
+            float bh = CH + (reflect ? REFL : 0);
+            float k = Math.min(w / (float) CW, h / bh);
+            float ox = (w - CW * k) / 2, oy = (h - bh * k) / 2;
+            Paint pf = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG);
+            RectF dst = new RectF(ox, oy, ox + CW * k, oy + CH * k);
+            float gy = oy + GROUND * k;
             if (reflect) {
                 Bitmap rb = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
                 Canvas rc = new Canvas(rb);
-                rc.save();
-                rc.translate(ox, oy); rc.scale(k, k);
-                rc.translate(0, 2 * m.ground); rc.scale(1, -1);
-                drawCar(rc, m, color, false);
+                rc.save(); rc.translate(0, 2 * gy); rc.scale(1, -1);
+                rc.drawBitmap(car, null, dst, pf);
                 rc.restore();
                 Paint mk = new Paint();
-                float gy = oy + m.ground * k;
-                mk.setShader(new LinearGradient(0, gy, 0, gy + REFL * k, 0x29FFFFFF, 0, Shader.TileMode.CLAMP));
+                mk.setShader(new LinearGradient(0, gy, 0, gy + REFL * 0.8f * k, 0x2EFFFFFF, 0, Shader.TileMode.CLAMP));
                 mk.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
                 rc.drawRect(0, 0, w, h, mk);
                 Paint clr = new Paint();
@@ -367,10 +290,8 @@ final class Show {
                 c.drawBitmap(rb, 0, 0, null);
                 rb.recycle();
             }
-            c.save();
-            c.translate(ox, oy); c.scale(k, k);
-            drawCar(c, m, color, true);
-            c.restore();
+            shadow(c, m, ox, oy, k);
+            c.drawBitmap(car, null, dst, pf);
             return out;
         }
 
