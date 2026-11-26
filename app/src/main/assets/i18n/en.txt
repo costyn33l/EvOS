@@ -1959,3 +1959,51 @@ Datos del escáner en la tarjeta del vehículo	Scanner values on the vehicle car
 Los demás se ven al tocar o deslizar la tarjeta	The rest show when you tap or swipe the card
 Elegir los datos	Choose the values
 Todos los datos del escáner en vivo	All scanner values, live
+Showroom	Showroom
+Como un salón de exposición: menú lateral con Mapa, Música, Vehículo, Apps y Ajustes, el carro sobre un piso con rejilla y la consola de botones abajo. Elige el modelo y el color del carro. Siempre oscuro.	Like a car showroom: side menu with Map, Music, Vehicle, Apps and Settings, the car on a grid floor and the button console below. Choose the car's model and colour. Always dark.
+Inicio	Home
+Presentación	Overview
+Instrumentos	Gauges
+Parámetros	Parameters
+Viaje	Trip
+Modelo del carro	Car model
+Modelo mostrado	Model shown
+Tu foto	Your photo
+Hatchback	Hatchback
+Sedán	Saloon
+Familiar	Estate
+Coupé	Coupé
+Monovolumen	MPV
+Violeta	Violet
+Dibujados por EvOS, no son fotos de una marca. El carro cambia en el Inicio y en Vehículo.	Drawn by EvOS, not photos of any brand. The car changes on Home and in Vehicle.
+Velocidad · GPS	Speed · GPS
+Velocidad · OBD	Speed · OBD
+Anterior	Previous
+Temperaturas	Temperatures
+Aire y electricidad	Air and electrics
+Esperando datos del escáner…	Waiting for scanner data…
+Mantén presionado un dato para ponerlo en el Inicio (★). Toca para ver su gráfico.	Long-press a value to put it on Home (★). Tap to see its chart.
+Conecta el escáner OBD-II	Connect the OBD-II scanner
+Conecta el escáner OBD-II para ver las revoluciones y los datos del motor.	Connect the OBD-II scanner to see RPM and engine data.
+Solo lectura: EvOS lee los datos del motor y nunca escribe en la computadora del carro.	Read-only: EvOS reads engine data and never writes to the car's computer.
+Escáner sin conexión	Scanner not connected
+Luz del motor apagada	Engine light off
+1 código de falla	1 fault code
+{} códigos de falla	{} fault codes
+El auto no los informa	The car doesn't report them
+Se leen al conectar	Read when connecting
+Toca un código para ver qué significa, preguntarle a la IA y los datos del momento de la falla.	Tap a code to see what it means, ask the AI and see the data from when it happened.
+Aún no hay mantenimientos. Agrega el cambio de aceite, filtros, frenos, seguro, revisión técnica…	No maintenance yet. Add the oil change, filters, brakes, insurance, inspection…
+Agregar	Add
+Distancia	Distance
+Tiempo en marcha	Driving time
+Velocidad media	Average speed
+Consumo medio	Average consumption
+Combustible usado	Fuel used
+Altitud	Altitude
+Velocidad en el viaje	Speed during the trip
+Reiniciar	Reset
+Desde	Since
+Se mide mientras EvOS está en pantalla, con el GPS o el escáner. El consumo viene del escáner.	Measured while EvOS is on screen, with GPS or the scanner. Consumption comes from the scanner.
+del tablero (OBD)	from the dashboard (OBD)
+estimado con GPS	estimated with GPS

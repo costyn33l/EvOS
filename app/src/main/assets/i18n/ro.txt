@@ -1929,3 +1929,51 @@ Datos del escáner en la tarjeta del vehículo	Valori OBD pe cardul vehiculului
 Los demás se ven al tocar o deslizar la tarjeta	Restul apar când atingi sau glisezi cardul
 Elegir los datos	Alege valorile
 Todos los datos del escáner en vivo	Toate valorile scanerului, live
+Showroom	Showroom
+Como un salón de exposición: menú lateral con Mapa, Música, Vehículo, Apps y Ajustes, el carro sobre un piso con rejilla y la consola de botones abajo. Elige el modelo y el color del carro. Siempre oscuro.	Ca într-un showroom: meniu lateral cu Hartă, Media, Vehicul, Aplicații și Setări, mașina pe o podea cu grilă și consola de butoane jos. Alegi modelul și culoarea mașinii. Mereu întunecat.
+Inicio	Acasă
+Presentación	Prezentare
+Instrumentos	Instrumente
+Parámetros	Parametri
+Viaje	Călătorie
+Modelo del carro	Modelul mașinii
+Modelo mostrado	Modelul afișat
+Tu foto	Fotografia ta
+Hatchback	Hatchback
+Sedán	Sedan
+Familiar	Break
+Coupé	Coupé
+Monovolumen	Monovolum
+Violeta	Violet
+Dibujados por EvOS, no son fotos de una marca. El carro cambia en el Inicio y en Vehículo.	Desenate de EvOS, nu sunt fotografii ale unei mărci. Mașina se schimbă pe Acasă și în Vehicul.
+Velocidad · GPS	Viteză · GPS
+Velocidad · OBD	Viteză · OBD
+Anterior	Anterioara
+Temperaturas	Temperaturi
+Aire y electricidad	Aer și electric
+Esperando datos del escáner…	Se așteaptă datele de la scaner…
+Mantén presionado un dato para ponerlo en el Inicio (★). Toca para ver su gráfico.	Ține apăsat pe o valoare ca s-o pui pe Acasă (★). Atinge ca să vezi graficul.
+Conecta el escáner OBD-II	Conectează scanerul OBD-II
+Conecta el escáner OBD-II para ver las revoluciones y los datos del motor.	Conectează scanerul OBD-II ca să vezi turațiile și datele motorului.
+Solo lectura: EvOS lee los datos del motor y nunca escribe en la computadora del carro.	Doar citire: EvOS citește datele motorului și nu scrie niciodată în calculatorul mașinii.
+Escáner sin conexión	Scaner neconectat
+Luz del motor apagada	Martorul motorului stins
+1 código de falla	1 cod de eroare
+{} códigos de falla	{} coduri de eroare
+El auto no los informa	Mașina nu le raportează
+Se leen al conectar	Se citesc la conectare
+Toca un código para ver qué significa, preguntarle a la IA y los datos del momento de la falla.	Atinge un cod ca să vezi ce înseamnă, să întrebi IA și datele din momentul defectului.
+Aún no hay mantenimientos. Agrega el cambio de aceite, filtros, frenos, seguro, revisión técnica…	Încă nu ai termene. Adaugă schimbul de ulei, filtre, frâne, RCA, ITP…
+Agregar	Adaugă
+Distancia	Distanță
+Tiempo en marcha	Timp în mers
+Velocidad media	Viteză medie
+Consumo medio	Consum mediu
+Combustible usado	Combustibil consumat
+Altitud	Altitudine
+Velocidad en el viaje	Viteza în călătorie
+Reiniciar	Resetează
+Desde	De la
+Se mide mientras EvOS está en pantalla, con el GPS o el escáner. El consumo viene del escáner.	Se măsoară cât timp EvOS e pe ecran, cu GPS-ul sau scanerul. Consumul vine de la scaner.
+del tablero (OBD)	din bord (OBD)
+estimado con GPS	estimat cu GPS

@@ -56,6 +56,23 @@ go tema-ev:monolith 10; shot 68-ev-monolith-obd
 go ajustes:11 6;   shot 69-ev-personalizacion
 go musica-ev:1 4
 go ev-n:2 4
+# Showroom (1.1): todas las secciones con el auto simulado, los modelos y sin escáner
+go tema-ev:showroom 10; shot 70-sr-inicio
+go sr:1 8;     shot 71-sr-mapa
+go sr:2 6;     shot 72-sr-musica
+go sr:3:0 6;   shot 73-sr-presentacion
+go sr:3:1 6;   shot 74-sr-instrumentos
+go sr:3:2 8;   shot 75-sr-parametros
+go sr:3:3 6;   shot 76-sr-diagnostico
+go sr:3:4 6;   shot 77-sr-mantenimiento
+go sr:3:5 6;   shot 78-sr-viaje
+go sr-modelo:suv:blue 8; go sr:3:6 6; shot 79-sr-modelo
+for m in sedan wagon coupe mpv; do go sr-modelo:$m:red 6; go sr:0 4; shot 80-sr-$m; done
+go sr-modelo:hatch:silver 6
+go ajustes:11 6; shot 85-sr-personalizacion
+go obd-off 6; go sr:0 6; shot 86-sr-sin-obd
+go sr:3:2 6;   shot 87-sr-parametros-sin-obd
+go sr:0 4
 go tema-ev:aero 6
 go boton:3;        shot 03-menu-boton
 back

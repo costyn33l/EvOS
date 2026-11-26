@@ -29,8 +29,8 @@ import java.util.Random;
 final class Ev {
     private Ev() { }
 
-    static final String AERO = "aero", MONO = "monolith", PULSE = "pulse", NEON = "neon", INFERNO = "inferno";
-    static final String[] IDS = {AERO, MONO, PULSE, NEON, INFERNO};
+    static final String AERO = "aero", MONO = "monolith", PULSE = "pulse", NEON = "neon", INFERNO = "inferno", SHOW = Show.ID;
+    static final String[] IDS = {SHOW, AERO, MONO, PULSE, NEON, INFERNO};
     /** Tema en uso; null = Clásico (sin piel). Lo fija Main.applyTheme. */
     static String id;
 
@@ -41,14 +41,17 @@ final class Ev {
         for (String i : IDS) if (i.equals(x)) return i;
         return null;
     }
-    static boolean forcesDark(String x) { return NEON.equals(x) || INFERNO.equals(x); }
+    static boolean forcesDark(String x) { return NEON.equals(x) || INFERNO.equals(x) || SHOW.equals(x); }
+    /** Showroom tiene su propia distribución (menú lateral y secciones), no la piel sobre el inicio de siempre. */
+    static boolean show() { return SHOW.equals(id); }
 
     static String name(String x) {
-        return AERO.equals(x) ? "Aero" : MONO.equals(x) ? "Monolith" : PULSE.equals(x) ? "Pulse" : NEON.equals(x) ? "Neon" : "Inferno";
+        return SHOW.equals(x) ? "Showroom" : AERO.equals(x) ? "Aero" : MONO.equals(x) ? "Monolith" : PULSE.equals(x) ? "Pulse" : NEON.equals(x) ? "Neon" : "Inferno";
     }
 
     /** Descripción (en español: se traduce al mostrarla). */
     static String desc(String x) {
+        if (SHOW.equals(x)) return "Como un salón de exposición: menú lateral con Mapa, Música, Vehículo, Apps y Ajustes, el carro sobre un piso con rejilla y la consola de botones abajo. Elige el modelo y el color del carro. Siempre oscuro.";
         if (AERO.equals(x)) return "Tarjetas de vidrio esmerilado sobre un fondo oscuro, acentos verde menta y la velocidad en grande con una barra de energía. Tiene versión clara.";
         if (MONO.equals(x)) return "Instrumento de precisión: negro mate, líneas finas en lugar de tarjetas, la velocidad enorme y una regla con aguja. Tiene versión clara.";
         if (PULSE.equals(x)) return "Cuadrante de auto eléctrico con tres arcos: velocidad, revoluciones y refrigerante, en rosa, violeta y cian. Tiene versión clara.";
@@ -60,6 +63,8 @@ final class Ev {
 
     /** BG, CARD, INNER, BTN, DOCK, TEXT, MUTED, SOFT, CIRCLE, ICON */
     static int[] palette(String x, boolean light) {
+        if (SHOW.equals(x))
+            return new int[]{0xFF070707, 0xFF141414, 0xFF1A1A1A, 0xFF262626, 0xFF0B0B0B, 0xFFF2F2F2, 0xFF8E8E8E, 0xFFCFCFCF, 0xFF1C1C1C, 0xFFFFFFFF};
         if (AERO.equals(x)) return light
             ? new int[]{0xFFE6ECF2, 0xFFFFFFFF, 0xFFEFF3F8, 0xFFDFE6EE, 0xFFDCE4EC, 0xFF0E1726, 0xFF5B6577, 0xFF2E3A4C, 0xFFFFFFFF, 0xFF1E2A3A}
             : new int[]{0xFF06080D, 0xFF121822, 0xFF1A2130, 0xFF1E2634, 0xFF0A0D14, 0xFFEEF3F8, 0xFF8D99AB, 0xFFC7D0DC, 0xFF161D29, 0xFFFFFFFF};
@@ -76,6 +81,7 @@ final class Ev {
 
     /** Color de acento funcional (botones, interruptores): con texto blanco encima se tiene que leer. */
     static int accent(String x, int user) {
+        if (SHOW.equals(x)) return user;
         if (AERO.equals(x)) return 0xFF0E9F87;
         if (MONO.equals(x)) return 0xFFF0501A;
         if (PULSE.equals(x)) return 0xFFE0267D;
@@ -85,6 +91,7 @@ final class Ev {
 
     /** Color de luz (adornos, brillos, arcos). */
     static int glow(String x, int user) {
+        if (SHOW.equals(x)) return user;
         if (AERO.equals(x)) return 0xFF5CFFC8;
         if (MONO.equals(x)) return 0xFFFF5A1F;
         if (PULSE.equals(x)) return 0xFFFF2E88;
@@ -93,6 +100,7 @@ final class Ev {
     }
 
     static float cardRadius() {
+        if (SHOW.equals(id)) return 2;
         if (MONO.equals(id)) return 3;
         if (INFERNO.equals(id)) return 6;
         if (NEON.equals(id)) return 22;
@@ -109,6 +117,7 @@ final class Ev {
     /** Letra de los números grandes (velocidad, valores del escáner). */
     static Typeface numFace() {
         if (MONO.equals(id)) return Typeface.create("sans-serif-condensed", Typeface.NORMAL);
+        if (SHOW.equals(id)) return Typeface.create("sans-serif-condensed", Typeface.BOLD);
         if (INFERNO.equals(id)) return Typeface.create("sans-serif-condensed", Typeface.BOLD_ITALIC);
         if (AERO.equals(id)) return Typeface.create("sans-serif-light", Typeface.NORMAL);
         return Typeface.create("sans-serif-medium", Typeface.NORMAL);
@@ -232,6 +241,13 @@ final class Ev {
                 line.setStrokeWidth(2.2f * s);
                 line.setColor(glow);
                 c.drawLine(rf.left, rf.top + s, rf.right - ch, rf.top + s, line);
+                return;
+            }
+            if (SHOW.equals(st)) {
+                if (!border) { fill.setShader(new LinearGradient(0, b.top, 0, b.bottom, 0xFF181818, 0xFF111111, Shader.TileMode.CLAMP)); c.drawRect(rf, fill); fill.setShader(null); }
+                line.setStrokeWidth(px);
+                line.setColor(0xFF242424);
+                c.drawRect(rf, line);
                 return;
             }
             if (MONO.equals(st)) {
@@ -365,6 +381,8 @@ final class Ev {
             c.restore();
             radial(c, w * 0.12f, 0, w * 0.4f, 0x408C140A);
             flames(c, w, h, p);
+        } else if (SHOW.equals(st)) {
+            radial(c, w * 0.42f, h * 0.55f, w * 0.55f, 0x10FFFFFF);
         } else if (MONO.equals(st)) {
             Paint p = new Paint();
             p.setColor(light ? 0x0A000000 : 0x08FFFFFF);
@@ -813,6 +831,7 @@ final class Ev {
         }
 
         private void drawMini(Canvas c, int w, int h) {
+            if (SHOW.equals(st)) { drawShow(c, w, h); return; }
             String keep = id;
             id = st;
             float k = w / 1024f;
@@ -851,6 +870,47 @@ final class Ev {
             g.setColor(pal[5]);
             if (!side) for (int i = 0; i < 7; i++) c.drawCircle((110 + i * 134) * k, 528 * k, 18 * k, g);
             id = keep;
+        }
+
+        private void drawShow(Canvas c, int w, int h) {
+            float k = w / 1024f;
+            Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
+            p.setColor(0xFF101010);
+            c.drawRect(0, 0, 112 * k, h, p);
+            p.setColor(0xFF0D0D0D);
+            c.drawRect(112 * k, 0, w, 60 * k, p);
+            p.setColor(0xFF262626);
+            c.drawRect(0, 64 * k, 112 * k, 148 * k, p);
+            p.setColor(glow);
+            c.drawRect(0, 142 * k, 112 * k, 148 * k, p);
+            p.setColor(0xFF9A9A9A);
+            for (int i = 0; i < 4; i++) c.drawRect(36 * k, (180 + i * 84) * k, 76 * k, (200 + i * 84) * k, p);
+            p.setStyle(Paint.Style.STROKE);
+            p.setStrokeWidth(Math.max(1, 2 * k));
+            p.setColor(0x553C3C3C);
+            float vx = 500 * k, vy = 210 * k;
+            for (int i = -6; i <= 6; i++) c.drawLine(vx, vy, vx + i * 130 * k, h, p);
+            for (int j = 1; j <= 4; j++) { float t = j / 4f, yy = vy + (h - vy) * t * t; c.drawLine(112 * k, yy, w, yy, p); }
+            p.setStyle(Paint.Style.FILL);
+            Show.Model m = Show.model(getContext(), "hatch");
+            if (m != null) {
+                c.save();
+                float sk = 520 * k / (m.x1 - m.x0);
+                c.translate(150 * k - m.x0 * sk, 200 * k - m.y0 * sk);
+                c.scale(sk, sk);
+                Show.drawCar(c, m, 0xFFA9B0B8, true);
+                c.restore();
+            }
+            p.setColor(0xFFF2F2F2);
+            p.setTypeface(Typeface.create("sans-serif-condensed", Typeface.BOLD));
+            p.setTextSize(150 * k);
+            c.drawText("48", 700 * k, 230 * k, p);
+            p.setColor(0xFF2E2E2E);
+            for (int i = 0; i < 6; i++) {
+                c.drawRect((178 + i * 136) * k, 470 * k, (306 + i * 136) * k, 548 * k, p);
+            }
+            p.setColor(glow);
+            for (int i = 0; i < 6; i++) c.drawRect((178 + i * 136) * k, 542 * k, (306 + i * 136) * k, 548 * k, p);
         }
     }
 }

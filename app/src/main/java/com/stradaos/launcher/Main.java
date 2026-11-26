@@ -501,6 +501,7 @@ public class Main extends Activity {
             try { Modern.ensurePermissions(this, 77); } catch (Throwable ignored) { }
         }
         if (mediaWatcher != null) mediaWatcher.start();
+        if (srOn()) { h.removeCallbacks(srTick); h.post(srTick); }
         guardUsb();
         maybeWeather();
         h.postDelayed(new Runnable() { public void run() { autoChecks(); } }, 4000);
@@ -671,6 +672,9 @@ public class Main extends Activity {
         h.removeCallbacks(idleRun);
         stopGps();
         h.removeCallbacks(ticker);
+        h.removeCallbacks(srTick);
+        srTickAt = 0;
+        try { srTripSave(); } catch (Throwable ignored) { }
         h.removeCallbacks(progressTick);
     }
 
@@ -858,6 +862,21 @@ public class Main extends Activity {
                 }
                 else if (v.startsWith("tema-ev:")) applyEv(v.substring(8), false);
                 else if ("ev-datos".equals(v)) openEvObd();
+                // Showroom: «sr:3:2» = sección Vehículo › Parámetros; «sr-modelo:suv:blue» = modelo y color
+                else if (v.startsWith("sr:")) {
+                    String[] q = v.split(":");
+                    if (q.length > 2) srSub = Integer.parseInt(q[2]);
+                    if (settingsView != null) closeSettings();
+                    closeDrawer();
+                    if (srOn()) srShow(Integer.parseInt(q[1])); else srSec = Integer.parseInt(q[1]);
+                }
+                else if (v.startsWith("sr-modelo:")) {
+                    String[] q = v.split(":");
+                    SharedPreferences.Editor e = prefs.edit().putString("sr_model", q[1]);
+                    if (q.length > 2) e.putString("sr_paint", q[2]);
+                    e.apply();
+                    rebuild();
+                }
                 else if (v.startsWith("ev-n:")) { prefs.edit().putInt("ev_obd_n", Integer.parseInt(v.substring(5))).apply(); rebuild(); }
                 else if (v.startsWith("musica-ev:")) { prefs.edit().putBoolean("show_player", v.endsWith("1")).apply(); rebuild(); }
                 else if (v.startsWith("tema-premium:")) {
@@ -1148,6 +1167,10 @@ public class Main extends Activity {
             if (settingsSub != null && settingsCat == C_VEHICLE) { settingsBack(); return; }
             closeSettings(); return;
         }
+        if (drawer == null && srOn() && srSec != 0) {
+            if (srSec == 3 && srSub == 6) srShowSub(0); else srShow(0);
+            return;
+        }
         closeDrawer(); // es la pantalla de inicio: atrás no la cierra
     }
 
@@ -1305,6 +1328,7 @@ public class Main extends Activity {
     }
 
     private void build0(int W, int H) {
+        srSecs[0] = null;
         if (evObdPage != null) { Obd.removeListener(evObdL); evObdPage = null; evCells.clear(); }
         root.removeAllViews();
         idleView = null; idleClock = idleDate = idleSpeedTv = null; idleGauge = null;
@@ -1375,6 +1399,7 @@ public class Main extends Activity {
         vertical = "vertical".equals(lmode) ? canVertical(W, H) : !"horizontal".equals(lmode) && H >= W * 1.05f;
         if (vertical) sideDock = false;   // en vertical la barra va abajo (la lateral le quitaría ancho al mapa)
         if (premium) sideDock = false;
+        if (Ev.show() && !vertical) { sideDock = false; compactDock = false; noDock = true; }
         // Vertical bajo (2.22, Jorge Morales: Tesla con barra de clima, ~768×880): menos de 900 de alto en el lienzo de
         // 720 de ancho. La barra de botones normal se vuelve compacta para que el mapa tenga espacio. Las verticales de
         // siempre (768×1024 = 960, 1080×1920 = 1280) no cambian.
@@ -1434,6 +1459,7 @@ public class Main extends Activity {
 
         carbMaintBox = null; carbRpm = null;
         if (premium) buildPremium();
+        else if (Ev.show() && !vertical) buildShowroom();
         else {
             buildTop();
             buildCarCard();
@@ -1463,6 +1489,1121 @@ public class Main extends Activity {
      * pantalla horizontal de 9") y tan alto como la pantalla. Se reparten así, de arriba abajo: barra de arriba (64),
      * mapa (lo que sobra), fila de tarjetas y barra de botones.
      */
+    // ══════════════════════════ Tema Showroom (EvOS 1.1) ══════════════════════════
+    // Menú lateral (Inicio, Mapa, Música, Vehículo, Apps, Ajustes) y secciones a pantalla completa. Usa las funciones de
+    // siempre: el mapa es la tarjeta del mapa a todo el ancho, la música es el reproductor con otra distribución y lo
+    // del vehículo sale del escáner (solo lectura), de los mantenimientos y del GPS. Lo que el carro o la pantalla no
+    // entregan no se muestra.
+
+    private static int srSec = 0, srSub = 0;
+    private final FrameLayout[] srSecs = new FrameLayout[4];
+    private final FrameLayout[] srSubs = new FrameLayout[7];
+    private final View[] srRail = new View[4];
+    private final View[] srSubBtn = new View[6];
+    private TextView srCrumb, srSpeedTv, srSpeedUnit, srSpeedSrc, srLimitTv, srRpmTv;
+    private View srSpeedBox, srRpmBox;
+    private Show.Segs srRpmBar;
+    private Show.Dial srTach, srSpeedo;
+    private ImageView srWifiIc, srBtIc;
+    private final List<Object[]> srVals = new ArrayList<Object[]>();
+    private final List<View> srSparks = new ArrayList<View>();
+    private String srParamKey = "", srDiagKey = "";
+    private float srCW, srPW;
+    private FrameLayout srParamBox, srDiagBox, srMaintBox, srTripBox, srMaintHome;
+    private float srAlt = Float.NaN;
+    private float[] srTripHist = new float[80];
+    private int srTripN = 0;
+    private long srTickAt, srTripSampleAt, srTripSavedAt;
+
+    static final String[] SR_SUBS = {"Presentación", "Instrumentos", "Parámetros", "Diagnóstico", "Mantenimiento", "Viaje"};
+    static final String[] SR_SUB_IC = {"eye", "gauge", "list", "engine", "wrench", "flag"};
+    static final String[] SR_SECS = {"Inicio", "Mapa", "Música", "Vehículo"};
+
+    private boolean srOn() { return Ev.show() && !premium && !vertical && srSecs[0] != null; }
+
+    private ImageView srIcon(String name, float size, int color) {
+        ImageView v = new ImageView(this);
+        v.setImageBitmap(asset("ic/sr_" + name + ".png"));
+        v.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        v.setColorFilter(color);
+        return v;
+    }
+
+    /** Etiqueta en mayúsculas condensadas con espaciado (como en el tablero). */
+    private TextView srLabel(String es, float size, int color) {
+        TextView v = tv("", size, color, true);
+        v.setText(I18n.t(es).toUpperCase(I18n.loc));
+        v.setTypeface(Show.cond(true));
+        if (SDK >= 21) v.setLetterSpacing(0.14f);
+        return v;
+    }
+
+    private TextView srNum(String t, float size, int color) {
+        TextView v = tv("", size, color, true);
+        v.setText(t);
+        v.setTypeface(Show.cond(true));
+        return v;
+    }
+
+    private View srHair(int color) {
+        View v = new View(this);
+        v.setBackgroundColor(color);
+        return v;
+    }
+
+    /** Botón de la consola: ícono arriba, nombre abajo y la línea de color. */
+    private FrameLayout srTile(String ic, String es, boolean accentIcon, float w, float hh, View.OnClickListener tap) {
+        FrameLayout f = new FrameLayout(this);
+        f.setBackground(Show.tile(s, RED));
+        ImageView iv = srIcon(ic, 28, accentIcon ? RED : TEXT);
+        f.addView(iv, new FrameLayout.LayoutParams((int) (28 * s), (int) (28 * s), Gravity.CENTER_HORIZONTAL | Gravity.TOP));
+        ((FrameLayout.LayoutParams) iv.getLayoutParams()).topMargin = (int) ((hh * 0.5f - 24) * s);
+        TextView l = srLabel(es, 13, TEXT);
+        l.setGravity(Gravity.CENTER);
+        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(-1, -2, Gravity.TOP);
+        lp.topMargin = (int) ((hh * 0.5f + 12) * s);
+        lp.leftMargin = lp.rightMargin = (int) (4 * s);
+        f.addView(l, lp);
+        f.setTag(iv);
+        if (tap != null) f.setOnClickListener(tap);
+        return f;
+    }
+
+    private View.OnClickListener srGo(final Runnable r) {
+        return new View.OnClickListener() { public void onClick(View v) { try { r.run(); } catch (Throwable e) { Guard.log("Showroom: " + e); } } };
+    }
+
+    private void buildShowroom() {
+        srVals.clear(); srSparks.clear(); srParamKey = ""; srDiagKey = "";
+        srTach = srSpeedo = null; srRpmBar = null; srSpeedTv = null; srWifiIc = srBtIc = null;
+        for (int i = 0; i < srSubs.length; i++) srSubs[i] = null;
+        srCW = 912 + ex;
+        srPW = srCW - 104;
+        // lo de siempre (barra de arriba, tarjeta del vehículo y reproductor) se arma oculto para que el resto del código
+        // siga teniendo sus campos; los que se ven se reemplazan después por los del Showroom
+        FrameLayout real = board;
+        FrameLayout ghost = new FrameLayout(this);
+        ghost.setVisibility(View.GONE);
+        real.addView(ghost, new FrameLayout.LayoutParams(1, 1));
+        board = ghost;
+        try { buildTop(); buildCarCard(); buildAudioCard(); } finally { board = real; }
+        evGauge = null; evTiles.clear(); carGauge = null;
+
+        // Mapa: la tarjeta del mapa de siempre, a todo el ancho (con Android Auto, CarPlay y la navegación)
+        mapX = 112; mapY = 60; mapW = srCW; mapH = 540;
+        buildAaCard();
+
+        for (int i = 0; i < 4; i++) {
+            if (i == 1) { srSecs[i] = null; continue; }
+            FrameLayout f = new FrameLayout(this);
+            place(board, f, 112, 60, srCW, 540);
+            srSecs[i] = f;
+        }
+        srBuildHome(srSecs[0]);
+        srBuildMedia(srSecs[2]);
+        srBuildCar(srSecs[3]);
+        srBuildHeader();
+        srBuildRail();
+        srShow(srSec);
+        srObd();
+        h.removeCallbacks(srTick);
+        h.post(srTick);
+    }
+
+    // ── barra de arriba ──
+
+    private void srBuildHeader() {
+        FrameLayout hd = new FrameLayout(this);
+        hd.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{0xFF0D0D0D, 0xFF080808}));
+        place(board, hd, 112, 0, srCW, 60);
+        place(hd, srHair(0xFF1A1A1A), 0, 59, srCW, 1);
+        srCrumb = srLabel("", 17, TEXT);
+        srCrumb.setGravity(Gravity.CENTER_VERTICAL);
+        place(hd, srCrumb, 24, 0, srCW * 0.5f, 60);
+        LinearLayout right = new LinearLayout(this);
+        right.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+        weatherBox = new LinearLayout(this);
+        weatherBox.setGravity(Gravity.CENTER_VERTICAL);
+        weatherIc = icon("cloud", 20);
+        weatherIc.setColorFilter(0xFFBDBDBD);
+        weatherBox.addView(weatherIc, new LinearLayout.LayoutParams((int) (20 * s), (int) (20 * s)));
+        weatherTv = tv("", 15, TEXT, false);
+        weatherTv.setPadding((int) (8 * s), 0, 0, 0);
+        weatherBox.addView(weatherTv);
+        weatherCityTv = tv("", 15, MUTED, false);
+        weatherCityTv.setPadding((int) (6 * s), 0, (int) (16 * s), 0);
+        weatherBox.addView(weatherCityTv);
+        weatherBox.setVisibility(View.GONE);
+        weatherBox.setOnClickListener(new View.OnClickListener() { public void onClick(View v) { showWeatherDetail(); } });
+        right.addView(weatherBox);
+        if (prefs.getBoolean("status_icons", true)) {
+            right.addView(srHair(0xFF262626), new LinearLayout.LayoutParams(Math.max(1, (int) s), (int) (22 * s)));
+            LinearLayout st = new LinearLayout(this);
+            st.setGravity(Gravity.CENTER_VERTICAL);
+            st.setPadding((int) (8 * s), 0, (int) (8 * s), 0);
+            wifiIc = statusIcon(st, "wifi", new Runnable() { public void run() { toggleWifi(); } },
+                new Runnable() { public void run() { openSettingsPage(Settings.ACTION_WIFI_SETTINGS, new Runnable() { public void run() { openSystemSettings(); } }); } });
+            btIc = statusIcon(st, "bluetooth", new Runnable() { public void run() { toggleBt(); } },
+                new Runnable() { public void run() { openSettingsPage(Settings.ACTION_BLUETOOTH_SETTINGS, new Runnable() { public void run() { openSlot(1); } }); } });
+            right.addView(st);
+        }
+        right.addView(srHair(0xFF262626), new LinearLayout.LayoutParams(Math.max(1, (int) s), (int) (22 * s)));
+        timeTv = srNum("", 30, TEXT);
+        timeTv.setPadding((int) (16 * s), 0, 0, 0);
+        right.addView(timeTv);
+        place(hd, right, srCW * 0.40f, 0, srCW * 0.60f - 22, 60);
+        timeTv.setOnClickListener(new View.OnClickListener() { public void onClick(View v) { openSettings(); } });
+    }
+
+    private void srSetCrumb() {
+        if (srCrumb == null) return;
+        String a = I18n.t(SR_SECS[srSec]).toUpperCase(I18n.loc);
+        if (srSec != 3) { srCrumb.setText(a); srCrumb.setTextColor(TEXT); return; }
+        String b = I18n.t(srSub == 6 ? "Presentación" : SR_SUBS[srSub]).toUpperCase(I18n.loc);
+        String c = srSub == 6 ? I18n.t("Modelo").toUpperCase(I18n.loc) : null;
+        android.text.SpannableStringBuilder sb = new android.text.SpannableStringBuilder();
+        sb.append(a);
+        sb.setSpan(new android.text.style.ForegroundColorSpan(MUTED), 0, sb.length(), 0);
+        for (String x : c == null ? new String[]{b} : new String[]{b, c}) {
+            int st = sb.length();
+            sb.append("  /  ");
+            sb.setSpan(new android.text.style.ForegroundColorSpan(0xFF4A4A4A), st, sb.length(), 0);
+            sb.append(x);
+        }
+        srCrumb.setTextColor(TEXT);
+        srCrumb.setText(sb);
+    }
+
+    // ── menú lateral ──
+
+    private void srBuildRail() {
+        FrameLayout rail = new FrameLayout(this);
+        rail.setBackground(new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[]{0xFF0B0B0B, 0xFF111111}));
+        place(board, rail, 0, 0, 112, 600);
+        place(rail, srHair(0xFF1C1C1C), 111, 0, 1, 600);
+        String[] ic = {"home", "nav", "media", "car", "apps", "gear"};
+        String[] nm = {null, "Mapa", "Música", "Vehículo", "Apps", "Ajustes"};
+        float y = 0;
+        for (int i = 0; i < 6; i++) {
+            final int idx = i;
+            float hh = i == 0 ? 64 : 84;
+            FrameLayout b = new FrameLayout(this);
+            ImageView iv = srIcon(ic[i], 30, TEXT);
+            FrameLayout.LayoutParams ilp = new FrameLayout.LayoutParams((int) (30 * s), (int) (30 * s), Gravity.CENTER_HORIZONTAL | Gravity.TOP);
+            ilp.topMargin = (int) ((i == 0 ? 17 : 16) * s);
+            b.addView(iv, ilp);
+            TextView l = null;
+            if (nm[i] != null) {
+                l = srLabel(nm[i], 14, 0xFF9A9A9A);
+                l.setGravity(Gravity.CENTER);
+                FrameLayout.LayoutParams llp = new FrameLayout.LayoutParams(-1, -2, Gravity.TOP);
+                llp.topMargin = (int) (54 * s);
+                b.addView(l, llp);
+            }
+            b.setTag(l);
+            place(rail, b, 0, y, 111, hh);
+            if (i == 0) place(rail, srHair(0xFF1C1C1C), 0, 63, 111, 1);
+            y += hh;
+            if (i < 4) srRail[i] = b;
+            b.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {
+                if (idx < 4) { if (idx == 3 && srSec == 3 && srSub == 6) srSub = 0; srShow(idx); }
+                else if (idx == 4) openDrawer();
+                else openSettings();
+            }});
+            if (idx == 3) b.setOnLongClickListener(new View.OnLongClickListener() { public boolean onLongClick(View v) { openVehiclePanel(); return true; } });
+        }
+        if (obdOn()) {
+            LinearLayout st = new LinearLayout(this);
+            st.setGravity(Gravity.CENTER);
+            View dot = new View(this);
+            dot.setBackground(round(Obd.status == Obd.LIVE ? 0xFF3DDC84 : MUTED, 4));
+            st.addView(dot, new LinearLayout.LayoutParams((int) (7 * s), (int) (7 * s)));
+            TextView t = srLabel("OBD", 12, 0xFF9A9A9A);
+            t.setPadding((int) (6 * s), 0, 0, 0);
+            st.addView(t);
+            st.setTag(dot);
+            place(rail, st, 0, 562, 111, 20);
+            srObdDot = dot;
+        } else srObdDot = null;
+    }
+
+    private View srObdDot;
+
+    private void srShow(int sec) {
+        srSec = Math.max(0, Math.min(3, sec));
+        for (int i = 0; i < 4; i++) {
+            View v = i == 1 ? mapCardView : srSecs[i];
+            if (v != null) v.setVisibility(i == srSec ? View.VISIBLE : View.GONE);
+            View b = srRail[i];
+            if (b == null) continue;
+            boolean on = i == srSec;
+            b.setBackground(on ? Show.railOn(s, RED) : null);
+            TextView l = (TextView) b.getTag();
+            if (l != null) l.setTextColor(on ? TEXT : 0xFF9A9A9A);
+            ((ImageView) ((FrameLayout) b).getChildAt(0)).setColorFilter(on ? TEXT : 0xFFD6D6D6);
+        }
+        if (srSec == 1 && liveMap != null) liveMap.follow();
+        if (srSec == 3) srShowSub(srSub);
+        srSetCrumb();
+    }
+
+    // ── Inicio ──
+
+    private void srBuildHome(FrameLayout sec) {
+        float W = srCW;
+        sec.addView(new Show.Floor(this, 0.28f, 0.36f), new FrameLayout.LayoutParams(-1, -1));
+        place(sec, srLabel("Mi vehículo", 12, MUTED), 28, 24, 400, 16);
+        placeWrap(sec, srNameRow(26), 28, 42);
+        final Show.Car car = srCarView(true);
+        place(sec, car, 38, 166, Math.min(520, W - 380), 266);
+        car.setOnClickListener(new View.OnClickListener() { public void onClick(View v) { srSub = 0; srShow(3); } });
+        car.setOnLongClickListener(new View.OnLongClickListener() { public boolean onLongClick(View v) { srOpenModel(); return true; } });
+
+        float rx = W - 334, y = 24;
+        if (carSpeed) {
+            srSpeedSrc = srLabel("Velocidad · GPS", 12, MUTED);
+            place(sec, srSpeedSrc, rx, y, 260, 16);
+            LinearLayout sp = new LinearLayout(this);
+            sp.setGravity(Gravity.BOTTOM);
+            srSpeedTv = srNum("--", 132, TEXT);
+            sp.addView(srSpeedTv);
+            srSpeedUnit = srLabel(useMph() ? "mph" : "km/h", 20, MUTED);
+            srSpeedUnit.setPadding((int) (10 * s), 0, 0, (int) (14 * s));
+            sp.addView(srSpeedUnit);
+            place(sec, sp, rx, y + 14, 300, 124);
+            srSpeedBox = sp;
+            srLimitTv = srNum("", 19, 0xFF111111);
+            srLimitTv.setGravity(Gravity.CENTER);
+            GradientDrawable lb = new GradientDrawable();
+            lb.setShape(GradientDrawable.OVAL);
+            lb.setColor(Color.WHITE);
+            lb.setStroke((int) (5 * s), 0xFFE5323B);
+            srLimitTv.setBackground(lb);
+            srLimitTv.setVisibility(View.GONE);
+            place(sec, srLimitTv, rx + 260, y + 70, 46, 46);
+            y += 144;
+        } else { srSpeedTv = null; srSpeedSrc = null; srLimitTv = null; }
+        boolean obd = obdOn();
+        if (obd) {
+            srRpmBar = new Show.Segs(this, 28, RED, s);
+            place(sec, srRpmBar, rx, y, 306, 10);
+            srRpmTv = srLabel("— rpm", 13, MUTED);
+            place(sec, srRpmTv, rx, y + 16, 306, 16);
+            y += 46;
+            String[] keys = evKeys();
+            boolean four = keys.length == 4;
+            place(sec, srHair(HAIR_SR), rx, y, 306, 1);
+            for (int i = 0; i < keys.length; i++) {
+                Obd.Sensor sn = obdSensor(keys[i]);
+                if (sn == null) continue;
+                int col = i % 2, row = i / 2;
+                float cx = rx + col * 153 + (col == 1 ? 18 : 0), cy = y + 12 + row * 64;
+                if (col == 1) place(sec, srHair(HAIR_SR), rx + 153, y + 6 + row * 64, 1, 56);
+                place(sec, srLabel(sn.label, 12, MUTED), cx, cy, 135, 16);
+                TextView v = srNum("—", four ? 32 : 40, TEXT);
+                place(sec, v, cx, cy + 20, 135, four ? 34 : 42);
+                srVals.add(new Object[]{sn, v});
+            }
+            y += 12 + (four ? 2 : 1) * 64 + 8;
+        }
+        srMaintHome = new FrameLayout(this);
+        place(sec, srMaintHome, rx, y, 306, 46);
+        srRenderMaintHome();
+
+        // consola
+        List<View> tiles = new ArrayList<View>();
+        String cm = prefs.getString("conn_buttons", "both");
+        if ("both".equals(cm) || "aa".equals(cm))
+            tiles.add(srTile("aa", "Android Auto", true, 0, 78, srGo(new Runnable() { public void run() { openAndroidAuto(); } })));
+        if ("both".equals(cm) || "cp".equals(cm))
+            tiles.add(srTile("phone", "CarPlay", false, 0, 78, srGo(new Runnable() { public void run() { openCarPlay(); } })));
+        FrameLayout wf = srTile("wifi", "Wi-Fi", false, 0, 78, srGo(new Runnable() { public void run() { toggleWifi(); } }));
+        srWifiIc = (ImageView) wf.getTag();
+        wf.setOnLongClickListener(new View.OnLongClickListener() { public boolean onLongClick(View v) {
+            openSettingsPage(Settings.ACTION_WIFI_SETTINGS, new Runnable() { public void run() { openSystemSettings(); } }); return true; } });
+        tiles.add(wf);
+        FrameLayout bt = srTile("bt", "Bluetooth", false, 0, 78, srGo(new Runnable() { public void run() { toggleBt(); } }));
+        srBtIc = (ImageView) bt.getTag();
+        bt.setOnLongClickListener(new View.OnLongClickListener() { public boolean onLongClick(View v) { openSlot(1); return true; } });
+        tiles.add(bt);
+        tiles.add(srTile("radio", "Radio", false, 0, 78, srGo(new Runnable() { public void run() { openSlot(0); } })));
+        tiles.add(srTile("cam", "Cámara", false, 0, 78, srGo(new Runnable() { public void run() { openSlot(2); } })));
+        srConsole(sec, tiles, W, 436, 128);
+    }
+
+    static final int HAIR_SR = 0xFF1E1E1E;
+
+    /** Pone los botones centrados en una fila (más angostos si no caben). */
+    private void srConsole(FrameLayout parent, List<View> tiles, float W, float y, float maxW) {
+        int n = tiles.size();
+        if (n == 0) return;
+        float gap = 8, w = Math.min(maxW, (W - 48 - gap * (n - 1)) / n);
+        float x = (W - (w * n + gap * (n - 1))) / 2;
+        for (View t : tiles) { place(parent, t, x, y, w, 78); x += w + gap; }
+    }
+
+    private LinearLayout srNameRow(float size) {
+        LinearLayout r = new LinearLayout(this);
+        r.setGravity(Gravity.CENTER_VERTICAL);
+        TextView n = tv("", size, TEXT, true);
+        n.setText(prefs.getString("car_name", I18n.t("Mi vehículo")));
+        r.addView(n);
+        String tag = prefs.getString("car_tag", "").trim();
+        if (tag.length() > 0) {
+            LinearLayout plate = new LinearLayout(this);
+            plate.setGravity(Gravity.CENTER_VERTICAL);
+            GradientDrawable pb = round(0xFFF4F6F8, 3);
+            pb.setStroke(Math.max(1, (int) s), 0xFF2B3340);
+            plate.setBackground(pb);
+            TextView band = tv("RO", 7, Color.WHITE, true);
+            band.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
+            band.setBackgroundColor(0xFF1F4FBF);
+            band.setPadding(0, 0, 0, (int) (2 * s));
+            plate.addView(band, new LinearLayout.LayoutParams((int) (14 * s), (int) (24 * s)));
+            TextView pt = srNum(tag, 15, 0xFF111418);
+            pt.setPadding((int) (8 * s), 0, (int) (8 * s), 0);
+            plate.addView(pt);
+            LinearLayout.LayoutParams plp = new LinearLayout.LayoutParams(-2, (int) (24 * s));
+            plp.leftMargin = (int) (12 * s);
+            r.addView(plate, plp);
+        }
+        r.setOnClickListener(new View.OnClickListener() { public void onClick(View v) { showSettings(C_VEHICLE); } });
+        return r;
+    }
+
+    private String srModel() { return Show.validModel(prefs.getString("sr_model", Show.MODEL_KEYS[0])); }
+    /** Lo que se ve de verdad: la foto solo si existe. */
+    private String srModelShown = "";
+    private String srPaint() { return prefs.getString("sr_paint", "silver"); }
+
+    /** El carro de la pantalla: el modelo y el color elegidos o la foto (si se eligió y existe). */
+    private Show.Car srCarView(boolean reflect) {
+        Show.Car c = new Show.Car(this);
+        c.reflect = reflect;
+        String m = srModel();
+        Bitmap ph = Show.PHOTO.equals(m) ? CarPhoto.load(this) : null;
+        srModelShown = ph != null ? Show.PHOTO : m;
+        if (ph != null) c.set(null, 0, ph);
+        else c.set(Show.model(this, Show.PHOTO.equals(m) ? Show.MODEL_KEYS[0] : m), Show.paint(srPaint()), null);
+        return c;
+    }
+
+    /** Próximo mantenimiento (aceite o tarea) en una línea, abajo de los datos del Inicio. */
+    private void srRenderMaintHome() {
+        FrameLayout b = srMaintHome;
+        if (b == null) return;
+        b.removeAllViews();
+        String name = null, left = null;
+        boolean warn = false;
+        int ni = nearestMaint();
+        if (ni >= 0) {
+            org.json.JSONObject o = maint().get(ni);
+            name = taskName(o); left = taskLeftText(o); warn = taskFrac(o) < 0.15;
+        } else if (oilOn() && prefs.contains("odo_base_km")) {
+            float lk = oilNextKm() - odoKm();
+            name = I18n.t("Cambio de aceite"); left = lk <= 0 ? I18n.t("¡Ya toca!") : fmtDist(lk);
+            warn = lk < prefs.getFloat("oil_interval_km", 5000) * 0.15f;
+        }
+        if (name == null) { b.setVisibility(View.GONE); return; }
+        b.setVisibility(View.VISIBLE);
+        place(b, srHair(HAIR_SR), 0, 0, 306, 1);
+        place(b, srIcon("drop", 18, RED), 0, 14, 18, 18);
+        TextView n = tv("", 15, TEXT, false);
+        n.setText(name);
+        place(b, n, 28, 14, 170, 20);
+        TextView l = srNum(left.toUpperCase(I18n.loc), 18, warn ? RED : TEXT);
+        l.setGravity(Gravity.RIGHT);
+        place(b, l, 196, 12, 110, 24);
+        b.setOnClickListener(new View.OnClickListener() { public void onClick(View v) { srSub = 4; srShow(3); } });
+    }
+
+    /** Velocidad (desde showSpeed): número grande, de dónde viene y la señal de límite si la navegación la conoce. */
+    private void srSpeed(float v, boolean ok, boolean obd, int limit) {
+        if (srSpeedTv != null) {
+            srSpeedTv.setText(ok ? String.valueOf(Math.round(v)) : "--");
+            srSpeedSrc.setText(I18n.t(obd ? "Velocidad · OBD" : "Velocidad · GPS").toUpperCase(I18n.loc));
+            if (limit > 0) { srLimitTv.setText(String.valueOf(limit)); srLimitTv.setVisibility(View.VISIBLE); }
+            else srLimitTv.setVisibility(View.GONE);
+        }
+        if (srSpeedo != null) srSpeedo.set(ok ? v : Float.NaN, (useMph() ? "MPH" : "KM/H") + " · " + (obd ? "OBD" : "GPS"));
+    }
+
+    /** Datos del escáner (desde obdWatch): revoluciones, los datos elegidos, instrumentos y parámetros. */
+    private void srObd() {
+        if (!srOn()) return;
+        boolean live = Obd.status == Obd.LIVE;
+        if (srObdDot != null) srObdDot.setBackground(round(live ? 0xFF3DDC84 : MUTED, 4));
+        float rpm = live && Obd.RPM.has() ? Obd.RPM.value : Float.NaN;
+        if (srRpmBar != null) {
+            srRpmBar.set(Float.isNaN(rpm) ? 0 : rpm / 7000f);
+            srRpmTv.setText(Float.isNaN(rpm) ? "— RPM" : I18n.integer(Math.round(rpm)) + " RPM");
+        }
+        for (Object[] o : srVals) {
+            Obd.Sensor sn = (Obd.Sensor) o[0];
+            TextView tv = (TextView) o[1];
+            boolean has = live && sn.has();
+            String u = sn.unit.length() > 0 ? sn.unit.replace("L/100 km", "L/100") : "";
+            CharSequence txt = has ? sn.text() : "—";
+            if (has && u.length() > 0) {
+                android.text.SpannableString sp = new android.text.SpannableString(txt + " " + u);
+                sp.setSpan(new android.text.style.RelativeSizeSpan(0.42f), txt.length(), sp.length(), 0);
+                sp.setSpan(new android.text.style.ForegroundColorSpan(MUTED), txt.length(), sp.length(), 0);
+                tv.setText(sp);
+            } else tv.setText(txt);
+            if (o.length > 2 && o[2] instanceof Show.Bar)
+                ((Show.Bar) o[2]).set(has ? (sn.value - sn.min) / (sn.max - sn.min) : 0, (Integer) o[3]);
+        }
+        if (srTach != null) srTach.set(rpm, "RPM");
+        if (srSec == 3) {
+            if (srSub == 2) {
+                if (!srParamStructure().equals(srParamKey)) srBuildParams();
+                for (View v : srSparks) v.invalidate();
+            } else if (srSub == 3 && !srDiagStructure().equals(srDiagKey)) srBuildDiag();
+        }
+    }
+
+    // ── Música ──
+
+    private void srBuildMedia(FrameLayout sec) {
+        float W = srCW;
+        sec.addView(new Show.Floor(this, 0.30f, 0.24f), new FrameLayout.LayoutParams(-1, -1));
+        playerArt = new PlayerArt(this, s, asset("ic/music_note.png"));
+        place(sec, playerArt, 56, 52, 300, 300);
+        playerArt.setOnClickListener(new View.OnClickListener() { public void onClick(View v) { openMusicApp(); } });
+        float tx = 400, tw = W - tx - 32;
+        sourceTv = srLabel("", 13, RED);
+        place(sec, sourceTv, tx, 70, tw, 18);
+        trackTv = tv("Nada sonando", 32, TEXT, true);
+        place(sec, trackTv, tx, 98, tw, 40);
+        artistTv = tv("Radio, Bluetooth o USB", 18, MUTED, false);
+        place(sec, artistTv, tx, 146, tw, 24);
+        timePosTv = srNum("", 15, MUTED);
+        place(sec, timePosTv, tx, 180, tw, 20);
+        FrameLayout prev = srTile("prev", "Anterior", false, 0, 78, mediaClick(KeyEvent.KEYCODE_MEDIA_PREVIOUS));
+        FrameLayout play = new FrameLayout(this);
+        play.setBackground(Show.tileOn(s, RED));
+        playIc = icon("play_arrow", 40);
+        playIc.setColorFilter(RED);
+        play.addView(playIc, new FrameLayout.LayoutParams((int) (40 * s), (int) (40 * s), Gravity.CENTER));
+        play.setOnClickListener(mediaClick(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE));
+        FrameLayout next = srTile("next", "Siguiente", false, 0, 78, mediaClick(KeyEvent.KEYCODE_MEDIA_NEXT));
+        place(sec, prev, tx, 236, 112, 78);
+        place(sec, play, tx + 120, 236, 136, 78);
+        place(sec, next, tx + 264, 236, 112, 78);
+        play.setOnLongClickListener(new View.OnLongClickListener() { public boolean onLongClick(View v) { showPlayerDiag(); return true; } });
+        List<View> tiles = new ArrayList<View>();
+        tiles.add(srTile("media", "Música", true, 0, 78, srGo(new Runnable() { public void run() { openMusicApp(); } })));
+        tiles.add(srTile("bt", "Música Bluetooth", false, 0, 78, srGo(new Runnable() { public void run() { openBtAudioApp(true); } })));
+        tiles.add(srTile("radio", "Radio", false, 0, 78, srGo(new Runnable() { public void run() { openSlot(0); } })));
+        srConsole(sec, tiles, W, 436, 160);
+        renderTrack();
+        updatePlayIcon();
+    }
+
+    // ── Vehículo ──
+
+    private void srBuildCar(FrameLayout sec) {
+        FrameLayout menu = new FrameLayout(this);
+        menu.setBackgroundColor(0xFF0D0D0D);
+        place(sec, menu, 0, 0, 104, 540);
+        place(menu, srHair(0xFF1C1C1C), 103, 0, 1, 540);
+        for (int i = 0; i < 6; i++) {
+            final int idx = i;
+            FrameLayout b = new FrameLayout(this);
+            ImageView iv = srIcon(SR_SUB_IC[i], 28, 0xFFCFCFCF);
+            FrameLayout.LayoutParams ilp = new FrameLayout.LayoutParams((int) (28 * s), (int) (28 * s), Gravity.CENTER_HORIZONTAL | Gravity.TOP);
+            ilp.topMargin = (int) (17 * s);
+            b.addView(iv, ilp);
+            TextView l = srLabel(SR_SUBS[i], 13, 0xFF9A9A9A);
+            l.setGravity(Gravity.CENTER);
+            FrameLayout.LayoutParams llp = new FrameLayout.LayoutParams(-1, -2, Gravity.TOP);
+            llp.topMargin = (int) (54 * s);
+            llp.leftMargin = llp.rightMargin = (int) (3 * s);
+            b.addView(l, llp);
+            b.setTag(l);
+            place(menu, b, 0, i * 86, 103, 85);
+            place(menu, srHair(0xFF161616), 0, i * 86 + 85, 103, 1);
+            srSubBtn[i] = b;
+            b.setOnClickListener(new View.OnClickListener() { public void onClick(View v) { srShowSub(idx); } });
+        }
+        for (int i = 0; i < 7; i++) {
+            FrameLayout p = new FrameLayout(this);
+            place(sec, p, 104, 0, srPW, 540);
+            p.setVisibility(View.GONE);
+            srSubs[i] = p;
+        }
+        srBuildPresent(srSubs[0]);
+        srBuildGauges(srSubs[1]);
+        srParamBox = srSubs[2];
+        srDiagBox = srSubs[3];
+        srMaintBox = srSubs[4];
+        srTripBox = srSubs[5];
+    }
+
+    private void srShowSub(int sub) {
+        srSub = Math.max(0, Math.min(6, sub));
+        for (int i = 0; i < 7; i++) if (srSubs[i] != null) srSubs[i].setVisibility(i == srSub ? View.VISIBLE : View.GONE);
+        for (int i = 0; i < 6; i++) {
+            View b = srSubBtn[i];
+            if (b == null) continue;
+            boolean on = i == srSub || (srSub == 6 && i == 0);
+            b.setBackground(on ? Show.tileOn(s, RED) : null);
+            ((TextView) b.getTag()).setTextColor(on ? TEXT : 0xFF9A9A9A);
+            ((ImageView) ((FrameLayout) b).getChildAt(0)).setColorFilter(on ? TEXT : 0xFFCFCFCF);
+        }
+        if (srSub == 2) srBuildParams();
+        else if (srSub == 3) srBuildDiag();
+        else if (srSub == 4) srBuildMaint();
+        else if (srSub == 5) srBuildTrip();
+        else if (srSub == 6) srBuildModel();
+        srSetCrumb();
+    }
+
+    private void srBuildPresent(FrameLayout p) {
+        float W = srPW;
+        p.addView(new Show.Floor(this, 0.30f, 0.45f), new FrameLayout.LayoutParams(-1, -1));
+        placeWrap(p, srNameRow(24), 28, 22);
+        Show.Car car = srCarView(true);
+        place(p, car, 40, 150, Math.min(560, W - 250), 286);
+        car.setOnClickListener(new View.OnClickListener() { public void onClick(View v) { srOpenModel(); } });
+        LinearLayout col = new LinearLayout(this);
+        col.setOrientation(LinearLayout.VERTICAL);
+        col.setGravity(Gravity.RIGHT);
+        boolean odoKnown = prefs.contains("odo_base_km");
+        if (odoKnown) srStat(col, "Kilometraje", I18n.integer(Math.round(toUnit(odoKm()))), unit().toUpperCase(I18n.loc),
+            I18n.t(odoFromCar() ? "del tablero (OBD)" : "estimado con GPS"), TEXT);
+        int ni = nearestMaint();
+        if (ni >= 0) {
+            org.json.JSONObject o = maint().get(ni);
+            srStat(col, "Próximo mantenimiento", taskLeftText(o), "", taskName(o), RED);
+        } else if (oilOn() && odoKnown) {
+            float lk = oilNextKm() - odoKm();
+            srStat(col, "Próximo mantenimiento", lk <= 0 ? I18n.t("¡Ya toca!") : fmtDist(lk), "", I18n.t("Cambio de aceite"), RED);
+        }
+        if (obdOn()) srStat(col, "Escáner", Obd.status == Obd.LIVE ? "OBD LIVE" : I18n.t(Obd.running() ? "Conectando…" : "Apagado"), "",
+            Obd.status == Obd.LIVE && Obd.vin != null ? "VIN " + Obd.vin : "", Obd.status == Obd.LIVE ? 0xFF3DDC84 : MUTED);
+        place(p, col, W - 236, 22, 210, 300);
+        List<View> tiles = new ArrayList<View>();
+        tiles.add(srTile("car", "Modelo", true, 0, 78, srGo(new Runnable() { public void run() { srOpenModel(); } })));
+        tiles.add(srTile("photo", "Foto", false, 0, 78, srGo(new Runnable() { public void run() {
+            boolean has = CarPhoto.load(Main.this) != null;
+            prefs.edit().putString("sr_model", Show.PHOTO).apply();
+            if (has && !Show.PHOTO.equals(srModelShown)) rebuild(); else photoMenu();
+        } })));
+        tiles.add(srTile("engine", "Escáner", false, 0, 78, srGo(new Runnable() { public void run() { settingsSub = "obd"; showSettings(C_VEHICLE); } })));
+        tiles.add(srTile("gear", "Ajustes", false, 0, 78, srGo(new Runnable() { public void run() { showSettings(C_VEHICLE); } })));
+        srConsole(p, tiles, W, 436, 128);
+    }
+
+    private void srStat(LinearLayout col, String label, String val, String unit, String sub, int color) {
+        TextView l = srLabel(label, 11, MUTED);
+        l.setGravity(Gravity.RIGHT);
+        col.addView(l, new LinearLayout.LayoutParams(-1, -2));
+        TextView v = srNum("", 28, color);
+        v.setGravity(Gravity.RIGHT);
+        if (unit.length() > 0) {
+            android.text.SpannableString sp = new android.text.SpannableString(val + " " + unit);
+            sp.setSpan(new android.text.style.RelativeSizeSpan(0.5f), val.length(), sp.length(), 0);
+            sp.setSpan(new android.text.style.ForegroundColorSpan(MUTED), val.length(), sp.length(), 0);
+            v.setText(sp);
+        } else v.setText(val.toUpperCase(I18n.loc));
+        LinearLayout.LayoutParams vlp = new LinearLayout.LayoutParams(-1, -2);
+        vlp.topMargin = (int) (4 * s);
+        col.addView(v, vlp);
+        if (sub.length() > 0) {
+            TextView sb = tv("", 12, MUTED, false);
+            sb.setText(sub);
+            sb.setGravity(Gravity.RIGHT);
+            LinearLayout.LayoutParams slp = new LinearLayout.LayoutParams(-1, -2);
+            slp.topMargin = (int) (3 * s);
+            col.addView(sb, slp);
+        }
+        View gap = new View(this);
+        col.addView(gap, new LinearLayout.LayoutParams(1, (int) (16 * s)));
+    }
+
+    /** Vehículo › Instrumentos: turómetro y velocímetro dibujados, y abajo cuatro datos con su barra. */
+    private void srBuildGauges(FrameLayout p) {
+        float W = srPW;
+        boolean obd = obdOn();
+        float D = 330;
+        if (obd) {
+            srTach = new Show.Dial(this, s, 8000, 1000, 250, 6000, 1000, "RPM", RED);
+            place(p, srTach, W * 0.265f - D / 2, 70, D, D);
+        }
+        boolean mph = useMph();
+        srSpeedo = new Show.Dial(this, s, mph ? 140 : 220, mph ? 20 : 20, mph ? 5 : 5, 0, 1, mph ? "MPH" : "KM/H", RED);
+        place(p, srSpeedo, (obd ? W * 0.735f : W * 0.5f) - D / 2, 70, D, D);
+        if (!obd) {
+            TextView n = tv("Conecta el escáner OBD-II para ver las revoluciones y los datos del motor.", 14, MUTED, false);
+            n.setGravity(Gravity.CENTER);
+            place(p, n, 28, 436, W - 56, 24);
+            return;
+        }
+        place(p, srHair(0xFF1A1A1A), 0, 418, W, 1);
+        Obd.Sensor[] ss = {Obd.COOLANT, Obd.OILT, Obd.VOLT, Obd.CONSUMPTION};
+        int[] cols = {0xFFFF8A3D, 0xFFFFB547, 0xFF3DDC84, RED};
+        float cw = (W - 20) / 4;
+        for (int i = 0; i < 4; i++) {
+            float x = 10 + i * cw;
+            if (i > 0) place(p, srHair(HAIR_SR), x, 438, 1, 64);
+            place(p, srLabel(ss[i].label, 12, MUTED), x + 20, 436, cw - 34, 16);
+            TextView v = srNum("—", 34, TEXT);
+            place(p, v, x + 20, 456, cw - 34, 38);
+            Show.Bar bar = new Show.Bar(this, cols[i]);
+            place(p, bar, x + 20, 498, cw - 40, 5);
+            srVals.add(new Object[]{ss[i], v, bar, cols[i]});
+        }
+    }
+
+    /** Vehículo › Parámetros: cuatro grupos con los datos que el carro entrega y su curva de los últimos 3 minutos. */
+    private static final String[] SR_GROUPS = {"Motor", "Temperaturas", "Combustible", "Aire y electricidad"};
+    private static final String[][] SR_GROUP_KEYS = {
+        {"rpm", "load", "throttle", "timing", "abs_load"},
+        {"coolant", "oilt", "intake", "ambient", "cat1"},
+        {"consumption", "fuel_h", "fuel", "stft", "ltft"},
+        {"volt", "maf", "map", "baro", "o2_1"},
+    };
+
+    private String srParamStructure() {
+        StringBuilder b = new StringBuilder(obdOn() ? "on" : "off").append(Obd.status == Obd.LIVE);
+        for (String[] g : SR_GROUP_KEYS) for (String k : g) { Obd.Sensor x = obdSensor(k); b.append(x != null && x.has() ? '1' : '0'); }
+        return b.toString();
+    }
+
+    private void srBuildParams() {
+        FrameLayout p = srParamBox;
+        if (p == null) return;
+        p.removeAllViews();
+        for (int i = srVals.size() - 1; i >= 0; i--) if (srVals.get(i).length == 3 && "p".equals(srVals.get(i)[2])) srVals.remove(i);
+        srSparks.clear();
+        srParamKey = srParamStructure();
+        float W = srPW;
+        if (srEmptyObd(p, W)) return;
+        float gx = 28, gap = 24, cw = (W - 56 - gap * 3) / 4;
+        List<String> mine = java.util.Arrays.asList(evKeys());
+        int shown = 0;
+        for (int g = 0; g < 4; g++) {
+            float x = gx + g * (cw + gap);
+            TextView num = srNum("0" + (g + 1), 13, RED);
+            place(p, num, x, 22, 26, 18);
+            place(p, srLabel(SR_GROUPS[g], 13, TEXT), x + 26, 22, cw - 26, 18);
+            place(p, srHair(0xFF262626), x, 46, cw, 1);
+            float y = 58;
+            int rows = 0;
+            for (String k : SR_GROUP_KEYS[g]) {
+                final Obd.Sensor sn = obdSensor(k);
+                if (sn == null || !sn.has() || rows >= 4) continue;
+                rows++; shown++;
+                FrameLayout r = new FrameLayout(this);
+                place(p, r, x, y, cw, 88);
+                TextView nm = tv("", 13, MUTED, false);
+                nm.setText((mine.contains(k) ? "★ " : "") + I18n.t(sn.label));
+                place(r, nm, 0, 0, cw, 18);
+                TextView v = srNum("—", 26, TEXT);
+                place(r, v, 0, 20, cw, 32);
+                srVals.add(new Object[]{sn, v, "p"});
+                Show.Spark sp = new Show.Spark(this, sn, mine.contains(k) ? RED : 0xFF7A7A7A, s);
+                place(r, sp, 0, 56, cw, 22);
+                srSparks.add(sp);
+                place(r, srHair(0xFF161616), 0, 87, cw, 1);
+                r.setOnClickListener(new View.OnClickListener() { public void onClick(View v) { openObdChart(sn.key); } });
+                r.setOnLongClickListener(new View.OnLongClickListener() { public boolean onLongClick(View v) { pinEvKey(sn.key); return true; } });
+                y += 92;
+            }
+        }
+        if (shown == 0) {
+            TextView w = tv("Esperando datos del escáner…", 15, MUTED, false);
+            place(p, w, 28, 200, W - 56, 24);
+        }
+        TextView hint = tv("Mantén presionado un dato para ponerlo en el Inicio (★). Toca para ver su gráfico.", 12, MUTED, false);
+        place(p, hint, 28, 488, W - 230, 20);
+        FrameLayout all = srTile("list", "Todos los datos", false, 0, 64, srGo(new Runnable() { public void run() { openEvObd(); } }));
+        place(p, all, W - 188, 462, 160, 64);
+        srObd();
+    }
+
+    /** Sin escáner: el mensaje y el botón para conectarlo. Devuelve true si lo puso. */
+    private boolean srEmptyObd(FrameLayout p, float W) {
+        if (obdOn()) return false;
+        place(p, srIcon("engine", 64, 0xFF5A5A5A), W / 2 - 32, 150, 64, 64);
+        TextView t = tv("Conecta el escáner OBD-II", 22, TEXT, true);
+        t.setGravity(Gravity.CENTER);
+        place(p, t, 28, 232, W - 56, 30);
+        TextView d = tv("Solo lectura: EvOS lee los datos del motor y nunca escribe en la computadora del carro.", 14, MUTED, false);
+        d.setGravity(Gravity.CENTER);
+        place(p, d, 28, 268, W - 56, 20);
+        FrameLayout b = srTile("engine", "Conectar", true, 0, 78, srGo(new Runnable() { public void run() { settingsSub = "obd"; showSettings(C_VEHICLE); } }));
+        place(p, b, W / 2 - 80, 320, 160, 78);
+        return true;
+    }
+
+    private String srDiagStructure() {
+        StringBuilder b = new StringBuilder(obdOn() ? "on" : "off").append(Obd.status).append(Obd.mil);
+        for (String x : Obd.dtcs) b.append(x);
+        b.append('|');
+        for (String x : Obd.pending) b.append(x);
+        b.append('|').append(Scan.readiness(Obd.status01)).append(Obd.lastDtcCheck > 0);
+        return b.toString();
+    }
+
+    /** Vehículo › Diagnóstico: luz del motor, códigos (toca para la explicación, la IA y los datos del momento) y monitores. */
+    private void srBuildDiag() {
+        FrameLayout p = srDiagBox;
+        if (p == null) return;
+        p.removeAllViews();
+        srDiagKey = srDiagStructure();
+        float W = srPW;
+        if (srEmptyObd(p, W)) return;
+        boolean live = Obd.status == Obd.LIVE;
+        List<String> codes = new ArrayList<String>(Obd.dtcs);
+        for (String x : Obd.pending) if (!codes.contains(x)) codes.add(x);
+        float lw = W * 0.58f;
+        int milCol = Obd.mil ? 0xFFF5A524 : 0xFF3DDC84;
+        place(p, srIcon("engine", 44, live || Obd.mil ? milCol : 0xFF5A5A5A), 28, 24, 44, 44);
+        TextView t = tv(Obd.mil ? "Luz del motor encendida" : live ? "Luz del motor apagada" : "Escáner sin conexión", 22, TEXT, true);
+        place(p, t, 86, 22, lw - 86, 28);
+        String sub = !live ? I18n.t(Obd.running() ? "Conectando…" : "Apagado")
+            : codes.isEmpty() ? I18n.t(Obd.lastDtcCheck > 0 ? "El auto no tiene códigos guardados" : "Se revisan al conectar y cada 30 segundos")
+            : I18n.t(codes.size() == 1 ? "1 código de falla" : I18n.integer(codes.size()) + " códigos de falla");
+        TextView st = tv("", 14, MUTED, false);
+        st.setText(sub);
+        place(p, st, 86, 54, lw - 86, 20);
+        place(p, srHair(0xFF262626), 28, 92, lw - 28, 1);
+        android.widget.ScrollView sc = new android.widget.ScrollView(this);
+        LinearLayout list = new LinearLayout(this);
+        list.setOrientation(LinearLayout.VERTICAL);
+        sc.addView(list);
+        place(p, sc, 28, 100, lw - 28, 340);
+        for (final String code : codes) {
+            DtcInfo.Entry e = DtcInfo.get(this, code);
+            boolean pend = !Obd.dtcs.contains(code);
+            String what = e.es != null ? I18n.t(e.es) : e.en != null ? e.en : DtcInfo.system(code);
+            FrameLayout r = new FrameLayout(this);
+            TextView c = srNum(code, 22, pend ? 0xFFF5A524 : RED);
+            FrameLayout.LayoutParams clp = new FrameLayout.LayoutParams((int) (86 * s), -2);
+            clp.topMargin = (int) (12 * s);
+            r.addView(c, clp);
+            TextView d = tv("", 14, TEXT, false);
+            d.setText(what);
+            multiLine(d);
+            d.setMaxLines(2);
+            FrameLayout.LayoutParams dlp = new FrameLayout.LayoutParams(-1, -2);
+            dlp.leftMargin = (int) (90 * s); dlp.rightMargin = (int) (96 * s); dlp.topMargin = (int) (12 * s);
+            r.addView(d, dlp);
+            TextView sv = srLabel(pend ? "Pendiente" : e.severity >= 3 ? "Grave" : e.severity == 1 ? "Leve" : "Revisar", 12,
+                pend ? 0xFFF5A524 : e.severity >= 3 ? RED : MUTED);
+            sv.setGravity(Gravity.RIGHT);
+            FrameLayout.LayoutParams slp = new FrameLayout.LayoutParams((int) (90 * s), -2, Gravity.RIGHT);
+            slp.topMargin = (int) (16 * s);
+            r.addView(sv, slp);
+            r.setMinimumHeight((int) (64 * s));
+            View hl = srHair(0xFF1A1A1A);
+            r.addView(hl, new FrameLayout.LayoutParams(-1, Math.max(1, (int) s), Gravity.BOTTOM));
+            list.addView(r, new LinearLayout.LayoutParams(-1, (int) (66 * s)));
+            r.setOnClickListener(new View.OnClickListener() { public void onClick(View v) { obdDialogs().showCode(code); } });
+        }
+        if (!codes.isEmpty()) {
+            TextView hint = tv("Toca un código para ver qué significa, preguntarle a la IA y los datos del momento de la falla.", 12, MUTED, false);
+            place(p, hint, 28, 488, lw - 28, 20);
+        }
+        // monitores de emisiones
+        float mx = lw + 28, mw = W - mx - 28;
+        place(p, srLabel("Monitores de emisiones", 12, MUTED), mx, 26, mw, 16);
+        place(p, srHair(0xFF262626), mx, 92, mw, 1);
+        String rd = Scan.readiness(Obd.status01);
+        if (rd == null) {
+            TextView n = tv(live ? "El auto no los informa" : "Se leen al conectar", 14, MUTED, false);
+            place(p, n, mx, 50, mw, 20);
+        } else {
+            String[] ls = rd.split("\n");
+            int done = 0;
+            for (String l : ls) if (l.startsWith("✓")) done++;
+            TextView n = srNum(done + " / " + ls.length, 30, TEXT);
+            place(p, n, mx, 46, mw, 36);
+            float y = 104;
+            for (String l : ls) {
+                if (y > 470) break;
+                boolean ok = l.startsWith("✓");
+                TextView mk = srNum(ok ? "✓" : "✗", 16, ok ? 0xFF3DDC84 : 0xFFF5A524);
+                place(p, mk, mx, y, 20, 22);
+                TextView nm = tv("", 14, ok ? SOFT : TEXT, false);
+                nm.setText(l.substring(Math.min(2, l.length())));
+                place(p, nm, mx + 24, y, mw - 24, 22);
+                y += 30;
+            }
+        }
+        FrameLayout more = srTile("gear", "Escáner", false, 0, 64, srGo(new Runnable() { public void run() { settingsSub = "obd_codes"; showSettings(C_VEHICLE); } }));
+        place(p, more, W - 188, 462, 160, 64);
+    }
+
+    /** Vehículo › Mantenimiento: kilometraje y cada tarea con su barra hasta la próxima vez. */
+    private void srBuildMaint() {
+        FrameLayout p = srMaintBox;
+        if (p == null) return;
+        p.removeAllViews();
+        float W = srPW;
+        boolean odoKnown = prefs.contains("odo_base_km");
+        if (odoKnown) {
+            place(p, srLabel("Kilometraje", 12, MUTED), 28, 22, 300, 16);
+            TextView v = srNum("", 44, TEXT);
+            String n = I18n.integer(Math.round(toUnit(odoKm())));
+            android.text.SpannableString sp = new android.text.SpannableString(n + " " + unit().toUpperCase(I18n.loc));
+            sp.setSpan(new android.text.style.RelativeSizeSpan(0.4f), n.length(), sp.length(), 0);
+            sp.setSpan(new android.text.style.ForegroundColorSpan(MUTED), n.length(), sp.length(), 0);
+            v.setText(sp);
+            place(p, v, 28, 40, 400, 50);
+            TextView src = tv(odoFromCar() ? "del tablero (OBD)" : "estimado con GPS", 13, MUTED, false);
+            place(p, src, 28, 94, 400, 18);
+        }
+        android.widget.ScrollView sc = new android.widget.ScrollView(this);
+        LinearLayout list = new LinearLayout(this);
+        list.setOrientation(LinearLayout.VERTICAL);
+        sc.addView(list);
+        float top = odoKnown ? 126 : 22;
+        place(p, sc, 28, top, W - 56, 450 - top);
+        if (oilOn() && odoKnown) {
+            float lk = oilNextKm() - odoKm(), iv = prefs.getFloat("oil_interval_km", 5000);
+            srMaintRow(list, I18n.t("Cambio de aceite"), I18n.t("Cada " + fmtDist(iv)), lk / Math.max(1, iv),
+                lk <= 0 ? I18n.t("¡Ya toca!") : fmtDist(lk), new Runnable() { public void run() { oilMenu(); } });
+        }
+        List<org.json.JSONObject> l = maint();
+        for (int i = 0; i < l.size(); i++) {
+            final int idx = i;
+            org.json.JSONObject o = l.get(i);
+            srMaintRow(list, taskName(o), taskEvery(o), taskFrac(o), taskLeftText(o), new Runnable() { public void run() { taskMenu(idx); } });
+        }
+        if (list.getChildCount() == 0) {
+            TextView e = tv("Aún no hay mantenimientos. Agrega el cambio de aceite, filtros, frenos, seguro, revisión técnica…", 15, MUTED, false);
+            multiLine(e);
+            list.addView(e);
+        }
+        List<View> tiles = new ArrayList<View>();
+        tiles.add(srTile("plus", "Agregar", true, 0, 64, srGo(new Runnable() { public void run() { addTask(); } })));
+        if (!oilOn()) tiles.add(srTile("drop", "Aceite", false, 0, 64, srGo(new Runnable() { public void run() { oilSetup(); } })));
+        float x = 28;
+        for (View t : tiles) { place(p, t, x, 462, 150, 64); x += 158; }
+    }
+
+    private void srMaintRow(LinearLayout list, String name, String every, double frac, String left, final Runnable tap) {
+        FrameLayout r = new FrameLayout(this);
+        float W = srPW - 56;
+        TextView n = tv("", 18, TEXT, false);
+        n.setText(name);
+        place(r, n, 0, 12, 280, 24);
+        TextView e = tv("", 12, MUTED, false);
+        e.setText(every);
+        place(r, e, 0, 40, 280, 18);
+        boolean warn = frac < 0.15;
+        Show.Bar bar = new Show.Bar(this, warn ? RED : 0xFF5A5A5A);
+        bar.set((float) Math.max(0, Math.min(1, 1 - frac)), warn ? RED : 0xFF5A5A5A);
+        place(r, bar, 300, 31, W - 300 - 150, 6);
+        TextView lt = srNum(left.toUpperCase(I18n.loc), 24, warn ? RED : TEXT);
+        lt.setGravity(Gravity.RIGHT);
+        place(r, lt, W - 140, 18, 140, 30);
+        place(r, srHair(0xFF1A1A1A), 0, 69, W, 1);
+        list.addView(r, new LinearLayout.LayoutParams(-1, (int) (70 * s)));
+        r.setOnClickListener(new View.OnClickListener() { public void onClick(View v) { tap.run(); } });
+    }
+
+    /** Cuando cambian los mantenimientos o el kilometraje (desde updateOilBadge). */
+    private void srMaintChanged() {
+        if (!srOn()) return;
+        srRenderMaintHome();
+        if (srSec == 3 && srSub == 4) srBuildMaint();
+    }
+
+    // ── viaje ──
+
+    private float srTripM = -1, srTripS, srTripL;
+
+    /** El viaje vive en memoria y se guarda cada 30 s y al salir (no se escribe en cada segundo). */
+    private void srTripLoad() {
+        if (srTripM >= 0) return;
+        srTripM = prefs.getFloat("trip_m", 0); srTripS = prefs.getFloat("trip_s", 0); srTripL = prefs.getFloat("trip_l", 0);
+    }
+
+    private void srTripSave() {
+        if (srTripM < 0) return;
+        SharedPreferences.Editor e = prefs.edit().putFloat("trip_m", srTripM).putFloat("trip_s", srTripS).putFloat("trip_l", srTripL);
+        if (!prefs.contains("trip_start") && srTripM > 0) e.putLong("trip_start", System.currentTimeMillis());
+        e.apply();
+    }
+
+    /** Cada segundo con el Showroom en pantalla: suma lo recorrido, el tiempo en marcha y el combustible (escáner). */
+    private final Runnable srTick = new Runnable() { public void run() {
+        if (!srOn()) return;
+        long now = SystemClock.elapsedRealtime();
+        float dt = srTickAt == 0 ? 0 : Math.min(5f, (now - srTickAt) / 1000f);
+        srTickAt = now;
+        float v = currentKmh();
+        boolean moving = !Float.isNaN(v) && v >= 3;
+        srTripLoad();
+        if (dt > 0 && moving) {
+            srTripM += v / 3.6f * dt;
+            srTripS += dt;
+            if (obdOn() && Obd.status == Obd.LIVE && Obd.FUEL_H.has() && now - Obd.FUEL_H.at < 5000)
+                srTripL += Obd.FUEL_H.value / 3600f * dt;
+            if (now - srTripSavedAt > 30000) { srTripSave(); srTripSavedAt = now; }
+        }
+        if (now - srTripSampleAt >= 15000) {
+            srTripSampleAt = now;
+            if (srTripN == srTripHist.length) { System.arraycopy(srTripHist, 1, srTripHist, 0, srTripHist.length - 1); srTripN--; }
+            srTripHist[srTripN++] = Float.isNaN(v) ? 0 : v;
+        }
+        if (srSec == 3 && srSub == 5 && (now / 1000) % 2 == 0) srBuildTrip();
+        h.postDelayed(this, 1000);
+    }};
+
+    private void srBuildTrip() {
+        FrameLayout p = srTripBox;
+        if (p == null) return;
+        p.removeAllViews();
+        float W = srPW;
+        srTripLoad();
+        float km = srTripM / 1000f, sec = srTripS, lit = srTripL;
+        List<String[]> st = new ArrayList<String[]>();
+        st.add(new String[]{"Distancia", String.format(I18n.num, "%.1f", toUnit(km)), unit().toUpperCase(I18n.loc), ""});
+        long m = Math.round(sec / 60f);
+        st.add(new String[]{"Tiempo en marcha", (m / 60) + ":" + String.format(Locale.US, "%02d", m % 60), "H", ""});
+        st.add(new String[]{"Velocidad media", sec > 30 ? String.valueOf(Math.round(toUnit(km) / (sec / 3600f))) : "—", useMph() ? "MPH" : "KM/H", ""});
+        if (obdOn()) {
+            st.add(new String[]{"Consumo medio", lit > 0.05f && km > 1 ? String.format(I18n.num, "%.1f", lit / km * 100) : "—", "L/100", "a"});
+            st.add(new String[]{"Combustible usado", lit > 0 ? String.format(I18n.num, "%.1f", lit) : "—", "L", ""});
+        }
+        if (!Float.isNaN(srAlt)) st.add(new String[]{"Altitud", String.valueOf(Math.round(useMph() ? srAlt * 3.28084f : srAlt)), useMph() ? "FT" : "M", ""});
+        int per = 3;
+        float cw = (W - 56 - 24 * (per - 1)) / per;
+        for (int i = 0; i < st.size(); i++) {
+            String[] x = st.get(i);
+            float cx = 28 + (i % per) * (cw + 24), cy = 18 + (i / per) * 118;
+            place(p, srLabel(x[0], 12, MUTED), cx, cy + 14, cw, 16);
+            TextView v = srNum("", 54, "a".equals(x[3]) ? RED : TEXT);
+            android.text.SpannableString sp = new android.text.SpannableString(x[1] + " " + x[2]);
+            sp.setSpan(new android.text.style.RelativeSizeSpan(0.34f), x[1].length(), sp.length(), 0);
+            sp.setSpan(new android.text.style.ForegroundColorSpan(MUTED), x[1].length(), sp.length(), 0);
+            v.setText(sp);
+            place(p, v, cx, cy + 34, cw, 62);
+        }
+        float gy = 18 + ((st.size() + per - 1) / per) * 118;
+        place(p, srHair(0xFF262626), 28, gy - 4, W - 56, 1);
+        place(p, srLabel("Velocidad en el viaje", 12, MUTED), 28, gy + 10, 400, 16);
+        Show.Line ln = new Show.Line(this, RED, s);
+        float[] d = new float[srTripN];
+        for (int i = 0; i < srTripN; i++) d[i] = useMph() ? srTripHist[i] * 0.621371f : srTripHist[i];
+        ln.set(d);
+        place(p, ln, 28, gy + 34, W - 56, Math.max(40, 440 - gy - 34));
+        FrameLayout rs = srTile("reset", "Reiniciar", false, 0, 64, srGo(new Runnable() { public void run() {
+            prefs.edit().remove("trip_m").remove("trip_s").remove("trip_l").remove("trip_start").apply();
+            srTripM = 0; srTripS = 0; srTripL = 0;
+            srTripN = 0;
+            srBuildTrip();
+        }}));
+        place(p, rs, 28, 462, 150, 64);
+        long t0 = prefs.getLong("trip_start", 0);
+        String since = t0 > 0 ? I18n.t("Desde") + " " + I18n.sdf("d MMM, HH:mm").format(new Date(t0)) + " · " : "";
+        TextView note = tv("", 12, MUTED, false);
+        note.setText(since + I18n.t("Se mide mientras EvOS está en pantalla, con el GPS o el escáner. El consumo viene del escáner."));
+        multiLine(note);
+        place(p, note, 194, 470, W - 222, 48);
+    }
+
+    // ── Vehículo › Presentación › Modelo ──
+
+    private void srOpenModel() {
+        if (settingsView != null) closeSettings();
+        srSub = 6;
+        srShow(3);
+    }
+
+    private void srBuildModel() {
+        FrameLayout p = srSubs[6];
+        if (p == null) return;
+        p.removeAllViews();
+        final float W = srPW;
+        final String cur = srModel(), paint = srPaint();
+        final boolean photo = Show.PHOTO.equals(cur);
+        float colX = W - 234;
+        FrameLayout fl = new FrameLayout(this);
+        fl.addView(new Show.Floor(this, 0.22f, 0.5f), new FrameLayout.LayoutParams(-1, -1));
+        place(p, fl, 0, 0, colX - 14, 350);
+        place(p, srLabel("Modelo mostrado", 12, MUTED), 28, 20, 400, 16);
+        TextView nm = tv("", 24, TEXT, false);
+        nm.setText(photo ? I18n.t("Tu foto") : I18n.t(Show.modelName(cur)) + "  ·  " + I18n.t(Show.paintName(paint)));
+        place(p, nm, 28, 38, colX - 56, 32);
+        Show.Car car = srCarView(true);
+        place(p, car, 46, 80, Math.min(500, colX - 70), 250);
+        // colores
+        place(p, srLabel("Color", 12, MUTED), colX, 20, 206, 16);
+        for (int i = 0; i < Show.PAINT_KEYS.length; i++) {
+            final String k = Show.PAINT_KEYS[i];
+            boolean on = !photo && k.equals(paint);
+            FrameLayout r = new FrameLayout(this);
+            if (on) r.setBackground(new Show.RowOn(s, RED));
+            Show.Swatch sw = new Show.Swatch(this, Show.PAINT[i]);
+            FrameLayout.LayoutParams swl = new FrameLayout.LayoutParams((int) (20 * s), (int) (20 * s), Gravity.CENTER_VERTICAL);
+            swl.leftMargin = (int) (12 * s);
+            r.addView(sw, swl);
+            TextView t = tv(Show.PAINT_NAMES[i], 15, on ? TEXT : 0xFFBDBDBD, false);
+            FrameLayout.LayoutParams tl = new FrameLayout.LayoutParams(-1, -2, Gravity.CENTER_VERTICAL);
+            tl.leftMargin = (int) (44 * s);
+            r.addView(t, tl);
+            r.setAlpha(photo ? 0.4f : 1f);
+            place(p, r, colX, 44 + i * 34, 206, 34);
+            r.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {
+                SharedPreferences.Editor e = prefs.edit().putString("sr_paint", k);
+                if (Show.PHOTO.equals(srModel())) e.putString("sr_model", Show.MODEL_KEYS[0]);
+                e.apply();
+                srCarsChanged();
+            }});
+        }
+        TextView note = tv("Dibujados por EvOS, no son fotos de una marca. El carro cambia en el Inicio y en Vehículo.", 12, MUTED, false);
+        multiLine(note);
+        place(p, note, colX, 296, 206, 60);
+        // modelos
+        place(p, srLabel("Modelo", 12, MUTED), 28, 360, 300, 16);
+        int n = Show.MODEL_KEYS.length + 1;
+        float tw = Math.min(100, (W - 56 - 8 * (n - 1)) / n);
+        for (int i = 0; i < n; i++) {
+            final String key = i == 0 ? Show.PHOTO : Show.MODEL_KEYS[i - 1];
+            boolean on = key.equals(cur);
+            FrameLayout t = new FrameLayout(this);
+            t.setBackground(on ? Show.tileOn(s, RED) : new Show.Tile(s, 0xFF2A2A2A, 0xFF1F1F1F, RED, 0, true));
+            TextView l = srLabel(i == 0 ? "Tu foto" : Show.MODEL_NAMES[i - 1], 12, on ? TEXT : 0xFFBDBDBD);
+            l.setGravity(Gravity.CENTER);
+            FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(-1, -2, Gravity.BOTTOM);
+            lp.bottomMargin = (int) (16 * s);
+            lp.leftMargin = lp.rightMargin = (int) (2 * s);
+            t.addView(l, lp);
+            if (i == 0) {
+                ImageView iv = srIcon("photo", 30, 0xFFD6D6D6);
+                FrameLayout.LayoutParams ilp = new FrameLayout.LayoutParams((int) (30 * s), (int) (30 * s), Gravity.CENTER_HORIZONTAL | Gravity.TOP);
+                ilp.topMargin = (int) (34 * s);
+                t.addView(iv, ilp);
+            } else {
+                Show.Car mc = new Show.Car(this);
+                mc.reflect = false;
+                mc.set(Show.model(this, key), on ? Show.paint(paint) : Show.paint("silver"), null);
+                FrameLayout.LayoutParams mlp = new FrameLayout.LayoutParams((int) ((tw - 12) * s), (int) (54 * s), Gravity.CENTER_HORIZONTAL | Gravity.TOP);
+                mlp.topMargin = (int) (22 * s);
+                t.addView(mc, mlp);
+            }
+            place(p, t, 28 + i * (tw + 8), 384, tw, 124);
+            t.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {
+                if (Show.PHOTO.equals(key) && CarPhoto.load(Main.this) == null) { prefs.edit().putString("sr_model", key).apply(); photoMenu(); return; }
+                prefs.edit().putString("sr_model", key).apply();
+                srCarsChanged();
+            }});
+            if (i == 0) t.setOnLongClickListener(new View.OnLongClickListener() { public boolean onLongClick(View v) { photoMenu(); return true; } });
+        }
+    }
+
+    /** Cambió el modelo, el color o la foto: se vuelve a armar todo (el carro sale en varias pantallas). */
+    private void srCarsChanged() {
+        if (!srOn()) return;
+        rebuild();
+    }
+
     /** El diseño vertical cabe si la pantalla es casi cuadrada o más alta que ancha. */
     private static boolean canVertical(int W, int H) { return H >= W * 0.95f; }
     private int boxW, boxH;
@@ -1720,6 +2861,8 @@ public class Main extends Activity {
     private void updateStatusIcons() {
         if (wifiIc != null) setStatusIcon(wifiIc, wifiState(), "wifi", "wifi_off", "wifi");
         if (btIc != null) setStatusIcon(btIc, btState(), "bluetooth", "bluetooth_disabled", "bluetooth_connected");
+        if (srWifiIc != null) { int w = wifiState(); srWifiIc.setAlpha(w == 2 ? 1f : w == 1 ? 0.7f : 0.35f); }
+        if (srBtIc != null) { int b = btState(); srBtIc.setAlpha(b == 2 ? 1f : b == 1 ? 0.7f : 0.35f); }
     }
 
     private final Runnable statusRefresh = new Runnable() { public void run() { updateStatusIcons(); } };
@@ -2609,6 +3752,7 @@ public class Main extends Activity {
     private void updateOilBadge() {
         startOdo();
         renderFaroMaint();
+        try { srMaintChanged(); } catch (Throwable e) { Guard.log("Showroom mant.: " + e); }
         // 2.20: con mantenimientos propios, el recuadro y la barra de arriba muestran el más próximo
         int ni = nearestMaint();
         badgeTask = ni;
@@ -8190,6 +9334,7 @@ public class Main extends Activity {
             if (!validLoc(l)) return;   // 0,0 sin señal (#37): cuenta como «sin GPS»
             lastFix = SystemClock.elapsedRealtime();
             lastFixAny = lastFix;
+            if (l.hasAltitude()) srAlt = (float) l.getAltitude();
             setGps(true, l.hasSpeed() ? l.getSpeed() * 3.6f : 0);
             feedMap(l);
             sunSpot(l.getLatitude(), l.getLongitude());
@@ -8287,6 +9432,8 @@ public class Main extends Activity {
         if (evGauge != null) evGauge.setSpeed(kmh < 2 ? 0 : v, ok, fromObd, Nav.active != null && Nav.curSpeedLimitKmh > 0
             ? (useMph() ? Math.max(5, (int) (Math.round((Nav.curSpeedLimitKmh / 1.60934) / 5.0) * 5)) : Nav.curSpeedLimitKmh) : 0);
         if (mapGauge != null) mapGauge.setSpeed(kmh < 2 ? 0 : v, ok);
+        if (srOn()) srSpeed(kmh < 2 ? 0 : v, ok, fromObd, Nav.active != null && Nav.curSpeedLimitKmh > 0
+            ? (useMph() ? Math.max(5, (int) (Math.round((Nav.curSpeedLimitKmh / 1.60934) / 5.0) * 5)) : Nav.curSpeedLimitKmh) : 0);
         if (faroGauge != null) {
             faroGauge.setSpeed(kmh < 2 ? 0 : v, ok);
             int lim = Nav.active != null && Nav.curSpeedLimitKmh > 0
@@ -8990,6 +10137,7 @@ public class Main extends Activity {
 
     private void applyAccent() {
         RED = prefs.getInt("accent", 0xFFFE3211);
+        if (Ev.show()) RED = prefs.getInt("sr_accent", Show.ACCENTS[0]);
         EV_GLOW = Ev.on() ? Ev.glow(Ev.id, RED) : RED;
         if (Ev.on()) RED = Ev.accent(Ev.id, RED);
         int r = (RED >> 16) & 255, g = (RED >> 8) & 255, b = RED & 255;
@@ -10164,7 +11312,7 @@ public class Main extends Activity {
         body.addView(h2);
         String cur = premiumActive() ? null : Ev.valid(prefs.getString("ev_theme", Ev.AERO));
         boolean classicInUse = !premiumActive() && cur == null;
-        String[] ids = {Ev.AERO, Ev.MONO, Ev.PULSE, Ev.NEON, Ev.INFERNO, null};
+        String[] ids = {Ev.SHOW, Ev.AERO, Ev.MONO, Ev.PULSE, Ev.NEON, Ev.INFERNO, null};
         int perRow = portrait ? 2 : 3;
         float cellGap = 12;
         int userAccent = prefs.getInt("accent", 0xFFFE3211);
@@ -10187,7 +11335,7 @@ public class Main extends Activity {
             View th;
             if (id != null) {
                 boolean l = LIGHT && !Ev.forcesDark(id);
-                th = new Ev.Thumb(this, id, l, Ev.glow(id, userAccent), s);
+                th = new Ev.Thumb(this, id, l, Ev.glow(id, Ev.SHOW.equals(id) ? prefs.getInt("sr_accent", Show.ACCENTS[0]) : userAccent), s);
             } else th = new ThemeThumb(this, s, false, true, false, false, false, false, false, true, true, true);
             cell.addView(th, new LinearLayout.LayoutParams(-1, -2));
             LinearLayout nameRow = new LinearLayout(this);
@@ -10214,6 +11362,22 @@ public class Main extends Activity {
         }
         // opciones de los temas EvOS
         LinearLayout c = section(body, "Opciones del tema");
+        if (Ev.show()) {
+            row(c, "Modelo del carro", I18n.t(Show.PHOTO.equals(srModel()) ? "Tu foto" : Show.modelName(srModel())) + " · " + I18n.t(Show.paintName(srPaint())), null,
+                new Runnable() { public void run() { srOpenModel(); } });
+            final String[] an = {"Naranja", "Rojo", "Amarillo", "Verde", "Azul", "Violeta"};
+            int ai = 0;
+            for (int i = 0; i < Show.ACCENTS.length; i++) if (Show.ACCENTS[i] == prefs.getInt("sr_accent", Show.ACCENTS[0])) ai = i;
+            row(c, "Color de acento", I18n.t(an[ai]), null, new Runnable() { public void run() {
+                String[] tn = new String[an.length];
+                for (int i = 0; i < an.length; i++) tn[i] = I18n.t(an[i]);
+                new TB(Main.this, dlg()).raw().setTitle(I18n.t("Color de acento"))
+                    .setItems(tn, new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) {
+                        prefs.edit().putInt("sr_accent", Show.ACCENTS[w]).apply();
+                        applyAccent(); rebuild(); showSettings(C_STYLE);
+                    }}).show();
+            }});
+        } else
         toggle(c, "Música Bluetooth en la pantalla", "Si la apagas, el mapa, Android Auto y CarPlay ocupan todo el espacio",
             prefs.getBoolean("show_player", true), new IntCb() { public void on(int i) {
                 prefs.edit().putBoolean("show_player", i == 1).apply(); rebuild(); showSettings(C_STYLE);
@@ -13235,6 +14399,7 @@ public class Main extends Activity {
         if (speedFromObd || !Float.isNaN(obdKmh())) showSpeed();   // velocímetro del inicio con la velocidad del escáner
         showRpm();
         if (evGauge != null) evGauge.invalidate();
+        try { srObd(); } catch (Throwable e) { Guard.log("Showroom OBD: " + e); }
         if (!evTiles.isEmpty()) updateEvTiles();
         java.util.HashSet<String> now = new java.util.HashSet<String>();
         boolean fresh = false;
