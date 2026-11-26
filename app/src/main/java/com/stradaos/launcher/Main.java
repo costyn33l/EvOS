@@ -1576,7 +1576,7 @@ public class Main extends Activity {
 
     private void buildShowroom() {
         srVals.clear(); srSparks.clear(); srParamKey = ""; srDiagKey = "";
-        srTach = srSpeedo = null; srRpmBar = null; srSpeedTv = null; srWifiIc = srBtIc = null;
+        srTach = srSpeedo = null; srRpmBar = null; srSpeedTv = null; srWifiIc = srBtIc = null; srGaugeRow = null;
         for (int i = 0; i < srSubs.length; i++) srSubs[i] = null;
         srCW = 912 + ex;
         srPW = srCW - 104;
@@ -1957,6 +1957,7 @@ public class Main extends Activity {
                 ((Show.Bar) o[2]).set(has ? (sn.value - sn.min) / (sn.max - sn.min) : 0, (Integer) o[3]);
         }
         if (srTach != null) srTach.set(rpm, "RPM");
+        if (srGaugeRow != null && !srGaugeStructure().equals(srGaugeKey)) { srBuildGaugeRow(); srObd(); return; }
         if (srSec == 3) {
             if (srSub == 2) {
                 if (!srParamStructure().equals(srParamKey)) srBuildParams();
@@ -2146,18 +2147,50 @@ public class Main extends Activity {
             return;
         }
         place(p, srHair(0xFF1A1A1A), 0, 418, W, 1);
-        Obd.Sensor[] ss = {Obd.COOLANT, Obd.OILT, Obd.VOLT, Obd.CONSUMPTION};
-        int[] cols = {0xFFFF8A3D, 0xFFFFB547, 0xFF3DDC84, RED};
-        float cw = (W - 20) / 4;
-        for (int i = 0; i < 4; i++) {
+        srGaugeRow = new FrameLayout(this);
+        place(p, srGaugeRow, 0, 419, W, 121);
+        srBuildGaugeRow();
+    }
+
+    private FrameLayout srGaugeRow;
+    private String srGaugeKey = "";
+    private static final Obd.Sensor[] SR_MINI = {Obd.COOLANT, Obd.OILT, Obd.VOLT, Obd.CONSUMPTION, Obd.INTAKE, Obd.LOAD};
+
+    /** Fila de abajo de Instrumentos: hasta 4 datos que el carro sí entrega (se rearma cuando aparecen). */
+    private String srGaugeStructure() {
+        StringBuilder b = new StringBuilder();
+        for (Obd.Sensor x : SR_MINI) b.append(x.has() ? '1' : '0');
+        return b.toString();
+    }
+
+    private void srBuildGaugeRow() {
+        FrameLayout p = srGaugeRow;
+        if (p == null) return;
+        p.removeAllViews();
+        for (int i = srVals.size() - 1; i >= 0; i--) if (srVals.get(i).length == 4) srVals.remove(i);
+        srGaugeKey = srGaugeStructure();
+        List<Obd.Sensor> ss = new ArrayList<Obd.Sensor>();
+        for (Obd.Sensor x : SR_MINI) if (x.has() && ss.size() < 4) ss.add(x);
+        float W = srPW;
+        if (ss.isEmpty()) {
+            TextView n = tv(Obd.status == Obd.LIVE ? "Esperando datos del escáner…" : obdStateText(), 14, MUTED, false);
+            n.setGravity(Gravity.CENTER);
+            place(p, n, 28, 44, W - 56, 24);
+            return;
+        }
+        float cw = (W - 20) / ss.size();
+        for (int i = 0; i < ss.size(); i++) {
+            Obd.Sensor sn = ss.get(i);
+            int col = Ev.sensorColor(sn.key);
+            if (sn == Obd.CONSUMPTION) col = RED;
             float x = 10 + i * cw;
-            if (i > 0) place(p, srHair(HAIR_SR), x, 438, 1, 64);
-            place(p, srLabel(ss[i].label, 12, MUTED), x + 20, 436, cw - 34, 16);
+            if (i > 0) place(p, srHair(HAIR_SR), x, 19, 1, 64);
+            place(p, srLabel(sn.label, 12, MUTED), x + 20, 17, cw - 34, 16);
             TextView v = srNum("—", 34, TEXT);
-            place(p, v, x + 20, 456, cw - 34, 38);
-            Show.Bar bar = new Show.Bar(this, cols[i]);
-            place(p, bar, x + 20, 498, cw - 40, 5);
-            srVals.add(new Object[]{ss[i], v, bar, cols[i]});
+            place(p, v, x + 20, 37, cw - 34, 38);
+            Show.Bar bar = new Show.Bar(this, col);
+            place(p, bar, x + 20, 79, cw - 40, 5);
+            srVals.add(new Object[]{sn, v, bar, col});
         }
     }
 
@@ -2294,12 +2327,12 @@ public class Main extends Activity {
             multiLine(d);
             d.setMaxLines(2);
             FrameLayout.LayoutParams dlp = new FrameLayout.LayoutParams(-1, -2);
-            dlp.leftMargin = (int) (90 * s); dlp.rightMargin = (int) (96 * s); dlp.topMargin = (int) (12 * s);
+            dlp.leftMargin = (int) (90 * s); dlp.rightMargin = (int) (118 * s); dlp.topMargin = (int) (12 * s);
             r.addView(d, dlp);
             TextView sv = srLabel(pend ? "Pendiente" : e.severity >= 3 ? "Grave" : e.severity == 1 ? "Leve" : "Revisar", 12,
                 pend ? 0xFFF5A524 : e.severity >= 3 ? RED : MUTED);
             sv.setGravity(Gravity.RIGHT);
-            FrameLayout.LayoutParams slp = new FrameLayout.LayoutParams((int) (90 * s), -2, Gravity.RIGHT);
+            FrameLayout.LayoutParams slp = new FrameLayout.LayoutParams((int) (112 * s), -2, Gravity.RIGHT);
             slp.topMargin = (int) (16 * s);
             r.addView(sv, slp);
             r.setMinimumHeight((int) (64 * s));
@@ -2484,7 +2517,7 @@ public class Main extends Activity {
             float cx = 28 + (i % per) * (cw + 24), cy = 18 + (i / per) * 118;
             place(p, srLabel(x[0], 12, MUTED), cx, cy + 14, cw, 16);
             TextView v = srNum("", 54, "a".equals(x[3]) ? RED : TEXT);
-            android.text.SpannableString sp = new android.text.SpannableString(x[1] + " " + x[2]);
+            android.text.SpannableString sp = new android.text.SpannableString("—".equals(x[1]) ? x[1] : x[1] + " " + x[2]);
             sp.setSpan(new android.text.style.RelativeSizeSpan(0.34f), x[1].length(), sp.length(), 0);
             sp.setSpan(new android.text.style.ForegroundColorSpan(MUTED), x[1].length(), sp.length(), 0);
             v.setText(sp);
