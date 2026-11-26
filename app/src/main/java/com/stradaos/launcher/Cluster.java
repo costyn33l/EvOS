@@ -175,10 +175,11 @@ final class Cluster extends View {
     }
 
     private void bigWithUnit(Canvas c, String num, String unit, float x, float base, float size, Typeface tf, Typeface uf, int col, int ucol, Paint.Align al) {
-        float nw = width(num, size, tf), uw = unit.length() > 0 ? width(unit, size * 0.2f, uf) + size * 0.06f : 0;
+        float us = Math.max(size * 0.2f, Math.min(size * 0.36f, 12 * s));
+        float nw = width(num, size, tf), uw = unit.length() > 0 ? width(unit, us, uf) + size * 0.06f : 0;
         float start = al == Paint.Align.LEFT ? x : al == Paint.Align.RIGHT ? x - nw - uw : x - (nw + uw) / 2;
         text(c, num, start, base, size, tf, col, Paint.Align.LEFT, 0);
-        if (uw > 0) text(c, unit, start + nw + size * 0.06f, base, size * 0.2f, uf, ucol, Paint.Align.LEFT, 0.02f);
+        if (uw > 0) text(c, unit, start + nw + size * 0.06f, base, us, uf, ucol, Paint.Align.LEFT, 0.02f);
     }
 
     private void tele(Canvas c, float w, float h) {
@@ -223,12 +224,13 @@ final class Cluster extends View {
         // gráfico de los últimos 60 s
         float gy = top + 206 * k, gh = Math.max(40 * k, h - gy - 112 * k);
         if (gh > 30 * k && d.hN > 1) {
-            p.setColor(0xFFFFA31A); c.drawRect(px, gy - 9 * k, px + 10 * k, gy - 6 * k, p);
+            if (obd && !Float.isNaN(d.thr)) { p.setColor(0xFFFFA31A); c.drawRect(px, gy - 9 * k, px + 10 * k, gy - 6 * k, p); }
             float lx = px + 16 * k;
             if (obd && !Float.isNaN(d.thr)) {
-                text(c, up("Acelerador") + " %", lx, gy - 3 * k, 11 * k, FM, MU, Paint.Align.LEFT, 0.14f);
-                lx += width(up("Acelerador") + " %", 11 * k, FM) * 1.2f + 22 * k;
-            }
+                String lt = up("Acelerador") + " %";
+                text(c, lt, lx, gy - 3 * k, 11 * k, FM, MU, Paint.Align.LEFT, 0.14f);
+                lx += width(lt, 11 * k, FM) * 1.18f + 30 * k;
+            } else lx = px + 16 * k;
             p.setColor(TX); c.drawRect(lx - 16 * k, gy - 9 * k, lx - 6 * k, gy - 6 * k, p);
             text(c, up("Velocidad"), lx, gy - 3 * k, 11 * k, FM, MU, Paint.Align.LEFT, 0.14f);
             text(c, I18n.t("últimos 60 s").toUpperCase(I18n.loc), w - px, gy - 3 * k, 11 * k, FM, 0xFF5C626A, Paint.Align.RIGHT, 0.14f);
@@ -431,7 +433,6 @@ final class Cluster extends View {
         p.setShader(new LinearGradient(sx - 240 * k, 0, sx + 140 * k, 0, new int[]{0, ORA, 0}, null, Shader.TileMode.CLAMP));
         c.drawRect(sx - 240 * k, sb + 14 * k, sx + 140 * k, sb + 16 * k, p);
         p.setShader(null);
-        text(c, (d.speedObd ? "OBD" : "GPS"), px, h - 28 * k, 13 * k, XMI, MU, Paint.Align.LEFT, 0.2f);
     }
 
     private void sportSmall(Canvas c, float w, float h) {

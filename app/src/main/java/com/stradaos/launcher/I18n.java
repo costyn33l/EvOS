@@ -125,7 +125,7 @@ public class I18n {
         String s = cs.toString();
         if ("es".equals(lang) || s.length() == 0) return s;
         String r = tr(s, 0);
-        if (recordMisses && r.equals(s)) synchronized (MISSES) { if (MISSES.size() < 3000) MISSES.add(s); }
+        if (recordMisses && r.equals(s)) synchronized (MISSES) { if (MISSES.size() < 5000) MISSES.add(lang + "\t" + s); }
         return r;
     }
 
