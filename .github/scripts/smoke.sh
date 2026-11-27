@@ -81,6 +81,8 @@ go ajustes:11 6; shot 85-sr-personalizacion
 go obd-off 6; go sr:0 6; shot 86-sr-sin-obd
 go sr:3:2 6;   shot 87-sr-parametros-sin-obd
 go sr:1 8;     shot 71-sr-mapa
+# tráfico de Alemania (Autobahn, InfraNode): un carro en la A3 cerca de Limburg, datos reales y un atasco de prueba
+go infra-demo 6; go mapa-zoom:14 22; shot 71b-sr-mapa-trafico-de
 go sr:3:4 6;   shot 77-sr-mantenimiento
 go sr:0 4
 go tema-ev:aero 6

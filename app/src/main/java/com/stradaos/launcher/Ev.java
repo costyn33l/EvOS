@@ -132,6 +132,10 @@ final class Ev {
         if ("load".equals(key) || "throttle".equals(key) || "maf".equals(key) || "abs_load".equals(key)) return 0xFF22D3EE;
         if ("timing".equals(key)) return 0xFFFFC53D;
         if ("baro".equals(key) || "odo".equals(key)) return 0xFFC8CDD8;
+        if ("torque".equals(key) || "power".equals(key) || "tq_actual".equals(key) || "tq_demand".equals(key)) return 0xFFFF4D5E;
+        if ("boost".equals(key) || "turbo_t".equals(key)) return 0xFF22D3EE;
+        if ("rail_p".equals(key) || "rail_abs".equals(key) || "fuel_p".equals(key)) return 0xFF3DDC84;
+        if (key.startsWith("dpf") || key.startsWith("soot") || "ash".equals(key) || key.startsWith("regen")) return 0xFFFFB547;
         return 0xFFA78BFA;
     }
 

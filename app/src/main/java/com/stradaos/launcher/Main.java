@@ -1149,6 +1149,20 @@ public class Main extends Activity {
                         .putString("dock_3_name", "Mi app").apply();
                     rebuild();
                 }
+                else if ("infra-demo".equals(v)) {
+                    // un carro en la A3 cerca de Limburg, hacia Frankfurt (datos reales + un atasco inventado por delante)
+                    Infra.demo = true;
+                    Infra.reset();
+                    final double[][] pos = {{50.4000, 8.0300}, {50.3990, 8.0320}, {50.3980, 8.0340}};
+                    for (int i = 0; i < pos.length; i++) {
+                        final double[] q = pos[i];
+                        h.postDelayed(new Runnable() { public void run() {
+                            Location l = new Location(LocationManager.GPS_PROVIDER);
+                            l.setLatitude(q[0]); l.setLongitude(q[1]); l.setBearing(127); l.setSpeed(28); l.setTime(System.currentTimeMillis());
+                            feedMap(l);
+                        }}, i == 0 ? 0 : 9000 + i * 1200);
+                    }
+                }
                 else if ("nav-demo".equals(v)) {
                     Nav.Route nr = new Nav.Route();
                     nr.pts = new double[]{4.6533, -74.0836, 4.6562, -74.0807, 4.6590, -74.0780, 4.6615, -74.0810};
@@ -1511,7 +1525,7 @@ public class Main extends Activity {
     // ══════════ Datos OBD: emblemas, frescura y lo que se sabe del auto ══════════
 
     /** Emblema de cada dato (assets/ic/obd_*.png, estilo testigo del tablero). */
-    private static final String[] OBD_IC = {"abs_load", "engine", "ambient", "ambient", "ash", "ash", "baro", "pressure", "cat1", "cat", "cat2", "cat", "clear_dist", "road", "clear_time", "time", "consumption", "drop", "coolant", "coolant", "dpf_dp", "dpf_dp", "dpf_need", "dpf", "dpf_tin", "dpf_temp", "dpf_tout", "dpf_temp", "egr", "egr", "fuel", "fuel", "fuel_h", "drop", "fuel_rate", "drop", "intake", "intake", "lambda", "mixture", "load", "engine", "ltft", "mixture", "maf", "maf", "map", "pressure", "mil_dist", "road", "mil_time", "time", "o2_1", "o2", "o2_2", "o2", "o2_trim_1", "mixture", "o2_trim_2", "mixture", "odo", "road", "oilt", "oil", "pedal_d", "throttle", "pedal_e", "throttle", "regen_km", "regen", "regen_min", "regen", "rpm", "rpm", "run_time", "time", "soot_calc", "soot", "soot_meas", "soot", "speed", "speed", "stft", "mixture", "throttle", "throttle", "throttle_b", "throttle", "throttle_cmd", "throttle", "throttle_rel", "throttle", "timing", "spark", "turbo_t", "turbo", "volt", "volt", "warmups", "check"};
+    private static final String[] OBD_IC = {"abs_load", "engine", "ambient", "ambient", "ash", "ash", "baro", "pressure", "boost", "turbo", "cat1", "cat", "cat2", "cat", "clear_dist", "road", "clear_time", "time", "consumption", "drop", "coolant", "coolant", "dpf_dp", "dpf_dp", "dpf_need", "dpf", "dpf_tin", "dpf_temp", "dpf_tout", "dpf_temp", "egr", "egr", "ethanol", "fueltype", "fuel", "fuel", "fuel_h", "drop", "fuel_p", "pressure", "fuel_rate", "drop", "hyb_batt", "volt", "inj_timing", "mixture", "intake", "intake", "lambda", "mixture", "load", "engine", "ltft", "mixture", "maf", "maf", "map", "pressure", "mil_dist", "road", "mil_time", "time", "o2_1", "o2", "o2_2", "o2", "o2_trim_1", "mixture", "o2_trim_2", "mixture", "odo", "road", "oilt", "oil", "pedal", "throttle", "pedal_d", "throttle", "pedal_e", "throttle", "power", "power", "rail_abs", "pressure", "rail_p", "pressure", "regen_km", "regen", "regen_min", "regen", "rpm", "rpm", "run_time", "time", "soot_calc", "soot", "soot_meas", "soot", "speed", "speed", "stft", "mixture", "throttle", "throttle", "throttle_b", "throttle", "throttle_cmd", "throttle", "throttle_rel", "throttle", "timing", "spark", "torque", "torque", "tq_actual", "torque", "tq_demand", "torque", "turbo_t", "turbo", "volt", "volt", "warmups", "check"};
 
     static String obdIconName(String key) {
         for (int i = 0; i < OBD_IC.length; i += 2) if (OBD_IC[i].equals(key)) return OBD_IC[i + 1];
@@ -2370,10 +2384,10 @@ public class Main extends Activity {
     /** Vehículo › Parámetros: cuatro grupos con los datos que el carro entrega y su curva de los últimos 3 minutos. */
     private static final String[] SR_GROUPS = {"Motor", "Temperaturas", "Combustible", "Aire y electricidad", "DPF"};
     private static final String[][] SR_GROUP_KEYS = {
-        {"rpm", "load", "throttle", "timing", "abs_load"},
+        {"rpm", "torque", "power", "load", "throttle", "pedal", "timing", "abs_load"},
         {"coolant", "oilt", "intake", "ambient", "cat1"},
-        {"consumption", "fuel_h", "fuel", "stft", "ltft"},
-        {"volt", "maf", "map", "baro", "o2_1"},
+        {"consumption", "fuel_h", "fuel", "rail_p", "stft", "ltft"},
+        {"volt", "boost", "maf", "map", "baro", "o2_1"},
         {"soot_calc", "dpf_need", "dpf_dp", "dpf_tin", "regen_km", "soot_meas", "ash", "dpf_tout", "regen_min", "turbo_t"},
     };
 
@@ -5537,9 +5551,47 @@ public class Main extends Activity {
         }
         if (liveMap == null || l == null) return;
         float kmh = l.hasSpeed() ? l.getSpeed() * 3.6f : 0;
-        liveMap.setPosition(l.getLatitude(), l.getLongitude(), l.hasBearing() && kmh > 4 ? l.getBearing() : Float.NaN, kmh);
+        float br = l.hasBearing() && kmh > 4 ? l.getBearing() : Float.NaN;
+        liveMap.setPosition(l.getLatitude(), l.getLongitude(), br, kmh);
         liveMap.setVisibility(View.VISIBLE);
         updateMapTag();
+        infraTick(l.getLatitude(), l.getLongitude(), br, kmh);
+    }
+
+    // ───────────────────────── tráfico de Alemania (Infra) ─────────────────────────
+
+    private int infraGen = -1;
+
+    private void infraTick(double la, double lo, float br, float kmh) {
+        try {
+            if (Infra.tick(this, la, lo, br, kmh) && Infra.alert != null && Infra.layer(this, "infra_voice"))
+                Nav.speakRaw(this, Infra.alertText(Infra.alert));
+        } catch (Throwable e) { Guard.log("Infra: " + e); }
+        if (liveMap != null) {
+            if (liveMap.infraTap == null) liveMap.infraTap = new LiveMapView.InfraTap() { public void onItem(Infra.Item it) { showInfraItem(it); } };
+            if (infraGen != Infra.gen) { infraGen = Infra.gen; liveMap.invalidate(); }
+        }
+        // la descarga termina en otro hilo: se mira de nuevo en un rato para dibujar lo que llegó
+        h.removeCallbacks(infraPoll);
+        h.postDelayed(infraPoll, 4000);
+    }
+
+    private final Runnable infraPoll = new Runnable() { public void run() {
+        if (liveMap != null && infraGen != Infra.gen) { infraGen = Infra.gen; liveMap.invalidate(); }
+    }};
+
+    /** Detalle de un aviso, cierre, obra, cargador, área de descanso, gasolinera o estacionamiento tocado en el mapa. */
+    private void showInfraItem(final Infra.Item it) {
+        String head = it.type == Infra.FUEL || it.type == Infra.PARK ? I18n.t(Infra.TYPE_ES[it.type])
+            : it.event != null ? I18n.t(it.event) : I18n.t(Infra.TYPE_ES[it.type]);
+        String title = it.title != null && it.title.length() > 0 ? it.title.replace(" | ", " · ") : "";
+        TB b = new TB(this, dlg()).raw().wide().setTitle(head)
+            .setMessage((title.length() > 0 ? title + "\n\n" : "") + Infra.details(it))
+            .setPositiveButton(I18n.t("Cerrar"), null);
+        if ("internal".equals(prefs.getString("nav_app", null)) && it.type >= Infra.CHARGE)
+            b.setNeutralButton(I18n.t("Navegar hasta aquí"), new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface d, int w) { askNavHere(it.lat, it.lon); } });
+        b.show();
     }
 
     /** km/h o mph: lo elegido, o mph en EE. UU., Reino Unido, Liberia y Birmania. */
@@ -5605,7 +5657,64 @@ public class Main extends Activity {
             + " · ubicación por red: " + (netOn ? "encendida" : "apagada")
             + "\nÚltima señal: " + (ago < 0 ? "ninguna desde que abrió EvOS" : ago < 120 ? "hace " + ago + " s" : "hace " + (ago / 60) + " min")
             + (gpsStartAt > 0 ? "\nBuscando desde hace " + ((SystemClock.elapsedRealtime() - gpsStartAt) / 60000) + " min" : "");
-        return I18n.lines(head + "\n\n" + (liveMap != null ? liveMap.diag() : "Mapa en vivo apagado"));
+        return I18n.lines(head + "\n\n" + (liveMap != null ? liveMap.diag() : "Mapa en vivo apagado")) + "\n\n" + Infra.status();
+    }
+
+    /** Ajustes › Mapa › Tráfico en Alemania: cada capa se prende o se apaga. */
+    private void infraSettings(LinearLayout body) {
+        LinearLayout g = section(body, "Tráfico en Alemania");
+        final boolean on = Infra.on(this);
+        toggle(g, "Información de tráfico en Alemania", "Datos públicos de Autobahn GmbH e InfraNode, sin clave. Solo se piden cuando estás en Alemania",
+            on, infraCb("infra_on"));
+        if (!on) return;
+        String[][] layers = {
+            {"infra_warn", "Avisos: atascos, accidentes, peligros", "En las autopistas cercanas y en las de tu ruta"},
+            {"infra_closed", "Cierres de vías y de salidas", "Tramos cerrados en rojo; las salidas y entradas cerradas, al acercarte"},
+            {"infra_works", "Obras en autopistas", "Con el tramo afectado, las fechas y el ancho máximo"},
+            {"infra_charge", "Cargadores en autopistas", "Puntos de carga, potencia y operador"},
+            {"infra_rest", "Áreas de descanso", "Lugares para autos y camiones, servicios"},
+            {"infra_fuel", "Precios de combustible", "Gasolineras abiertas de la ciudad cercana (Tankerkönig): la más barata en verde"},
+            {"infra_park", "Estacionamientos con lugares libres", "Ocupación en vivo en las ciudades que la publican"},
+            {"infra_wx", "Avisos meteorológicos (DWD)", "Helada, niebla, tormentas… de la ciudad cercana, abajo a la izquierda del mapa"},
+            {"infra_alert", "Avisar de lo que viene por delante", "Un aviso en el mapa al acercarte a un atasco, accidente o cierre"},
+        };
+        for (String[] l : layers) toggle(g, l[1], l[2], Infra.layer(this, l[0]), infraCb(l[0]));
+        if (Infra.layer(this, "infra_fuel")) {
+            final String[] kinds = {"auto", "diesel", "e5", "e10"};
+            String k = prefs.getString("infra_fuel_kind", "auto");
+            int sel = 0;
+            for (int i = 0; i < kinds.length; i++) if (kinds[i].equals(k)) sel = i;
+            segmented(g, "Combustible de los precios", "Automático: el que informa el auto por OBD (diésel o gasolina E5)",
+                new String[]{"Automático", "Diésel", "E5", "E10"}, sel, new IntCb() { public void on(int i) {
+                    prefs.edit().putString("infra_fuel_kind", kinds[i]).apply(); Infra.reset(); showSettings(settingsCat); }});
+        }
+        if (Infra.layer(this, "infra_alert")) {
+            final int[] kms = {2, 3, 5};
+            int ak = Infra.alertKm(this);
+            segmented(g, "Distancia del aviso", "Se avisa una sola vez por cada suceso",
+                new String[]{"2 km", "3 km", "5 km"}, ak <= 2 ? 0 : ak >= 5 ? 2 : 1, new IntCb() { public void on(int i) {
+                    prefs.edit().putInt("infra_alert_km", kms[i]).apply(); showSettings(settingsCat); }});
+            toggle(g, "Aviso hablado", "Lo dice con la voz de navegación", Infra.layer(this, "infra_voice"), infraCb("infra_voice"));
+        }
+        final int[] mins = {5, 10, 15};
+        int ev = Infra.every(this);
+        segmented(g, "Actualizar los avisos cada", "Las obras cada 30 min; cargadores y descansos cada 6 h",
+            new String[]{"5 min", "10 min", "15 min"}, ev <= 5 ? 0 : ev >= 15 ? 2 : 1, new IntCb() { public void on(int i) {
+                prefs.edit().putInt("infra_every", mins[i]).apply(); Infra.reset(); showSettings(settingsCat); }});
+        row(g, "Estado", "Autopistas y ciudad que se están mirando", Infra.inGermany ? I18n.t("En Alemania") : I18n.t("Fuera de Alemania"),
+            new Runnable() { public void run() {
+                new TB(Main.this, dlg()).raw().setTitle(I18n.t("Tráfico en Alemania")).setMessage(Infra.status())
+                    .setPositiveButton("OK", null).show();
+            }});
+    }
+
+    private IntCb infraCb(final String key) {
+        return new IntCb() { public void on(int i) {
+            prefs.edit().putBoolean(key, i == 1).apply();
+            Infra.reset();
+            if (liveMap != null) liveMap.invalidate();
+            showSettings(settingsCat);
+        }};
     }
 
     private void showMapDiag() {
@@ -12512,6 +12621,7 @@ public class Main extends Activity {
         segmented(m, "Brillo del mapa", "Solo en modo oscuro", new String[]{"Bajo", "Medio", "Alto"}, prefs.getInt("map_bright", 1), new IntCb() { public void on(int i) {
             prefs.edit().putInt("map_bright", i).apply(); rebuild();
         }});
+        infraSettings(body);
         if (navIn) {
             LinearLayout nvp = section(body, "Navegación");
             toggle(nvp, "Evitar peajes", "Intenta evitar vías de peaje al calcular la ruta", prefs.getBoolean("nav_avoid_tolls", false), new IntCb() { public void on(int i) {

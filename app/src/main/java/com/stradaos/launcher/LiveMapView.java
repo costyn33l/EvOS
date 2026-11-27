@@ -102,6 +102,9 @@ public class LiveMapView extends View {
     /** Con el carro andando, vuelve a «Seguir» tras este tiempo sin tocar el mapa (decisión de Andrés: 10 a 15 s). */
     static final long RETURN_MS = 12000;
     Listener exploreListener;
+    /** Toque en un aviso, cierre, gasolinera… de la capa de Alemania (Infra). */
+    interface InfraTap { void onItem(Infra.Item it); }
+    InfraTap infraTap;
     private boolean exploring, ownButtons, dragExplores = true;
     /** Centro explorado en coordenadas del mundo (0 a 1 en x y en y, Mercator). */
     private double eX, eY;
@@ -733,7 +736,12 @@ public class LiveMapView extends View {
     private void initGestures() {
         gd = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
             @Override public boolean onDown(MotionEvent e) { return true; }
-            @Override public boolean onSingleTapConfirmed(MotionEvent e) { if (!exploring) explore(); return true; }
+            @Override public boolean onSingleTapConfirmed(MotionEvent e) {
+                Infra.Item it = hitInfra(e.getX(), e.getY());
+                if (it != null && infraTap != null) { infraTap.onItem(it); return true; }
+                if (!exploring) explore();
+                return true;
+            }
             @Override public boolean onDoubleTap(MotionEvent e) {
                 if (!exploring) explore();
                 if (exploring) zoomAt(1, e.getX(), e.getY());
@@ -981,6 +989,7 @@ public class LiveMapView extends View {
                 else { drawOld(c, fm, fx, fy, lv, cx, cy, w, h, rot, 1f - t); fading = true; }
             }
             drawRoute(c, fx, fy, cx, cy, ts, n);
+            drawInfra(c, fx, fy, cx, cy, ts, n, lv, rot ? mapBr : 0);
             if (!Double.isNaN(pinLat)) drawPin(c, mapX(pinLon, fx, cx, ts, n), mapY(pinLat, fy, cy, ts, n), mapBr);
             // volviendo al carro: la flecha en su sitio del mapa, dentro del giro (apunta según el rumbo)
             if (bk > 0) drawMarker(c, mapX(dLon, fx, cx, ts, n), mapY(dLat, fy, cy, ts, n), false);
@@ -1000,6 +1009,7 @@ public class LiveMapView extends View {
                 if (Nav.active == null) ay = 13 * s;
             }
             c.drawText(attr, ax, ay, text);
+            drawInfraBanners(c, w, ay);
         }
         if (bd) c.drawPath(corners, back);
         else {
@@ -1170,6 +1180,227 @@ public class LiveMapView extends View {
         double lr = Math.toRadians(cLat);
         double py = (1.0 - Math.log(Math.tan(lr) + 1.0 / Math.cos(lr)) / Math.PI) / 2.0 * n;
         return cy + (float) ((py - fy) * ts);
+    }
+
+    // ───────────────────────── capa de Alemania (Infra) ─────────────────────────
+
+    private static final java.util.HashMap<String, Bitmap> INFRA_IC = new java.util.HashMap<String, Bitmap>();
+    private final Paint ip = new Paint(Paint.ANTI_ALIAS_FLAG), ipLine = new Paint(Paint.ANTI_ALIAS_FLAG), ipText = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint ipIcon = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG);
+    private final RectF ir = new RectF();
+    private final Rect isrc = new Rect();
+    private final Path ipath = new Path();
+    // dónde quedó cada marca en la pantalla (para el toque)
+    private Infra.Item[] hitIt = new Infra.Item[0];
+    private float[] hitXY = new float[0];
+    private int hitN;
+
+    private Bitmap infraIcon(String name) {
+        Bitmap b = INFRA_IC.get(name);
+        if (b == null && !INFRA_IC.containsKey(name)) {
+            try {
+                java.io.InputStream in = getContext().getAssets().open("ic/map_" + name + ".png");
+                b = BitmapFactory.decodeStream(in);
+                in.close();
+            } catch (Throwable ignored) { }
+            INFRA_IC.put(name, b);
+        }
+        return b;
+    }
+
+    static int infraColor(int type) {
+        switch (type) {
+            case Infra.WARN: return 0xFFF5A623;
+            case Infra.CLOSED: case Infra.RAMP: return 0xFFE63946;
+            case Infra.WORKS: return 0xFFE8590C;
+            case Infra.CHARGE: return 0xFF2BB673;
+            case Infra.REST: case Infra.PARK: return 0xFF3D7BFF;
+            default: return 0xFF2A2F3A;
+        }
+    }
+
+    private static String infraGlyph(int type) {
+        switch (type) {
+            case Infra.WARN: return "warn";
+            case Infra.CLOSED: case Infra.RAMP: return "closed";
+            case Infra.WORKS: return "works";
+            case Infra.CHARGE: return "plug";
+            case Infra.REST: case Infra.PARK: return "park";
+            default: return "pump";
+        }
+    }
+
+    /** Desde qué nivel de zoom se ve cada tipo (lejos, solo lo importante). */
+    private static int infraMinZoom(int type) {
+        switch (type) {
+            case Infra.WARN: case Infra.CLOSED: return 8;
+            case Infra.WORKS: return 10;
+            default: return 12;
+        }
+    }
+
+    private void drawInfra(Canvas c, double fx, double fy, float cx, float cy, float ts, int n, int lv, float br) {
+        java.util.List<Infra.Item> list = Infra.items;
+        hitN = 0;
+        if (list.isEmpty()) return;
+        if (hitIt.length < list.size()) { hitIt = new Infra.Item[list.size()]; hitXY = new float[list.size() * 2]; }
+        // tramos afectados (cierres, avisos, obras), debajo de las marcas
+        if (lv >= 10) {
+            ipLine.setStyle(Paint.Style.STROKE);
+            ipLine.setStrokeCap(Paint.Cap.ROUND);
+            ipLine.setStrokeJoin(Paint.Join.ROUND);
+            for (int k = 0; k < list.size(); k++) {
+                Infra.Item it = list.get(k);
+                if (it.line == null || it.line.length < 4 || it.type > Infra.WORKS || it.type == Infra.RAMP) continue;
+                ipath.reset();
+                for (int i = 0; i + 1 < it.line.length; i += 2) {
+                    float x = mapX(it.line[i + 1], fx, cx, ts, n), y = mapY(it.line[i], fy, cy, ts, n);
+                    if (i == 0) ipath.moveTo(x, y); else ipath.lineTo(x, y);
+                }
+                ipLine.setColor(0xCC000000 | (infraColor(it.type) & 0xFFFFFF));
+                ipLine.setStrokeWidth((it.type == Infra.WORKS ? 4 : 6) * s);
+                c.drawPath(ipath, ipLine);
+            }
+        }
+        double rad = Math.toRadians(br);
+        float cos = (float) Math.cos(rad), sin = (float) Math.sin(rad);
+        ipText.setTextSize(11.5f * s);
+        ipText.setFakeBoldText(true);
+        for (int pass = 0; pass < 2; pass++)       // primero lo de menos (gasolineras, descansos), encima avisos y cierres
+        for (int k = 0; k < list.size(); k++) {
+            Infra.Item it = list.get(k);
+            boolean top = it.type <= Infra.WORKS;
+            if (top != (pass == 1) || lv < infraMinZoom(it.type)) continue;
+            float x = mapX(it.lon, fx, cx, ts, n), y = mapY(it.lat, fy, cy, ts, n);
+            if (x < -60 * s || y < -60 * s || x > getWidth() + 60 * s || y > getHeight() + 60 * s) {
+                // con el mapa girado la marca puede caer dentro aunque aquí parezca fuera: se calcula abajo igual
+                if (br == 0) continue;
+            }
+            // dónde queda en la pantalla (el lienzo está girado -br alrededor del centro)
+            float dx = x - cx, dy = y - cy;
+            float sx = cx + dx * cos + dy * sin, sy = cy - dx * sin + dy * cos;
+            if (sx < -40 * s || sy < -40 * s || sx > getWidth() + 40 * s || sy > getHeight() + 40 * s) continue;
+            c.save();
+            if (br != 0) c.rotate(br, x, y);     // la marca queda derecha aunque el mapa gire
+            float r = (it.type == Infra.RAMP ? 8.5f : it.type <= Infra.WORKS ? 12 : 10.5f) * s;
+            ip.setStyle(Paint.Style.FILL);
+            ip.setColor(0x66000000);
+            c.drawCircle(x, y + 1.5f * s, r + 2.5f * s, ip);
+            ip.setColor(0xFFFFFFFF);
+            c.drawCircle(x, y, r + 2f * s, ip);
+            ip.setColor(infraColor(it.type));
+            c.drawCircle(x, y, r, ip);
+            Bitmap g = infraIcon(infraGlyph(it.type));
+            if (g != null) {
+                float gs = r * 1.25f;
+                ir.set(x - gs, y - gs, x + gs, y + gs);
+                isrc.set(0, 0, g.getWidth(), g.getHeight());
+                c.drawBitmap(g, isrc, ir, ipIcon);
+            }
+            // etiqueta: precio o lugares libres
+            String lab = null;
+            int lbg = 0xEE1A1D24;
+            if (it.type == Infra.FUEL && !Float.isNaN(it.price)) {
+                lab = String.format(I18n.num, "%.2f", it.price);
+                if (it.cheapest) lbg = 0xEE1F9D55;
+            } else if (it.type == Infra.PARK && it.free >= 0) {
+                lab = "" + it.free;
+                if (it.cap > 0 && it.free < it.cap * 0.1f) lbg = 0xEEC92A2A;
+            }
+            if (lab != null) {
+                float tw = ipText.measureText(lab), lx = x + r + 4 * s, lh = 18 * s;
+                ir.set(lx, y - lh / 2, lx + tw + 12 * s, y + lh / 2);
+                ip.setColor(lbg);
+                c.drawRoundRect(ir, 5 * s, 5 * s, ip);
+                ipText.setColor(0xFFFFFFFF);
+                c.drawText(lab, lx + 6 * s, y + 4.2f * s, ipText);
+            }
+            c.restore();
+            hitIt[hitN] = it;
+            hitXY[hitN * 2] = sx;
+            hitXY[hitN * 2 + 1] = sy;
+            hitN++;
+        }
+    }
+
+    /** La marca más cercana al toque (a menos de 26 dp); null si no hay. */
+    Infra.Item hitInfra(float x, float y) {
+        if (viewPinch != 1f) return null;
+        Infra.Item best = null;
+        float bd = 26 * s * 26 * s;
+        for (int i = hitN - 1; i >= 0; i--) {
+            float dx = hitXY[i * 2] - x, dy = hitXY[i * 2 + 1] - y, d = dx * dx + dy * dy;
+            if (d < bd) { bd = d; best = hitIt[i]; }
+        }
+        return best;
+    }
+
+    /** Aviso por delante (unos segundos) y aviso meteorológico, arriba del mapa. */
+    private void drawInfraBanners(Canvas c, float w, float topY) {
+        float y = topY + 10 * s;
+        Infra.Item al = Infra.alert;
+        long age = SystemClock.elapsedRealtime() - Infra.alertAt;
+        if (al != null && age < 25000) {
+            String t = Infra.alertText(al);
+            String sub = al.title != null ? al.title.replace(" | ", " · ") : "";
+            ipText.setFakeBoldText(true);
+            ipText.setTextSize(16 * s);
+            float tw = ipText.measureText(t);
+            ipText.setFakeBoldText(false);
+            ipText.setTextSize(12.5f * s);
+            float sw = ipText.measureText(sub);
+            float bw = Math.min(w - 40 * s, Math.max(tw, sw) + 72 * s), bh = 54 * s, bx = (w - bw) / 2;
+            ir.set(bx, y, bx + bw, y + bh);
+            ip.setStyle(Paint.Style.FILL);
+            ip.setColor(0xF2141619);
+            c.drawRoundRect(ir, 12 * s, 12 * s, ip);
+            ip.setColor(infraColor(al.type));
+            ir.set(bx, y, bx + 5 * s, y + bh);
+            c.drawRect(ir, ip);
+            c.drawCircle(bx + 30 * s, y + bh / 2, 15 * s, ip);
+            Bitmap g = infraIcon(infraGlyph(al.type));
+            if (g != null) {
+                ir.set(bx + 30 * s - 11 * s, y + bh / 2 - 11 * s, bx + 30 * s + 11 * s, y + bh / 2 + 11 * s);
+                isrc.set(0, 0, g.getWidth(), g.getHeight());
+                c.drawBitmap(g, isrc, ir, ipIcon);
+            }
+            ipText.setColor(0xFFFFFFFF);
+            ipText.setFakeBoldText(true);
+            ipText.setTextSize(16 * s);
+            c.save();
+            c.clipRect(bx + 52 * s, y, bx + bw - 10 * s, y + bh);
+            c.drawText(t, bx + 54 * s, y + 23 * s, ipText);
+            ipText.setFakeBoldText(false);
+            ipText.setTextSize(12.5f * s);
+            ipText.setColor(0xFFB8BEC8);
+            c.drawText(sub, bx + 54 * s, y + 41 * s, ipText);
+            c.restore();
+            y += bh + 8 * s;
+            postInvalidateDelayed(1000);
+        }
+        String wx = Infra.wxEvent;
+        if (wx != null && Infra.wxLevel >= 1) {
+            String t = I18n.t(wx) + " · " + I18n.f("nivel %d", Infra.wxLevel) + (Infra.cityName != null ? " · " + Infra.cityName : "");
+            ipText.setFakeBoldText(true);
+            ipText.setTextSize(12.5f * s);
+            float tw = ipText.measureText(t), bh = 26 * s, bw = tw + 40 * s, bx = 12 * s;
+            float by = getHeight() - bh - 14 * s;
+            ir.set(bx, by, bx + bw, by + bh);
+            ip.setStyle(Paint.Style.FILL);
+            int[] lvl = {0xFFF5A623, 0xFFF5A623, 0xFFE8590C, 0xFFE63946, 0xFF9C27B0};
+            ip.setColor(0xEE141619);
+            c.drawRoundRect(ir, bh / 2, bh / 2, ip);
+            ip.setColor(lvl[Math.min(4, Infra.wxLevel)]);
+            c.drawCircle(bx + 14 * s, by + bh / 2, 9 * s, ip);
+            Bitmap g = infraIcon("wx");
+            if (g != null) {
+                ir.set(bx + 7 * s, by + bh / 2 - 7 * s, bx + 21 * s, by + bh / 2 + 7 * s);
+                isrc.set(0, 0, g.getWidth(), g.getHeight());
+                c.drawBitmap(g, isrc, ir, ipIcon);
+            }
+            ipText.setColor(0xFFFFFFFF);
+            c.drawText(t, bx + 28 * s, by + bh / 2 + 4.5f * s, ipText);
+        }
     }
 
     private void drawRoute(Canvas c, double fx, double fy, float cx, float cy, float ts, int n) {

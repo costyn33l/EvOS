@@ -1,0 +1,114 @@
+# Autopistas de Alemania por celdas. Fuente: Autobahn GmbH (verkehr.autobahn.de), dl-de/by-2-0
+47.2 5.8 0.1 0.15 79 63
+A1 z7 10y 10z 12p 14g 167 17x 17y 19o 1bf 1bg 1d7 1ex 1ey 1go 1if 1k5 1k6 1lw 1lx 1no 1pf 1r6 1sx 1sy 1up 1uq 1wh 1wi 1y9 200 201 21t 21u 23l 25c 273 28t 28u 2ak 2cb 2cc 2e1 2e2 2e3 2e4 2fq 2fr 2fs 2fv 2fw 2hh 2hn 2je 2jf 2l6 2mx 2oo 2op 2qg 2qh 2s8 2s9 2sa 2u1 2u2 2u3 2u4 2vv 2vw 2xn 2xo 2zf 2zg 2zh 2zi 2zj 31a 331 332 34t 34u 36l 36m 38d 38e 3a5 3bw 3bx 3do 3ff 3fg 3h7
+A2 23g 23h 23i 23j 23k 23l 25c 25d 25e 275 276 28x 28y 28z 2aq 2ar 2ci 2cj 2ea 2eb 2er 2es 2et 2eu 2g2 2g3 2g4 2g5 2gf 2gg 2gh 2gi 2gl 2gm 2gn 2go 2gp 2gq 2hw 2hx 2i0 2i1 2i2 2i3 2i4 2i5 2i6 2ih 2ii 2jo 2jp 2jq 2jr 3f5
+A3 me o5 pv pw rk rl rm ta tb uw ux uy uz v0 v1 wm wn wp yc yd 102 103 11s 11t 13h 13i 157 158 16x 16y 18g 18h 18i 18j 18k 18l 18m 18n 18o 1a5 1a6 1a7 1bu 1bv 1bw 1dh 1di 1dj 1dk 1dl 1dm 1f7 1gy 1in 1io 1ip 1kc 1kd 1ke 1m1 1m2 1m3 1nr 1ns 1pi 1r9 1sz 1up 1uq 1wg 1y7 1zx 1zy 21o 23f 255 256 26v 26w 28k 28l 28m
+A4 1r1 1r2 1r3 1r4 1r5 1r7 1rp 1rq 1rw 1rx 1ry 1s1 1s2 1s3 1s4 1s5 1s6 1s7 1s8 1s9 1sa 1sb 1sx 1sy 1sz 1t0 1t1 1t2 1t3 1ti 1tj 1tk 1tl 1tm 1tn 1tp 1tq 1tr 1ts 1tw 1tx 1u2 1u3 1u4 1vb 1vc 1vv 1vw 1vx 1vy 1xp 1xq 1xr 1xs 1xt 1xu 1xy 1zk 1zm 1zn 1zo
+A5 5l 7b 92 at ck cl ec ed g3 g4 hu hv jm ld le n5 ow ox qo sf sg u7 u8 vz w0 xr zi 119 130 14r 16i 189 1a0 1br 1di 1f9 1h0 1h1 1is 1kj 1ma 1mb 1o2 1o3 1pu 1pv 1pw 1px 1ro
+A6 xu xv xw xx xy xz y0 y1 z7 z8 z9 zi zj zk zl zo zp zs zt zu zv zw zx 110 111 112 119 11o 11p 11q 11r 11s 11v 12t 12u 12v 12w 130 13i 13j 13k 13l 13m 13n 13o 14n 14o 14p 14q 14r 15f 15g 178
+A7 7u 9l bb bc d1 d2 es gj ia k1 ls nj nk pb r2 st uk wb y2 zt 11k 13b 152 16s 16t 18j 1a9 1aa 1c0 1c1 1dr 1ds 1fi 1h8 1h9 1iz 1kq 1mg 1mh 1o7 1px 1py 1ro 1rp 1tf 1tg 1v6 1wx 1yo 1yp 20g 20h 228 229 240 25r 27i 27j 29a 2b1 2b2 2cs 2ct 2ei 2ej 2g9 2i0 2jq 2jr 2lh 2n7 2n8 2oy 2qp 2qq 2sh 2si 2u9 2w0 2w1 2xs 2zi 2zj 319 330 34r 36i 389 3a0 3br 3di 3f8 3f9 3gy 3gz 3io 3ip 3kf 3m6 3nw 3nx 3pn
+A8 a2 bl bm bn bo bp bq br bs db dc f2 gr gs gt ii ij k7 k8 k9 lq lr ls lt lu lv lw lx ly ng nh p4 p5 p6 p7 qt qu qv sj sk u8 u9 ua z9 za zb 10w 10x 10y 10z 110 12l 12m 12n 1l3
+A9 gt ik kb m2 nt pk ra t1 us wi wj y9 100 11r 13i 159 15a 171 18s 18t 1ak 1cb 1e2 1e3 1fu 1hl 1jc 1jd 1l3 1l4 1mu 1mv 1ol 1om 1qd 1s4 1tv 1vm 1xe 1z5 20x 22o 24f 266 27x 27y 29p 29q 2bh 2bi 2d9 2f1 2f2 2gt
+A10 2gt 2gu 2gv 2ij 2ik 2il 2im 2in 2io 2ip 2iq 2kb 2kg 2kh 2m2 2m6 2m7 2nt 2nu 2nw 2nx 2pl
+A11 2po 2pp 2rg 2t7 2t8 2uz 2wq 2wr 2yi 2yj 30b 30c
+A12 2ir 2is 2it 2iu
+A13 1xp 1zg 217 218 22z 230 24r 26i 288 29z 2bp 2bq 2dg 2f7 2gy
+A14 1vv 1vw 1xk 1xl 1xm 1z9 1za 1zb 20z 210 22o 22p 22q 24d 24e 263 264 27u 29l 2bb 2bc 2d2 2et 2wc 2y2 2y3 2zt 31j 31k 33a 33b 352 36t
+A15 26m 26n 289 28a 28b 28c 28d 2a0
+A17 1qq 1sh 1u8 1vy
+A19 2wh 2y8 2zz 31p 31q 33g 357 36y 38p 3af 3c6 3dx
+A20 309 31z 320 33o 33p 33q 35e 35f 375 38d 38e 38f 38g 38h 38i 38j 38k 38l 38w 3a3 3ac 3ad 3ae 3am 3an 3c5 3c6 3c7 3c8 3c9 3ca 3cb 3cc 3cd
+A21 36l 38b 38c 3a2 3bt 3dk
+A23 34q 36g 36h 387 39x 39y 3bn 3bo 3dc 3dd 3de
+A24 2pj 2pk 2ra 2t0 2t1 2uq 2ur 2wg 2wh 2y5 2y6 2y7 2zt 2zu 2zv 2zw 31h 31i 31j 31k 333 334 335 336 337
+A25 31b
+A27 2oy 2qo 2qp 2sd 2se 2u2 2u3 2u4 2vs 2vt 2xi 2xj 2z9 310 32r 32s 34j 36a
+A28 2ty 2tz 2u0 2u1 2vo 2vp 2xb 2xc 2xd 2xe 2xf
+A29 2qf 2qg 2s6 2s7 2ty 2vp 2xf 2xg 2z6 30w 30x 32n
+A30 2e7 2e8 2ft 2fu 2fv 2fw 2fx 2fy 2fz 2g0 2g1 2hh 2hi 2hj 2hk
+A31 257 26y 28p 28q 2ah 2c8 2dz 2fq 2fr 2hi 2j9 2l0 2mr 2oi 2q9 2s0 2tr 2vi 2vj 2xa 2z0 2z1
+A33 23s 25j 27a 290 291 2aq 2ar 2cg 2ch 2e6 2e7 2fx
+A36 27r 27s 27t 29e 29f 29g 29h 29i 29k 29l 2b4 2b5 2cv 2em 2gd
+A37 2g9 2i0 2jr
+A38 1z5 1z6 1z7 1z8 20l 20u 20v 20w 22b 22c 22d 22e 22f 22g 22h 22i 22j 22k 22l 22m
+A39 2ct 2ek 2el 2gd 2ge 2i5 2jw 2xu 2zj 2zk 2zl
+A40 1zt 1zu 21l 21m 21n 21o 21p 21q 21r 21s
+A42 21o 21p 23g 23h 23i 23j
+A43 200 21r 23i 259 26z 270 28r 28s
+A44 1pb 1r2 1r3 1su 1sv 1um 1wd 1wz 1y4 1y5 1y6 1y7 1yn 1yo 1yp 1yq 1zy 1zz 20d 20e 21q 21r 21s 21t 223 224 23k 23l 23m 23n 23o 23p 23q 23r 23s 23t 23u
+A45 1dl 1fc 1h3 1it 1iu 1kj 1kk 1m8 1m9 1ma 1ny 1nz 1po 1pp 1re 1rf 1t4 1t5 1uu 1uv 1wl 1yb 1yc 202 21s 21t 23j
+A46 1uk 1ul 1wd 1we 1wf 1wg 1y7 1y8 1y9 200 201 202 203 206 207 208 21v 21w 21x
+A48 1ey 1gp 1gq 1gr 1ii 1ij 1ik 1kb 1kc
+A49 1pu 1rl 1rm 1td 1v4 1v5 1ww 1yo
+A52 1y3 1y4 1y5 1y6 1zx 1zy 21p 21q 23h 258 26z
+A57 1uo 1up 1wf 1y5 1y6 1zw 21n 23c 23d 23e 251 252 253
+A59 1ph 1pi 1r8 1sz 1up 1wg 1y6 1y7 1zx 21o 23f
+A60 1bf 1bo 1bp 1bq 1d4 1d5 1d6 1df 1eu 1ev 1gk 1gl
+A61 118 119 12y 12z 14p 16g 186 19w 19x 1bl 1bm 1bn 1dc 1f2 1f3 1gt 1ii 1ij 1ik 1k9 1lz 1m0 1np 1nq 1pf 1pg 1r5 1r6 1sv 1sw 1um 1wc 1wd 1y3
+A62 zb zc 112 12s 12t 14h 14i 14j
+A63 12v 14m 14n 16e 186 19x 1bp
+A64 17w
+A65 zf 116 117 12y
+A66 1dg 1dh 1di 1f9 1fa 1fb 1fc 1fd 1h4 1h5 1ix 1kp
+A67 14r 16i 189 1a0 1bq 1br 1dh
+A70 1c4 1c5 1c6 1c7 1c8 1c9 1dt 1du 1dv 1e0 1e1
+A71 1fk 1hb 1j2 1j3 1ku 1kv 1ml 1mm 1od 1oe 1q5 1q6 1q7 1ry 1tp 1vg 1vh 1x8 1yz 1z0 20r
+A72 1l5 1l6 1mx 1my 1op 1oq 1or 1os 1qj 1sa 1sb 1u0 1u1 1vr 1xh
+A73 11q 13g 13h 157 16y 16z 18p 18q 1ag 1c7 1dy 1fp 1hg 1j7 1kx 1ky 1mn 1mo 1oe
+A81 9a b1 b2 cr cs ei g9 i0 i1 jr js lj nb p2 p3 qu sl sm ud w4 w5 xw zn 11e 11f 136 137 14y 16p 16q 18h
+A92 kc kd m4 m5 nx ny pp pq pr ri rj tb
+A93 86 9w 9x rd t5 uw wn yf 106 11x 13o 15f 176 18x 1ao 1cf 1e5 1e6 1fw 1fx 1hn 1je
+A94 gu gv in io ip iq ir is
+A95 80 9r 9s bj da f1 gs
+A96 7q 9h 9i b9 ba d1 d2 et eu ev ew ex ey ez f0 gr gs gt
+A98 5l 5m 7c b2 b3
+A99 f3 gt gu ik
+A100 2kd 2ke 2m4
+A103 2ke
+A111 2m4 2m5 2nv
+A113 2kf
+A115 2il 2im 2kd 2m4
+A117 2io
+A143 22m
+A210 3f8 3gz 3h0 3h1
+A215 3di 3f9 3fa 3h1
+A226 3a5
+A255 331
+A261 2zi
+A270 2vr 2vs
+A281 2u1
+A320 z7
+A352 2jp 2jq 2lh
+A391 2gd
+A392 2gd
+A445 21w 23m 23n
+A448 21r 21s
+A480 1m8 1m9 1o0 1o1
+A485 1ma 1o1
+A516 23f 23g
+A524 1zx
+A535 1y8 1zz
+A544 1pb 1r2
+A553 1pf
+A555 1r7
+A559 1sz
+A560 1ph 1pi
+A562 1ph 1pi
+A565 1nq 1ph
+A571 1m0
+A602 19o
+A620 z6 z7 10x
+A623 z7 z8 10z
+A640 z6
+A643 1df 1dg
+A648 1f9
+A64a 17w
+A650 12y 12z
+A656 130
+A659 14r
+A661 1dj 1f9 1fa 1h0
+A671 1bp 1dg
+A861 5m
+A980 7u
+A995 f2
+A99a ij

@@ -2023,3 +2023,110 @@ Híbrido (gasolina)	Hibrid (benzină)
 Híbrido (etanol)	Hibrid (etanol)
 Híbrido (diésel)	Hibrid (motorină)
 Híbrido eléctrico	Hibrid electric
+Presión de combustible	Presiune combustibil
+Presión del riel de inyección	Presiune rampă injecție
+Presión absoluta del riel	Presiune absolută rampă
+Etanol en el combustible	Etanol în combustibil
+Pedal del acelerador	Pedală accelerație
+Batería del híbrido	Baterie hibrid
+Avance de la inyección	Avans injecție
+Par pedido	Cuplu cerut
+Par real	Cuplu real
+Par del motor	Cuplu motor
+Potencia	Putere
+Presión del turbo	Presiune turbo
+Aviso de tráfico	Avertizare de trafic
+Salida o entrada cerrada	Ieșire sau intrare închisă
+Obras	Lucrări
+Cargador eléctrico	Stație de încărcare
+Área de descanso	Parcare de odihnă
+Gasolinera	Benzinărie
+Estacionamiento	Parcare
+Conductor en sentido contrario	Șofer pe contrasens
+Tráfico lento	Trafic lent
+Atasco	Ambuteiaj
+Vehículo averiado	Vehicul defect
+Objetos en la vía	Obiecte pe carosabil
+Personas en la vía	Persoane pe carosabil
+Animales en la vía	Animale pe carosabil
+Vía resbaladiza	Drum alunecos
+Visibilidad reducida	Vizibilitate redusă
+Daños en un puente	Pod avariat
+Daños en la calzada	Carosabil deteriorat
+Peligro	Pericol
+%s en %s km	%s în %s km
+Sentido	Sens
+Velocidad media: %d km/h	Viteză medie: %d km/h
+Retraso: %d min	Întârziere: %d min
+La vía está cerrada	Drumul este închis
+Hasta	Până la
+Largo	Lungime
+Ancho máximo	Lățime maximă
+Puntos de carga: %s	Puncte de încărcare: %s
+Operador	Operator
+Lugares para autos: %s	Locuri pentru autoturisme: %s
+Lugares para camiones: %s	Locuri pentru camioane: %s
+Precios: Tankerkönig (MTS-K), CC BY 4.0	Prețuri: Tankerkönig (MTS-K), CC BY 4.0
+Libres: %d de %d	Libere: %d din %d
+A %s km de ti	La %s km de tine
+Texto original (alemán), Autobahn GmbH:	Text original (germană), Autobahn GmbH:
+Gasolina E10	Benzină E10
+Gasolina E5	Benzină E5
+Lluvia helada	Polei
+Helada fuerte	Îngheț puternic
+Helada	Îngheț
+Nieve con viento	Viscol
+Nevada	Ninsoare
+Vientos huracanados	Vânt de uragan
+Tormenta de viento	Furtună
+Ráfagas de viento	Rafale de vânt
+Tormenta eléctrica	Furtună cu descărcări electrice
+Granizo	Grindină
+Lluvia intensa	Ploaie abundentă
+Deshielo	Dezgheț
+Calor	Caniculă
+nivel %d	nivel %d
+Tráfico de Alemania	Trafic Germania
+En Alemania	În Germania
+Fuera de Alemania	În afara Germaniei
+Autopistas	Autostrăzi
+Marcas en el mapa	Semne pe hartă
+Actualizado	Actualizat
+Tráfico en Alemania	Trafic în Germania
+Información de tráfico en Alemania	Informații de trafic în Germania
+Datos públicos de Autobahn GmbH e InfraNode, sin clave. Solo se piden cuando estás en Alemania	Date publice de la Autobahn GmbH și InfraNode, fără cheie. Se descarcă doar când ești în Germania
+Avisos: atascos, accidentes, peligros	Avertizări: ambuteiaje, accidente, pericole
+En las autopistas cercanas y en las de tu ruta	Pe autostrăzile din apropiere și pe cele de pe traseu
+Cierres de vías y de salidas	Drumuri și ieșiri închise
+Tramos cerrados en rojo; las salidas y entradas cerradas, al acercarte	Tronsoanele închise în roșu; ieșirile și intrările închise, când te apropii
+Obras en autopistas	Lucrări pe autostrăzi
+Con el tramo afectado, las fechas y el ancho máximo	Cu tronsonul afectat, perioada și lățimea maximă
+Cargadores en autopistas	Stații de încărcare pe autostrăzi
+Puntos de carga, potencia y operador	Puncte de încărcare, putere și operator
+Áreas de descanso	Parcări de odihnă
+Lugares para autos y camiones, servicios	Locuri pentru autoturisme și camioane
+Precios de combustible	Prețuri carburant
+Gasolineras abiertas de la ciudad cercana (Tankerkönig): la más barata en verde	Benzinăriile deschise din orașul apropiat (Tankerkönig): cea mai ieftină în verde
+Estacionamientos con lugares libres	Parcări cu locuri libere
+Ocupación en vivo en las ciudades que la publican	Ocupare în timp real în orașele care o publică
+Avisos meteorológicos (DWD)	Avertizări meteo (DWD)
+Helada, niebla, tormentas… de la ciudad cercana, abajo a la izquierda del mapa	Îngheț, ceață, furtuni… pentru orașul apropiat, în stânga jos pe hartă
+Avisar de lo que viene por delante	Avertizează ce urmează în față
+Un aviso en el mapa al acercarte a un atasco, accidente o cierre	Un mesaj pe hartă când te apropii de un ambuteiaj, accident sau drum închis
+Combustible de los precios	Carburant pentru prețuri
+Automático: el que informa el auto por OBD (diésel o gasolina E5)	Automat: cel raportat de mașină prin OBD (motorină sau benzină E5)
+E5	E5
+E10	E10
+Distancia del aviso	Distanța avertizării
+Se avisa una sola vez por cada suceso	Avertizează o singură dată pentru fiecare eveniment
+2 km	2 km
+3 km	3 km
+5 km	5 km
+Aviso hablado	Avertizare vocală
+Lo dice con la voz de navegación	Folosește vocea navigației
+Actualizar los avisos cada	Actualizează avertizările la fiecare
+Las obras cada 30 min; cargadores y descansos cada 6 h	Lucrările la 30 min; stațiile de încărcare și parcările la 6 h
+5 min	5 min
+10 min	10 min
+15 min	15 min
+Autopistas y ciudad que se están mirando	Autostrăzile și orașul urmărite acum

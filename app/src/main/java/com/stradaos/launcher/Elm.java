@@ -426,6 +426,9 @@ public class Elm {
                 if ((a & (1 << sub)) == 0 || b.length < off + 2) return null;
                 return ((b[off] & 0xFF) << 8 | (b[off + 1] & 0xFF)) / 10f - 40f;
             }
+            case 0x70:                // control del turbo: A bit 1 = trae la presión real del turbo A (D-E, 1/32 kPa)
+                if ((a & 0x02) == 0 || b.length < 5) return null;
+                return ((b[3] & 0xFF) << 8 | (b[4] & 0xFF)) / 32f / 100f;   // → bar absolutos
             case 0x8B:                // postratamiento diésel: A bit 4 = trae la necesidad de regenerar (C)
                 if ((a & 0x10) == 0 || b.length < 3) return null;
                 return (b[2] & 0xFF) * 100f / 255f;
@@ -438,7 +441,12 @@ public class Elm {
         int a = b[0] & 0xFF, c = b.length > 1 ? b[1] & 0xFF : 0;
         switch (pid) {
             case 0x04: case 0x11: case 0x2E: case 0x2F: case 0x45: case 0x47: case 0x49: case 0x4A: case 0x4C:
+            case 0x52: case 0x5A: case 0x5B:
                 return a * 100f / 255f;
+            case 0x0A: return a * 3f;                                   // presión de combustible, kPa
+            case 0x23: case 0x59: return b.length >= 2 ? (a * 256 + c) / 10f : null;   // riel: 10 kPa por unidad → bar
+            case 0x5D: return b.length >= 2 ? (a * 256 + c) / 128f - 210f : null;
+            case 0x61: case 0x62: return a - 125f;                      // par en % del de referencia
             case 0x43: return (a * 256 + c) * 100f / 255f;
             case 0x05: case 0x0F: case 0x46: case 0x5C: return a - 40f;
             case 0x06: case 0x07: case 0x55: case 0x56: return (a - 128) * 100f / 128f;
@@ -688,9 +696,9 @@ public class Elm {
             if (c.startsWith("AT")) return c.equals("ATZ") ? "ELM327v1.5(demo)" : c.equals("ATDPN") ? "A6" : c.equals("ATDP") ? "ISO15765-4(CAN11/500)" : "OK";
             double climb = t > 40 && t < 140 ? 1 : 0;
             if (c.equals("0100")) return "4100BE3FA813";
-            if (c.equals("0120")) return "41208003A011";
+            if (c.equals("0120")) return "4120A003A011";   // + 23 (riel)
             if (c.equals("0140")) return "4140F4008005";   // incluye 51 (combustible), 5E (consumo) y el bloque 61-80
-            if (c.equals("0160")) return "416000000051";   // 7A y 7C (DPF) y el bloque 81-A0
+            if (c.equals("0160")) return "4160E0010051";   // + 61, 62, 63 (par) y 70 (turbo)   // 7A y 7C (DPF) y el bloque 81-A0
             if (c.equals("0180")) return "418000200000";   // 8B (postratamiento diésel)
             if (c.equals("03")) return !cleared && t > 70 ? "43010711" : "4300";
             if (c.equals("07")) return !cleared && t > 55 ? "47010711" : "4700";
@@ -764,6 +772,11 @@ public class Elm {
                 case 0x44: return "4144" + hex2(32768);
                 case 0x5E: return "415E" + hex2((9 + climb * 12) * 3600 / (14.7 * 745) * 20);
                 case 0x51: return "415104";                                             // diésel
+                case 0x23: return "4123" + hex2((320 + climb * 900 + 30 * Math.sin(t)) * 10);
+                case 0x61: return "4161" + hex1(125 + 22 + climb * 55);
+                case 0x62: return "4162" + hex1(125 + 18 + climb * 52 + 3 * Math.sin(t));
+                case 0x63: return "4163" + hex2(320);
+                case 0x70: return "417003" + hex2((101 + climb * 105) * 32) + hex2((100 + climb * 98 + 3 * Math.sin(t)) * 32) + "0000000000";
                 case 0x7A: return "417A01" + hex2((38 + climb * 60 + 4 * Math.sin(t)) * 10) + "00000000";
                 case 0x7C: return "417C03" + hex2((300 + climb * 180 + 40) * 10) + hex2((270 + climb * 160 + 40) * 10) + "00000000";
                 case 0x8B: return "418B11" + (t > 150 && t < 200 ? "01" : "00") + hex1(Math.min(100, 46 + t * 0.05) * 2.55) + "00000000";

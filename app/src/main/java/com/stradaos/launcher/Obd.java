@@ -175,6 +175,7 @@ public class Obd {
 
         String text() {
             if (!has()) return "—";
+            if ("bar".equals(unit) && pid == 0x70) return String.format(I18n.num, "%.2f", value);
             if (oneDecimal || "V".equals(unit) || pid == -2 || pid == -3) return String.format(I18n.num, "%.1f", value);
             if (!Float.isNaN(abs1)) return String.format(I18n.num, "%+.0f", value);
             return I18n.integer(Math.round(value));
@@ -245,6 +246,25 @@ public class Obd {
     static final Sensor REGEN_MIN = new Sensor("regen_min", "Tiempo desde la regeneración", "min", -10, false, 0, 1000).valid(0, 200000).did(0x115E);
     static final Sensor TURBO_T = new Sensor("turbo_t", "Temperatura del turbo", "°C", -10, false, 0, 900).valid(-39, 1100).did(0x10FB);
 
+    // Más datos estándar del modo 01 (fórmulas SAE J1979, como en ELMduino y OBDII): solo aparecen si el auto los entrega
+    static final Sensor FUEL_P = new Sensor("fuel_p", "Presión de combustible", "kPa", 0x0A, false, 0, 765).valid(0, 765);
+    static final Sensor RAIL_P = new Sensor("rail_p", "Presión del riel de inyección", "bar", 0x23, false, 0, 2000).valid(0, 3000);
+    static final Sensor RAIL_ABS = new Sensor("rail_abs", "Presión absoluta del riel", "bar", 0x59, false, 0, 2000).valid(0, 3000);
+    static final Sensor ETHANOL = new Sensor("ethanol", "Etanol en el combustible", "%", 0x52, false, 0, 100).valid(0, 100);
+    static final Sensor PEDAL = new Sensor("pedal", "Pedal del acelerador", "%", 0x5A, true, 0, 100).valid(0, 100);
+    static final Sensor HYB_BATT = new Sensor("hyb_batt", "Batería del híbrido", "%", 0x5B, false, 0, 100).valid(0, 100);
+    static final Sensor INJ_TIMING = new Sensor("inj_timing", "Avance de la inyección", "°", 0x5D, false, -20, 40).dec().valid(-210, 302);
+    static final Sensor TQ_DEMAND = new Sensor("tq_demand", "Par pedido", "%", 0x61, false, -20, 100).valid(-125, 130);
+    static final Sensor TQ_ACTUAL = new Sensor("tq_actual", "Par real", "%", 0x62, true, -20, 100).valid(-125, 130);
+    /** Par en Nm: el porcentaje real (PID 62) por el par de referencia del motor (PID 63, se lee una vez). */
+    static final Sensor TORQUE = new Sensor("torque", "Par del motor", "Nm", -4, false, 0, 500).valid(-200, 3000);
+    /** Potencia: par × rpm / 9549. */
+    static final Sensor POWER = new Sensor("power", "Potencia", "kW", -5, false, 0, 200).valid(-100, 1000);
+    /** Presión real del turbo A (PID 70, bit 1 de A): absoluta, en bar. */
+    static final Sensor BOOST = new Sensor("boost", "Presión del turbo", "bar", 0x70, true, 0.8f, 2.8f).valid(0.3f, 4.5f);
+    /** Par de referencia del motor (PID 63, Nm); 0 si el auto no lo entrega. */
+    static volatile int tqRef;
+
     /** Lo que se averigua al conectar: tipo de combustible (PID 51; -1 si no lo dice), si hay DPF y de dónde se lee. */
     static volatile int fuelType = -1;
     static volatile boolean dpf, dpfVag, dpfRegen;
@@ -254,6 +274,7 @@ public class Obd {
     static final Sensor[] ALL = {COOLANT, VOLT, RPM, SPEED, LOAD, THROTTLE, INTAKE, FUEL, STFT, LTFT, MAF, MAP, CONSUMPTION, FUEL_H, OILT, AMBIENT, FUEL_RATE,
         TIMING, O2_1, O2_2, RUN_TIME, MIL_DIST, EGR, WARMUPS, CLEAR_DIST, BARO, CAT1, CAT2, ABS_LOAD, LAMBDA, THROTTLE_REL, THROTTLE_B, PEDAL_D, PEDAL_E,
         THROTTLE_CMD, MIL_TIME, CLEAR_TIME, O2_TRIM_1, O2_TRIM_2, ODO,
+        FUEL_P, RAIL_P, RAIL_ABS, ETHANOL, PEDAL, HYB_BATT, INJ_TIMING, TQ_DEMAND, TQ_ACTUAL, TORQUE, POWER, BOOST,
         DPF_DP, DPF_TIN, DPF_TOUT, DPF_NEED, SOOT_CALC, SOOT_MEAS, ASH, REGEN_KM, REGEN_MIN, TURBO_T};
 
     /** Todos los demás datos estándar que el auto entrega (PID → bytes), leídos de a poco para no frenar las alertas. */
@@ -506,6 +527,14 @@ public class Obd {
         try {
             if (elm.supports(0x51)) { byte[] b = elm.pid(0x51); if (b != null && b.length > 0) fuelType = b[0] & 0xFF; }
         } catch (Throwable ignored) { }
+        tqRef = 0;
+        try {
+            if (elm.supports(0x63)) {
+                byte[] b = elm.pid(0x63);
+                int v = b != null && b.length >= 2 ? (b[0] & 0xFF) << 8 | (b[1] & 0xFF) : 0;
+                if (v >= 30 && v <= 3000) tqRef = v; else if (v != 0) log("par de referencia descartado: " + v + " Nm");
+            }
+        } catch (Throwable ignored) { }
         dpf = elm.supports(0x7A) || elm.supports(0x7B) || elm.supports(0x7C) || elm.supports(0x8B);
         dpfVag = false;
         boolean petrol = fuelType == 1 || fuelType == 9 || fuelType == 0x10;
@@ -572,6 +601,12 @@ public class Obd {
                 FUEL_H.push(lph);
                 if (SPEED.has() && SPEED.value > 3)
                     CONSUMPTION.push(Math.min(99, lph / SPEED.value * 100f));
+            }
+            // par en Nm y potencia, con el par real reciente (menos de 3 s)
+            if (tqRef > 0 && TQ_ACTUAL.has() && android.os.SystemClock.elapsedRealtime() - TQ_ACTUAL.at < 3000) {
+                float nm = TQ_ACTUAL.value * tqRef / 100f;
+                TORQUE.push(nm);
+                if (RPM.has() && RPM.value > 300) POWER.push(Math.max(0, nm) * RPM.value / 9549f);
             }
             // de a dos por vuelta, el resto de los datos que el auto entrega (para «Todos los datos»); con la lectura
             // agrupada, de a seis una de cada cuatro vueltas
@@ -661,7 +696,7 @@ public class Obd {
         List<Sensor> fast = new ArrayList<Sensor>(), slow = new ArrayList<Sensor>();
         int got = 0;
         for (Sensor s : ALL) {
-            if (s.pid == -2 || s.pid == -3 || s.pid == -10) continue;
+            if (s.pid <= -2) continue;   // calculados o UDS
             if (s == ODO) {                       // no se agrupa (PID A6) y cambia despacio: cada ~40 vueltas
                 if (round % 40 == 0) { Float v = read(s); if (v != null) { s.push(v); got++; } }
                 continue;
@@ -783,7 +818,7 @@ public class Obd {
     }
 
     private static Float read(Sensor s) throws java.io.IOException {
-        if (s.pid == -2 || s.pid == -3 || s.pid == -10) return null;   // calculados o UDS: no van por el modo 01
+        if (s.pid <= -2) return null;   // calculados o UDS: no van por el modo 01
         if (s.pid < 0) {
             // voltaje: el que mide el computador del motor (PID 42) si lo entrega; el del escáner (ATRV) solo si no.
             // Los ELM327 clon suelen medir casi 1 V de menos (Kia Sorento: ATRV 11,3 V con el computador en 12,2 V).

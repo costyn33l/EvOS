@@ -2053,3 +2053,110 @@ Híbrido (gasolina)	Hybrid (petrol)
 Híbrido (etanol)	Hybrid (ethanol)
 Híbrido (diésel)	Hybrid (diesel)
 Híbrido eléctrico	Electric hybrid
+Presión de combustible	Fuel pressure
+Presión del riel de inyección	Fuel rail pressure
+Presión absoluta del riel	Fuel rail absolute pressure
+Etanol en el combustible	Ethanol in fuel
+Pedal del acelerador	Accelerator pedal
+Batería del híbrido	Hybrid battery
+Avance de la inyección	Injection timing
+Par pedido	Demanded torque
+Par real	Actual torque
+Par del motor	Engine torque
+Potencia	Power
+Presión del turbo	Boost pressure
+Aviso de tráfico	Traffic warning
+Salida o entrada cerrada	Exit or entry closed
+Obras	Roadworks
+Cargador eléctrico	EV charger
+Área de descanso	Rest area
+Gasolinera	Fuel station
+Estacionamiento	Car park
+Conductor en sentido contrario	Wrong-way driver
+Tráfico lento	Slow traffic
+Atasco	Traffic jam
+Vehículo averiado	Broken-down vehicle
+Objetos en la vía	Objects on the road
+Personas en la vía	People on the road
+Animales en la vía	Animals on the road
+Vía resbaladiza	Slippery road
+Visibilidad reducida	Reduced visibility
+Daños en un puente	Bridge damage
+Daños en la calzada	Road surface damage
+Peligro	Hazard
+%s en %s km	%s in %s km
+Sentido	Direction
+Velocidad media: %d km/h	Average speed: %d km/h
+Retraso: %d min	Delay: %d min
+La vía está cerrada	The road is closed
+Hasta	Until
+Largo	Length
+Ancho máximo	Maximum width
+Puntos de carga: %s	Charging points: %s
+Operador	Operator
+Lugares para autos: %s	Car spaces: %s
+Lugares para camiones: %s	Truck spaces: %s
+Precios: Tankerkönig (MTS-K), CC BY 4.0	Prices: Tankerkönig (MTS-K), CC BY 4.0
+Libres: %d de %d	Free: %d of %d
+A %s km de ti	%s km away
+Texto original (alemán), Autobahn GmbH:	Original text (German), Autobahn GmbH:
+Gasolina E10	Petrol E10
+Gasolina E5	Petrol E5
+Lluvia helada	Freezing rain
+Helada fuerte	Severe frost
+Helada	Frost
+Nieve con viento	Blowing snow
+Nevada	Snowfall
+Vientos huracanados	Hurricane-force winds
+Tormenta de viento	Storm
+Ráfagas de viento	Wind gusts
+Tormenta eléctrica	Thunderstorm
+Granizo	Hail
+Lluvia intensa	Heavy rain
+Deshielo	Thaw
+Calor	Heat
+nivel %d	level %d
+Tráfico de Alemania	Germany traffic
+En Alemania	In Germany
+Fuera de Alemania	Outside Germany
+Autopistas	Motorways
+Marcas en el mapa	Markers on the map
+Actualizado	Updated
+Tráfico en Alemania	Traffic in Germany
+Información de tráfico en Alemania	Traffic information in Germany
+Datos públicos de Autobahn GmbH e InfraNode, sin clave. Solo se piden cuando estás en Alemania	Public data from Autobahn GmbH and InfraNode, no key needed. Only requested while you're in Germany
+Avisos: atascos, accidentes, peligros	Warnings: jams, accidents, hazards
+En las autopistas cercanas y en las de tu ruta	On nearby motorways and those on your route
+Cierres de vías y de salidas	Road and exit closures
+Tramos cerrados en rojo; las salidas y entradas cerradas, al acercarte	Closed sections in red; closed exits and entries as you get close
+Obras en autopistas	Motorway roadworks
+Con el tramo afectado, las fechas y el ancho máximo	With the affected section, dates and maximum width
+Cargadores en autopistas	Motorway EV chargers
+Puntos de carga, potencia y operador	Charging points, power and operator
+Áreas de descanso	Rest areas
+Lugares para autos y camiones, servicios	Car and truck spaces
+Precios de combustible	Fuel prices
+Gasolineras abiertas de la ciudad cercana (Tankerkönig): la más barata en verde	Open fuel stations in the nearby city (Tankerkönig): the cheapest in green
+Estacionamientos con lugares libres	Car parks with free spaces
+Ocupación en vivo en las ciudades que la publican	Live occupancy in cities that publish it
+Avisos meteorológicos (DWD)	Weather warnings (DWD)
+Helada, niebla, tormentas… de la ciudad cercana, abajo a la izquierda del mapa	Frost, fog, storms… for the nearby city, bottom left of the map
+Avisar de lo que viene por delante	Warn about what's ahead
+Un aviso en el mapa al acercarte a un atasco, accidente o cierre	A notice on the map when you approach a jam, accident or closure
+Combustible de los precios	Fuel for prices
+Automático: el que informa el auto por OBD (diésel o gasolina E5)	Automatic: the one the car reports over OBD (diesel or petrol E5)
+E5	E5
+E10	E10
+Distancia del aviso	Warning distance
+Se avisa una sola vez por cada suceso	Each event is announced only once
+2 km	2 km
+3 km	3 km
+5 km	5 km
+Aviso hablado	Spoken warning
+Lo dice con la voz de navegación	Uses the navigation voice
+Actualizar los avisos cada	Update warnings every
+Las obras cada 30 min; cargadores y descansos cada 6 h	Roadworks every 30 min; chargers and rest areas every 6 h
+5 min	5 min
+10 min	10 min
+15 min	15 min
+Autopistas y ciudad que se están mirando	Motorways and city being checked
