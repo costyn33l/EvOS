@@ -2368,7 +2368,7 @@ public class Main extends Activity {
     }
 
     /** Vehículo › Parámetros: cuatro grupos con los datos que el carro entrega y su curva de los últimos 3 minutos. */
-    private static final String[] SR_GROUPS = {"Motor", "Temperaturas", "Combustible", "Aire y electricidad", "Filtro de partículas"};
+    private static final String[] SR_GROUPS = {"Motor", "Temperaturas", "Combustible", "Aire y electricidad", "DPF"};
     private static final String[][] SR_GROUP_KEYS = {
         {"rpm", "load", "throttle", "timing", "abs_load"},
         {"coolant", "oilt", "intake", "ambient", "cat1"},
@@ -2416,7 +2416,7 @@ public class Main extends Activity {
             float x = gx + gi * (cw + gap);
             TextView num = srNum("0" + (gi + 1), 13, g == 4 ? 0xFFFFB547 : RED);
             place(p, num, x, 50, 26, 18);
-            place(p, srLabel(SR_GROUPS[g], 13, TEXT), x + 26, 50, cw - 26, 18);
+            place(p, srLabel(SR_GROUPS[g], n >= 5 ? 12 : 13, TEXT), x + 26, 50, cw - 26, 18);
             place(p, srHair(0xFF262626), x, 74, cw, 1);
             float y = 84;
             int rows = 0;
