@@ -2130,3 +2130,5 @@ Las obras cada 30 min; cargadores y descansos cada 6 h	Lucrările la 30 min; sta
 10 min	10 min
 15 min	15 min
 Autopistas y ciudad que se están mirando	Autostrăzile și orașul urmărite acum
+Cerrado para camiones	Închis pentru camioane
+Hacia	Spre

@@ -2160,3 +2160,5 @@ Las obras cada 30 min; cargadores y descansos cada 6 h	Roadworks every 30 min; c
 10 min	10 min
 15 min	15 min
 Autopistas y ciudad que se están mirando	Motorways and city being checked
+Cerrado para camiones	Closed to trucks
+Hacia	Towards

@@ -39,6 +39,7 @@ final class Infra {
         double lat, lon;
         float[] line;                  // lat, lon, lat, lon… (tramo afectado), o null
         boolean blocked;
+        boolean heavy;                 // cierre solo para camiones (por peso o por «LKW»): no se avisa a un auto
         String event;                  // aviso: lo que pasa, ya en español (o el texto alemán si no se conoce)
         int delayMin = -1, avgKmh = -1;
         float price = Float.NaN;       // gasolinera: precio del combustible elegido (€/L)
@@ -234,7 +235,7 @@ final class Infra {
         float lim = alertKm(c);
         boolean fresh = false;
         for (Item it : list) {
-            if (it.type != WARN && it.type != CLOSED && !(it.type == WORKS && it.blocked)) continue;
+            if (it.heavy || !(it.type == WARN || (it.type == CLOSED || it.type == WORKS) && it.blocked)) continue;
             float d = (float) km(la, lo, it.lat, it.lon);
             Float was = lastDist.put(it.id, d);
             if (alerted.contains(it.id) || d > lim || Float.isNaN(br) || kmh < 30) continue;
@@ -341,7 +342,7 @@ final class Infra {
                 if (it.type == RAMP ? !layer(c, "infra_closed") : it.type == CLOSED ? !layer(c, "infra_closed") : !layer(c, "infra_warn") && !layer(c, "infra_alert")) continue;
                 add(out, it, la, lo, it.type == RAMP ? 30 : 60);
             }
-            if (wWorks) for (Item it : rd.works) add(out, it, la, lo, 60);
+            if (wWorks) for (Item it : rd.works) add(out, it, la, lo, 30);
             for (Item it : rd.fixed) if (layer(c, it.type == CHARGE ? "infra_charge" : "infra_rest")) add(out, it, la, lo, 30);
         }
         if (layer(c, "infra_fuel") && city != null && city.equals(fuelCity)) for (Item it : fuel) add(out, it, la, lo, 25);
@@ -400,6 +401,18 @@ final class Infra {
             }
             it.delayMin = parseInt(j.optString("delayTimeValue", ""));
             it.avgKmh = parseInt(j.optString("averageSpeed", ""));
+            if (type == CLOSED && (dt.startsWith("CLOSURE_LOAD") || joined(it.desc).contains("Schwerlastverkehr") || joined(it.desc).contains("LKW-Sperrung"))) {
+                it.heavy = true;
+                it.event = "Cerrado para camiones";
+                String vz = j.optString("icon", "");
+                if (vz.startsWith("VZ ")) it.event = I18n.t("Cerrado para camiones") + " (> " + vz.substring(3).trim() + " t)";
+            }
+            if (type == REST) {             // título «A1 | Saarbrücken» = sentido; el nombre viene en el subtítulo
+                String dir = it.title.contains("|") ? it.title.substring(it.title.indexOf('|') + 1).trim() : "";
+                it.title = (it.sub.length() > 0 ? it.sub : road) + " | " + road;
+                it.sub = dir;
+            }
+            if (type == CHARGE) it.sub = "";
             if (type == WARN) {
                 for (String l : it.desc) if (l.startsWith("- ")) {
                     String e = event(l.substring(2).trim());
@@ -423,6 +436,12 @@ final class Infra {
             }
             out.add(it);
         }
+    }
+
+    private static String joined(String[] a) {
+        StringBuilder b = new StringBuilder();
+        for (String x : a) b.append(x).append(' ');
+        return b.toString();
     }
 
     private static int parseInt(String s) {
@@ -458,7 +477,8 @@ final class Infra {
      */
     static String details(Item it) {
         StringBuilder b = new StringBuilder();
-        if (it.sub != null && it.sub.length() > 0) b.append(I18n.t("Sentido")).append(": ").append(it.sub.replace("->", "→")).append('\n');
+        if (it.sub != null && it.sub.length() > 0) b.append(I18n.t(it.type == REST ? "Hacia" : "Sentido")).append(": ").append(it.sub.replace("->", "→")).append('\n');
+        if (it.heavy && it.event != null) b.append("• ").append(I18n.t(it.event)).append('\n');
         if (it.type == WARN || it.type == CLOSED || it.type == RAMP || it.type == WORKS) {
             List<String> ev = new ArrayList<String>();
             for (String l : it.desc) if (l.startsWith("- ")) {
@@ -482,6 +502,9 @@ final class Infra {
                 }
             }
         } else if (it.type == CHARGE) {
+            int pts = 0;
+            for (String l : it.desc) if (l.trim().matches("Ladepunkt \\d+:")) pts++;
+            if (pts > 0) b.append(I18n.f("Puntos de carga: %s", "" + pts)).append('\n');
             for (String l : it.desc) {
                 String t = l.trim();
                 java.util.regex.Matcher m = java.util.regex.Pattern.compile("(\\d+)\\s*Ladepunkte?").matcher(t);
