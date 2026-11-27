@@ -248,6 +248,7 @@ public class Elm {
             throw new IOException("El escáner no logra hablar con el auto. ¿Está el contacto puesto?");
         String dp = cmd("ATDPN", 1500).replace("A", "");
         can = dp.length() > 0 && dp.charAt(0) >= '6' && dp.charAt(0) <= '9';
+        canShort = dp.length() > 0 && (dp.charAt(0) == '6' || dp.charAt(0) == '8');
         protocol = cmd("ATDP", 1500);
         java.util.Arrays.fill(supported, false);
         java.util.Arrays.fill(responders, 0);
@@ -412,6 +413,26 @@ public class Elm {
      * (sistema de combustible) da el primer byte: 1 lazo abierto en frío, 2 lazo cerrado, 4 lazo abierto por
      * desaceleración o carga, 8 lazo abierto por falla, 16 lazo cerrado con falla de una sonda.
      */
+    /** Igual que {@link #value(int, byte[])}, para los PIDs con varios datos o con bits que dicen qué trae (DPF). */
+    static Float value(int pid, byte[] b, int sub) {
+        if (b == null || b.length == 0) return null;
+        int a = b[0] & 0xFF;
+        switch (pid) {
+            case 0x7A: case 0x7B:     // presión diferencial del DPF: A bit 0 = trae el dato; B-C en centésimas de kPa
+                if ((a & 1) == 0 || b.length < 3) return null;
+                return ((b[1] & 0xFF) << 8 | (b[2] & 0xFF)) / 10f;          // → mbar
+            case 0x7C: {              // temperaturas del DPF: A bit 0 entrada, bit 1 salida; décimas de °C + 40
+                int off = 1 + sub * 2;
+                if ((a & (1 << sub)) == 0 || b.length < off + 2) return null;
+                return ((b[off] & 0xFF) << 8 | (b[off + 1] & 0xFF)) / 10f - 40f;
+            }
+            case 0x8B:                // postratamiento diésel: A bit 4 = trae la necesidad de regenerar (C)
+                if ((a & 0x10) == 0 || b.length < 3) return null;
+                return (b[2] & 0xFF) * 100f / 255f;
+            default: return value(pid, b);
+        }
+    }
+
     static Float value(int pid, byte[] b) {
         if (b == null || b.length == 0) return null;
         int a = b[0] & 0xFF, c = b.length > 1 ? b[1] & 0xFF : 0;
@@ -484,6 +505,51 @@ public class Elm {
     /** Borra los códigos y apaga la luz del motor (modo 04). */
     boolean clear() throws IOException {
         return cmd("04", 5000).contains("44");
+    }
+
+    /** CAN de 11 bits (protocolos 6 y 8): donde se puede hablar directo con el motor (7E0) para leer datos UDS. */
+    boolean canSh() { return demo != null || canShort; }
+    boolean canShort;
+
+    /**
+     * Lectura UDS (servicio 0x22, ReadDataByIdentifier: solo lee, no cambia nada) a un computador por su dirección
+     * (0x7E0 = motor). Devuelve identificador → bytes de datos; los que el computador no tiene («7F 22 31») no van.
+     * Siempre vuelve a la dirección de siempre (7DF, todas las unidades) al terminar.
+     */
+    synchronized java.util.Map<Integer, byte[]> uds(int header, int[] dids) throws IOException {
+        java.util.Map<Integer, byte[]> out = new java.util.HashMap<Integer, byte[]>();
+        if (!canSh()) return out;
+        cmd(String.format(Locale.US, "ATSH%03X", header), 1500);
+        try {
+            for (int did : dids) {
+                byte[] b = udsData(cmd(String.format(Locale.US, "22%04X", did), 1500), did);
+                if (b != null) out.put(did, b);
+            }
+        } finally {
+            cmd("ATSH7DF", 1500);
+        }
+        return out;
+    }
+
+    /** Bytes de datos de la respuesta «62 DID …» (también si viene en varias tramas «0:…»). */
+    static byte[] udsData(String resp, int did) {
+        if (resp == null) return null;
+        String key = String.format(Locale.US, "62%04X", did);
+        StringBuilder flat = new StringBuilder();
+        if (resp.indexOf(':') > 0) {
+            for (String line : resp.split("[\r\n]+")) if (line.indexOf(':') > 0) flat.append(line.substring(line.indexOf(':') + 1));
+        } else flat.append(resp);
+        for (String line : flat.toString().split("[\r\n]+")) {
+            String l = line.replaceAll("[^0-9A-F]", "");
+            int at = l.indexOf(key);
+            if (at < 0) continue;
+            String d = l.substring(at + key.length());
+            if (d.length() < 2) continue;
+            byte[] b = new byte[d.length() / 2];
+            for (int i = 0; i < b.length; i++) b[i] = (byte) Integer.parseInt(d.substring(i * 2, i * 2 + 2), 16);
+            return b;
+        }
+        return null;
     }
 
     /** VIN (modo 09 PID 02); null si el auto no lo entrega (muchos anteriores a 2008). */
@@ -623,13 +689,21 @@ public class Elm {
             double climb = t > 40 && t < 140 ? 1 : 0;
             if (c.equals("0100")) return "4100BE3FA813";
             if (c.equals("0120")) return "41208003A011";
-            if (c.equals("0140")) return "4140F4000004";   // incluye 5E (consumo del motor)
+            if (c.equals("0140")) return "4140F4008005";   // incluye 51 (combustible), 5E (consumo) y el bloque 61-80
+            if (c.equals("0160")) return "416000000051";   // 7A y 7C (DPF) y el bloque 81-A0
+            if (c.equals("0180")) return "418000200000";   // 8B (postratamiento diésel)
             if (c.equals("03")) return !cleared && t > 70 ? "43010711" : "4300";
             if (c.equals("07")) return !cleared && t > 55 ? "47010711" : "4700";
             if (c.equals("04")) { cleared = true; return "44"; }
             if (c.startsWith("21")) return c.equals("2101") ? "6101FF00A55A3C7B0000" : "7F2112";   // dato propio de la marca de ejemplo
-            if (c.startsWith("22")) return "7F2231";
-            if (c.equals("0902")) return "014\r0:49020144454D\r1:4F305354524144\r2:414F5330303031";
+            if (c.startsWith("22")) return udsDemo(c, t, climb);
+            if (c.equals("0902")) {
+                // VIN de ejemplo con forma de Volkswagen diésel 2015 (no es de un auto real)
+                String v = "WVWZZZ3CZFE000123";
+                StringBuilder h = new StringBuilder();
+                for (char ch : v.toCharArray()) h.append(String.format(Locale.US, "%02X", (int) ch));
+                return "014\r0:490201" + h.substring(0, 6) + "\r1:" + h.substring(6, 20) + "\r2:" + h.substring(20);
+            }
             if (c.length() == 6 && c.startsWith("02") && c.endsWith("00")) {
                 // freeze frame: lo que había cuando se guardó el P0711 (motor caliente subiendo la cuesta)
                 if (cleared || t < 70) return "NODATA";
@@ -689,7 +763,31 @@ public class Elm {
                 case 0x43: return "4143" + hex2((40 + climb * 35) * 2.55);
                 case 0x44: return "4144" + hex2(32768);
                 case 0x5E: return "415E" + hex2((9 + climb * 12) * 3600 / (14.7 * 745) * 20);
+                case 0x51: return "415104";                                             // diésel
+                case 0x7A: return "417A01" + hex2((38 + climb * 60 + 4 * Math.sin(t)) * 10) + "00000000";
+                case 0x7C: return "417C03" + hex2((300 + climb * 180 + 40) * 10) + hex2((270 + climb * 160 + 40) * 10) + "00000000";
+                case 0x8B: return "418B11" + (t > 150 && t < 200 ? "01" : "00") + hex1(Math.min(100, 46 + t * 0.05) * 2.55) + "00000000";
                 default: return "NODATA";
+            }
+        }
+
+        /** Datos VAG por UDS del auto simulado (hollín, ceniza, presión, temperaturas, regeneración). */
+        static String udsDemo(String c, double t, double climb) {
+            if (c.length() != 6) return "7F2213";
+            int did = Integer.parseInt(c.substring(2), 16);
+            String k = "62" + c.substring(2);
+            switch (did) {
+                case 0x114F: return k + hex2((14.4 + t * 0.002) * 100);
+                case 0x114E: return k + hex2((13.9 + t * 0.002) * 100);
+                case 0x1153: return k + hex2(23.5 * 100);
+                case 0x14F5: return k + hex2(40 + climb * 60 + 4 * Math.sin(t));
+                case 0x11B2: return k + hex2((300 + climb * 180) * 10 + 2731);
+                case 0x10F9: return k + hex2((270 + climb * 160) * 10 + 2731);
+                case 0x10FB: return k + hex2((420 + climb * 220) * 10 + 2731);
+                case 0x1156: return k + "00" + String.format(Locale.US, "%06X", (int) (235000 + t * 15));
+                case 0x115E: return k + "00" + String.format(Locale.US, "%06X", (int) (4 * 3600 + 22 * 60 + t));
+                case 0x163B: return k + (t > 150 && t < 200 ? "0012" : "0000");
+                default: return "7F2231";
             }
         }
 

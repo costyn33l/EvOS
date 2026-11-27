@@ -62,6 +62,7 @@ go sr:2 6;     shot 72-sr-musica
 go sr:3:0 6;   shot 73-sr-presentacion
 go sr:3:1 6;   shot 74-sr-instrumentos
 go sr:3:2 8;   shot 75-sr-parametros
+go ev-datos 8;    shot 75b-ev-todos-datos-dpf; back
 go sr:3:3 6;   shot 76-sr-diagnostico
 go sr:3:5 6;   shot 78-sr-viaje
 # cuadros de instrumentos (1.2): en Instrumentos, en el inicio del Showroom y en el de un tema EvOS

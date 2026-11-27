@@ -2025,3 +2025,31 @@ Tanque	Tank
 medio	average
 autonomía	range
 archivo	file
+Presión diferencial del DPF	DPF differential pressure
+Temperatura antes del DPF	DPF inlet temperature
+Temperatura después del DPF	DPF outlet temperature
+Necesidad de regenerar el DPF	DPF regeneration demand
+Hollín calculado	Soot (calculated)
+Hollín medido	Soot (measured)
+Ceniza en el DPF	DPF ash
+Desde la última regeneración	Since last regeneration
+Tiempo desde la regeneración	Time since regeneration
+Temperatura del turbo	Turbo temperature
+Filtro de partículas	Particulate filter
+Filtro de partículas (DPF)	Particulate filter (DPF)
+Regeneración en curso	Regeneration in progress
+El auto no entrega el VIN	The car doesn't report its VIN
+DPF: sí (datos del motor VAG)	DPF: yes (VAG engine data)
+DPF: sí	DPF: yes
+DPF: el auto no lo informa	DPF: not reported by the car
+Metanol	Methanol
+Etanol	Ethanol
+Diésel	Diesel
+GLP	LPG
+GNC	CNG
+Eléctrico	Electric
+Bicombustible (gasolina)	Bi-fuel (petrol)
+Híbrido (gasolina)	Hybrid (petrol)
+Híbrido (etanol)	Hybrid (ethanol)
+Híbrido (diésel)	Hybrid (diesel)
+Híbrido eléctrico	Electric hybrid

@@ -1507,6 +1507,49 @@ public class Main extends Activity {
      * mapa (lo que sobra), fila de tarjetas y barra de botones.
      */
 
+
+    // ══════════ Datos OBD: emblemas, frescura y lo que se sabe del auto ══════════
+
+    /** Emblema de cada dato (assets/ic/obd_*.png, estilo testigo del tablero). */
+    private static final String[] OBD_IC = {"abs_load", "engine", "ambient", "ambient", "ash", "ash", "baro", "pressure", "cat1", "cat", "cat2", "cat", "clear_dist", "road", "clear_time", "time", "consumption", "drop", "coolant", "coolant", "dpf_dp", "dpf_dp", "dpf_need", "dpf", "dpf_tin", "dpf_temp", "dpf_tout", "dpf_temp", "egr", "egr", "fuel", "fuel", "fuel_h", "drop", "fuel_rate", "drop", "intake", "intake", "lambda", "mixture", "load", "engine", "ltft", "mixture", "maf", "maf", "map", "pressure", "mil_dist", "road", "mil_time", "time", "o2_1", "o2", "o2_2", "o2", "o2_trim_1", "mixture", "o2_trim_2", "mixture", "odo", "road", "oilt", "oil", "pedal_d", "throttle", "pedal_e", "throttle", "regen_km", "regen", "regen_min", "regen", "rpm", "rpm", "run_time", "time", "soot_calc", "soot", "soot_meas", "soot", "speed", "speed", "stft", "mixture", "throttle", "throttle", "throttle_b", "throttle", "throttle_cmd", "throttle", "throttle_rel", "throttle", "timing", "spark", "turbo_t", "turbo", "volt", "volt", "warmups", "check"};
+
+    static String obdIconName(String key) {
+        for (int i = 0; i < OBD_IC.length; i += 2) if (OBD_IC[i].equals(key)) return OBD_IC[i + 1];
+        return "engine";
+    }
+
+    private ImageView obdIcon(String key, int color) {
+        ImageView v = new ImageView(this);
+        v.setImageBitmap(asset("ic/obd_" + obdIconName(key) + ".png"));
+        v.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        v.setColorFilter(color);
+        return v;
+    }
+
+    /** Un dato se muestra solo si pasó la revisión (dos lecturas posibles seguidas) y es reciente (menos de 15 s). */
+    static boolean obdFresh(Obd.Sensor sn) {
+        return sn != null && sn.has() && Obd.status == Obd.LIVE && SystemClock.elapsedRealtime() - sn.at < 15000;
+    }
+
+    /** Lo que se sabe del auto conectado: VIN, fabricante, año, combustible y filtro de partículas. */
+    private String obdIdText() {
+        StringBuilder b = new StringBuilder();
+        String vin = Obd.vin;
+        if (vin != null) {
+            b.append("VIN ").append(vin);
+            String mk = Vin.maker(vin);
+            if (mk != null) b.append("  ·  ").append(mk);
+            int y = Vin.year(vin);
+            if (y > 0) b.append("  ·  ").append(y);
+        } else b.append(I18n.t("El auto no entrega el VIN"));
+        String f = Vin.fuel(Obd.fuelType);
+        if (f != null) b.append("  ·  ").append(I18n.t(f));
+        boolean petrol = Obd.fuelType == 1 || Obd.fuelType == 9 || Obd.fuelType == 0x10;
+        if (Obd.dpf) b.append("  ·  ").append(I18n.t(Obd.dpfVag ? "DPF: sí (datos del motor VAG)" : "DPF: sí"));
+        else if (!petrol && Obd.status == Obd.LIVE) b.append("  ·  ").append(I18n.t("DPF: el auto no lo informa"));
+        return b.toString();
+    }
+
     // ══════════ Cuadros de instrumentos (Telemetría, Sport, Clásico) ══════════
 
     private final List<Cluster> clusters = new ArrayList<Cluster>();
@@ -1902,7 +1945,8 @@ public class Main extends Activity {
                 int col = i % 2, row = i / 2;
                 float cx = rx + col * 153 + (col == 1 ? 18 : 0), cy = y + 12 + row * 64;
                 if (col == 1) place(sec, srHair(HAIR_SR), rx + 153, y + 6 + row * 64, 1, 56);
-                place(sec, srLabel(sn.label, 12, MUTED), cx, cy, 135, 16);
+                place(sec, obdIcon(sn.key, 0xFFBDBDBD), cx, cy + 1, 14, 14);
+                place(sec, srLabel(sn.label, 12, MUTED), cx + 20, cy, 115, 16);
                 TextView v = srNum("—", four ? 32 : 40, TEXT);
                 place(sec, v, cx, cy + 20, 135, four ? 34 : 42);
                 srVals.add(new Object[]{sn, v});
@@ -2313,7 +2357,8 @@ public class Main extends Activity {
             if (sn == Obd.CONSUMPTION) col = RED;
             float x = 10 + i * cw;
             if (i > 0) place(p, srHair(HAIR_SR), x, 19, 1, 64);
-            place(p, srLabel(sn.label, 12, MUTED), x + 20, 17, cw - 34, 16);
+            place(p, obdIcon(sn.key, col), x + 20, 18, 14, 14);
+            place(p, srLabel(sn.label, 12, MUTED), x + 40, 17, cw - 54, 16);
             TextView v = srNum("—", 34, TEXT);
             place(p, v, x + 20, 37, cw - 34, 38);
             Show.Bar bar = new Show.Bar(this, col);
@@ -2323,17 +2368,19 @@ public class Main extends Activity {
     }
 
     /** Vehículo › Parámetros: cuatro grupos con los datos que el carro entrega y su curva de los últimos 3 minutos. */
-    private static final String[] SR_GROUPS = {"Motor", "Temperaturas", "Combustible", "Aire y electricidad"};
+    private static final String[] SR_GROUPS = {"Motor", "Temperaturas", "Combustible", "Aire y electricidad", "Filtro de partículas"};
     private static final String[][] SR_GROUP_KEYS = {
         {"rpm", "load", "throttle", "timing", "abs_load"},
         {"coolant", "oilt", "intake", "ambient", "cat1"},
         {"consumption", "fuel_h", "fuel", "stft", "ltft"},
         {"volt", "maf", "map", "baro", "o2_1"},
+        {"soot_calc", "dpf_need", "dpf_dp", "dpf_tin", "regen_km", "soot_meas", "ash", "dpf_tout", "regen_min", "turbo_t"},
     };
 
     private String srParamStructure() {
-        StringBuilder b = new StringBuilder(obdOn() ? "on" : "off").append(Obd.status == Obd.LIVE);
-        for (String[] g : SR_GROUP_KEYS) for (String k : g) { Obd.Sensor x = obdSensor(k); b.append(x != null && x.has() ? '1' : '0'); }
+        StringBuilder b = new StringBuilder(obdOn() ? "on" : "off").append(Obd.status == Obd.LIVE).append(Obd.vin).append(Obd.fuelType)
+            .append(Obd.dpf).append(Obd.dpfRegen).append(TextUtils.join(",", evKeys()));
+        for (String[] g : SR_GROUP_KEYS) for (String k : g) b.append(obdFresh(obdSensor(k)) ? '1' : '0');
         return b.toString();
     }
 
@@ -2346,36 +2393,53 @@ public class Main extends Activity {
         srParamKey = srParamStructure();
         float W = srPW;
         if (srEmptyObd(p, W)) return;
-        float gx = 28, gap = 24, cw = (W - 56 - gap * 3) / 4;
+        // el auto conectado: VIN, fabricante, año, combustible, DPF (y la regeneración si está en curso)
+        place(p, obdIcon("vin", 0xFFBDBDBD), 28, 14, 20, 20);
+        TextView id = tv("", 13, 0xFFBDBDBD, false);
+        id.setText(obdIdText());
+        place(p, id, 56, 14, W - (Obd.dpfRegen ? 290 : 84), 20);
+        if (Obd.dpfRegen) {
+            TextView rg = srLabel("Regeneración en curso", 12, 0xFF111111);
+            rg.setGravity(Gravity.CENTER);
+            rg.setBackground(round(0xFFFFB547, 3));
+            place(p, rg, W - 226, 12, 198, 24);
+        }
+        // solo los grupos con algún dato que el auto entrega
+        List<Integer> groups = new ArrayList<Integer>();
+        for (int g = 0; g < SR_GROUPS.length; g++) for (String k : SR_GROUP_KEYS[g]) if (obdFresh(obdSensor(k))) { groups.add(g); break; }
+        int n = Math.max(1, groups.size());
+        float gx = 28, gap = n >= 5 ? 16 : 24, cw = (W - 56 - gap * (n - 1)) / n;
         List<String> mine = java.util.Arrays.asList(evKeys());
         int shown = 0;
-        for (int g = 0; g < 4; g++) {
-            float x = gx + g * (cw + gap);
-            TextView num = srNum("0" + (g + 1), 13, RED);
-            place(p, num, x, 22, 26, 18);
-            place(p, srLabel(SR_GROUPS[g], 13, TEXT), x + 26, 22, cw - 26, 18);
-            place(p, srHair(0xFF262626), x, 46, cw, 1);
-            float y = 58;
+        for (int gi = 0; gi < groups.size(); gi++) {
+            int g = groups.get(gi);
+            float x = gx + gi * (cw + gap);
+            TextView num = srNum("0" + (gi + 1), 13, g == 4 ? 0xFFFFB547 : RED);
+            place(p, num, x, 50, 26, 18);
+            place(p, srLabel(SR_GROUPS[g], 13, TEXT), x + 26, 50, cw - 26, 18);
+            place(p, srHair(0xFF262626), x, 74, cw, 1);
+            float y = 84;
             int rows = 0;
             for (String k : SR_GROUP_KEYS[g]) {
                 final Obd.Sensor sn = obdSensor(k);
-                if (sn == null || !sn.has() || rows >= 4) continue;
+                if (!obdFresh(sn) || rows >= 4) continue;
                 rows++; shown++;
                 FrameLayout r = new FrameLayout(this);
-                place(p, r, x, y, cw, 88);
+                place(p, r, x, y, cw, 86);
+                place(r, obdIcon(k, mine.contains(k) ? RED : 0xFFCFCFCF), 0, 0, 18, 18);
                 TextView nm = tv("", 13, MUTED, false);
                 nm.setText((mine.contains(k) ? "★ " : "") + I18n.t(sn.label));
-                place(r, nm, 0, 0, cw, 18);
+                place(r, nm, 24, 0, cw - 24, 18);
                 TextView v = srNum("—", 26, TEXT);
                 place(r, v, 0, 20, cw, 32);
                 srVals.add(new Object[]{sn, v, "p"});
                 Show.Spark sp = new Show.Spark(this, sn, mine.contains(k) ? RED : 0xFF7A7A7A, s);
                 place(r, sp, 0, 56, cw, 22);
                 srSparks.add(sp);
-                place(r, srHair(0xFF161616), 0, 87, cw, 1);
+                place(r, srHair(0xFF161616), 0, 85, cw, 1);
                 r.setOnClickListener(new View.OnClickListener() { public void onClick(View v) { openObdChart(sn.key); } });
                 r.setOnLongClickListener(new View.OnLongClickListener() { public boolean onLongClick(View v) { pinEvKey(sn.key); return true; } });
-                y += 92;
+                y += 89;
             }
         }
         if (shown == 0) {
@@ -3405,9 +3469,7 @@ public class Main extends Activity {
                 place(card, tile, tx, ty, tw, th);
                 LinearLayout lr = new LinearLayout(this);
                 lr.setGravity(Gravity.CENTER_VERTICAL);
-                View dot = new View(this);
-                dot.setBackground(round(Ev.sensorColor(sn.key), 3));
-                lr.addView(dot, new LinearLayout.LayoutParams((int) (6 * s), (int) (6 * s)));
+                lr.addView(obdIcon(sn.key, Ev.sensorColor(sn.key)), new LinearLayout.LayoutParams((int) (13 * s), (int) (13 * s)));
                 TextView lb = tv(sn.label, 11, MUTED, false);
                 lb.setPadding((int) (5 * s), 0, 0, 0);
                 lr.addView(lb, new LinearLayout.LayoutParams(-1, -2));
@@ -3562,8 +3624,8 @@ public class Main extends Activity {
     /** Estructura de la grilla (qué datos hay): si cambia, se vuelve a armar; si no, solo cambian los números. */
     private String evGridStructure() {
         StringBuilder b = new StringBuilder(obdOn() ? "1" : "0").append(Obd.status == Obd.LIVE ? 'L' : '-');
-        b.append(TextUtils.join(",", evKeys()));
-        for (Obd.Sensor sn : Obd.ALL) if (sn.has()) b.append(',').append(sn.key);
+        b.append(TextUtils.join(",", evKeys())).append(Obd.vin).append(Obd.fuelType).append(Obd.dpf).append(Obd.dpfRegen);
+        for (Obd.Sensor sn : Obd.ALL) if (obdFresh(sn)) b.append(',').append(sn.key);
         return b.toString();
     }
 
@@ -3579,7 +3641,7 @@ public class Main extends Activity {
         for (Object[] o : evCells) {
             Obd.Sensor sn = obdSensor((String) o[0]);
             if (sn == null) continue;
-            String v = sn.has() ? sn.text() : "—";
+            String v = obdFresh(sn) ? sn.text() : "—";
             TextView tv = (TextView) o[1];
             if (!v.contentEquals(tv.getText())) tv.setText(v);
             float frac = sn.has() ? Math.max(0, Math.min(1, (sn.value - sn.min) / Math.max(0.0001f, sn.max - sn.min))) : 0;
@@ -3594,7 +3656,31 @@ public class Main extends Activity {
         evGrid.removeAllViews();
         evCells.clear();
         List<Obd.Sensor> list = new ArrayList<Obd.Sensor>();
-        for (Obd.Sensor sn : Obd.ALL) if (sn.has()) list.add(sn);
+        for (Obd.Sensor sn : Obd.ALL) if (obdFresh(sn) && !dpfKey(sn.key)) list.add(sn);
+        int dpfFrom = list.size();
+        for (Obd.Sensor sn : Obd.ALL) if (obdFresh(sn) && dpfKey(sn.key)) list.add(sn);
+        if (!list.isEmpty() || (obdOn() && Obd.status == Obd.LIVE)) {
+            // ficha del auto: VIN, fabricante, año, combustible y DPF
+            LinearLayout idr = new LinearLayout(this);
+            idr.setGravity(Gravity.CENTER_VERTICAL);
+            idr.setBackground(evTileBg(14));
+            idr.setPadding((int) (14 * s), (int) (10 * s), (int) (14 * s), (int) (10 * s));
+            idr.addView(obdIcon("vin", SOFT), new LinearLayout.LayoutParams((int) (22 * s), (int) (22 * s)));
+            TextView idt = tv("", 14, SOFT, false);
+            idt.setText(obdIdText());
+            multiLine(idt);
+            idt.setPadding((int) (10 * s), 0, 0, 0);
+            idr.addView(idt, new LinearLayout.LayoutParams(0, -2, 1));
+            if (Obd.dpfRegen) {
+                TextView rg = tv("Regeneración en curso", 13, 0xFF111111, true);
+                rg.setBackground(round(0xFFFFB547, 8));
+                rg.setPadding((int) (10 * s), (int) (4 * s), (int) (10 * s), (int) (4 * s));
+                idr.addView(rg);
+            }
+            LinearLayout.LayoutParams ilp = new LinearLayout.LayoutParams(-1, -2);
+            ilp.bottomMargin = (int) (10 * s);
+            evGrid.addView(idr, ilp);
+        }
         if (list.isEmpty()) {
             LinearLayout box = new LinearLayout(this);
             box.setOrientation(LinearLayout.VERTICAL);
@@ -3636,24 +3722,38 @@ public class Main extends Activity {
         float gap = 10, cw = (avail - gap * (cols - 1)) / cols, ch = 100;
         java.util.List<String> home = java.util.Arrays.asList(evKeys());
         LinearLayout row = null;
+        int idx = 0;
         for (int i = 0; i < list.size(); i++) {
             final Obd.Sensor sn = list.get(i);
-            if (i % cols == 0) {
+            if (i == dpfFrom) {
+                // el filtro de partículas, aparte
+                LinearLayout dh = new LinearLayout(this);
+                dh.setGravity(Gravity.CENTER_VERTICAL);
+                dh.addView(obdIcon("dpf_need", 0xFFFFB547), new LinearLayout.LayoutParams((int) (20 * s), (int) (20 * s)));
+                TextView dt = tv("Filtro de partículas (DPF)", 15, TEXT, true);
+                dt.setPadding((int) (8 * s), 0, 0, 0);
+                dh.addView(dt);
+                LinearLayout.LayoutParams dlp = new LinearLayout.LayoutParams(-1, -2);
+                dlp.topMargin = (int) (18 * s); dlp.bottomMargin = (int) (2 * s);
+                evGrid.addView(dh, dlp);
+                idx = 0;
+            }
+            if (idx % cols == 0) {
                 row = new LinearLayout(this);
                 LinearLayout.LayoutParams rlp = new LinearLayout.LayoutParams(-1, (int) (ch * s));
-                if (i > 0) rlp.topMargin = (int) (gap * s);
+                rlp.topMargin = (int) (gap * s);
                 evGrid.addView(row, rlp);
             }
+            boolean first = idx % cols == 0;
+            idx++;
             FrameLayout cell = new FrameLayout(this);
             cell.setBackground(evTileBg(14));
             LinearLayout.LayoutParams clp = new LinearLayout.LayoutParams((int) (cw * s), -1);
-            if (i % cols != 0) clp.leftMargin = (int) (gap * s);
+            if (!first) clp.leftMargin = (int) (gap * s);
             row.addView(cell, clp);
             LinearLayout lr = new LinearLayout(this);
             lr.setGravity(Gravity.CENTER_VERTICAL);
-            View dot = new View(this);
-            dot.setBackground(round(Ev.sensorColor(sn.key), 4));
-            lr.addView(dot, new LinearLayout.LayoutParams((int) (8 * s), (int) (8 * s)));
+            lr.addView(obdIcon(sn.key, Ev.sensorColor(sn.key)), new LinearLayout.LayoutParams((int) (18 * s), (int) (18 * s)));
             TextView lb = tv(sn.label, 14, SOFT, false);
             lb.setPadding((int) (7 * s), 0, 0, 0);
             lr.addView(lb, new LinearLayout.LayoutParams(0, -2, 1));
@@ -3691,6 +3791,10 @@ public class Main extends Activity {
         hint.setPadding(0, (int) (14 * s), 0, (int) (4 * s));
         evGrid.addView(hint, new LinearLayout.LayoutParams(-1, -2));
         refreshEvObd();
+    }
+
+    static boolean dpfKey(String k) {
+        return k.startsWith("dpf_") || k.equals("soot_calc") || k.equals("soot_meas") || k.equals("ash") || k.startsWith("regen_") || k.equals("turbo_t");
     }
 
     /** Pone un dato en la tarjeta del vehículo en lugar de uno de los que están. */

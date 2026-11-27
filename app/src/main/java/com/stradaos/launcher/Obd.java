@@ -67,6 +67,19 @@ public class Obd {
         Sensor(String key, String label, String unit, int pid, boolean fast, float min, float max) {
             this.key = key; this.label = label; this.unit = unit; this.pid = pid; this.fast = fast; this.min = min; this.max = max;
         }
+        /** Valores físicamente posibles: lo que cae fuera (sensor desconectado, «sin dato» del computador) se descarta. */
+        float vmin = -Float.MAX_VALUE, vmax = Float.MAX_VALUE;
+        /** Para los PIDs que traen varios datos (0x7C: entrada y salida del DPF): cuál de ellos. */
+        int sub;
+        /** Identificador UDS (servicio 0x22, solo lectura) en los computadores VAG; 0 = no aplica. */
+        int did;
+        /** Lecturas válidas seguidas: un dato se muestra recién con dos (un primer valor raro no llega a la pantalla). */
+        int confirm;
+        /** Lecturas descartadas por imposibles (para el registro). */
+        int rejects;
+        Sensor valid(float lo, float hi) { vmin = lo; vmax = hi; return this; }
+        Sensor sub(int i) { sub = i; return this; }
+        Sensor did(int d) { did = d; return this; }
         Sensor high(float warn, float crit) { hi1 = warn; hi2 = crit; return this; }
         Sensor low(float warn, float crit) { lo1 = warn; lo2 = crit; return this; }
         Sensor abs(float warn, float crit) { abs1 = warn; abs2 = crit; return this; }
@@ -88,6 +101,12 @@ public class Obd {
         }
 
         void push(float v) {
+            if (Float.isNaN(v) || Float.isInfinite(v) || v < vmin || v > vmax) {
+                rejects++;
+                if (rejects == 5 || rejects % 200 == 0) log("dato descartado (" + key + " = " + v + ")");
+                return;
+            }
+            if (confirm < 2) { confirm++; if (confirm < 2) return; }
             value = v;
             at = android.os.SystemClock.elapsedRealtime();
             pushes++;
@@ -162,38 +181,38 @@ public class Obd {
         }
     }
 
-    static final Sensor COOLANT = new Sensor("coolant", "Refrigerante", "°C", 0x05, true, 0, 130).high(100, 106).hold(3);
-    static final Sensor VOLT = new Sensor("volt", "Batería", "V", -1, true, 10, 16).low(12.6f, 11.8f).high(15.2f, 15.8f).hold(15);
-    static final Sensor RPM = new Sensor("rpm", "RPM", "rpm", 0x0C, true, 0, 7000).high(5200, 6000).hold(2);
-    static final Sensor SPEED = new Sensor("speed", "Velocidad", "km/h", 0x0D, true, 0, 200);
-    static final Sensor LOAD = new Sensor("load", "Carga del motor", "%", 0x04, true, 0, 100).high(92, 101).hold(20);
-    static final Sensor THROTTLE = new Sensor("throttle", "Acelerador", "%", 0x11, true, 0, 100);
-    static final Sensor INTAKE = new Sensor("intake", "Aire de admisión", "°C", 0x0F, false, -20, 90).high(60, 75).hold(20);
-    static final Sensor FUEL = new Sensor("fuel", "Combustible", "%", 0x2F, false, 0, 100).low(15, 8).hold(30);
-    static final Sensor STFT = new Sensor("stft", "Mezcla corta", "%", 0x06, false, -30, 30).abs(15, 25).hold(30);
-    static final Sensor LTFT = new Sensor("ltft", "Mezcla larga", "%", 0x07, false, -30, 30).abs(10, 20).hold(60);
-    static final Sensor MAF = new Sensor("maf", "Flujo de aire", "g/s", 0x10, false, 0, 150);
+    static final Sensor COOLANT = new Sensor("coolant", "Refrigerante", "°C", 0x05, true, 0, 130).high(100, 106).hold(3).valid(-39, 150);
+    static final Sensor VOLT = new Sensor("volt", "Batería", "V", -1, true, 10, 16).low(12.6f, 11.8f).high(15.2f, 15.8f).hold(15).valid(6, 18);
+    static final Sensor RPM = new Sensor("rpm", "RPM", "rpm", 0x0C, true, 0, 7000).high(5200, 6000).hold(2).valid(0, 10000);
+    static final Sensor SPEED = new Sensor("speed", "Velocidad", "km/h", 0x0D, true, 0, 200).valid(0, 300);
+    static final Sensor LOAD = new Sensor("load", "Carga del motor", "%", 0x04, true, 0, 100).high(92, 101).hold(20).valid(0, 100);
+    static final Sensor THROTTLE = new Sensor("throttle", "Acelerador", "%", 0x11, true, 0, 100).valid(0, 100);
+    static final Sensor INTAKE = new Sensor("intake", "Aire de admisión", "°C", 0x0F, false, -20, 90).high(60, 75).hold(20).valid(-39, 130);
+    static final Sensor FUEL = new Sensor("fuel", "Combustible", "%", 0x2F, false, 0, 100).low(15, 8).hold(30).valid(0, 100);
+    static final Sensor STFT = new Sensor("stft", "Mezcla corta", "%", 0x06, false, -30, 30).abs(15, 25).hold(30).valid(-99, 99);
+    static final Sensor LTFT = new Sensor("ltft", "Mezcla larga", "%", 0x07, false, -30, 30).abs(10, 20).hold(60).valid(-99, 99);
+    static final Sensor MAF = new Sensor("maf", "Flujo de aire", "g/s", 0x10, false, 0, 150).valid(0, 650);
     /** Presión absoluta del múltiple: la usan los motores sin MAF, como muchos Kia/Hyundai 2.4. */
-    static final Sensor MAP = new Sensor("map", "Presión del múltiple", "kPa", 0x0B, true, 0, 255);
+    static final Sensor MAP = new Sensor("map", "Presión del múltiple", "kPa", 0x0B, true, 0, 255).valid(5, 255);
     /** Consumo que entrega el propio auto (PID 5E), si lo tiene. */
-    static final Sensor FUEL_RATE = new Sensor("fuel_rate", "Consumo del motor", "L/h", 0x5E, false, 0, 40);
-    static final Sensor OILT = new Sensor("oilt", "Aceite del motor", "°C", 0x5C, false, 0, 150).high(125, 135).hold(10);
-    static final Sensor AMBIENT = new Sensor("ambient", "Temperatura exterior", "°C", 0x46, false, -20, 50);
+    static final Sensor FUEL_RATE = new Sensor("fuel_rate", "Consumo del motor", "L/h", 0x5E, false, 0, 40).valid(0, 150);
+    static final Sensor OILT = new Sensor("oilt", "Aceite del motor", "°C", 0x5C, false, 0, 150).high(125, 135).hold(10).valid(-39, 170);
+    static final Sensor AMBIENT = new Sensor("ambient", "Temperatura exterior", "°C", 0x46, false, -20, 50).valid(-39, 60);
     // Los demás datos estándar que entrega el Sorento 2010 (y muchos otros autos). No son tan urgentes como los de
     // arriba, así que se leen cada 4 vueltas: sirven para «Todos los datos», el panel y los gráficos.
-    static final Sensor TIMING = new Sensor("timing", "Avance del encendido", "°", 0x0E, false, -20, 60).dec();
-    static final Sensor O2_1 = new Sensor("o2_1", "Sonda O2 banco 1", "V", 0x14, false, 0, 1.2f);
-    static final Sensor O2_2 = new Sensor("o2_2", "Sonda O2 banco 1 sensor 2", "V", 0x15, false, 0, 1.2f);
+    static final Sensor TIMING = new Sensor("timing", "Avance del encendido", "°", 0x0E, false, -20, 60).dec().valid(-60, 70);
+    static final Sensor O2_1 = new Sensor("o2_1", "Sonda O2 banco 1", "V", 0x14, false, 0, 1.2f).valid(0, 1.27f);
+    static final Sensor O2_2 = new Sensor("o2_2", "Sonda O2 banco 1 sensor 2", "V", 0x15, false, 0, 1.2f).valid(0, 1.27f);
     static final Sensor RUN_TIME = new Sensor("run_time", "Tiempo de marcha", "s", 0x1F, false, 0, 86400);
     static final Sensor MIL_DIST = new Sensor("mil_dist", "Distancia con la luz del motor", "km", 0x21, false, 0, 100000);
     static final Sensor EGR = new Sensor("egr", "EGR comandada", "%", 0x2E, false, 0, 100);
     static final Sensor WARMUPS = new Sensor("warmups", "Arranques desde borrar códigos", "", 0x30, false, 0, 255);
     static final Sensor CLEAR_DIST = new Sensor("clear_dist", "Distancia desde borrar códigos", "km", 0x31, false, 0, 100000);
-    static final Sensor BARO = new Sensor("baro", "Presión barométrica", "kPa", 0x33, false, 0, 120);
-    static final Sensor CAT1 = new Sensor("cat1", "Catalizador banco 1", "°C", 0x3C, false, -40, 1000);
-    static final Sensor CAT2 = new Sensor("cat2", "Catalizador banco 1 sensor 2", "°C", 0x3E, false, -40, 1000);
+    static final Sensor BARO = new Sensor("baro", "Presión barométrica", "kPa", 0x33, false, 0, 120).valid(50, 110);
+    static final Sensor CAT1 = new Sensor("cat1", "Catalizador banco 1", "°C", 0x3C, false, -40, 1000).valid(-39, 1100);
+    static final Sensor CAT2 = new Sensor("cat2", "Catalizador banco 1 sensor 2", "°C", 0x3E, false, -40, 1000).valid(-39, 1100);
     static final Sensor ABS_LOAD = new Sensor("abs_load", "Carga absoluta", "%", 0x43, false, 0, 100);
-    static final Sensor LAMBDA = new Sensor("lambda", "Mezcla comandada", "λ", 0x44, false, 0.5f, 1.5f).dec();
+    static final Sensor LAMBDA = new Sensor("lambda", "Mezcla comandada", "λ", 0x44, false, 0.5f, 1.5f).dec().valid(0.5f, 2f);
     static final Sensor THROTTLE_REL = new Sensor("throttle_rel", "Acelerador relativo", "%", 0x45, false, 0, 100);
     static final Sensor THROTTLE_B = new Sensor("throttle_b", "Acelerador B", "%", 0x47, false, 0, 100);
     static final Sensor PEDAL_D = new Sensor("pedal_d", "Pedal D", "%", 0x49, false, 0, 100);
@@ -211,10 +230,31 @@ public class Obd {
      * Odómetro del auto (PID A6, #52). Pocos autos lo entregan (sobre todo desde 2019); si lo hace, EvOS usa ese
      * kilometraje exacto para los mantenimientos. Cambia despacio: se lee cada ~15 s.
      */
-    static final Sensor ODO = new Sensor("odo", "Odómetro", "km", 0xA6, false, 0, 2000000);
+    static final Sensor ODO = new Sensor("odo", "Odómetro", "km", 0xA6, false, 0, 2000000).valid(1, 2000000);
+    // Filtro de partículas, PIDs estándar (los entregan los diésel con DPF que los implementan; solo lectura, modo 01)
+    static final Sensor DPF_DP = new Sensor("dpf_dp", "Presión diferencial del DPF", "mbar", 0x7A, false, 0, 400).valid(-20, 2000).did(0x14F5);
+    static final Sensor DPF_TIN = new Sensor("dpf_tin", "Temperatura antes del DPF", "°C", 0x7C, false, 0, 800).valid(-39, 1100).did(0x11B2);
+    static final Sensor DPF_TOUT = new Sensor("dpf_tout", "Temperatura después del DPF", "°C", 0x7C, false, 0, 800).valid(-39, 1100).sub(1).did(0x10F9);
+    static final Sensor DPF_NEED = new Sensor("dpf_need", "Necesidad de regenerar el DPF", "%", 0x8B, false, 0, 100).valid(0, 100);
+    // Solo VAG (VW, Audi, Škoda, SEAT, diésel EDC17 y posteriores): servicio UDS 0x22 al motor (7E0), solo lectura.
+    // Identificadores y fórmulas: github.com/v-cu/dpf-load-monitor-wide (firmware/main/can_dpf.c)
+    static final Sensor SOOT_CALC = new Sensor("soot_calc", "Hollín calculado", "g", -10, false, 0, 40).valid(0, 200).did(0x114F).dec();
+    static final Sensor SOOT_MEAS = new Sensor("soot_meas", "Hollín medido", "g", -10, false, 0, 40).valid(-20, 200).did(0x114E).dec();
+    static final Sensor ASH = new Sensor("ash", "Ceniza en el DPF", "g", -10, false, 0, 100).valid(0, 500).did(0x1153).dec();
+    static final Sensor REGEN_KM = new Sensor("regen_km", "Desde la última regeneración", "km", -10, false, 0, 1000).valid(0, 20000).did(0x1156);
+    static final Sensor REGEN_MIN = new Sensor("regen_min", "Tiempo desde la regeneración", "min", -10, false, 0, 1000).valid(0, 200000).did(0x115E);
+    static final Sensor TURBO_T = new Sensor("turbo_t", "Temperatura del turbo", "°C", -10, false, 0, 900).valid(-39, 1100).did(0x10FB);
+
+    /** Lo que se averigua al conectar: tipo de combustible (PID 51; -1 si no lo dice), si hay DPF y de dónde se lee. */
+    static volatile int fuelType = -1;
+    static volatile boolean dpf, dpfVag, dpfRegen;
+    /** Datos VAG por UDS que no son un dato a mostrar: la post-inyección distinta de 0 = regeneración en curso. */
+    private static final int DID_POST_INJ = 0x163B;
+
     static final Sensor[] ALL = {COOLANT, VOLT, RPM, SPEED, LOAD, THROTTLE, INTAKE, FUEL, STFT, LTFT, MAF, MAP, CONSUMPTION, FUEL_H, OILT, AMBIENT, FUEL_RATE,
         TIMING, O2_1, O2_2, RUN_TIME, MIL_DIST, EGR, WARMUPS, CLEAR_DIST, BARO, CAT1, CAT2, ABS_LOAD, LAMBDA, THROTTLE_REL, THROTTLE_B, PEDAL_D, PEDAL_E,
-        THROTTLE_CMD, MIL_TIME, CLEAR_TIME, O2_TRIM_1, O2_TRIM_2, ODO};
+        THROTTLE_CMD, MIL_TIME, CLEAR_TIME, O2_TRIM_1, O2_TRIM_2, ODO,
+        DPF_DP, DPF_TIN, DPF_TOUT, DPF_NEED, SOOT_CALC, SOOT_MEAS, ASH, REGEN_KM, REGEN_MIN, TURBO_T};
 
     /** Todos los demás datos estándar que el auto entrega (PID → bytes), leídos de a poco para no frenar las alertas. */
     static final java.util.TreeMap<Integer, byte[]> extra = new java.util.TreeMap<Integer, byte[]>();
@@ -318,7 +358,8 @@ public class Obd {
         if (running) return;
         app = c.getApplicationContext();
         running = true;
-        for (Sensor s : ALL) { s.value = Float.NaN; s.level = OK; s.clearHistory(); s.badSince = 0; }
+        for (Sensor s : ALL) { s.value = Float.NaN; s.level = OK; s.clearHistory(); s.badSince = 0; s.confirm = 0; s.rejects = 0; }
+        fuelType = -1; dpf = false; dpfVag = false; dpfRegen = false;
         synchronized (alerts) { alerts.clear(); }
         dtcs = new ArrayList<String>(); pending = new ArrayList<String>(); mil = false; vin = null;
         synchronized (extra) { extra.clear(); }
@@ -434,7 +475,9 @@ public class Obd {
                 if (!wasLive) say("obd", OK, I18n.t("Escáner conectado. Vigilando el motor."));
                 wasLive = true;
                 changed();
-                try { vin = elm.vin(); } catch (Throwable ignored) { }
+                for (Sensor s : ALL) s.confirm = 0;
+                try { String v = elm.vin(); vin = Vin.valid(v) ? v : null; if (v != null && vin == null) log("VIN descartado: " + v); } catch (Throwable ignored) { }
+                identify();
                 poll();
             } catch (Throwable t) {
                 if (!running) break;
@@ -452,6 +495,59 @@ public class Obd {
             }
             sleep(fails > 6 ? 15000 : 5000);
         }
+    }
+
+    /**
+     * Qué entrega este auto, antes de leer: tipo de combustible (PID 51), si tiene filtro de partículas (PIDs 7A, 7B,
+     * 7C u 8B anunciados como soportados) y, en un VAG, si el computador del motor contesta el hollín por UDS. Todo
+     * es lectura: el servicio 0x22 pide un dato y no cambia nada en el auto.
+     */
+    private static void identify() {
+        try {
+            if (elm.supports(0x51)) { byte[] b = elm.pid(0x51); if (b != null && b.length > 0) fuelType = b[0] & 0xFF; }
+        } catch (Throwable ignored) { }
+        dpf = elm.supports(0x7A) || elm.supports(0x7B) || elm.supports(0x7C) || elm.supports(0x8B);
+        dpfVag = false;
+        boolean petrol = fuelType == 1 || fuelType == 9 || fuelType == 0x10;
+        if (Vin.vag(vin) && elm.canSh() && !petrol) {
+            try {
+                java.util.Map<Integer, byte[]> r = elm.uds(0x7E0, new int[]{SOOT_CALC.did});
+                dpfVag = r.containsKey(SOOT_CALC.did);
+            } catch (Throwable e) { log("UDS: " + e.getMessage()); }
+            if (dpfVag) dpf = true;
+        }
+        log("identificación: VIN " + (vin != null ? vin : "—") + ", combustible " + fuelType + ", DPF " + (dpf ? (dpfVag ? "sí (VAG UDS)" : "sí (estándar)") : "no detectado"));
+        changed();
+    }
+
+    /** Datos VAG del DPF por UDS (cada ~5 s): hollín, ceniza, presión, temperaturas, última regeneración. */
+    private static void readVag() throws java.io.IOException {
+        List<Sensor> list = new ArrayList<Sensor>();
+        for (Sensor s : ALL) if (s.did != 0 && (s.pid == -10 || !elm.supports(s.pid))) list.add(s);
+        int[] dids = new int[list.size() + 1];
+        for (int i = 0; i < list.size(); i++) dids[i] = list.get(i).did;
+        dids[list.size()] = DID_POST_INJ;
+        java.util.Map<Integer, byte[]> r = elm.uds(0x7E0, dids);
+        for (Sensor s : list) {
+            byte[] b = r.get(s.did);
+            Float v = b != null ? vagValue(s, b) : null;
+            if (v != null) s.push(v);
+        }
+        byte[] pi = r.get(DID_POST_INJ);
+        if (pi != null && pi.length >= 2) dpfRegen = ((pi[0] & 0xFF) << 8 | (pi[1] & 0xFF)) != 0;
+    }
+
+    /** Fórmulas de los datos VAG (ver dpf-load-monitor-wide, can_dpf.c). */
+    static Float vagValue(Sensor s, byte[] b) {
+        int u16 = b.length >= 2 ? (b[0] & 0xFF) << 8 | (b[1] & 0xFF) : -1;
+        int u24 = b.length >= 4 ? (b[1] & 0xFF) << 16 | (b[2] & 0xFF) << 8 | (b[3] & 0xFF) : -1;
+        if (s == DPF_TIN || s == DPF_TOUT || s == TURBO_T) return u16 < 0 ? null : (u16 - 2731) / 10f;
+        if (s == SOOT_CALC || s == ASH) return u16 < 0 ? null : u16 / 100f;
+        if (s == SOOT_MEAS) return u16 < 0 ? null : ((short) u16) / 100f;
+        if (s == DPF_DP) return u16 < 0 ? null : (float) u16;
+        if (s == REGEN_KM) return u24 < 0 ? null : u24 / 1000f;
+        if (s == REGEN_MIN) return u24 < 0 ? null : u24 / 60f;
+        return null;
     }
 
     private static void poll() throws java.io.IOException {
@@ -481,6 +577,7 @@ public class Obd {
             // agrupada, de a seis una de cada cuatro vueltas
             if (!grouped) readExtra(round);
             else if (round % 4 == 0) readExtraGrouped();
+            if (dpfVag && round % (grouped ? 25 : 6) == 3) readVag();
             trackDistance();
             round++;
             if (got <= 1) {                       // solo responde el voltaje: contacto apagado
@@ -564,7 +661,7 @@ public class Obd {
         List<Sensor> fast = new ArrayList<Sensor>(), slow = new ArrayList<Sensor>();
         int got = 0;
         for (Sensor s : ALL) {
-            if (s.pid == -2 || s.pid == -3) continue;
+            if (s.pid == -2 || s.pid == -3 || s.pid == -10) continue;
             if (s == ODO) {                       // no se agrupa (PID A6) y cambia despacio: cada ~40 vueltas
                 if (round % 40 == 0) { Float v = read(s); if (v != null) { s.push(v); got++; } }
                 continue;
@@ -686,7 +783,7 @@ public class Obd {
     }
 
     private static Float read(Sensor s) throws java.io.IOException {
-        if (s.pid == -2 || s.pid == -3) return null;          // calculados, no se le piden al auto
+        if (s.pid == -2 || s.pid == -3 || s.pid == -10) return null;   // calculados o UDS: no van por el modo 01
         if (s.pid < 0) {
             // voltaje: el que mide el computador del motor (PID 42) si lo entrega; el del escáner (ATRV) solo si no.
             // Los ELM327 clon suelen medir casi 1 V de menos (Kia Sorento: ATRV 11,3 V con el computador en 12,2 V).
@@ -698,7 +795,10 @@ public class Obd {
             try { return Float.parseFloat(r); } catch (Throwable e) { return null; }
         }
         if (!elm.supports(s.pid)) return null;
-        return decode(s.pid, elm.pid(s.pid));
+        byte[] b = elm.pid(s.pid);
+        // 8B: además del porcentaje trae si la regeneración está en curso (bit 0 de B, si A lo declara)
+        if (s.pid == 0x8B && b != null && b.length >= 2 && (b[0] & 1) != 0 && !dpfVag) dpfRegen = (b[1] & 1) != 0;
+        return Elm.value(s.pid, b, s.sub);
     }
 
     /** Valor de un PID del modo 01 a partir de sus bytes de datos (ver {@link Elm#value}). */

@@ -1995,3 +1995,31 @@ Tanque	Rezervor
 medio	mediu
 autonomía	autonomie
 archivo	fișier
+Presión diferencial del DPF	Presiune diferențială DPF
+Temperatura antes del DPF	Temperatură înainte de DPF
+Temperatura después del DPF	Temperatură după DPF
+Necesidad de regenerar el DPF	Necesar de regenerare DPF
+Hollín calculado	Funingine calculată
+Hollín medido	Funingine măsurată
+Ceniza en el DPF	Cenușă în DPF
+Desde la última regeneración	De la ultima regenerare
+Tiempo desde la regeneración	Timp de la regenerare
+Temperatura del turbo	Temperatura turbinei
+Filtro de partículas	Filtru de particule
+Filtro de partículas (DPF)	Filtru de particule (DPF)
+Regeneración en curso	Regenerare în curs
+El auto no entrega el VIN	Mașina nu transmite VIN-ul
+DPF: sí (datos del motor VAG)	DPF: da (date din calculatorul motorului VAG)
+DPF: sí	DPF: da
+DPF: el auto no lo informa	DPF: mașina nu îl raportează
+Metanol	Metanol
+Etanol	Etanol
+Diésel	Motorină
+GLP	GPL
+GNC	GNC
+Eléctrico	Electric
+Bicombustible (gasolina)	Bi-fuel (benzină)
+Híbrido (gasolina)	Hibrid (benzină)
+Híbrido (etanol)	Hibrid (etanol)
+Híbrido (diésel)	Hibrid (motorină)
+Híbrido eléctrico	Hibrid electric
