@@ -2237,3 +2237,7 @@ Multimedia	Multimedia
 Mapa: tráfico y gasolineras	Hartă: trafic și benzinării
 Todos los ajustes del mapa	Toate setările hărții
 Buscar precios de combustible	Caută prețurile la carburant
+Showroom de noche en azul hielo: el carro sobre una plataforma giratoria con anillos de luz, menú de vidrio y la velocidad dentro de un arco. Siempre oscuro.	Showroom de noapte în albastru-gheață: mașina pe o platformă rotativă cu inele de lumină, meniu de sticlă și viteza într-un arc. Mereu întunecat.
+Showroom cyberpunk: ciudad de noche con un puente de neón y el asfalto mojado, paneles de vidrio con bordes azules y violetas. Siempre oscuro.	Showroom cyberpunk: oraș noaptea cu un pod de neon și asfalt ud, panouri de sticlă cu margini albastre și violet. Mereu întunecat.
+Showroom de carreras: fibra de carbono, el piano de la pista bajo el carro, luces de cambio de marcha y amarillo de señal. Siempre oscuro.	Showroom de curse: fibră de carbon, bordura pistei sub mașină, lumini de schimbare a treptei și galben de semnalizare. Mereu întunecat.
+Si te gusta usar EvOS, dale una estrella en GitHub. Así más personas lo encuentran.	Dacă îți place EvOS, dă-i o stea pe GitHub. Așa îl găsesc mai mulți oameni.

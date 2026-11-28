@@ -2267,3 +2267,7 @@ Multimedia	Infotainment
 Mapa: tráfico y gasolineras	Map: traffic and fuel stations
 Todos los ajustes del mapa	All map settings
 Buscar precios de combustible	Look up fuel prices
+Showroom de noche en azul hielo: el carro sobre una plataforma giratoria con anillos de luz, menú de vidrio y la velocidad dentro de un arco. Siempre oscuro.	Night showroom in ice blue: the car on a turntable with rings of light, a glass menu and the speed inside an arc. Always dark.
+Showroom cyberpunk: ciudad de noche con un puente de neón y el asfalto mojado, paneles de vidrio con bordes azules y violetas. Siempre oscuro.	Cyberpunk showroom: a city at night with a neon bridge and wet asphalt, glass panels with blue and violet edges. Always dark.
+Showroom de carreras: fibra de carbono, el piano de la pista bajo el carro, luces de cambio de marcha y amarillo de señal. Siempre oscuro.	Racing showroom: carbon fibre, the track kerb under the car, shift lights and signal yellow. Always dark.
+Si te gusta usar EvOS, dale una estrella en GitHub. Así más personas lo encuentran.	If you enjoy EvOS, give it a star on GitHub. That way more people find it.

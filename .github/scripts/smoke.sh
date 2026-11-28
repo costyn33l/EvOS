@@ -80,6 +80,15 @@ go sr-modelo:suv:blue 8; go sr:3:6 6; shot 79-sr-modelo
 for m in sedan wagon coupe mpv; do go sr-modelo:$m:red 6; go sr:0 4; shot 80-sr-$m; done
 go sr-modelo:hatch:silver 6
 go ajustes:11 6; shot 85-sr-personalizacion
+# variantes del Showroom (1.3): Glacier, Cyberpunk y Circuit, con el auto simulado
+for k in glacier cyber circuit; do
+  go tema-ev:sr_$k 10; go sr:0 5; shot 88-$k-inicio
+  go sr:2 5;   shot 88-$k-musica
+  go sr:3:0 5; shot 88-$k-presentacion
+  go sr:3:2 6; shot 88-$k-parametros
+done
+go ajustes:11 6; shot 88-temas-galeria
+go tema-ev:showroom 8
 go obd-off 6; go sr:0 6; shot 86-sr-sin-obd
 go sr:3:2 6;   shot 87-sr-parametros-sin-obd
 go sr:1 8;     shot 71-sr-mapa

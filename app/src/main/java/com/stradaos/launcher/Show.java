@@ -401,6 +401,373 @@ final class Show {
         @Override public int getOpacity() { return PixelFormat.OPAQUE; }
     }
 
+
+    // ═════════════════════ Variantes del Showroom (pieles) ═════════════════════
+    // Misma distribución y mismas funciones; cambian el fondo, los paneles, los botones, el menú y la letra.
+
+    static final int CLASSIC = 0, GLACIER = 1, CYBER = 2, CIRCUIT = 3;
+    static int skin = CLASSIC;
+    private static Context app;
+    private static Typeface fLabel, fNum, fTitle;
+
+    static void setSkin(Context c, String evId) {
+        app = c.getApplicationContext();
+        int k = Ev.GLACIER.equals(evId) ? GLACIER : Ev.CYBER.equals(evId) ? CYBER : Ev.CIRCUIT.equals(evId) ? CIRCUIT : CLASSIC;
+        if (k != skin) { fLabel = fNum = fTitle = null; bgBmp = null; }
+        skin = k;
+    }
+
+    private static Typeface font(String n, Typeface fb) {
+        try { return Typeface.createFromAsset(app.getAssets(), "fonts/" + n + ".ttf"); } catch (Throwable e) { return fb; }
+    }
+
+    /** Letra de las etiquetas (mayúsculas espaciadas). */
+    static Typeface labelFace() {
+        if (fLabel == null) fLabel = skin == GLACIER ? font("inter_r", cond(true)) : skin == CYBER ? font("exo2_mi", cond(true))
+            : skin == CIRCUIT ? font("barlowc_sb", cond(true)) : cond(true);
+        return fLabel;
+    }
+
+    /** Letra de los números grandes (velocidad, datos). */
+    static Typeface numFace() {
+        if (fNum == null) fNum = skin == GLACIER ? font("inter_l", cond(false)) : skin == CYBER || skin == CIRCUIT ? font("exo2_xbi", cond(true)) : cond(true);
+        return fNum;
+    }
+
+    // colores de la piel
+    static int railTop() { return skin == GLACIER ? 0xFF050A14 : skin == CYBER ? 0xF2060A1E : skin == CIRCUIT ? 0xFF000000 : 0xFF0B0B0B; }
+    static int railBottom() { return skin == GLACIER ? 0xFF050A14 : skin == CYBER ? 0xF2060A1E : skin == CIRCUIT ? 0xFF000000 : 0xFF111111; }
+    static int railEdge() { return skin == GLACIER ? 0x00000000 : skin == CYBER ? 0xFF1E5BD8 : skin == CIRCUIT ? 0xFF1C1C1C : 0xFF1C1C1C; }
+    static int headTop() { return skin == GLACIER ? 0xFF07101E : skin == CYBER ? 0xF2060A1E : skin == CIRCUIT ? 0xFF0A0A0A : 0xFF0D0D0D; }
+    static int headBottom() { return skin == GLACIER ? 0xFF07101E : skin == CYBER ? 0xF2080C26 : skin == CIRCUIT ? 0xFF0A0A0A : 0xFF080808; }
+    static int headEdge() { return skin == GLACIER ? 0x00000000 : skin == CYBER ? 0xFF1E5BD8 : skin == CIRCUIT ? 0xFF1C1C1C : 0xFF1A1A1A; }
+    static int hair() { return skin == GLACIER ? 0x24FFFFFF : skin == CYBER ? 0x401E8BFF : skin == CIRCUIT ? 0xFF262626 : HAIR; }
+    static int railLabelOff() { return skin == GLACIER ? 0xFFA9B7C9 : skin == CYBER ? 0xFFB8C0E8 : 0xFF9A9A9A; }
+    static int railIconOff() { return skin == GLACIER ? 0xFFA9B7C9 : skin == CYBER ? 0xFFDDE3FF : skin == CIRCUIT ? 0xFF9A9A9A : 0xFFD6D6D6; }
+    /** Ícono y texto del elemento elegido del menú (sobre su fondo). */
+    static int railOnInk(int text) { return skin == GLACIER ? 0xFF06121F : skin == CIRCUIT ? 0xFF0A0A0A : text; }
+    /** Color de los íconos de la consola: en Cyberpunk cada uno con su color. */
+    static int consoleIcon(String ic, int accent, int text, boolean accentIcon) {
+        if (skin == CYBER) return "aa".equals(ic) ? 0xFF3B9BFF : "phone".equals(ic) ? 0xFF2BD46B : 0xFF3BA8FF;
+        if (skin == GLACIER) return 0xFF7DD3FC;
+        if (skin == CIRCUIT) return text;
+        return accentIcon ? accent : text;
+    }
+
+    /**
+     * Botón con esquinas cortadas, relleno en degradado, borde con brillo y la línea de abajo (Cyberpunk y Circuit),
+     * o redondeado de vidrio (Glacier).
+     */
+    static final class Shape extends Drawable {
+        final float s, cutTL, cutBR, radius, line, inset;
+        final int fillTop, fillBottom, stroke, glow, lineA, lineB;
+        final Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
+        final Path path = new Path();
+        Shape(float s, float cutTL, float cutBR, float radius, int fillTop, int fillBottom, int stroke, int glow, float line, int lineA, int lineB, float inset) {
+            this.s = s; this.cutTL = cutTL; this.cutBR = cutBR; this.radius = radius; this.fillTop = fillTop; this.fillBottom = fillBottom;
+            this.stroke = stroke; this.glow = glow; this.line = line; this.lineA = lineA; this.lineB = lineB; this.inset = inset;
+        }
+        @Override public void draw(Canvas c) {
+            Rect b0 = getBounds();
+            float l = b0.left + inset * s, t = b0.top + inset * s * 0.35f, r = b0.right - inset * s, bt = b0.bottom - inset * s * 0.35f;
+            path.reset();
+            if (radius > 0) path.addRoundRect(new RectF(l, t, r, bt), radius * s, radius * s, Path.Direction.CW);
+            else {
+                float a = cutTL * s, z = cutBR * s;
+                path.moveTo(l + a, t); path.lineTo(r, t); path.lineTo(r, bt - z); path.lineTo(r - z, bt); path.lineTo(l, bt); path.lineTo(l, t + a); path.close();
+            }
+            // brillo: el borde dibujado varias veces, cada vez más ancho y más transparente
+            if ((glow >>> 24) != 0) {
+                p.setStyle(Paint.Style.STROKE);
+                p.setShader(null);
+                for (int i = 3; i >= 1; i--) {
+                    p.setStrokeWidth(i * 3.2f * s);
+                    p.setColor(alpha(glow, ((glow >>> 24) * (4 - i)) / 7));
+                    c.drawPath(path, p);
+                }
+            }
+            p.setStyle(Paint.Style.FILL);
+            p.setShader(new LinearGradient(0, t, 0, bt, fillTop, fillBottom, Shader.TileMode.CLAMP));
+            c.drawPath(path, p);
+            p.setShader(null);
+            if ((stroke >>> 24) != 0) {
+                p.setStyle(Paint.Style.STROKE);
+                p.setStrokeWidth(Math.max(1, 1.2f * s));
+                p.setColor(stroke);
+                c.drawPath(path, p);
+            }
+            if (line > 0) {
+                p.setStyle(Paint.Style.FILL);
+                float z = cutBR * s;
+                p.setShader(new LinearGradient(l, 0, r, 0, lineA, lineB, Shader.TileMode.CLAMP));
+                c.save();
+                c.clipPath(path);
+                c.drawRect(l, bt - line * s, r - (radius > 0 ? 0 : z * 0.2f), bt, p);
+                c.restore();
+                p.setShader(null);
+            }
+        }
+        @Override public void setAlpha(int a) { }
+        @Override public void setColorFilter(ColorFilter cf) { }
+        @Override public int getOpacity() { return PixelFormat.TRANSLUCENT; }
+    }
+
+    /** Botón de la consola según la piel. */
+    static Drawable skinTile(float s, int accent) {
+        switch (skin) {
+            case GLACIER: return new Shape(s, 0, 0, 20, 0x14FFFFFF, 0x0AFFFFFF, 0x22FFFFFF, 0, 0, 0, 0, 0);
+            case CYBER: return new Shape(s, 12, 12, 0, 0xD9101A3C, 0xD9080E26, 0xFF2F7BFF, 0x552F7BFF, 3, 0xFF1E8BFF, 0xFFC026FF, 0);
+            case CIRCUIT: return new Shape(s, 0, 14, 0, 0xFF1A1A1A, 0xFF121212, 0, 0, 4, 0xFFFFD000, 0xFFFFD000, 0);
+            default: return tile(s, accent);
+        }
+    }
+
+    /** Botón encendido (reproducir, opción elegida). */
+    static Drawable skinTileOn(float s, int accent) {
+        switch (skin) {
+            case GLACIER: return new Shape(s, 0, 0, 20, 0x337DD3FC, 0x1F7DD3FC, 0xAA7DD3FC, 0x557DD3FC, 0, 0, 0, 0);
+            case CYBER: return new Shape(s, 12, 12, 0, 0xCC1A3A8A, 0xCC0E1C50, 0xFF3B9BFF, 0x993B9BFF, 3, 0xFF1E8BFF, 0xFFC026FF, 0);
+            case CIRCUIT: return new Shape(s, 0, 14, 0, 0xFF262626, 0xFF1C1C1C, 0xFFFFD000, 0, 5, 0xFFFFD000, 0xFFFFD000, 0);
+            default: return tileOn(s, accent);
+        }
+    }
+
+    /** Fondo del elemento elegido del menú lateral. */
+    static Drawable skinRailOn(float s, int accent) {
+        switch (skin) {
+            case GLACIER: return new Shape(s, 0, 0, 20, 0xFF7DD3FC, 0xFF5CC4F7, 0, 0x887DD3FC, 0, 0, 0, 12);
+            case CYBER: return new Shape(s, 14, 14, 0, 0x661E8BFF, 0x330A1A50, 0xFF3B9BFF, 0x993B9BFF, 0, 0, 0, 6);
+            case CIRCUIT: return new Shape(s, 0, 18, 0, 0xFFFFD000, 0xFFFFC400, 0, 0, 0, 0, 0, 0);
+            default: return railOn(s, accent);
+        }
+    }
+
+    /** Panel de datos (velocidad, valores del escáner). */
+    static Drawable panel(float s, boolean big) {
+        switch (skin) {
+            case GLACIER: return new Shape(s, 0, 0, 18, 0x12FFFFFF, 0x08FFFFFF, 0x1EFFFFFF, 0, 0, 0, 0, 0);
+            case CYBER: return new Shape(s, big ? 26 : 18, big ? 26 : 18, 0, 0xCC0C1436, 0xCC070B22, 0xFF2F7BFF, 0x662F7BFF, 0, 0, 0, 0);
+            case CIRCUIT: return new Shape(s, 0, 16, 0, 0xFF161616, 0xFF111111, 0, 0, 0, 0, 0, 0);
+            default: return null;
+        }
+    }
+
+    /** Fondo de una página: el del Showroom de siempre o el de la piel. car = el carro (para apoyarlo en el piso). */
+    static View backdrop(Context c, float hz, float vxr, View car, boolean dim) {
+        if (skin == CLASSIC) return new Floor(c, hz, vxr);
+        return new Backdrop(c, car, dim);
+    }
+
+    private static Bitmap bgBmp;
+
+    static final class Backdrop extends View {
+        final View car;
+        final boolean dim;
+        final Paint p = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+        Backdrop(Context c, View car, boolean dim) { super(c); this.car = car; this.dim = dim; }
+
+        /** Línea del piso (donde apoyan las ruedas), en coordenadas de esta vista. */
+        float ground() {
+            if (car instanceof Car && car.getHeight() > 0) {
+                float bh = CH + REFL, k = Math.min(car.getWidth() / (float) CW, car.getHeight() / bh);
+                return car.getTop() + (car.getHeight() - bh * k) / 2 + GROUND * k;
+            }
+            return getHeight() * 0.66f;
+        }
+        float carCx() { return car != null && car.getWidth() > 0 ? car.getLeft() + car.getWidth() / 2f : getWidth() * 0.4f; }
+        float carW() {
+            if (car instanceof Car && car.getHeight() > 0) {
+                float bh = CH + REFL, k = Math.min(car.getWidth() / (float) CW, car.getHeight() / bh);
+                return CW * k;
+            }
+            return getWidth() * 0.5f;
+        }
+
+        @Override protected void onDraw(Canvas c) {
+            float w = getWidth(), h = getHeight();
+            if (w <= 0 || h <= 0) return;
+            float gy = ground(), cx = carCx(), cw = carW(), s = getResources().getDisplayMetrics().density;
+            p.setShader(null);
+            if (skin == GLACIER) {
+                p.setShader(new RadialGradient(cx, h * 0.62f, Math.max(w, h) * 0.75f, new int[]{0xFF14283F, 0xFF0A1424, 0xFF04080F}, new float[]{0, 0.45f, 1}, Shader.TileMode.CLAMP));
+                c.drawRect(0, 0, w, h, p);
+                p.setShader(null);
+                if (car != null) {
+                    // plataforma giratoria: disco con luz y tres anillos
+                    float rx = cw * 0.47f, ry = rx * 0.17f;
+                    p.setShader(new RadialGradient(cx, gy, rx, new int[]{0x337DD3FC, 0x0D7DD3FC, 0}, new float[]{0, 0.6f, 1}, Shader.TileMode.CLAMP));
+                    c.save(); c.scale(1, ry / rx, cx, gy); c.drawCircle(cx, gy, rx, p); c.restore();
+                    p.setShader(null);
+                    p.setStyle(Paint.Style.STROKE);
+                    float[][] rings = {{1.0f, 0x8C}, {1.18f, 0x30}, {1.38f, 0x16}};
+                    for (float[] r : rings) {
+                        float a = rx * r[0], b = ry * r[0];
+                        for (int g = 3; g >= 1; g--) {
+                            p.setStrokeWidth(g * 2.4f * s);
+                            p.setColor(alpha(0xFF7DD3FC, (int) (r[1] / (g + 1))));
+                            c.drawOval(new RectF(cx - a, gy - b, cx + a, gy + b), p);
+                        }
+                        p.setStrokeWidth(Math.max(1, 1.4f * s));
+                        p.setColor(alpha(0xFF7DD3FC, (int) r[1]));
+                        c.drawOval(new RectF(cx - a, gy - b, cx + a, gy + b), p);
+                    }
+                    p.setStyle(Paint.Style.FILL);
+                }
+            } else if (skin == CYBER) {
+                if (bgBmp == null) {
+                    try { InputStream in = getContext().getAssets().open("showroom/cyber_bg.jpg"); bgBmp = android.graphics.BitmapFactory.decodeStream(in); in.close(); } catch (Throwable ignored) { }
+                }
+                c.drawColor(0xFF05061A);
+                if (bgBmp != null) {
+                    // centrado; el horizonte del dibujo (58,4 %) va un poco arriba del piso del carro
+                    float k = Math.max(w / bgBmp.getWidth(), h / bgBmp.getHeight());
+                    float bw = bgBmp.getWidth() * k, bh = bgBmp.getHeight() * k;
+                    float top = car != null ? gy - 30 * s - bh * 0.584f : (h - bh) / 2;
+                    top = Math.min(0, Math.max(h - bh, top));
+                    c.drawBitmap(bgBmp, null, new RectF((w - bw) / 2, top, (w + bw) / 2, top + bh), p);
+                }
+                if (car != null) {
+                    // charco de luz bajo el carro
+                    p.setShader(new RadialGradient(cx, gy + 4 * s, cw * 0.6f, new int[]{0x553B6BFF, 0x22C026FF, 0}, new float[]{0, 0.5f, 1}, Shader.TileMode.CLAMP));
+                    c.save(); c.scale(1, 0.16f, cx, gy + 4 * s); c.drawCircle(cx, gy + 4 * s, cw * 0.6f, p); c.restore();
+                    p.setShader(null);
+                }
+                if (dim) { p.setColor(0x99050614); c.drawRect(0, 0, w, h, p); }
+            } else if (skin == CIRCUIT) {
+                c.drawColor(0xFF0A0A0A);
+                p.setShader(carbon(s));
+                c.drawRect(0, 0, w, h, p);
+                p.setShader(new RadialGradient(cx, h * 0.5f, Math.max(w, h) * 0.6f, 0x1FFFFFFF, 0, Shader.TileMode.CLAMP));
+                c.drawRect(0, 0, w, h, p);
+                p.setShader(null);
+                if (car != null) {
+                    // pista: líneas en perspectiva y el piano (rojo-blanco no: amarillo-blanco) donde apoyan las ruedas
+                    p.setStyle(Paint.Style.STROKE);
+                    p.setStrokeWidth(Math.max(1, 1.5f * s));
+                    p.setShader(new LinearGradient(0, gy, 0, h, 0x22FFFFFF, 0x08FFFFFF, Shader.TileMode.CLAMP));
+                    for (int i = -12; i <= 12; i++) c.drawLine(cx + i * w * 0.02f, gy, cx + i * w * 0.16f, h + 40 * s, p);
+                    p.setShader(null);
+                    p.setStyle(Paint.Style.FILL);
+                    float kh = 4 * s, seg = 34 * s;
+                    for (float x = 0, i = 0; x < w; x += seg, i++) {
+                        p.setColor(((int) i) % 2 == 0 ? 0xFFFFD000 : 0xFFF2F2F2);
+                        c.drawRect(x, gy - kh / 2, Math.min(w, x + seg), gy + kh / 2, p);
+                    }
+                }
+                if (dim) { p.setColor(0x66000000); c.drawRect(0, 0, w, h, p); }
+            }
+        }
+    }
+
+    private static Shader carbonShader;
+    private static float carbonS;
+
+    /** Tejido de fibra de carbono (Circuit). */
+    static Shader carbon(float s) {
+        if (carbonShader != null && carbonS == s) return carbonShader;
+        int n = Math.max(6, (int) (6 * s));
+        Bitmap b = Bitmap.createBitmap(n * 2, n * 2, Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(b);
+        Paint p = new Paint();
+        p.setColor(0xFF0E0E0E); c.drawRect(0, 0, n * 2, n * 2, p);
+        p.setShader(new LinearGradient(0, 0, n, 0, 0xFF1A1A1A, 0xFF101010, Shader.TileMode.CLAMP));
+        c.drawRect(0, 0, n, n, p); c.drawRect(n, n, n * 2, n * 2, p);
+        p.setShader(new LinearGradient(0, 0, 0, n, 0xFF181818, 0xFF0E0E0E, Shader.TileMode.CLAMP));
+        c.drawRect(n, 0, n * 2, n, p); c.drawRect(0, n, n, n * 2, p);
+        carbonShader = new android.graphics.BitmapShader(b, Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
+        carbonS = s;
+        return carbonShader;
+    }
+
+    /** Arco de la velocidad (Glacier: anillo completo; Cyberpunk: arco a la derecha en degradado azul-violeta). */
+    static final class Arc extends View {
+        float frac = 0;
+        final float s;
+        final Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
+        Arc(Context c, float s) { super(c); this.s = s; }
+        void set(float f) { f = Math.max(0, Math.min(1, f)); if (Math.abs(f - frac) > 0.004f) { frac = f; invalidate(); } }
+        @Override protected void onDraw(Canvas c) {
+            float w = getWidth(), h = getHeight();
+            p.setStyle(Paint.Style.STROKE);
+            p.setStrokeCap(Paint.Cap.ROUND);
+            if (skin == GLACIER) {
+                float sw = 6 * s, r = Math.min(w, h) / 2 - sw * 2;
+                RectF o = new RectF(w / 2 - r, h / 2 - r, w / 2 + r, h / 2 + r);
+                p.setStrokeWidth(sw);
+                p.setColor(0x1F7DD3FC);
+                c.drawArc(o, 135, 270, false, p);
+                if (frac > 0) {
+                    for (int g = 3; g >= 1; g--) { p.setStrokeWidth(sw + g * 4 * s); p.setColor(alpha(0xFF7DD3FC, 0x18)); c.drawArc(o, 135, 270 * frac, false, p); }
+                    p.setStrokeWidth(sw);
+                    p.setColor(0xFF7DD3FC);
+                    c.drawArc(o, 135, 270 * frac, false, p);
+                }
+            } else {
+                float sw = 9 * s, r = h * 0.9f;
+                RectF o = new RectF(w - r * 2 + r * 0.25f, h / 2 - r, w + r * 0.25f, h / 2 + r);
+                p.setStrokeCap(Paint.Cap.BUTT);
+                p.setStrokeWidth(sw);
+                p.setColor(0x26FFFFFF);
+                c.drawArc(o, -75, 150, false, p);
+                if (frac > 0) {
+                    p.setShader(new LinearGradient(0, h, 0, 0, 0xFF1E8BFF, 0xFFC026FF, Shader.TileMode.CLAMP));
+                    c.drawArc(o, 75, -150 * frac, false, p);
+                    p.setShader(null);
+                }
+            }
+        }
+    }
+
+    /** Miniatura del tema para la galería de Ajustes. */
+    static void thumb(Context ctx, Canvas c, int w, int h, String id) {
+        int keep = skin;
+        Context keepApp = app;
+        setSkin(ctx, id);
+        float k = w / 1024f;
+        Paint p = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+        // escena
+        Backdrop bd = new Backdrop(ctx, null, false);
+        bd.layout(0, 0, w, h);
+        c.save();
+        c.clipRect(112 * k, 60 * k, w, h);
+        c.translate(0, 0);
+        bd.draw(c);
+        c.restore();
+        // carro y su piso
+        Bitmap car = render(ctx, "hatch", skin == GLACIER ? "silver" : skin == CYBER ? "black" : "white", 4);
+        float cw = 560 * k, chh = cw * CH / CW, cx = 300 * k, gy = 380 * k;
+        if (skin == CIRCUIT) {
+            for (float x = 112 * k, i = 0; x < w; x += 34 * k, i++) { p.setColor(((int) i) % 2 == 0 ? 0xFFFFD000 : 0xFFF2F2F2); c.drawRect(x, gy - 2 * k, x + 34 * k, gy + 3 * k, p); }
+        } else if (skin == GLACIER) {
+            p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(Math.max(1, 3 * k)); p.setColor(0xAA7DD3FC);
+            c.drawOval(new RectF(cx + 30 * k, gy - 34 * k, cx + cw - 30 * k, gy + 30 * k), p); p.setStyle(Paint.Style.FILL);
+        }
+        if (car != null) c.drawBitmap(car, null, new RectF(cx, gy - chh * GROUND / CH, cx + cw, gy - chh * GROUND / CH + chh), p);
+        // menú, cabecera, paneles y consola
+        p.setShader(null);
+        p.setColor(railTop()); c.drawRect(0, 0, 112 * k, h, p);
+        p.setColor(headTop()); c.drawRect(112 * k, 0, w, 60 * k, p);
+        Drawable on = skinRailOn(k, 0xFFFF6A1A);
+        on.setBounds(0, (int) (6 * k), (int) (112 * k), (int) (100 * k)); on.draw(c);
+        p.setColor(railIconOff());
+        for (int i = 0; i < 4; i++) c.drawRect(38 * k, (140 + i * 84) * k, 74 * k, (164 + i * 84) * k, p);
+        Drawable pn = panel(k, true);
+        if (pn != null) { pn.setBounds((int) (720 * k), (int) (90 * k), (int) (1004 * k), (int) (300 * k)); pn.draw(c); }
+        p.setColor(0xFFFFFFFF);
+        p.setTypeface(numFace());
+        p.setTextSize(110 * k);
+        c.drawText("72", 760 * k, 240 * k, p);
+        for (int i = 0; i < 6; i++) {
+            Drawable t = skinTile(k, 0xFFFF6A1A);
+            float x = (140 + i * 146) * k;
+            t.setBounds((int) x, (int) (480 * k), (int) (x + 136 * k), (int) (580 * k));
+            t.draw(c);
+        }
+        skin = keep;
+        app = keepApp != null ? keepApp : app;
+        fLabel = fNum = fTitle = null;
+    }
+
     static Typeface cond(boolean bold) { return Typeface.create("sans-serif-condensed", bold ? Typeface.BOLD : Typeface.NORMAL); }
 
     /** Cuadrante de Instrumentos (turómetro o velocímetro) con zona roja, aguja y el número grande en el centro. */

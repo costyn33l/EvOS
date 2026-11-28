@@ -30,7 +30,11 @@ final class Ev {
     private Ev() { }
 
     static final String AERO = "aero", MONO = "monolith", PULSE = "pulse", NEON = "neon", INFERNO = "inferno", SHOW = Show.ID;
-    static final String[] IDS = {SHOW, AERO, MONO, PULSE, NEON, INFERNO};
+    /** Variantes del Showroom (misma distribución, otro diseño): reemplazan a los temas premium. */
+    static final String GLACIER = "sr_glacier", CYBER = "sr_cyber", CIRCUIT = "sr_circuit";
+    static final String[] IDS = {SHOW, GLACIER, CYBER, CIRCUIT, AERO, MONO, PULSE, NEON, INFERNO};
+    /** ¿Es el Showroom o una de sus variantes? */
+    static boolean isShow(String x) { return SHOW.equals(x) || GLACIER.equals(x) || CYBER.equals(x) || CIRCUIT.equals(x); }
     /** Tema en uso; null = Clásico (sin piel). Lo fija Main.applyTheme. */
     static String id;
 
@@ -41,17 +45,21 @@ final class Ev {
         for (String i : IDS) if (i.equals(x)) return i;
         return null;
     }
-    static boolean forcesDark(String x) { return NEON.equals(x) || INFERNO.equals(x) || SHOW.equals(x); }
+    static boolean forcesDark(String x) { return NEON.equals(x) || INFERNO.equals(x) || isShow(x); }
     /** Showroom tiene su propia distribución (menú lateral y secciones), no la piel sobre el inicio de siempre. */
-    static boolean show() { return SHOW.equals(id); }
+    static boolean show() { return isShow(id); }
 
     static String name(String x) {
-        return SHOW.equals(x) ? "Showroom" : AERO.equals(x) ? "Aero" : MONO.equals(x) ? "Monolith" : PULSE.equals(x) ? "Pulse" : NEON.equals(x) ? "Neon" : "Inferno";
+        return SHOW.equals(x) ? "Showroom" : GLACIER.equals(x) ? "Showroom Glacier" : CYBER.equals(x) ? "Showroom Cyberpunk"
+            : CIRCUIT.equals(x) ? "Showroom Circuit" : AERO.equals(x) ? "Aero" : MONO.equals(x) ? "Monolith" : PULSE.equals(x) ? "Pulse" : NEON.equals(x) ? "Neon" : "Inferno";
     }
 
     /** Descripción (en español: se traduce al mostrarla). */
     static String desc(String x) {
         if (SHOW.equals(x)) return "Como un salón de exposición: menú lateral con Mapa, Música, Vehículo, Apps y Ajustes, el carro sobre un piso con rejilla y la consola de botones abajo. Elige el modelo y el color del carro. Siempre oscuro.";
+        if (GLACIER.equals(x)) return "Showroom de noche en azul hielo: el carro sobre una plataforma giratoria con anillos de luz, menú de vidrio y la velocidad dentro de un arco. Siempre oscuro.";
+        if (CYBER.equals(x)) return "Showroom cyberpunk: ciudad de noche con un puente de neón y el asfalto mojado, paneles de vidrio con bordes azules y violetas. Siempre oscuro.";
+        if (CIRCUIT.equals(x)) return "Showroom de carreras: fibra de carbono, el piano de la pista bajo el carro, luces de cambio de marcha y amarillo de señal. Siempre oscuro.";
         if (AERO.equals(x)) return "Tarjetas de vidrio esmerilado sobre un fondo oscuro, acentos verde menta y la velocidad en grande con una barra de energía. Tiene versión clara.";
         if (MONO.equals(x)) return "Instrumento de precisión: negro mate, líneas finas en lugar de tarjetas, la velocidad enorme y una regla con aguja. Tiene versión clara.";
         if (PULSE.equals(x)) return "Cuadrante de auto eléctrico con tres arcos: velocidad, revoluciones y refrigerante, en rosa, violeta y cian. Tiene versión clara.";
@@ -65,6 +73,12 @@ final class Ev {
     static int[] palette(String x, boolean light) {
         if (SHOW.equals(x))
             return new int[]{0xFF070707, 0xFF141414, 0xFF1A1A1A, 0xFF262626, 0xFF0B0B0B, 0xFFF2F2F2, 0xFF8E8E8E, 0xFFCFCFCF, 0xFF1C1C1C, 0xFFFFFFFF};
+        if (GLACIER.equals(x))
+            return new int[]{0xFF050A14, 0xFF0F1A2B, 0xFF14223A, 0xFF1B2B45, 0xFF07101D, 0xFFE8F1FA, 0xFF8FA2B8, 0xFFC9D8E8, 0xFF101C2E, 0xFFFFFFFF};
+        if (CYBER.equals(x))
+            return new int[]{0xFF05061A, 0xFF0E1230, 0xFF141A40, 0xFF1A2150, 0xFF060820, 0xFFF0F2FF, 0xFF8F96C8, 0xFFCDD2F2, 0xFF10143A, 0xFFFFFFFF};
+        if (CIRCUIT.equals(x))
+            return new int[]{0xFF0A0A0A, 0xFF151515, 0xFF1B1B1B, 0xFF242424, 0xFF000000, 0xFFFFFFFF, 0xFF8A8A8A, 0xFFD0D0D0, 0xFF181818, 0xFFFFFFFF};
         if (AERO.equals(x)) return light
             ? new int[]{0xFFE6ECF2, 0xFFFFFFFF, 0xFFEFF3F8, 0xFFDFE6EE, 0xFFDCE4EC, 0xFF0E1726, 0xFF5B6577, 0xFF2E3A4C, 0xFFFFFFFF, 0xFF1E2A3A}
             : new int[]{0xFF06080D, 0xFF121822, 0xFF1A2130, 0xFF1E2634, 0xFF0A0D14, 0xFFEEF3F8, 0xFF8D99AB, 0xFFC7D0DC, 0xFF161D29, 0xFFFFFFFF};
@@ -82,6 +96,9 @@ final class Ev {
     /** Color de acento funcional (botones, interruptores): con texto blanco encima se tiene que leer. */
     static int accent(String x, int user) {
         if (SHOW.equals(x)) return user;
+        if (GLACIER.equals(x)) return 0xFF38B6F0;
+        if (CYBER.equals(x)) return 0xFF1E8BFF;
+        if (CIRCUIT.equals(x)) return 0xFFFFD000;
         if (AERO.equals(x)) return 0xFF0E9F87;
         if (MONO.equals(x)) return 0xFFF0501A;
         if (PULSE.equals(x)) return 0xFFE0267D;
@@ -92,6 +109,9 @@ final class Ev {
     /** Color de luz (adornos, brillos, arcos). */
     static int glow(String x, int user) {
         if (SHOW.equals(x)) return user;
+        if (GLACIER.equals(x)) return 0xFF7DD3FC;
+        if (CYBER.equals(x)) return 0xFF1E8BFF;
+        if (CIRCUIT.equals(x)) return 0xFFFFD000;
         if (AERO.equals(x)) return 0xFF5CFFC8;
         if (MONO.equals(x)) return 0xFFFF5A1F;
         if (PULSE.equals(x)) return 0xFFFF2E88;
@@ -100,7 +120,8 @@ final class Ev {
     }
 
     static float cardRadius() {
-        if (SHOW.equals(id)) return 2;
+        if (SHOW.equals(id) || CIRCUIT.equals(id) || CYBER.equals(id)) return 2;
+        if (GLACIER.equals(id)) return 20;
         if (MONO.equals(id)) return 3;
         if (INFERNO.equals(id)) return 6;
         if (NEON.equals(id)) return 22;
@@ -117,7 +138,7 @@ final class Ev {
     /** Letra de los números grandes (velocidad, valores del escáner). */
     static Typeface numFace() {
         if (MONO.equals(id)) return Typeface.create("sans-serif-condensed", Typeface.NORMAL);
-        if (SHOW.equals(id)) return Typeface.create("sans-serif-condensed", Typeface.BOLD);
+        if (isShow(id)) return Show.numFace();
         if (INFERNO.equals(id)) return Typeface.create("sans-serif-condensed", Typeface.BOLD_ITALIC);
         if (AERO.equals(id)) return Typeface.create("sans-serif-light", Typeface.NORMAL);
         return Typeface.create("sans-serif-medium", Typeface.NORMAL);
@@ -247,7 +268,7 @@ final class Ev {
                 c.drawLine(rf.left, rf.top + s, rf.right - ch, rf.top + s, line);
                 return;
             }
-            if (SHOW.equals(st)) {
+            if (isShow(st)) {
                 if (!border) { fill.setShader(new LinearGradient(0, b.top, 0, b.bottom, 0xFF181818, 0xFF111111, Shader.TileMode.CLAMP)); c.drawRect(rf, fill); fill.setShader(null); }
                 line.setStrokeWidth(px);
                 line.setColor(0xFF242424);
@@ -385,7 +406,7 @@ final class Ev {
             c.restore();
             radial(c, w * 0.12f, 0, w * 0.4f, 0x408C140A);
             flames(c, w, h, p);
-        } else if (SHOW.equals(st)) {
+        } else if (isShow(st)) {
             radial(c, w * 0.42f, h * 0.55f, w * 0.55f, 0x10FFFFFF);
         } else if (MONO.equals(st)) {
             Paint p = new Paint();
@@ -835,7 +856,7 @@ final class Ev {
         }
 
         private void drawMini(Canvas c, int w, int h) {
-            if (SHOW.equals(st)) { drawShow(c, w, h); return; }
+            if (isShow(st)) { drawShow(c, w, h, st); return; }
             String keep = id;
             id = st;
             float k = w / 1024f;
@@ -876,7 +897,8 @@ final class Ev {
             id = keep;
         }
 
-        private void drawShow(Canvas c, int w, int h) {
+        private void drawShow(Canvas c, int w, int h, String st) {
+            if (!SHOW.equals(st)) { Show.thumb(getContext(), c, w, h, st); return; }
             float k = w / 1024f;
             Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
             p.setColor(0xFF101010);

@@ -900,12 +900,6 @@ public class Main extends Activity {
                 }
                 else if (v.startsWith("ev-n:")) { prefs.edit().putInt("ev_obd_n", Integer.parseInt(v.substring(5))).apply(); rebuild(); }
                 else if (v.startsWith("musica-ev:")) { prefs.edit().putBoolean("show_player", v.endsWith("1")).apply(); rebuild(); }
-                else if (v.startsWith("tema-premium:")) {
-                    // tema-premium:aurora lo aplica; «tema-premium:» lo quita
-                    applyPremium(v.length() > 13 ? v.substring(13) : null);
-                }
-                else if (v.startsWith("lic-prueba:")) prefs.edit().putBoolean("lic_test", v.endsWith("1")).apply();
-                else if (v.startsWith("desbloquear:")) unlockDialog(v.substring(12));
                 else if (v.startsWith("paquete:")) Prem.forceBundle = v.endsWith("1");
                 else if (v.startsWith("lic-codigo:")) checkCode(Faro.ID, v.substring(11));
                 else if ("lic-usb".equals(v)) importLicense(Faro.ID);
@@ -1693,7 +1687,7 @@ public class Main extends Activity {
     private TextView srLabel(String es, float size, int color) {
         TextView v = tv("", size, color, true);
         v.setText(I18n.t(es).toUpperCase(I18n.loc));
-        v.setTypeface(Show.cond(true));
+        v.setTypeface(Show.labelFace());
         if (SDK >= 21) v.setLetterSpacing(0.14f);
         return v;
     }
@@ -1701,7 +1695,7 @@ public class Main extends Activity {
     private TextView srNum(String t, float size, int color) {
         TextView v = tv("", size, color, true);
         v.setText(t);
-        v.setTypeface(Show.cond(true));
+        v.setTypeface(Show.numFace());
         return v;
     }
 
@@ -1714,8 +1708,8 @@ public class Main extends Activity {
     /** Botón de la consola: ícono arriba, nombre abajo y la línea de color. */
     private FrameLayout srTile(String ic, String es, boolean accentIcon, float w, float hh, View.OnClickListener tap) {
         FrameLayout f = new FrameLayout(this);
-        f.setBackground(Show.tile(s, RED));
-        ImageView iv = srIcon(ic, 28, accentIcon ? RED : TEXT);
+        f.setBackground(Show.skinTile(s, RED));
+        ImageView iv = srIcon(ic, 28, Show.consoleIcon(ic, RED, TEXT, accentIcon));
         f.addView(iv, new FrameLayout.LayoutParams((int) (28 * s), (int) (28 * s), Gravity.CENTER_HORIZONTAL | Gravity.TOP));
         ((FrameLayout.LayoutParams) iv.getLayoutParams()).topMargin = (int) ((hh * 0.5f - 24) * s);
         TextView l = srLabel(es, 13, TEXT);
@@ -1735,7 +1729,7 @@ public class Main extends Activity {
 
     private void buildShowroom() {
         srVals.clear(); srSparks.clear(); srParamKey = ""; srDiagKey = "";
-        srTach = srSpeedo = null; srRpmBar = null; srSpeedTv = null; srWifiIc = srBtIc = null; srGaugeRow = null;
+        srTach = srSpeedo = null; srRpmBar = null; srSpeedTv = null; srWifiIc = srBtIc = null; srGaugeRow = null; srArc = null;
         for (int i = 0; i < srSubs.length; i++) srSubs[i] = null;
         srCW = 912 + ex;
         srPW = srCW - 104;
@@ -1774,9 +1768,9 @@ public class Main extends Activity {
 
     private void srBuildHeader() {
         FrameLayout hd = new FrameLayout(this);
-        hd.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{0xFF0D0D0D, 0xFF080808}));
+        hd.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{Show.headTop(), Show.headBottom()}));
         place(board, hd, 112, 0, srCW, 60);
-        place(hd, srHair(0xFF1A1A1A), 0, 59, srCW, 1);
+        place(hd, srHair(Show.headEdge()), 0, 59, srCW, 1);
         srCrumb = srLabel("", 17, TEXT);
         srCrumb.setGravity(Gravity.CENTER_VERTICAL);
         place(hd, srCrumb, 24, 0, srCW * 0.5f, 60);
@@ -1838,9 +1832,9 @@ public class Main extends Activity {
 
     private void srBuildRail() {
         FrameLayout rail = new FrameLayout(this);
-        rail.setBackground(new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[]{0xFF0B0B0B, 0xFF111111}));
+        rail.setBackground(new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[]{Show.railTop(), Show.railBottom()}));
         place(board, rail, 0, 0, 112, 600);
-        place(rail, srHair(0xFF1C1C1C), 111, 0, 1, 600);
+        place(rail, srHair(Show.railEdge()), 111, 0, 1, 600);
         String[] ic = {"home", "nav", "media", "car", "apps", "gear"};
         String[] nm = {null, "Mapa", "Música", "Vehículo", "Apps", "Ajustes"};
         float y = 0;
@@ -1854,7 +1848,7 @@ public class Main extends Activity {
             b.addView(iv, ilp);
             TextView l = null;
             if (nm[i] != null) {
-                l = srLabel(nm[i], 14, 0xFF9A9A9A);
+                l = srLabel(nm[i], 14, Show.railLabelOff());
                 l.setGravity(Gravity.CENTER);
                 FrameLayout.LayoutParams llp = new FrameLayout.LayoutParams(-1, -2, Gravity.TOP);
                 llp.topMargin = (int) (54 * s);
@@ -1862,7 +1856,7 @@ public class Main extends Activity {
             }
             b.setTag(l);
             place(rail, b, 0, y, 111, hh);
-            if (i == 0) place(rail, srHair(0xFF1C1C1C), 0, 63, 111, 1);
+            if (i == 0 && Show.skin == Show.CLASSIC) place(rail, srHair(0xFF1C1C1C), 0, 63, 111, 1);
             y += hh;
             if (i < 4) srRail[i] = b;
             b.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {
@@ -1897,10 +1891,10 @@ public class Main extends Activity {
             View b = srRail[i];
             if (b == null) continue;
             boolean on = i == srSec;
-            b.setBackground(on ? Show.railOn(s, RED) : null);
+            b.setBackground(on ? Show.skinRailOn(s, RED) : null);
             TextView l = (TextView) b.getTag();
-            if (l != null) l.setTextColor(on ? TEXT : 0xFF9A9A9A);
-            ((ImageView) ((FrameLayout) b).getChildAt(0)).setColorFilter(on ? TEXT : 0xFFD6D6D6);
+            if (l != null) l.setTextColor(on ? Show.railOnInk(TEXT) : Show.railLabelOff());
+            ((ImageView) ((FrameLayout) b).getChildAt(0)).setColorFilter(on ? Show.railOnInk(TEXT) : Show.railIconOff());
         }
         if (srSec == 1 && liveMap != null) liveMap.follow();
         if (srSec == 3) srShowSub(srSub);
@@ -1911,11 +1905,12 @@ public class Main extends Activity {
 
     private void srBuildHome(FrameLayout sec) {
         float W = srCW;
-        sec.addView(new Show.Floor(this, 0.28f, 0.36f), new FrameLayout.LayoutParams(-1, -1));
+        final Show.Car car = srCarView(true);
+        sec.addView(Show.backdrop(this, 0.28f, 0.36f, car, false), new FrameLayout.LayoutParams(-1, -1));
+        boolean skinned = Show.skin != Show.CLASSIC;
         boolean named = prefs.getString("car_name", "").trim().length() > 0;
         if (named) place(sec, srLabel("Mi vehículo", 12, MUTED), 28, 24, 400, 16);
         placeWrap(sec, srNameRow(26), 28, named ? 42 : 30);
-        final Show.Car car = srCarView(true);
         place(sec, car, 38, 166, Math.min(520, W - 380), 266);
         car.setOnClickListener(new View.OnClickListener() { public void onClick(View v) { srSub = 0; srShow(3); } });
         car.setOnLongClickListener(new View.OnLongClickListener() { public boolean onLongClick(View v) { srOpenModel(); return true; } });
@@ -1928,6 +1923,17 @@ public class Main extends Activity {
             srSpeedTv = null; srSpeedSrc = null; srLimitTv = null;
             y = 318;
         } else if (carSpeed) {
+            srArc = null;
+            if (skinned) {
+                // panel de la velocidad con su arco (Glacier y Cyberpunk) o las luces de cambio arriba (Circuit)
+                View pn = new View(this);
+                pn.setBackground(Show.panel(s, true));
+                place(sec, pn, rx - 16, y - 12, 334, 160);
+                if (Show.skin != Show.CIRCUIT) {
+                    srArc = new Show.Arc(this, s);
+                    place(sec, srArc, rx + 196, y - 4, 118, 144);
+                }
+            }
             srSpeedSrc = srLabel("Velocidad · GPS", 12, MUTED);
             place(sec, srSpeedSrc, rx, y, 260, 16);
             LinearLayout sp = new LinearLayout(this);
@@ -1947,8 +1953,8 @@ public class Main extends Activity {
             lb.setStroke((int) (5 * s), 0xFFE5323B);
             srLimitTv.setBackground(lb);
             srLimitTv.setVisibility(View.GONE);
-            place(sec, srLimitTv, rx + 260, y + 70, 46, 46);
-            y += 144;
+            place(sec, srLimitTv, skinned && Show.skin != Show.CIRCUIT ? rx + 210 : rx + 260, y + 70, 46, 46);
+            y += skinned ? 158 : 144;
         } else { srSpeedTv = null; srSpeedSrc = null; srLimitTv = null; }
         boolean obd = obdOn();
         if (obd && !clOn) {
@@ -1959,18 +1965,28 @@ public class Main extends Activity {
             y += 46;
             String[] keys = evKeys();
             boolean four = keys.length == 4;
-            place(sec, srHair(HAIR_SR), rx, y, 306, 1);
+            if (!skinned) place(sec, srHair(HAIR_SR), rx, y, 306, 1);
             for (int i = 0; i < keys.length; i++) {
                 Obd.Sensor sn = obdSensor(keys[i]);
                 if (sn == null) continue;
                 int col = i % 2, row = i / 2;
                 float cx = rx + col * 153 + (col == 1 ? 18 : 0), cy = y + 12 + row * 64;
-                if (col == 1) place(sec, srHair(HAIR_SR), rx + 153, y + 6 + row * 64, 1, 56);
-                place(sec, obdIcon(sn.key, 0xFFBDBDBD), cx, cy + 1, 14, 14);
+                if (skinned) {
+                    // cada dato en su panel, con una barra de cuánto marca (como en el diseño cyberpunk)
+                    View pn = new View(this);
+                    pn.setBackground(Show.panel(s, false));
+                    place(sec, pn, cx - 10, cy - 7, 146, 61);
+                } else if (col == 1) place(sec, srHair(HAIR_SR), rx + 153, y + 6 + row * 64, 1, 56);
+                place(sec, obdIcon(sn.key, skinned ? Show.consoleIcon("", RED, TEXT, false) : 0xFFBDBDBD), cx, cy + 1, 14, 14);
                 place(sec, srLabel(sn.label, 12, MUTED), cx + 20, cy, 115, 16);
-                TextView v = srNum("—", four ? 32 : 40, TEXT);
-                place(sec, v, cx, cy + 20, 135, four ? 34 : 42);
-                srVals.add(new Object[]{sn, v});
+                TextView v = srNum("—", four ? (skinned ? 28 : 32) : 40, TEXT);
+                place(sec, v, cx, cy + (skinned ? 16 : 20), 135, four ? (skinned ? 30 : 34) : 42);
+                if (skinned && sn.max > sn.min) {
+                    Show.Bar bar = new Show.Bar(this, RED);
+                    place(sec, bar, cx, cy + (four ? 48 : 58) - (four ? 0 : 0), 124, 3);
+                    int bc = Show.skin == Show.CYBER ? (i % 2 == 0 ? 0xFF1E8BFF : 0xFFC026FF) : RED;
+                    srVals.add(new Object[]{sn, v, bar, bc});
+                } else srVals.add(new Object[]{sn, v});
             }
             y += 12 + (four ? 2 : 1) * 64 + 8;
         }
@@ -2000,6 +2016,7 @@ public class Main extends Activity {
     }
 
     static final int HAIR_SR = 0xFF1E1E1E;
+    private Show.Arc srArc;
 
     /** Pone los botones centrados en una fila (más angostos si no caben). */
     private void srConsole(FrameLayout parent, List<View> tiles, float W, float y, float maxW) {
@@ -2093,6 +2110,7 @@ public class Main extends Activity {
 
     /** Velocidad (desde showSpeed): número grande, de dónde viene y la señal de límite si la navegación la conoce. */
     private void srSpeed(float v, boolean ok, boolean obd, int limit) {
+        if (srArc != null) srArc.set(ok ? v / (useMph() ? 125f : 200f) : 0);
         if (srSpeedTv != null) {
             srSpeedTv.setText(ok ? String.valueOf(Math.round(v)) : "--");
             srSpeedSrc.setText(I18n.t(obd ? "Velocidad · OBD" : "Velocidad · GPS").toUpperCase(I18n.loc));
@@ -2141,7 +2159,7 @@ public class Main extends Activity {
 
     private void srBuildMedia(FrameLayout sec) {
         float W = srCW;
-        sec.addView(new Show.Floor(this, 0.30f, 0.24f), new FrameLayout.LayoutParams(-1, -1));
+        sec.addView(Show.backdrop(this, 0.30f, 0.24f, null, true), new FrameLayout.LayoutParams(-1, -1));
         playerArt = new PlayerArt(this, s, asset("ic/music_note.png"));
         place(sec, playerArt, 56, 52, 300, 300);
         playerArt.setOnClickListener(new View.OnClickListener() { public void onClick(View v) { openMusicApp(); } });
@@ -2156,7 +2174,7 @@ public class Main extends Activity {
         place(sec, timePosTv, tx, 180, tw, 20);
         FrameLayout prev = srTile("prev", "Anterior", false, 0, 78, mediaClick(KeyEvent.KEYCODE_MEDIA_PREVIOUS));
         FrameLayout play = new FrameLayout(this);
-        play.setBackground(Show.tileOn(s, RED));
+        play.setBackground(Show.skinTileOn(s, RED));
         playIc = icon("play_arrow", 40);
         playIc.setColorFilter(RED);
         play.addView(playIc, new FrameLayout.LayoutParams((int) (40 * s), (int) (40 * s), Gravity.CENTER));
@@ -2224,7 +2242,7 @@ public class Main extends Activity {
             View b = srSubBtn[i];
             if (b == null) continue;
             boolean on = i == srSub || (srSub == 6 && i == 0);
-            b.setBackground(on ? Show.tileOn(s, RED) : null);
+            b.setBackground(on ? Show.skinTileOn(s, RED) : null);
             ((TextView) b.getTag()).setTextColor(on ? TEXT : 0xFF9A9A9A);
             ((ImageView) ((FrameLayout) b).getChildAt(0)).setColorFilter(on ? TEXT : 0xFFCFCFCF);
         }
@@ -2238,9 +2256,9 @@ public class Main extends Activity {
 
     private void srBuildPresent(FrameLayout p) {
         float W = srPW;
-        p.addView(new Show.Floor(this, 0.30f, 0.45f), new FrameLayout.LayoutParams(-1, -1));
-        placeWrap(p, srNameRow(24), 28, 22);
         Show.Car car = srCarView(true);
+        p.addView(Show.backdrop(this, 0.30f, 0.45f, car, false), new FrameLayout.LayoutParams(-1, -1));
+        placeWrap(p, srNameRow(24), 28, 22);
         place(p, car, 40, 150, Math.min(560, W - 250), 286);
         car.setOnClickListener(new View.OnClickListener() { public void onClick(View v) { srOpenModel(); } });
         LinearLayout col = new LinearLayout(this);
@@ -2311,7 +2329,7 @@ public class Main extends Activity {
             TextView t = srLabel(Cluster.name(k), 12, k.equals(cur) ? TEXT : 0xFF8E8E8E);
             t.setGravity(Gravity.CENTER);
             t.setPadding((int) (12 * s), 0, (int) (12 * s), 0);
-            if (k.equals(cur)) t.setBackground(Show.tileOn(s, RED));
+            if (k.equals(cur)) t.setBackground(Show.skinTileOn(s, RED));
             t.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {
                 prefs.edit().putString("cl_instr", k).apply();
                 rebuild();
@@ -2790,7 +2808,7 @@ public class Main extends Activity {
         final boolean photo = Show.PHOTO.equals(cur);
         float colX = W - 234;
         FrameLayout fl = new FrameLayout(this);
-        fl.addView(new Show.Floor(this, 0.22f, 0.5f), new FrameLayout.LayoutParams(-1, -1));
+        fl.addView(Show.backdrop(this, 0.22f, 0.5f, null, true), new FrameLayout.LayoutParams(-1, -1));
         place(p, fl, 0, 0, colX - 14, 350);
         place(p, srLabel("Modelo mostrado", 12, MUTED), 28, 20, 400, 16);
         TextView nm = tv("", 24, TEXT, false);
@@ -2833,7 +2851,7 @@ public class Main extends Activity {
             final String key = i == 0 ? Show.PHOTO : Show.MODEL_KEYS[i - 1];
             boolean on = key.equals(cur);
             FrameLayout t = new FrameLayout(this);
-            t.setBackground(on ? Show.tileOn(s, RED) : new Show.Tile(s, 0xFF2A2A2A, 0xFF1F1F1F, RED, 0, true));
+            t.setBackground(on ? Show.skinTileOn(s, RED) : new Show.Tile(s, 0xFF2A2A2A, 0xFF1F1F1F, RED, 0, true));
             TextView l = srLabel(i == 0 ? "Tu foto" : Show.MODEL_NAMES[i - 1], 12, on ? TEXT : 0xFFBDBDBD);
             l.setGravity(Gravity.CENTER);
             FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(-1, -2, Gravity.BOTTOM);
@@ -6752,8 +6770,8 @@ public class Main extends Activity {
 
     /** Tema premium elegido y desbloqueado. */
     private boolean premiumActive() {
-        String id = prefs.getString("premium_theme", null);
-        return id != null && premiumUnlocked(id);
+        // 1.1: los temas premium (Aurora, Cobalto, Faro, Carbono) se quitaron; los reemplazan las variantes del Showroom
+        return false;
     }
 
     /** Aurora y Cobalto son gratis para todos desde la 2.24. Los temas siguientes: en EvOS Prueba sin código
@@ -11303,6 +11321,12 @@ public class Main extends Activity {
         LIGHT = !themeDark(mode);
         // Temas EvOS (1.0): piel sobre el inicio de siempre; Neon e Inferno son siempre oscuros
         Ev.id = premiumActive() ? null : Ev.valid(prefs.getString("ev_theme", Ev.AERO));
+        // quien tenía un tema premium elegido pasa al Showroom
+        if (prefs.contains("premium_theme")) {
+            prefs.edit().remove("premium_theme").putString("ev_theme", Ev.SHOW).apply();
+            Ev.id = Ev.SHOW;
+        }
+        Show.setSkin(this, Ev.id);
         if (Ev.on() && Ev.forcesDark(Ev.id)) LIGHT = false;
         if (LIGHT) {
             BG = 0xFFE9ECF1; CARD = 0xFFFFFFFF; INNER = 0xFFF1F3F7; BTN = 0xFFE2E6EC; DOCK = 0xFFDDE1E8;
@@ -12012,7 +12036,7 @@ public class Main extends Activity {
         body.addView(h2);
         String cur = premiumActive() ? null : Ev.valid(prefs.getString("ev_theme", Ev.AERO));
         boolean classicInUse = !premiumActive() && cur == null;
-        String[] ids = {Ev.SHOW, Ev.AERO, Ev.MONO, Ev.PULSE, Ev.NEON, Ev.INFERNO, null};
+        String[] ids = {Ev.SHOW, Ev.GLACIER, Ev.CYBER, Ev.CIRCUIT, Ev.AERO, Ev.MONO, Ev.PULSE, Ev.NEON, Ev.INFERNO, null};
         int perRow = portrait ? 2 : 3;
         float cellGap = 12;
         int userAccent = prefs.getInt("accent", 0xFFFE3211);
@@ -12077,6 +12101,7 @@ public class Main extends Activity {
             row(c, "Modelo del carro", I18n.t(Show.PHOTO.equals(srModel()) ? "Tu foto" : Show.modelName(srModel())) + " · " + I18n.t(Show.paintName(srPaint())), null,
                 new Runnable() { public void run() { srOpenModel(); } });
             final String[] an = {"Naranja", "Rojo", "Amarillo", "Verde", "Azul", "Violeta"};
+            if (Ev.SHOW.equals(Ev.id)) {
             int ai = 0;
             for (int i = 0; i < Show.ACCENTS.length; i++) if (Show.ACCENTS[i] == prefs.getInt("sr_accent", Show.ACCENTS[0])) ai = i;
             row(c, "Color de acento", I18n.t(an[ai]), null, new Runnable() { public void run() {
@@ -12088,6 +12113,7 @@ public class Main extends Activity {
                         applyAccent(); rebuild(); showSettings(C_STYLE);
                     }}).show();
             }});
+            }
         } else {
             toggle(c, "Música Bluetooth en la pantalla", "Si la apagas, el mapa, Android Auto y CarPlay ocupan todo el espacio",
                 prefs.getBoolean("show_player", true), new IntCb() { public void on(int i) {
@@ -12219,7 +12245,6 @@ public class Main extends Activity {
                 public void onClick(View v) { applyFreeTheme(t); }
             });
         }
-        premiumGallery(body, portrait);
     }
 
     private static void multiLine(TextView v) {
@@ -13824,8 +13849,6 @@ public class Main extends Activity {
         LinearLayout k = section(body, "Comunidad");
         row(k, "Dar una estrella en GitHub", "Ayuda a que más personas encuentren EvOS", "★",
             new Runnable() { public void run() { linkDialog("Dar una estrella ⭐", "Abre el repositorio y toca «Star». ¡Gracias!", Updates.REPO_URL); } });
-        row(k, "Donar", "Si EvOS revivió tu pantalla, invítame un café", "☕",
-            new Runnable() { public void run() { linkDialog("Apoya el proyecto ☕", "EvOS es gratis. Las donaciones ayudan a mantenerlo y a probarlo en más pantallas.", Updates.donateUrl(Main.this)); } });
         row(k, "Reportar un problema o sugerir algo", "Crea un «issue» en GitHub (adjunta el diagnóstico)", null,
             new Runnable() { public void run() { linkDialog("Reportar un problema", "Cuenta tu modelo de pantalla y su versión de Android. Puedes adjuntar la carpeta StradaDiag (Sistema → Exportar diagnóstico).", Updates.ISSUES_URL); } });
         row(k, "Código fuente", Updates.REPO_URL.replace("https://", ""), null,
@@ -13983,7 +14006,7 @@ public class Main extends Activity {
         t.setGravity(Gravity.CENTER);
         t.setPadding(0, (int) (14 * s), 0, (int) (8 * s));
         box.addView(t);
-        TextView m = tv("Si te gusta usar EvOS, dale una estrella en GitHub. Y si revivió tu pantalla, considera invitarme un café ☕", 14, SOFT, false);
+        TextView m = tv("Si te gusta usar EvOS, dale una estrella en GitHub. Así más personas lo encuentran.", 14, SOFT, false);
         m.setSingleLine(false);
         m.setGravity(Gravity.CENTER);
         box.addView(m);
@@ -13993,12 +14016,6 @@ public class Main extends Activity {
                 public void onClick(DialogInterface d, int w) {
                     prefs.edit().putBoolean("enjoy_done", true).apply();
                     linkDialog("Dar una estrella ⭐", "Abre el repositorio y toca «Star». ¡Gracias!", Updates.REPO_URL);
-                }
-            })
-            .setNeutralButton("Donar", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface d, int w) {
-                    prefs.edit().putBoolean("enjoy_done", true).apply();
-                    linkDialog("Apoya el proyecto ☕", "EvOS es gratis. Las donaciones ayudan a mantenerlo.", Updates.donateUrl(Main.this));
                 }
             })
             .setNegativeButton("Más tarde", new DialogInterface.OnClickListener() {
