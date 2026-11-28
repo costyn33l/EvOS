@@ -1,0 +1,346 @@
+es
+ro	RO
+ro	0
+ro	GPS
+ro	✕
+ro	Android Auto
+ro	CarPlay
+ro	AUDIO
+ro	Radio
+ro	Bluetooth
+ro	RPM
+ro	—
+ro	°C
+ro	L/100 km
+ro	rpm
+ro	V
+ro	OBD
+ro	★
+ro	90
+ro	14,2
+ro	3.518
+ro	39
+ro	km/h
+ro	86
+ro	%
+ro	48
+ro	32
+ro	38
+ro	+3
+ro	+12
+ro	21
+ro	g/s
+ro	85
+ro	kPa
+ro	17,7
+ro	6,9
+ro	L/h
+ro	14
+ro	7
+ro	9,0
+ro	°
+ro	0,3
+ro	43
+ro	s
+ro	km
+ro	12
+ro	1.840
+ro	78
+ro	600
+ro	75
+ro	1,0
+ro	λ
+ro	1.191
+ro	bar
+ro	77
+ro	68
+ro	214
+ro	Nm
+ro	79
+ro	kW
+ro	1,96
+ro	96
+ro	mbar
+ro	480
+ro	430
+ro	14,5
+ro	g
+ro	14,0
+ro	23,5
+ro	236
+ro	263
+ro	min
+ro	420
+ro	EvOS
+ro	TEME EVOS
+ro	Showroom
+ro	Showroom Glacier
+ro	Showroom Cyberpunk
+ro	Showroom Circuit
+ro	Aero
+ro	Monolith
+ro	Pulse
+ro	Neon
+ro	Inferno
+ro	OPȚIUNILE TEMEI
+ro	Al temei
+ro	Neindicată: cadranul arată % și nu autonomia
+ro	2
+ro	4
+ro	Antigel · Consum · RPM · Baterie
+ro	ASPECTUL ECRANULUI PRINCIPAL
+ro	Vertical
+ro	mph
+ro	— rpm
+ro	Wi-Fi
+ro	Sport
+ro	Motor
+ro	DPF
+ro	Descarc datele modelului…
+ro	Gata: Volkswagen Passat. Deschide «Toate datele» cu mașina conectată
+ro	101
+ro	11,9
+ro	1.970
+ro	56
+ro	55
+ro	18
+ro	+0
+ro	9
+ro	35
+ro	5,3
+ro	3,0
+ro	3
+ro	12,5
+ro	0,5
+ro	157
+ro	1
+ro	40
+ro	350
+ro	22
+ro	67
+ro	1,03
+ro	300
+ro	270
+ro	54
+ro	14,7
+ro	237
+ro	264
+ro	100
+ro	11,8
+ro	1.897
+ro	58
+ro	49
+ro	-1
+ro	5,1
+ro	15,5
+ro	159
+ro	312
+ro	16
+ro	11
+ro	0,98
+ro	99
+ro	1.866
+ro	59
+ro	46
+ro	5,0
+ro	8,5
+ro	0,6
+ro	161
+ro	15
+ro	51
+ro	10
+ro	0,97
+ro	265
+ro	Senzorul de temperatură a uleiului cutiei automate indică valori anormale.
+ro	SUV
+ro	Hatchback
+ro	Coupé
+ro	Hatchback · Argintiu
+ro	Portocaliu
+ro	Antigel · Consum
+ro	ACUM
+ro	Prețuri de la ora 12:17
+ro	TRAFIC ÎN GERMANIA
+ro	Fără cheie
+ro	5 km
+ro	10 km
+ro	15 km
+ro	25 km
+ro	E5
+ro	E10
+ro	2 km
+ro	3 km
+ro	5 min
+ro	10 min
+ro	15 min
+ro	Autobahn GmbH, Tankerkönig, InfraNode, DWD
+ro	În afara Germaniei
+ro	Calendar
+ro	Camera
+ro	Clock
+ro	Contacts
+ro	Files
+ro	Gallery
+ro	Messaging
+ro	ASPECTUL BAREI
+ro	Normală
+ro	BUTOANE (ȚINE-LE APĂSATE PE ECRANUL PRINCIPAL CA SĂ LE SCHIMBI)
+ro	APLICAȚIA FIECĂREI FUNCȚII
+ro	SERTARUL DE APLICAȚII
+ro	Niciuna
+ro	RESETEAZĂ
+ro	APLICAȚIA DE MUZICĂ
+ro	PIESA ÎN REDARE
+ro	Audio Bluetooth
+ro	AUDIO BLUETOOTH
+ro	1,5 s
+ro	2,5 s
+ro	4 s
+ro	AVANSAT
+ro	VREME
+ro	°F
+ro	Ukiah (GPS)
+ro	HARTĂ
+ro	HARTĂ OFFLINE
+ro	A-Z
+ro	Ordine: A-Z
+ro	TEMĂ
+ro	Auto
+ro	CULOARE DE ACCENT
+ro	TEXT
+ro	S
+ro	M
+ro	L
+ro	XL
+ro	PICTOGRAME
+ro	Niciunul
+ro	Zoom: 17
+ro	Android 14 (API 34)
+ro	Permisiune de locație: da
+ro	GPS-ul unității: pornit · locație prin rețea: oprită
+ro	Ultimul semnal: acum 1 s
+ro	Se caută de 12 min
+ro	Poziție: 39.23726, -123.15003
+ro	Hartă offline: niciuna
+ro	Furnizor: OSM Germania
+ro	Trafic live: inactiv
+ro	Dale descărcate: 104 · în cache: 104
+ro	Erori la rând: 0
+ro	Ultima eroare: —
+ro	Surse încercate:
+ro	• OSM Germania: OK
+ro	• OSM Franța: neîncercat
+ro	• OSM Umanitar: neîncercat
+ro	• OpenTopoMap: neîncercat
+ro	• Esri gri închis: neîncercat
+ro	• OpenStreetMap: neîncercat
+ro	TLS gata (TLSv1.2), 118 rădăcini
+ro	Trafic Germania
+ro	În Germania: nu
+ro	Semne pe hartă: 4
+ro	Actualizat: 12:19
+ro	OK
+ro	KILOMETRAJ
+ro	Configurează
+ro	SCHIMB DE ULEI
+ro	ALTE OPERAȚIUNI DE ÎNTREȚINERE
+ro	PE ECRANUL PRINCIPAL
+en	RO
+en	0
+en	GPS
+en	✕
+en	Android Auto
+en	CarPlay
+en	AUDIO
+en	Radio
+en	Bluetooth
+en	Apps
+en	EvOS
+en	BAR LAYOUT
+en	Normal
+en	7
+en	BUTTONS (PRESS AND HOLD THEM ON THE HOME SCREEN TO CHANGE THEM)
+en	APP FOR EACH FUNCTION
+en	APP DRAWER
+en	None
+en	RESET
+en	Calendar
+en	Camera
+en	Clock
+en	Contacts
+en	Files
+en	Gallery
+en	Messaging
+pt	RO
+pt	0
+pt	GPS
+pt	Configurar
+pt	✕
+pt	Android Auto
+pt	CarPlay
+pt	AUDIO
+pt	Bluetooth
+pt	Navegador
+pt	Ajustes
+pt	Apps
+pt	Tráfico: Die Autobahn GmbH des Bundes
+pt	Precios: Tankerkönig.de, CC BY 4.0, MTS-K
+pt	EvOS
+pt	Barra de apps
+pt	Música
+pt	Sistema
+pt	QUILOMETRAGEM
+pt	TROCA DE ÓLEO
+pt	OUTRAS MANUTENÇÕES
+pt	NA TELA INICIAL
+pt	App de música
+pt	APP DE MÚSICA
+pt	TOCANDO AGORA
+pt	ÁUDIO BLUETOOTH
+pt	App de música Bluetooth
+pt	1,5 s
+pt	2,5 s
+pt	4 s
+pt	AVANÇADO
+it	RO
+it	0
+it	GPS
+it	✕
+it	Android Auto
+it	CarPlay
+it	AUDIO
+it	Radio, Bluetooth o USB
+it	Radio
+it	Bluetooth
+it	Tráfico: Die Autobahn GmbH des Bundes
+it	Precios: Tankerkönig.de, CC BY 4.0, MTS-K
+it	EvOS
+it	Sistema
+it	CHILOMETRAGGIO
+it	Configura
+it	CAMBIO DELL'OLIO
+it	ALTRE MANUTENZIONI
+it	NELLA SCHERMATA INIZIALE
+de	RO
+de	0
+de	GPS
+de	✕
+de	Android Auto
+de	CarPlay
+de	AUDIO
+de	Radio
+de	Bluetooth
+de	Apps
+de	Tráfico: Die Autobahn GmbH des Bundes
+de	Precios: Tankerkönig.de, CC BY 4.0, MTS-K
+de	EvOS
+de	DESIGN
+de	Auto
+de	AKZENTFARBE
+de	TEXT
+de	S
+de	M
+de	L
+de	XL
+de	SYMBOLE
+de	Keiner

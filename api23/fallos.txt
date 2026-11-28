@@ -1,0 +1,6 @@
+2026-11-28 12:23:06 · v1.0.0-test · Android 6.0 (API 23) · unknown Android SDK built for x86
+PRUEBA verificar-apk: propio=true otro=false
+
+2026-11-28 12:24:42 · v1.0.0-test · Android 6.0 (API 23) · unknown Android SDK built for x86
+PRUEBA odo-sim: ok=true sumo=7.4492188 esperado=7.450246
+
