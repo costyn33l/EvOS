@@ -2220,3 +2220,47 @@ Un aviso en el mapa al acercarte a un atasco, accidente o cierre; navegando, tam
 Fuentes y licencias	Sources and licences
 Autobahn GmbH, Tankerkönig, InfraNode, DWD	Autobahn GmbH, Tankerkönig, InfraNode, DWD
 Tráfico de las autopistas: Die Autobahn GmbH des Bundes (verkehr.autobahn.de, datos públicos de la app «Autobahn»). Se piden solo las autopistas de alrededor y de tu ruta, cada pocos minutos.\n\nPrecios de combustible: Tankerkönig.de, CC BY 4.0, datos de la Markttransparenzstelle für Kraftstoffe (MTS-K), con tu clave personal.\n\nEstacionamientos y avisos meteorológicos: InfraNode (infranode.dev), con la fuente de cada dato (por ejemplo «Datenbasis: Deutscher Wetterdienst», «Stadt Köln»).\n\nLos datos se muestran solo en esta pantalla: no se guardan ni se reenvían. Ninguna de las fuentes garantiza que estén completos o al día: lo que manda es la señalización de la vía.	Motorway traffic: Die Autobahn GmbH des Bundes (verkehr.autobahn.de, the public data of the «Autobahn» app). Only motorways nearby and on your route are requested, every few minutes.\n\nFuel prices: Tankerkönig.de, CC BY 4.0, data from the Markttransparenzstelle für Kraftstoffe (MTS-K), with your personal key.\n\nCar parks and weather warnings: InfraNode (infranode.dev), with the source of each item (for example «Datenbasis: Deutscher Wetterdienst», «Stadt Köln»).\n\nThe data is shown only on this screen: it isn't stored or passed on. None of the sources guarantees it's complete or current: road signs take precedence.
+Encendido	On
+Datos de tu modelo	Your model's data
+Cambiar	Change
+Elegir modelo	Choose model
+Datos: OBDb (github.com/OBDb), CC BY-SA 4.0 · nombres en inglés, como en OBDb	Data: OBDb (github.com/OBDb), CC BY-SA 4.0
+Según el VIN es un %s: elígelo para leer los datos propios del modelo (caja, batería, climatizador…)	According to the VIN it's a %s: choose it to read the model's own data (gearbox, battery, climate…)
+Elige la marca y el modelo para leer los datos propios del auto (caja, batería, climatizador…), de OBDb	Choose the make and model to read the car's own data (gearbox, battery, climate…), from OBDb
+Se leen con el auto conectado	Read while the car is connected
+Responden %d · no los tiene %d · por probar %d	Answering %d · not available %d · to check %d
+No se usan %d comandos (sin confirmar en OBDb, de otros años o que piden cambiar la sesión de diagnóstico): EvOS solo lee	%d commands aren't used (unconfirmed in OBDb, for other years or requiring a diagnostic session change): EvOS only reads
+según el VIN	from the VIN
+Escribir el nombre de OBDb (Marca-Modelo)	Type the OBDb name (Make-Model)
+Nombre en OBDb, por ejemplo Volkswagen-Passat	OBDb name, for example Volkswagen-Passat
+Escribe Marca-Modelo, como en github.com/OBDb	Type Make-Model, as on github.com/OBDb
+No leer datos del modelo	Don't read model data
+Marca del auto (OBDb)	Car make (OBDb)
+Bajando los datos del modelo…	Downloading the model data…
+Listo: %s. Abre «Todos los datos» con el auto conectado	Done: %s. Open «All data» with the car connected
+Modelo para los datos propios (OBDb)	Model for its own data (OBDb)
+Caja, batería, climatizador… según la base de datos abierta OBDb (solo lectura)	Gearbox, battery, climate… from the open OBDb database (read-only)
+No se pudo bajar el archivo del modelo	Couldn't download the model file
+El archivo del modelo no es válido	The model file isn't valid
+Falta bajar el archivo del modelo	The model file still needs downloading
+Otros	Other
+Climatizador	Climate
+Puertas	Doors
+Neumáticos	Tyres
+Viajes	Trips
+Movimiento	Movement
+Luces	Lights
+Mandos	Controls
+Cinturones	Seatbelts
+Frenos	Brakes
+Escape	Exhaust
+Emisiones	Emissions
+Dirección	Steering
+Suspensión	Suspension
+Electricidad	Electrical
+Carrocería	Body
+Asistencias	Driver assistance
+Airbags	Airbags
+Refrigeración	Cooling
+Ventanillas	Windows
+Multimedia	Infotainment

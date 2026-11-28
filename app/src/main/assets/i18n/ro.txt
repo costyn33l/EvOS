@@ -2190,3 +2190,47 @@ Un aviso en el mapa al acercarte a un atasco, accidente o cierre; navegando, tam
 Fuentes y licencias	Surse și licențe
 Autobahn GmbH, Tankerkönig, InfraNode, DWD	Autobahn GmbH, Tankerkönig, InfraNode, DWD
 Tráfico de las autopistas: Die Autobahn GmbH des Bundes (verkehr.autobahn.de, datos públicos de la app «Autobahn»). Se piden solo las autopistas de alrededor y de tu ruta, cada pocos minutos.\n\nPrecios de combustible: Tankerkönig.de, CC BY 4.0, datos de la Markttransparenzstelle für Kraftstoffe (MTS-K), con tu clave personal.\n\nEstacionamientos y avisos meteorológicos: InfraNode (infranode.dev), con la fuente de cada dato (por ejemplo «Datenbasis: Deutscher Wetterdienst», «Stadt Köln»).\n\nLos datos se muestran solo en esta pantalla: no se guardan ni se reenvían. Ninguna de las fuentes garantiza que estén completos o al día: lo que manda es la señalización de la vía.	Traficul pe autostrăzi: Die Autobahn GmbH des Bundes (verkehr.autobahn.de, datele publice ale aplicației «Autobahn»). Se cer doar autostrăzile din jur și de pe traseu, la câteva minute.\n\nPrețuri carburant: Tankerkönig.de, CC BY 4.0, date de la Markttransparenzstelle für Kraftstoffe (MTS-K), cu cheia ta personală.\n\nParcări și avertizări meteo: InfraNode (infranode.dev), cu sursa fiecărei date (de exemplu «Datenbasis: Deutscher Wetterdienst», «Stadt Köln»).\n\nDatele se afișează doar pe acest ecran: nu se salvează și nu se trimit mai departe. Niciuna dintre surse nu garantează că sunt complete sau la zi: contează semnalizarea de pe drum.
+Encendido	Pornit
+Datos de tu modelo	Date specifice modelului tău
+Cambiar	Schimbă
+Elegir modelo	Alege modelul
+Datos: OBDb (github.com/OBDb), CC BY-SA 4.0 · nombres en inglés, como en OBDb	Date: OBDb (github.com/OBDb), CC BY-SA 4.0 · denumiri în engleză, ca în OBDb
+Según el VIN es un %s: elígelo para leer los datos propios del modelo (caja, batería, climatizador…)	După VIN e un %s: alege-l ca să citești datele specifice modelului (cutie, baterie, climă…)
+Elige la marca y el modelo para leer los datos propios del auto (caja, batería, climatizador…), de OBDb	Alege marca și modelul ca să citești datele specifice mașinii (cutie, baterie, climă…), din OBDb
+Se leen con el auto conectado	Se citesc cu mașina conectată
+Responden %d · no los tiene %d · por probar %d	Răspund %d · nu le are %d · de verificat %d
+No se usan %d comandos (sin confirmar en OBDb, de otros años o que piden cambiar la sesión de diagnóstico): EvOS solo lee	Nu se folosesc %d comenzi (neconfirmate în OBDb, pentru alți ani sau care cer schimbarea sesiunii de diagnoză): EvOS doar citește
+según el VIN	după VIN
+Escribir el nombre de OBDb (Marca-Modelo)	Scrie numele din OBDb (Marcă-Model)
+Nombre en OBDb, por ejemplo Volkswagen-Passat	Numele în OBDb, de exemplu Volkswagen-Passat
+Escribe Marca-Modelo, como en github.com/OBDb	Scrie Marcă-Model, ca pe github.com/OBDb
+No leer datos del modelo	Nu citi datele modelului
+Marca del auto (OBDb)	Marca mașinii (OBDb)
+Bajando los datos del modelo…	Descarc datele modelului…
+Listo: %s. Abre «Todos los datos» con el auto conectado	Gata: %s. Deschide «Toate datele» cu mașina conectată
+Modelo para los datos propios (OBDb)	Model pentru datele specifice (OBDb)
+Caja, batería, climatizador… según la base de datos abierta OBDb (solo lectura)	Cutie, baterie, climă… după baza de date deschisă OBDb (doar citire)
+No se pudo bajar el archivo del modelo	Fișierul modelului nu a putut fi descărcat
+El archivo del modelo no es válido	Fișierul modelului nu e valid
+Falta bajar el archivo del modelo	Trebuie descărcat fișierul modelului
+Otros	Altele
+Climatizador	Climatizare
+Puertas	Uși
+Neumáticos	Anvelope
+Viajes	Călătorii
+Movimiento	Mișcare
+Luces	Lumini
+Mandos	Comenzi
+Cinturones	Centuri
+Frenos	Frâne
+Escape	Evacuare
+Emisiones	Emisii
+Dirección	Direcție
+Suspensión	Suspensie
+Electricidad	Electric
+Carrocería	Caroserie
+Asistencias	Asistențe
+Airbags	Airbaguri
+Refrigeración	Răcire
+Ventanillas	Geamuri
+Multimedia	Multimedia

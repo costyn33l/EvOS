@@ -1246,8 +1246,10 @@ public class LiveMapView extends View {
     /** Desde qué nivel de zoom se ve cada tipo (lejos, solo lo importante). */
     private static int infraMinZoom(int type) {
         switch (type) {
-            case Infra.WARN: case Infra.CLOSED: return 8;
-            case Infra.WORKS: return 10;
+            case Infra.WARN: case Infra.CLOSED: return 6;
+            case Infra.WORKS: return 8;
+            case Infra.CHARGE: case Infra.REST: return 10;
+            case Infra.RAMP: return 11;
             default: return 12;
         }
     }
@@ -1258,13 +1260,19 @@ public class LiveMapView extends View {
         if (list.isEmpty()) return;
         if (hitIt.length < list.size()) { hitIt = new Infra.Item[list.size()]; hitXY = new float[list.size() * 2]; }
         // tramos afectados (cierres, avisos, obras), debajo de las marcas
-        if (lv >= 10) {
+        if (lv >= 9) {
             ipLine.setStyle(Paint.Style.STROKE);
             ipLine.setStrokeCap(Paint.Cap.ROUND);
             ipLine.setStrokeJoin(Paint.Join.ROUND);
             for (int k = 0; k < list.size(); k++) {
                 Infra.Item it = list.get(k);
                 if (it.line == null || it.line.length < 4 || it.type > Infra.WORKS || it.type == Infra.RAMP) continue;
+                // fuera de la vista (con margen por el giro): no se dibuja
+                float fx0 = mapX(it.line[1], fx, cx, ts, n), fy0 = mapY(it.line[0], fy, cy, ts, n);
+                int last = it.line.length - 2;
+                float fx1 = mapX(it.line[last + 1], fx, cx, ts, n), fy1 = mapY(it.line[last], fy, cy, ts, n);
+                float span = Math.max(getWidth(), getHeight());
+                if (Math.max(fx0, fx1) < cx - span || Math.min(fx0, fx1) > cx + span || Math.max(fy0, fy1) < cy - span || Math.min(fy0, fy1) > cy + span) continue;
                 ipath.reset();
                 for (int i = 0; i + 1 < it.line.length; i += 2) {
                     float x = mapX(it.line[i + 1], fx, cx, ts, n), y = mapY(it.line[i], fy, cy, ts, n);
@@ -1296,6 +1304,9 @@ public class LiveMapView extends View {
             c.save();
             if (br != 0) c.rotate(br, x, y);     // la marca queda derecha aunque el mapa gire
             float r = (it.type == Infra.RAMP ? 8.5f : it.type <= Infra.WORKS ? 12 : 10.5f) * s;
+            // de lejos (zoom bajo), marcas chicas para que 100 km de sucesos no tapen el mapa
+            boolean small = lv < 10 && it.type != Infra.WARN && !(it.type == Infra.CLOSED && it.blocked);
+            if (lv < 10) r *= small ? 0.5f : 0.8f;
             ip.setStyle(Paint.Style.FILL);
             ip.setColor(0x66000000);
             c.drawCircle(x, y + 1.5f * s, r + 2.5f * s, ip);
@@ -1303,7 +1314,7 @@ public class LiveMapView extends View {
             c.drawCircle(x, y, r + 2f * s, ip);
             ip.setColor(infraColor(it.type));
             c.drawCircle(x, y, r, ip);
-            Bitmap g = infraIcon(infraGlyph(it.type));
+            Bitmap g = small ? null : infraIcon(infraGlyph(it.type));
             if (g != null) {
                 float gs = r * 1.25f;
                 ir.set(x - gs, y - gs, x + gs, y + gs);

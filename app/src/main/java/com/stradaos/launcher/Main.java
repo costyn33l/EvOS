@@ -1154,6 +1154,7 @@ public class Main extends Activity {
                         .putString("dock_3_name", "Mi app").apply();
                     rebuild();
                 }
+                else if (v.startsWith("obdb:")) chooseObdbModel(v.substring(5));    // p. ej. obdb:Volkswagen-Passat
                 else if ("infra-demo".equals(v)) {
                     // un carro en la A3 cerca de Limburg, hacia Frankfurt (datos reales + un atasco inventado por delante)
                     Infra.demo = true;
@@ -1365,7 +1366,7 @@ public class Main extends Activity {
     private void build0(int W, int H) {
         srSecs[0] = null;
         clusters.clear();
-        if (evObdPage != null) { Obd.removeListener(evObdL); evObdPage = null; evCells.clear(); }
+        if (evObdPage != null) { Obd.removeListener(evObdL); evObdPage = null; evCells.clear(); VehicleDb.wanted = false; }
         root.removeAllViews();
         idleView = null; idleClock = idleDate = idleSpeedTv = null; idleGauge = null;
         // versión de prueba: simular otra pantalla (p. ej. una ancha de 1920x720 en una tablet)
@@ -3589,6 +3590,7 @@ public class Main extends Activity {
             }
         };
         evObdPage = page;
+        VehicleDb.wanted = true;     // con la página abierta se leen también los datos propios del modelo
         if (premBg != null) page.setBackground(new android.graphics.drawable.BitmapDrawable(getResources(), premBg));
         else page.setBackgroundColor(BG);
         root.addView(page, new FrameLayout.LayoutParams(-1, -1));
@@ -3635,6 +3637,7 @@ public class Main extends Activity {
         final FrameLayout page = evObdPage;
         if (page == null) return;
         evObdPage = null;
+        VehicleDb.wanted = false;
         Obd.removeListener(evObdL);
         evCells.clear();
         page.animate().translationX(root.getWidth()).setDuration(200).withEndAction(new Runnable() {
@@ -3648,6 +3651,8 @@ public class Main extends Activity {
         b.append(TextUtils.join(",", evKeys())).append(Obd.vin).append(Obd.fuelType).append(Obd.dpf).append(Obd.dpfRegen);
         for (Obd.Sensor sn : Obd.ALL) if (obdFresh(sn)) b.append(',').append(sn.key);
         if (Obd.status == Obd.LIVE) for (J1979.Val v : Obd.extraValues()) b.append(',').append(v.key);
+        b.append('|').append(prefs.getString("obdb_repo", ""));
+        if (Obd.status == Obd.LIVE) for (J1979.Val v : VehicleDb.values()) b.append(',').append(v.key);
         return b.toString();
     }
 
@@ -3672,11 +3677,19 @@ public class Main extends Activity {
             ViewGroup.LayoutParams lp = fill.getLayoutParams();
             if (lp.width != w) { lp.width = w; fill.setLayoutParams(lp); }
         }
-        if (!evExtra.isEmpty() && Obd.status == Obd.LIVE) for (J1979.Val v : Obd.extraValues()) {
-            TextView tv = evExtra.get(v.key);
-            if (tv == null) continue;
-            String t = J1979.text(v) + (v.unit.length() > 0 ? " " + v.unit : "");
-            if (!t.contentEquals(tv.getText())) tv.setText(t);
+        if (!evExtra.isEmpty() && Obd.status == Obd.LIVE) {
+            List<J1979.Val> all = new ArrayList<J1979.Val>(Obd.extraValues());
+            all.addAll(VehicleDb.values());
+            for (J1979.Val v : all) {
+                TextView tv = evExtra.get(v.key);
+                if (tv == null) continue;
+                String t = v.text != null ? v.text : J1979.text(v) + (v.unit.length() > 0 ? " " + v.unit : "");
+                if (!t.contentEquals(tv.getText())) tv.setText(t);
+            }
+        }
+        if (evVehStatus != null) {
+            String t = vehStatusText();
+            if (!t.contentEquals(evVehStatus.getText())) evVehStatus.setText(t);
         }
     }
 
@@ -3850,12 +3863,157 @@ public class Main extends Activity {
             src.setPadding(0, (int) (6 * s), 0, 0);
             evGrid.addView(src, new LinearLayout.LayoutParams(-1, -2));
         }
+        buildVehicleSection();
         TextView hint = tv("Mantén presionado un dato para ponerlo en la pantalla de inicio · desliza a la derecha para volver", 12, MUTED, false);
         multiLine(hint);
         hint.setGravity(Gravity.CENTER);
         hint.setPadding(0, (int) (14 * s), 0, (int) (4 * s));
         evGrid.addView(hint, new LinearLayout.LayoutParams(-1, -2));
         refreshEvObd();
+    }
+
+    private TextView evVehStatus;
+
+    /** Datos propios del modelo (OBDb): elegido el modelo, se leen mientras esta página está abierta. */
+    private void buildVehicleSection() {
+        evVehStatus = null;
+        if (!obdOn()) return;
+        final String repo = prefs.getString("obdb_repo", "");
+        LinearLayout head = new LinearLayout(this);
+        head.setGravity(Gravity.CENTER_VERTICAL);
+        TextView h = tv("", 15, TEXT, true);
+        h.setText(repo.length() > 0 ? I18n.t("Datos de tu modelo") + ": " + VehicleDb.makeOf(repo) + " " + VehicleDb.modelOf(repo)
+            : I18n.t("Datos de tu modelo"));
+        head.addView(h, new LinearLayout.LayoutParams(0, -2, 1));
+        TextView ch = tv(repo.length() > 0 ? "Cambiar" : "Elegir modelo", 13, 0xFF111111, true);
+        ch.setBackground(round(RED, 8));
+        ch.setPadding((int) (12 * s), (int) (6 * s), (int) (12 * s), (int) (6 * s));
+        ch.setOnClickListener(new View.OnClickListener() { public void onClick(View v) { pickObdbModel(); } });
+        head.addView(ch);
+        LinearLayout.LayoutParams hlp = new LinearLayout.LayoutParams(-1, -2);
+        hlp.topMargin = (int) (22 * s); hlp.bottomMargin = (int) (4 * s);
+        evGrid.addView(head, hlp);
+        evVehStatus = tv("", 12, MUTED, false);
+        multiLine(evVehStatus);
+        evVehStatus.setText(vehStatusText());
+        evGrid.addView(evVehStatus, new LinearLayout.LayoutParams(-1, -2));
+        List<J1979.Val> vals = Obd.status == Obd.LIVE ? VehicleDb.values() : new ArrayList<J1979.Val>();
+        if (vals.isEmpty()) return;
+        LinearLayout box = new LinearLayout(this);
+        box.setOrientation(LinearLayout.VERTICAL);
+        box.setBackground(evTileBg(14));
+        box.setPadding((int) (16 * s), (int) (6 * s), (int) (16 * s), (int) (6 * s));
+        String lastPath = null;
+        for (J1979.Val v : vals) {
+            String pth = VehicleDb.pathName(v.path);
+            if (!pth.equals(lastPath)) {
+                TextView ph = tv("", 12, RED, true);
+                ph.setText(pth.toUpperCase(I18n.num));
+                ph.setPadding(0, (int) ((lastPath == null ? 8 : 16) * s), 0, (int) (2 * s));
+                box.addView(ph);
+                lastPath = pth;
+            }
+            LinearLayout r = new LinearLayout(this);
+            r.setGravity(Gravity.CENTER_VERTICAL);
+            r.setPadding(0, (int) (7 * s), 0, (int) (7 * s));
+            TextView n = tv("", 14, SOFT, false);
+            n.setText(v.name);
+            r.addView(n, new LinearLayout.LayoutParams(0, -2, 1));
+            TextView val = tv("", 16, TEXT, true);
+            val.setText(v.text != null ? v.text : J1979.text(v) + (v.unit.length() > 0 ? " " + v.unit : ""));
+            val.setGravity(Gravity.RIGHT);
+            r.addView(val, new LinearLayout.LayoutParams(-2, -2));
+            box.addView(r);
+            evExtra.put(v.key, val);
+        }
+        LinearLayout.LayoutParams blp = new LinearLayout.LayoutParams(-1, -2);
+        blp.topMargin = (int) (8 * s);
+        evGrid.addView(box, blp);
+        TextView src = tv("Datos: OBDb (github.com/OBDb), CC BY-SA 4.0 · nombres en inglés, como en OBDb", 11, MUTED, false);
+        src.setPadding(0, (int) (6 * s), 0, 0);
+        evGrid.addView(src, new LinearLayout.LayoutParams(-1, -2));
+    }
+
+    private String vehStatusText() {
+        String repo = prefs.getString("obdb_repo", "");
+        if (repo.length() == 0) {
+            String g = VehicleDb.guess(Obd.vin);
+            return g != null ? I18n.f("Según el VIN es un %s: elígelo para leer los datos propios del modelo (caja, batería, climatizador…)", g.replace('-', ' '))
+                : I18n.t("Elige la marca y el modelo para leer los datos propios del auto (caja, batería, climatizador…), de OBDb");
+        }
+        if (VehicleDb.status != null && repo.equals(VehicleDb.repo)) return I18n.t(VehicleDb.status);
+        if (Obd.status != Obd.LIVE) return I18n.t("Se leen con el auto conectado");
+        int ok = VehicleDb.count(1), no = VehicleDb.count(-1), todo = VehicleDb.count(0);
+        String t = I18n.f("Responden %d · no los tiene %d · por probar %d", ok, no, todo);
+        if (VehicleDb.skippedWrite + VehicleDb.skippedDebug + VehicleDb.skippedYear > 0)
+            t += "\n" + I18n.f("No se usan %d comandos (sin confirmar en OBDb, de otros años o que piden cambiar la sesión de diagnóstico): EvOS solo lee",
+                VehicleDb.skippedWrite + VehicleDb.skippedDebug + VehicleDb.skippedYear + VehicleDb.skippedProto);
+        return t;
+    }
+
+    /** Elegir el modelo de OBDb: el del VIN si se sabe, la marca del VIN primero, o escribirlo. */
+    void pickObdbModel() {
+        final List<String> all = VehicleDb.known(this);
+        final String guess = VehicleDb.guess(Obd.vin);
+        final String vm = VehicleDb.vinMake(Obd.vin);
+        final List<String> makes = new ArrayList<String>();
+        for (String r : all) { String m = VehicleDb.makeOf(r); if (!makes.contains(m)) makes.add(m); }
+        java.util.Collections.sort(makes);
+        if (vm != null && makes.contains(vm)) { makes.remove(vm); makes.add(0, vm); }
+        final List<String> labels = new ArrayList<String>();
+        final List<Runnable> acts = new ArrayList<Runnable>();
+        if (guess != null && all.contains(guess)) {
+            labels.add("★ " + guess.replace('-', ' ') + "  · " + I18n.t("según el VIN"));
+            acts.add(new Runnable() { public void run() { chooseObdbModel(guess); } });
+        }
+        for (final String m : makes) {
+            labels.add(m.replace('-', ' '));
+            acts.add(new Runnable() { public void run() { pickObdbMake(m, all); } });
+        }
+        labels.add(I18n.t("Escribir el nombre de OBDb (Marca-Modelo)"));
+        acts.add(new Runnable() { public void run() {
+            askText(I18n.t("Nombre en OBDb, por ejemplo Volkswagen-Passat"), prefs.getString("obdb_repo", ""), new TextCb() { public void on(String v) {
+                v = v.trim().replace(' ', '-');
+                if (!v.matches("[A-Za-z0-9.#-]{2,60}")) { toast("Escribe Marca-Modelo, como en github.com/OBDb"); return; }
+                chooseObdbModel(v);
+            }});
+        }});
+        if (prefs.getString("obdb_repo", "").length() > 0) {
+            labels.add(I18n.t("No leer datos del modelo"));
+            acts.add(new Runnable() { public void run() {
+                prefs.edit().remove("obdb_repo").apply();
+                VehicleDb.repo = null;
+                if (evObdPage != null) { evGridKey = ""; refreshEvObd(); }
+            }});
+        }
+        new TB(this, dlg()).raw().wide().setTitle(I18n.t("Marca del auto (OBDb)"))
+            .setItems(labels.toArray(new String[0]), new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) { acts.get(w).run(); } })
+            .setNegativeButton(I18n.t("Cancelar"), null).show();
+    }
+
+    private void pickObdbMake(String make, List<String> all) {
+        final List<String> models = new ArrayList<String>();
+        for (String r : all) if (VehicleDb.makeOf(r).equals(make) && !r.equals(make)) models.add(r);
+        if (models.isEmpty() && all.contains(make)) models.add(make);
+        java.util.Collections.sort(models);
+        String[] labels = new String[models.size()];
+        for (int i = 0; i < labels.length; i++) labels[i] = VehicleDb.modelOf(models.get(i)).length() > 0 ? VehicleDb.modelOf(models.get(i)) : models.get(i);
+        new TB(this, dlg()).raw().wide().setTitle(make.replace('-', ' '))
+            .setItems(labels, new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) { chooseObdbModel(models.get(w)); } })
+            .setNegativeButton(I18n.t("Cancelar"), null).show();
+    }
+
+    private void chooseObdbModel(final String repo) {
+        toast(I18n.t("Bajando los datos del modelo…"));
+        final Context app = getApplicationContext();
+        final int year = Obd.vin != null ? Vin.year(Obd.vin) : 0;
+        new Thread(new Runnable() { public void run() {
+            final String err = VehicleDb.download(app, repo, year);
+            h.post(new Runnable() { public void run() {
+                toast(err != null ? err : I18n.f("Listo: %s. Abre «Todos los datos» con el auto conectado", repo.replace('-', ' ')));
+                if (evObdPage != null) { evGridKey = ""; refreshEvObd(); }
+            }});
+        }}, "obdb").start();
     }
 
     static boolean dpfKey(String k) {
@@ -15141,6 +15299,9 @@ public class Main extends Activity {
                 String.format(java.util.Locale.US, "%.1f L", prefs.getFloat("obd_displacement", 2.4f)), new Runnable() { public void run() { d.askDisplacement(); } });
             row(m, "Protocolo", "Automático casi siempre; fuerza uno si el escáner no lo detecta", ObdDialogs.protocolName(prefs.getString("obd_protocol", "auto")),
                 new Runnable() { public void run() { d.pickProtocol(); } });
+            String ob = prefs.getString("obdb_repo", "");
+            row(m, "Modelo para los datos propios (OBDb)", "Caja, batería, climatizador… según la base de datos abierta OBDb (solo lectura)",
+                ob.length() > 0 ? ob.replace('-', ' ') : I18n.t("Sin elegir"), new Runnable() { public void run() { pickObdbModel(); } });
             // #77: algunos ELM327 clon no entienden varios datos por consulta; se detecta solo, pero se puede apagar a mano
             final boolean multiBad = prefs.getString("obd_multi_bad", "").length() > 0
                 && prefs.getString("obd_multi_bad", "").equals(prefs.getString("obd_addr", "demo"));

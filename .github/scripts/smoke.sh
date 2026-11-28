@@ -62,6 +62,7 @@ go sr:2 6;     shot 72-sr-musica
 go sr:3:0 6;   shot 73-sr-presentacion
 go sr:3:1 6;   shot 74-sr-instrumentos
 go sr:3:2 8;   shot 75-sr-parametros
+go obdb:Volkswagen-Passat 12
 go ev-datos 8;    shot 75b-ev-todos-datos-dpf
 go ev-datos-fin 6; shot 75c-ev-otras-senales-j1979; back
 go sr:3:3 6;   shot 76-sr-diagnostico

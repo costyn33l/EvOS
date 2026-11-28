@@ -264,7 +264,7 @@ public class Elm {
         cmd("ATS0", 1500);                    // sin espacios (los clones viejos que no lo entienden: se quitan igual)
         cmd("ATH0", 1500);                    // sin encabezados
         cmd("ATAT1", 1500);                   // tiempos de espera adaptativos
-        if (version.length() == 0) version = cleanVersion(cmd("ATI", 1500));
+        if (!version.matches(".*[A-Za-z]{2}.*")) version = cleanVersion(cmd("ATI", 1500));   // «?» o nada: se le pregunta
         String r = null;
         StringBuilder tried = new StringBuilder();
         if (!"auto".equals(protocolPref)) {
@@ -624,6 +624,109 @@ public class Elm {
             cmd("ATSH7DF", 1500);
         }
         return out;
+    }
+
+    // ── datos propios del modelo (OBDb): leer de cualquier computador del auto, solo lectura ──
+
+    /** Cómo quedó configurado el escáner para hablar con otro computador (para no repetir órdenes AT). */
+    private String ecuHdr, ecuRax, ecuEax, ecuFc, ecuTmo, ecuPri;
+    private boolean ecuDirty, ceaBroken;
+    /** La última lectura fue un «no» explícito del computador (7F: no tiene ese dato), no un silencio. */
+    boolean lastRefused;
+
+    /**
+     * Lee un dato de un computador del auto según OBDb (servicio 22, 21 o 01: solo lectura; cualquier otro se
+     * rechaza aquí mismo). Configura el escáner (encabezado, filtro de respuesta, dirección extendida, control de
+     * flujo) solo si cambió. Devuelve los bytes después del identificador, o null.
+     */
+    synchronized byte[] ecuRead(VehicleDb.Cmd k) throws IOException {
+        lastRefused = false;
+        if (k.svc != 0x22 && k.svc != 0x21 && k.svc != 0x01) throw new IOException("Solo lectura: servicio " + String.format(Locale.US, "%02X", k.svc) + " rechazado");
+        if (demo != null) { lastRefused = true; return null; }
+        if (!can) { lastRefused = true; return null; }
+        boolean ext = k.hdr.length() == 4;                     // 29 bits
+        if (ext != (protoNum == '7' || protoNum == '9')) { lastRefused = true; return null; }
+        if (k.eax != null && ceaBroken) { lastRefused = true; return null; }
+        String pri = ext ? (k.pri != null ? k.pri : "18") : null;
+        String tst = k.tst != null ? k.tst : "F1";
+        String hdr = ext ? k.hdr + tst : k.hdr;
+        String rax;
+        if (ext) {
+            // como OBDb: 2 cifras = la dirección del que contesta (pri DA F1 xx), 6 = bajo la prioridad, 8 = el ID entero;
+            // sin rax, contesta el computador al que se le preguntó (DA10 → pri DA F1 10)
+            String r = k.rax;
+            rax = r == null ? pri + "DA" + tst + k.hdr.substring(2) : r.length() <= 2 ? pri + "DAF1" + (r.length() == 1 ? "0" + r : r)
+                : r.length() <= 6 ? pri + r : r;
+        } else {
+            rax = k.rax != null ? k.rax : String.format(Locale.US, "%03X", Integer.parseInt(k.hdr, 16) + 8);
+        }
+        ecuDirty = true;
+        if (ext && !pri.equals(ecuPri)) { cmd("ATCP" + pri, 1500); ecuPri = pri; }
+        if (!hdr.equals(ecuHdr)) { cmd("ATSH" + hdr, 1500); ecuHdr = hdr; }
+        if (!rax.equals(ecuRax)) { cmd("ATCRA" + rax, 1500); ecuRax = rax; }
+        String eax = k.eax;
+        if (eax == null ? ecuEax != null : !eax.equals(ecuEax)) {
+            String r = cmd(eax != null ? "ATCEA" + eax : "ATCEA", 1500);
+            if (eax != null && r.contains("?")) { ceaBroken = true; Obd.log("el escáner no entiende ATCEA (dirección extendida)"); lastRefused = true; return null; }
+            ecuEax = eax;
+        }
+        String fc = k.fcm1 ? hdr + "/" + (eax != null ? eax : "") : null;
+        if (fc == null ? ecuFc != null : !fc.equals(ecuFc)) {
+            if (fc != null) {
+                cmd("ATFCSH" + (ext ? pri + hdr : hdr), 1500);
+                cmd("ATFCSD" + (eax != null ? eax : "") + "300000", 1500);
+                cmd("ATFCSM1", 1500);
+            } else cmd("ATFCSM0", 1500);
+            ecuFc = fc;
+        }
+        String tmo = k.tmo != null ? k.tmo : null;
+        if (tmo == null ? ecuTmo != null : !tmo.equals(ecuTmo)) { cmd("ATST" + (tmo != null ? tmo : "32"), 1500); ecuTmo = tmo; }
+        String req = String.format(Locale.US, "%02X", k.svc) + k.param;
+        String r = cmd(req, 2000);
+        if (r.contains("7F" + String.format(Locale.US, "%02X", k.svc))) { lastRefused = true; return null; }   // «no lo tengo» / «ahora no»
+        byte[] b = svcData(r, k.svc + 0x40, k.param);
+        return b;
+    }
+
+    /** Vuelve el escáner a como lo usa el resto de EvOS (consultas a todos: 7DF, sin filtros). */
+    synchronized void ecuRestore() throws IOException {
+        if (!ecuDirty || demo != null) return;
+        if (ecuFc != null) cmd("ATFCSM0", 1500);
+        if (ecuEax != null) cmd("ATCEA", 1500);
+        if (ecuTmo != null) cmd("ATST32", 1500);
+        cmd("ATCRA", 1500);
+        if (ecuPri != null) cmd("ATCP18", 1500);
+        if (protoNum == '7' || protoNum == '9') { cmd("ATCP18", 1500); cmd("ATSHDB33F1", 1500); } else cmd("ATSH7DF", 1500);
+        ecuHdr = ecuRax = ecuEax = ecuFc = ecuTmo = ecuPri = null;
+        ecuDirty = false;
+    }
+
+    /** Bytes después de «respuesta + identificador» (62 DID, 61 LID, 41 PID), también en varias tramas «0:…». */
+    static byte[] svcData(String resp, int rsp, String param) {
+        if (resp == null) return null;
+        String key = String.format(Locale.US, "%02X", rsp) + param;
+        StringBuilder flat = new StringBuilder();
+        if (resp.indexOf(':') > 0) {
+            int total = -1;
+            for (String line : resp.split("[\r\n]+")) {
+                String t = line.trim();
+                if (t.matches("[0-9A-F]{3}") && total < 0) total = Integer.parseInt(t, 16);     // largo del mensaje ISO-TP
+                else if (line.indexOf(':') > 0) flat.append(line.substring(line.indexOf(':') + 1).replaceAll("[^0-9A-F]", ""));
+            }
+            if (total > 0 && flat.length() > total * 2) flat.setLength(total * 2);           // sin el relleno (AA…)
+        } else flat.append(resp);
+        for (String line : flat.toString().split("[\r\n]+")) {
+            String l = line.replaceAll("[^0-9A-F]", "");
+            int at = l.indexOf(key);
+            while (at > 0 && at % 2 != 0) at = l.indexOf(key, at + 1);    // alineado a bytes
+            if (at < 0) continue;
+            String d = l.substring(at + key.length());
+            if (d.length() < 2) continue;
+            byte[] b = new byte[d.length() / 2];
+            for (int i = 0; i < b.length; i++) b[i] = (byte) Integer.parseInt(d.substring(i * 2, i * 2 + 2), 16);
+            return b;
+        }
+        return null;
     }
 
     /** Bytes de datos de la respuesta «62 DID …» (también si viene en varias tramas «0:…»). */

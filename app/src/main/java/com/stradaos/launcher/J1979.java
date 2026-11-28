@@ -25,16 +25,116 @@ import java.util.Map;
  */
 final class J1979 {
     static final class Sig {
-        String id, name, unit, sup;
+        String id, name, unit, sup, path;
         int bix, len;
         double mul = 1, div = 1, add, min, max = Double.NaN, nullmin = Double.NaN, nullmax = Double.NaN;
-        boolean sign;
+        boolean sign, lsb;
+        /** Estados con nombre (mapas de OBDb): crudo → texto. */
+        Map<Long, String> states;
     }
 
     static final class Val {
-        String key, name, unit;
+        String key, name, unit, path;
         double v;
         int pid;
+        /** Texto en vez de número (sí/no, estados). */
+        String text;
+    }
+
+    /** Una señal de OBDb (formato «fmt»). */
+    static Sig parseSig(JSONObject so, java.util.Set<String> ids) throws org.json.JSONException {
+        JSONObject f = so.getJSONObject("fmt");
+        Sig s = new Sig();
+        s.id = so.getString("id");
+        s.name = so.optString("name", s.id);
+        s.path = so.optString("path", "");
+        s.unit = f.has("unit") ? f.getString("unit") : null;
+        s.bix = f.optInt("bix", 0);
+        s.len = f.optInt("len", 8);
+        s.mul = f.optDouble("mul", 1);
+        s.div = f.optDouble("div", 1);
+        s.add = f.optDouble("add", 0);
+        s.min = f.optDouble("min", 0);
+        s.max = f.optDouble("max", Double.NaN);
+        s.nullmin = f.optDouble("nullmin", Double.NaN);
+        s.nullmax = f.optDouble("nullmax", Double.NaN);
+        s.sign = f.optBoolean("sign", false);
+        s.lsb = f.optBoolean("blsb", false);
+        JSONObject map = f.optJSONObject("map");
+        if (map != null) {
+            s.states = new HashMap<Long, String>();
+            java.util.Iterator<String> it = map.keys();
+            while (it.hasNext()) {
+                String k = it.next();
+                JSONObject e = map.optJSONObject(k);
+                if (e == null) continue;
+                String v = e.optString("value", ""), d = e.optString("description", v);
+                try { s.states.put(Long.parseLong(k), v.length() > 0 && v.length() <= 14 ? v : d); } catch (NumberFormatException ignored) { }
+            }
+        }
+        if (ids != null && ids.contains(s.id + "_SUP")) s.sup = s.id + "_SUP";
+        return s;
+    }
+
+    /** Bits con los bytes al revés (blsb: el byte menos significativo primero). */
+    static long bitsLsb(byte[] b, int bix, int len) {
+        if (len <= 8 || bix % 8 != 0) return bits(b, bix, len);
+        int start = bix / 8, n = (len + 7) / 8;
+        if (start + n > b.length) return -1;
+        byte[] r = b.clone();
+        for (int i = 0; i < n; i++) r[start + i] = b[start + n - 1 - i];
+        return bits(r, bix, len);
+    }
+
+    /**
+     * Las señales de una respuesta, revisadas: dentro del rango de OBDb, sin el valor «no disponible» y, si la señal
+     * tiene su bit _SUP, solo si ese bit dice que existe. Sí/no y estados se dan como texto.
+     */
+    static List<Val> decodeAll(List<Sig> list, byte[] b, String keyPrefix, boolean texts) {
+        List<Val> out = new ArrayList<Val>();
+        if (list == null || b == null) return out;
+        Map<String, Long> supBits = new HashMap<String, Long>();
+        for (Sig s : list) if (s.id.endsWith("_SUP")) supBits.put(s.id, bits(b, s.bix, s.len));
+        for (Sig s : list) {
+            if (s.id.endsWith("_SUP") || COVERED.contains(s.id)) continue;
+            if (s.sup != null) { Long sb = supBits.get(s.sup); if (sb == null || sb != 1) continue; }
+            long raw = s.lsb ? bitsLsb(b, s.bix, s.len) : bits(b, s.bix, s.len);
+            if (raw < 0) continue;
+            boolean flag = "noyes".equals(s.unit) || "yesno".equals(s.unit) || "offon".equals(s.unit) || "onoff".equals(s.unit);
+            if (s.states != null || flag) {
+                if (!texts) continue;
+                String t = s.states != null ? s.states.get(raw) : null;
+                if (t == null && flag) {
+                    boolean on = "yesno".equals(s.unit) || "onoff".equals(s.unit) ? raw == 0 : raw != 0;
+                    t = I18n.t("offon".equals(s.unit) || "onoff".equals(s.unit) ? (on ? "Encendido" : "Apagado") : (on ? "sí" : "no"));
+                }
+                if (t == null) continue;
+                Val x = new Val();
+                x.key = keyPrefix + s.id; x.name = s.name; x.unit = ""; x.text = t; x.path = s.path;
+                out.add(x);
+                continue;
+            }
+            if (s.unit == null || "hex".equals(s.unit)) continue;
+            if (s.sign && s.len < 64 && (raw & (1L << (s.len - 1))) != 0) raw -= 1L << s.len;
+            double v = raw * s.mul / s.div + s.add;
+            if (!Double.isNaN(s.nullmax) && v >= s.nullmax - 1e-9) continue;
+            if (!Double.isNaN(s.nullmin) && v <= s.nullmin + 1e-9) continue;
+            if (!Double.isNaN(s.max) && s.max > s.min && (v > s.max + 1e-6 || v < s.min - 1e-6)) continue;
+            if (Double.isNaN(v) || Double.isInfinite(v)) continue;
+            Val x = new Val();
+            x.key = keyPrefix + s.id;
+            x.name = s.name;
+            x.path = s.path;
+            x.unit = unit(s.unit);
+            if ("seconds".equals(s.unit) && v >= 3600) { v /= 3600; x.unit = "h"; }
+            if ("fahrenheit".equals(s.unit)) { v = (v - 32) * 5 / 9; x.unit = "°C"; }
+            if ("miles".equals(s.unit)) { v *= 1.609344; x.unit = "km"; }
+            if ("milesPerHour".equals(s.unit)) { v *= 1.609344; x.unit = "km/h"; }
+            if ("psi".equals(s.unit)) { v *= 0.0689476; x.unit = "bar"; }
+            x.v = v;
+            out.add(x);
+        }
+        return out;
     }
 
     private static Map<Integer, List<Sig>> byPid;
@@ -76,24 +176,8 @@ final class J1979 {
                 for (int k = 0; k < sigs.length(); k++) ids.add(sigs.getJSONObject(k).getString("id"));
                 for (int k = 0; k < sigs.length(); k++) {
                     JSONObject so = sigs.getJSONObject(k);
-                    JSONObject f = so.getJSONObject("fmt");
-                    if (f.has("map")) continue;
-                    Sig s = new Sig();
-                    s.id = so.getString("id");
-                    s.name = so.optString("name", s.id);
-                    s.unit = f.has("unit") ? f.getString("unit") : null;
-                    s.bix = f.optInt("bix", 0);
-                    s.len = f.optInt("len", 8);
-                    s.mul = f.optDouble("mul", 1);
-                    s.div = f.optDouble("div", 1);
-                    s.add = f.optDouble("add", 0);
-                    s.min = f.optDouble("min", 0);
-                    s.max = f.optDouble("max", Double.NaN);
-                    s.nullmin = f.optDouble("nullmin", Double.NaN);
-                    s.nullmax = f.optDouble("nullmax", Double.NaN);
-                    s.sign = f.optBoolean("sign", false);
-                    if (ids.contains(s.id + "_SUP")) s.sup = s.id + "_SUP";
-                    list.add(s);
+                    if (so.getJSONObject("fmt").has("map")) continue;
+                    list.add(parseSig(so, ids));
                 }
                 m.put(pid, list);
             }
@@ -187,6 +271,22 @@ final class J1979 {
             case "gramsPerLiter": return "g/L";
             case "milligramsPerStroke": return "mg/cursă";
             case "liters": return "L";
+            case "bars": return "bar";
+            case "millimeters": return "mm";
+            case "centimeters": return "cm";
+            case "meters": return "m";
+            case "milliseconds": return "ms";
+            case "millivolts": return "mV";
+            case "ampereHours": return "Ah";
+            case "metersPerSecondSquared": return "m/s²";
+            case "watts": return "W";
+            case "gravity": return "g";
+            case "kiloohms": return "kΩ";
+            case "ohms": return "Ω";
+            case "milliohms": return "mΩ";
+            case "hertz": return "Hz";
+            case "radians": return "rad";
+            case "kilowattHoursPer100Kilometers": return "kWh/100 km";
             default: return "";
         }
     }

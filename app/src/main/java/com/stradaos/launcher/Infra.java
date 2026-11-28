@@ -181,6 +181,31 @@ final class Infra {
         return out;
     }
 
+    /** Radio (km) alrededor del carro del que se traen y muestran los sucesos de las autopistas. */
+    static final double RADIUS_KM = 100;
+
+    /**
+     * Autopistas que pasan a menos de {@code maxKm} del punto, de la más cercana a la más lejana (distancia al centro
+     * de la celda más cercana de cada una). Llena {@code dist} con autopista → km.
+     */
+    private static List<String> roadsWithin(double la, double lo, double maxKm, final Map<String, Double> dist) {
+        for (Map.Entry<String, java.util.HashSet<Integer>> e : ROAD_CELLS.entrySet()) {
+            double best = Double.MAX_VALUE;
+            for (int cell : e.getValue()) {
+                double cla = LAT0 + (cell / COLS + 0.5) * DLA, clo = LON0 + (cell % COLS + 0.5) * DLO;
+                if (Math.abs(cla - la) > maxKm / 100.0 + 0.2) continue;
+                double d = fastKm(la, lo, cla, clo);
+                if (d < best) best = d;
+            }
+            if (best <= maxKm + 8) dist.put(e.getKey(), Math.max(0, best - 8));
+        }
+        List<String> out = new ArrayList<String>(dist.keySet());
+        Collections.sort(out, new java.util.Comparator<String>() {
+            public int compare(String a, String b) { return Double.compare(dist.get(a), dist.get(b)); }
+        });
+        return out;
+    }
+
     /** Dentro de Alemania (aprox.): cerca de alguna autopista o de una de las 84 ciudades. */
     private static boolean germany(double la, double lo) {
         if (la < LAT0 || la > LAT0 + ROWS * DLA || lo < LON0 || lo > LON0 + COLS * DLO) return false;
@@ -280,18 +305,18 @@ final class Infra {
         long now = System.currentTimeMillis();
         long ev = every(c) * 60000L;
         // autopistas: las de cerca del carro y las de la ruta (hasta 150 km por delante), máximo 6
-        Map<String, Integer> score = new HashMap<String, Integer>();
-        List<String> nearCar = roadsNear(la, lo, score, 10);
-        // navegando: las autopistas de toda la ruta que queda por delante (avisos y cierres de todo el camino)
+        // las autopistas a menos de 100 km del carro (máximo 30, de la más cercana a la más lejana)
+        final Map<String, Double> roadKm = new HashMap<String, Double>();
+        List<String> roads = new ArrayList<String>();
+        for (String r : roadsWithin(la, lo, RADIUS_KM, roadKm)) if (roads.size() < 30) roads.add(r);
+        // navegando: además, las de toda la ruta que queda por delante (avisos y cierres de todo el camino)
         Nav.Route rt = Nav.active;
         double[] ahead = rt != null && rt.pts != null && rt.pts.length >= 4 ? routeAhead(rt, la, lo) : null;
-        if (ahead != null) for (int i = 0; i + 2 < ahead.length; i += 3) roadsNear(ahead[i], ahead[i + 1], score, 1);
-        List<Map.Entry<String, Integer>> rank = new ArrayList<Map.Entry<String, Integer>>(score.entrySet());
-        Collections.sort(rank, new java.util.Comparator<Map.Entry<String, Integer>>() {
-            public int compare(Map.Entry<String, Integer> a, Map.Entry<String, Integer> b) { return b.getValue() - a.getValue(); }
-        });
-        List<String> roads = new ArrayList<String>();
-        for (int i = 0; i < rank.size() && roads.size() < (ahead != null ? 10 : 6); i++) roads.add(rank.get(i).getKey());
+        if (ahead != null) {
+            Map<String, Integer> score = new HashMap<String, Integer>();
+            for (int i = 0; i + 2 < ahead.length; i += 3) roadsNear(ahead[i], ahead[i + 1], score, 1);
+            for (String r : score.keySet()) if (!roads.contains(r) && roads.size() < 40) { roads.add(r); roadKm.put(r, 999.0); }
+        }
         boolean wWarn = layer(c, "infra_warn") || layer(c, "infra_closed") || layer(c, "infra_alert");
         boolean wWorks = layer(c, "infra_works");
         boolean wFixed = layer(c, "infra_charge") || layer(c, "infra_rest");
@@ -299,14 +324,18 @@ final class Infra {
         for (String r : roads) {
             Road rd = ROADS.get(r);
             if (rd == null) { rd = new Road(); ROADS.put(r, rd); }
+            Double rk = roadKm.get(r);
+            boolean near = rk != null && rk <= 30;
+            // las de cerca, cada N minutos; las lejanas (o solo de la ruta), cada 15 min como mínimo
+            long evR = near ? ev : Math.max(ev, 15 * 60000L);
             try {
-                if (wWarn && now - rd.tWarn > ev) {
+                if (wWarn && now - rd.tWarn > evR) {
                     List<Item> l = new ArrayList<Item>();
                     parseAb(r, "warning", WARN, l);
                     parseAb(r, "closure", CLOSED, l);
                     rd.warn = l; rd.tWarn = now;
                 }
-                if (wWorks && nearCar.contains(r) && now - rd.tWorks > 30 * 60000L) {     // obras (pesadas): solo las de cerca
+                if (wWorks && rk != null && rk <= RADIUS_KM && now - rd.tWorks > (near ? 30 : 60) * 60000L) {   // obras: pesadas, más espaciadas
                     List<Item> l = new ArrayList<Item>();
                     parseAb(r, "roadworks", WORKS, l);
                     rd.works = l; rd.tWorks = now;
@@ -345,10 +374,10 @@ final class Infra {
                 if (it.type == RAMP ? !layer(c, "infra_closed") : it.type == CLOSED ? !layer(c, "infra_closed") : !layer(c, "infra_warn") && !layer(c, "infra_alert")) continue;
                 onRoute(it, ahead);
                 if (it.routeKm >= 0 && it.type != RAMP) { it.distKm = (float) km(la, lo, it.lat, it.lon); out.add(it); }
-                else add(out, it, la, lo, it.type == RAMP ? 30 : 60);
+                else add(out, it, la, lo, RADIUS_KM);
             }
-            if (wWorks) for (Item it : rd.works) { onRoute(it, ahead); add(out, it, la, lo, 30); }
-            for (Item it : rd.fixed) if (layer(c, it.type == CHARGE ? "infra_charge" : "infra_rest")) add(out, it, la, lo, 30);
+            if (wWorks) for (Item it : rd.works) { onRoute(it, ahead); add(out, it, la, lo, RADIUS_KM); }
+            for (Item it : rd.fixed) if (layer(c, it.type == CHARGE ? "infra_charge" : "infra_rest")) add(out, it, la, lo, RADIUS_KM);
         }
         // navegando: el suceso más cercano de la ruta que no se anunció todavía («En tu ruta, a 42 km: atasco»)
         if (ahead != null && layer(c, "infra_alert")) {

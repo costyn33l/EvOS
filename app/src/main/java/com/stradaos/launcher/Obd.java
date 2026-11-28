@@ -578,6 +578,25 @@ public class Obd {
     }
 
     /** Datos VAG del DPF por UDS (cada ~5 s): hollín, ceniza, presión, temperaturas, última regeneración. */
+    /**
+     * Datos propios del modelo (OBDb), solo con «Todos los datos» abierta: hasta 3 comandos del mismo computador por
+     * vuelta y el escáner vuelve a quedar como estaba. Solo servicios de lectura (ver {@link Elm#ecuRead}).
+     */
+    private static void readVehicle() throws java.io.IOException {
+        int y = vin != null ? Vin.year(vin) : 0;
+        VehicleDb.load(app, y);
+        List<VehicleDb.Cmd> todo = VehicleDb.next(3);
+        if (todo.isEmpty()) return;
+        try {
+            for (VehicleDb.Cmd k : todo) {
+                byte[] d = elm.ecuRead(k);
+                VehicleDb.result(app, k, d, elm.lastRefused);
+            }
+        } finally {
+            elm.ecuRestore();
+        }
+    }
+
     private static void readVag() throws java.io.IOException {
         List<Sensor> list = new ArrayList<Sensor>();
         for (Sensor s : ALL) if (s.did != 0 && (s.pid == -10 || !elm.supports(s.pid))) list.add(s);
@@ -641,6 +660,7 @@ public class Obd {
             if (!grouped) readExtra(round);
             else if (round % 4 == 0) readExtraGrouped();
             if (dpfVag && round % (grouped ? 25 : 6) == 3) readVag();
+            if (VehicleDb.wanted && round % 2 == 1) readVehicle();
             trackDistance();
             round++;
             if (got <= 1) {                       // solo responde el voltaje: contacto apagado
