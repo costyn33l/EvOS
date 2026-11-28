@@ -445,7 +445,7 @@ final class Show {
     static int railLabelOff() { return skin == GLACIER ? 0xFFA9B7C9 : skin == CYBER ? 0xFFB8C0E8 : 0xFF9A9A9A; }
     static int railIconOff() { return skin == GLACIER ? 0xFFA9B7C9 : skin == CYBER ? 0xFFDDE3FF : skin == CIRCUIT ? 0xFF9A9A9A : 0xFFD6D6D6; }
     /** Ícono y texto del elemento elegido del menú (sobre su fondo). */
-    static int railOnInk(int text) { return skin == GLACIER ? 0xFF06121F : skin == CIRCUIT ? 0xFF0A0A0A : text; }
+    static int railOnInk(int text) { return skin == CIRCUIT ? 0xFF0A0A0A : text; }
     /** Color de los íconos de la consola: en Cyberpunk cada uno con su color. */
     static int consoleIcon(String ic, int accent, int text, boolean accentIcon) {
         if (skin == CYBER) return "aa".equals(ic) ? 0xFF3B9BFF : "phone".equals(ic) ? 0xFF2BD46B : 0xFF3BA8FF;
@@ -535,7 +535,7 @@ final class Show {
     /** Fondo del elemento elegido del menú lateral. */
     static Drawable skinRailOn(float s, int accent) {
         switch (skin) {
-            case GLACIER: return new Shape(s, 0, 0, 20, 0xFF7DD3FC, 0xFF5CC4F7, 0, 0x887DD3FC, 0, 0, 0, 12);
+            case GLACIER: return new Shape(s, 0, 0, 20, 0x407DD3FC, 0x267DD3FC, 0xCC7DD3FC, 0x667DD3FC, 0, 0, 0, 12);
             case CYBER: return new Shape(s, 14, 14, 0, 0x661E8BFF, 0x330A1A50, 0xFF3B9BFF, 0x993B9BFF, 0, 0, 0, 6);
             case CIRCUIT: return new Shape(s, 0, 18, 0, 0xFFFFD000, 0xFFFFC400, 0, 0, 0, 0, 0, 0);
             default: return railOn(s, accent);
@@ -929,7 +929,7 @@ final class Show {
         void set(float f, int col) { frac = Math.max(0, Math.min(1, f)); color = col; invalidate(); }
         @Override protected void onDraw(Canvas c) {
             float w = getWidth(), h = getHeight();
-            p.setColor(HAIR);
+            p.setColor(skin == CLASSIC ? HAIR : 0x26FFFFFF);
             c.drawRect(0, 0, w, h, p);
             p.setColor(color);
             c.drawRect(0, 0, w * frac, h, p);

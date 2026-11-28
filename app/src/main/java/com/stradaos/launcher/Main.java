@@ -1980,13 +1980,14 @@ public class Main extends Activity {
                 } else if (col == 1) place(sec, srHair(HAIR_SR), rx + 153, y + 6 + row * 64, 1, 56);
                 place(sec, obdIcon(sn.key, skinned ? Show.consoleIcon("", RED, TEXT, false) : 0xFFBDBDBD), cx, cy + 1, 14, 14);
                 place(sec, srLabel(sn.label, 12, MUTED), cx + 20, cy, 115, 16);
-                TextView v = srNum("—", four ? (skinned ? 28 : 32) : 40, TEXT);
-                place(sec, v, cx, cy + (skinned ? 16 : 20), 135, four ? (skinned ? 30 : 34) : 42);
+                TextView v = srNum("—", skinned ? (four ? 28 : 32) : four ? 32 : 40, TEXT);
+                place(sec, v, cx, cy + (skinned ? 16 : 20), 135, skinned ? 32 : four ? 34 : 42);
                 if (skinned && sn.max > sn.min) {
                     Show.Bar bar = new Show.Bar(this, RED);
-                    place(sec, bar, cx, cy + (four ? 48 : 58) - (four ? 0 : 0), 124, 3);
+                    place(sec, bar, cx, cy + 49, 124, 3);
                     int bc = Show.skin == Show.CYBER ? (i % 2 == 0 ? 0xFF1E8BFF : 0xFFC026FF) : RED;
-                    srVals.add(new Object[]{sn, v, bar, bc});
+                    // 5 elementos: la fila de Instrumentos quita los suyos (4) al rearmarse; estos son del Inicio
+                    srVals.add(new Object[]{sn, v, bar, bc, "h"});
                 } else srVals.add(new Object[]{sn, v});
             }
             y += 12 + (four ? 2 : 1) * 64 + 8;
