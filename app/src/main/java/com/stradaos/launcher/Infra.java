@@ -22,10 +22,16 @@ import java.util.Map;
  * <ul>
  * <li>Autobahn GmbH (verkehr.autobahn.de): avisos (atascos, accidentes, peligros), cierres, salidas cerradas, obras,
  * cargadores y áreas de descanso de las autopistas que pasan cerca del carro o de la ruta.</li>
- * <li>InfraNode (infranode.dev): precios de combustible (Tankerkönig), ocupación de estacionamientos y avisos
- * meteorológicos oficiales (DWD) de la ciudad más cercana (84 ciudades grandes).</li>
+ * <li>Tankerkönig (creativecommons.tankerkoenig.de): precios de combustible alrededor del carro, con la clave personal
+ * del usuario y solo cuando él lo pide (botón en el mapa), como piden sus reglas: como mucho una consulta por minuto,
+ * sin consultas automáticas, sin filtrar estaciones, con la atribución «Tankerkönig.de, CC BY 4.0, MTS-K» a la
+ * vista y sin pasar los datos a nadie.</li>
+ * <li>InfraNode (infranode.dev): ocupación de estacionamientos y avisos meteorológicos oficiales (DWD) de la ciudad
+ * más cercana (84 ciudades grandes), con la atribución que trae cada dato. Sus precios de combustible no se usan:
+ * Tankerkönig no permite pasar sus datos a terceros.</li>
  * </ul>
- * Fuera de Alemania no pide nada. Cada capa se prende o se apaga en Ajustes › Mapa.
+ * Fuera de Alemania no pide nada. Cada capa se prende o se apaga en Ajustes › Mapa. Todo se pide con un
+ * User-Agent que dice qué es EvOS y se guarda solo en memoria (nada se publica ni se reenvía).
  */
 final class Infra {
     static final int WARN = 0, CLOSED = 1, RAMP = 2, WORKS = 3, CHARGE = 4, REST = 5, FUEL = 6, PARK = 7;
@@ -46,18 +52,26 @@ final class Infra {
         int free = -1, cap = -1;       // estacionamiento
         boolean cheapest;
         float distKm;                  // al carro, en la última revisión
+        float routeKm = -1;            // por la ruta, desde el carro (navegando); -1 si no está en la ruta
+        boolean closed;                // gasolinera cerrada ahora
     }
 
     // ── lo que se ve ──
     static volatile List<Item> items = Collections.emptyList();
     static volatile String city, cityName, roadsNow = "", lastError, wxEvent;
+    /** Atribución de cada fuente que se está mostrando (la que exige su licencia). */
+    static volatile String wxAttr, parkAttr;
     static volatile int wxLevel;
     static volatile String fuelKindNow;
     static volatile long updatedAt;              // System.currentTimeMillis()
     static volatile boolean inGermany;
     static volatile Item alert;                  // aviso por delante (se muestra unos segundos)
+    /** Hay un aviso de la ruta para decir en voz alta (lo anuncia la descarga, en otro hilo). */
+    static volatile boolean speakPending;
     static volatile long alertAt;
-    static volatile int gen;                     // cambia con cada actualización (para redibujar)
+    static volatile int gen;
+    /** Última posición del GPS que llegó (para el botón de precios). */
+    static volatile double posLa = Double.NaN, posLo = Double.NaN;                     // cambia con cada actualización (para redibujar)
     /** Solo en la versión de prueba: un aviso inventado por delante para la captura. */
     static volatile boolean demo;
 
@@ -73,9 +87,11 @@ final class Infra {
         long tWarn, tWorks, tFixed;
     }
     private static final Map<String, Road> ROADS = new HashMap<String, Road>();
-    private static List<Item> fuel = new ArrayList<Item>(), park = new ArrayList<Item>();
-    private static long tFuel, tPark, tWx;
-    private static String fuelCity, parkCity, wxCity, fuelKindLoaded;
+    private static List<Item> park = new ArrayList<Item>();
+    private static long tPark, tWx;
+    private static String parkCity, wxCity;
+    /** Avisos de la ruta ya anunciados (una vez por suceso). */
+    private static final java.util.Set<String> announced = new java.util.HashSet<String>();
     private static double cLat = Double.NaN, cLon = Double.NaN;    // donde se armó la lista
     private static long lastRun;
     private static volatile boolean busy;
@@ -210,6 +226,7 @@ final class Infra {
             return false;
         }
         load(c);
+        posLa = la; posLo = lo;
         if (ROWS == 0) return false;
         boolean de = germany(la, lo);
         if (de != inGermany) { inGermany = de; gen++; }
@@ -264,24 +281,17 @@ final class Infra {
         long ev = every(c) * 60000L;
         // autopistas: las de cerca del carro y las de la ruta (hasta 150 km por delante), máximo 6
         Map<String, Integer> score = new HashMap<String, Integer>();
-        roadsNear(la, lo, score, 10);
+        List<String> nearCar = roadsNear(la, lo, score, 10);
+        // navegando: las autopistas de toda la ruta que queda por delante (avisos y cierres de todo el camino)
         Nav.Route rt = Nav.active;
-        if (rt != null && rt.pts != null) {
-            double ala = Double.NaN, alo = Double.NaN;
-            for (int i = 0; i + 1 < rt.pts.length; i += 2) {
-                double pla = rt.pts[i], plo = rt.pts[i + 1];
-                if (km(la, lo, pla, plo) > 150) continue;
-                if (!Double.isNaN(ala) && km(ala, alo, pla, plo) < 5) continue;
-                ala = pla; alo = plo;
-                roadsNear(pla, plo, score, 1);
-            }
-        }
+        double[] ahead = rt != null && rt.pts != null && rt.pts.length >= 4 ? routeAhead(rt, la, lo) : null;
+        if (ahead != null) for (int i = 0; i + 2 < ahead.length; i += 3) roadsNear(ahead[i], ahead[i + 1], score, 1);
         List<Map.Entry<String, Integer>> rank = new ArrayList<Map.Entry<String, Integer>>(score.entrySet());
         Collections.sort(rank, new java.util.Comparator<Map.Entry<String, Integer>>() {
             public int compare(Map.Entry<String, Integer> a, Map.Entry<String, Integer> b) { return b.getValue() - a.getValue(); }
         });
         List<String> roads = new ArrayList<String>();
-        for (int i = 0; i < rank.size() && roads.size() < 6; i++) roads.add(rank.get(i).getKey());
+        for (int i = 0; i < rank.size() && roads.size() < (ahead != null ? 10 : 6); i++) roads.add(rank.get(i).getKey());
         boolean wWarn = layer(c, "infra_warn") || layer(c, "infra_closed") || layer(c, "infra_alert");
         boolean wWorks = layer(c, "infra_works");
         boolean wFixed = layer(c, "infra_charge") || layer(c, "infra_rest");
@@ -296,7 +306,7 @@ final class Infra {
                     parseAb(r, "closure", CLOSED, l);
                     rd.warn = l; rd.tWarn = now;
                 }
-                if (wWorks && now - rd.tWorks > 30 * 60000L) {
+                if (wWorks && nearCar.contains(r) && now - rd.tWorks > 30 * 60000L) {     // obras (pesadas): solo las de cerca
                     List<Item> l = new ArrayList<Item>();
                     parseAb(r, "roadworks", WORKS, l);
                     rd.works = l; rd.tWorks = now;
@@ -313,14 +323,7 @@ final class Infra {
         String[] ct = nearestCity(la, lo, 30);
         city = ct != null ? ct[0] : null;
         cityName = ct != null ? ct[3] : null;
-        String fk = fuelKind(c);
-        fuelKindNow = fk;
         try {
-            if (ct != null && layer(c, "infra_fuel") && km(la, lo, Double.parseDouble(ct[1]), Double.parseDouble(ct[2])) < 20
-                    && (!ct[0].equals(fuelCity) || !fk.equals(fuelKindLoaded) || now - tFuel > 15 * 60000L)) {
-                fuel = parseFuel(get(IN + ct[0] + "/fuel-prices"), fk);
-                fuelCity = ct[0]; fuelKindLoaded = fk; tFuel = now;
-            }
             if (ct != null && layer(c, "infra_park") && km(la, lo, Double.parseDouble(ct[1]), Double.parseDouble(ct[2])) < 15
                     && (!ct[0].equals(parkCity) || now - tPark > 5 * 60000L)) {
                 park = parsePark(get(IN + ct[0] + "/parking"));
@@ -340,14 +343,51 @@ final class Infra {
             if (rd == null) continue;
             for (Item it : rd.warn) {
                 if (it.type == RAMP ? !layer(c, "infra_closed") : it.type == CLOSED ? !layer(c, "infra_closed") : !layer(c, "infra_warn") && !layer(c, "infra_alert")) continue;
-                add(out, it, la, lo, it.type == RAMP ? 30 : 60);
+                onRoute(it, ahead);
+                if (it.routeKm >= 0 && it.type != RAMP) { it.distKm = (float) km(la, lo, it.lat, it.lon); out.add(it); }
+                else add(out, it, la, lo, it.type == RAMP ? 30 : 60);
             }
-            if (wWorks) for (Item it : rd.works) add(out, it, la, lo, 30);
+            if (wWorks) for (Item it : rd.works) { onRoute(it, ahead); add(out, it, la, lo, 30); }
             for (Item it : rd.fixed) if (layer(c, it.type == CHARGE ? "infra_charge" : "infra_rest")) add(out, it, la, lo, 30);
         }
-        if (layer(c, "infra_fuel") && city != null && city.equals(fuelCity)) for (Item it : fuel) add(out, it, la, lo, 25);
+        // navegando: el suceso más cercano de la ruta que no se anunció todavía («En tu ruta, a 42 km: atasco»)
+        if (ahead != null && layer(c, "infra_alert")) {
+            Item first = null;
+            for (Item it : out) {
+                if (it.routeKm < 0 || it.heavy || announced.contains(it.id)) continue;
+                if (!(it.type == WARN || it.type == CLOSED && it.blocked)) continue;
+                if (first == null || it.routeKm < first.routeKm) first = it;
+            }
+            for (Item it : out) if (it.routeKm >= 0 && (it.type == WARN || it.type == CLOSED)) announced.add(it.id);
+            if (first != null && first.routeKm > alertKm(c)) {
+                first.distKm = first.routeKm;
+                alert = first;
+                alertAt = SystemClock.elapsedRealtime();
+                speakPending = true;
+            }
+        } else announced.clear();
+        // precios pedidos por el usuario (Tankerkönig): se muestran 30 min, después ya no son de fiar
+        if (layer(c, "infra_fuel") && System.currentTimeMillis() - tkAt < 30 * 60000L) out.addAll(tkItems);
         if (layer(c, "infra_park") && city != null && city.equals(parkCity)) for (Item it : park) add(out, it, la, lo, 15);
-        if (demo) out.add(demoItem(la, lo));
+        if (demo) {
+            out.add(demoItem(la, lo));
+            // gasolineras inventadas (solo en la prueba: la clave de Tankerkönig no se publica)
+            if (tkItems.isEmpty()) {
+                List<Item> f = new ArrayList<Item>();
+                float[][] st = {{0.004f, -0.006f, 1.839f}, {-0.006f, 0.004f, 1.799f}, {0.007f, 0.009f, Float.NaN}};
+                for (int i = 0; i < st.length; i++) {
+                    Item it = new Item();
+                    it.type = FUEL; it.id = "demo-fuel" + i; it.title = "Demo " + (i + 1);
+                    it.lat = la + st[i][0]; it.lon = lo + st[i][1]; it.price = st[i][2];
+                    it.cheapest = i == 1; it.closed = i == 2; it.desc = new String[]{"Demo"};
+                    f.add(it);
+                }
+                tkItems = f;
+                tkAt = System.currentTimeMillis();
+                fuelKindNow = "diesel";
+            }
+            if (!tkItems.isEmpty() && !out.contains(tkItems.get(0))) out.addAll(tkItems);
+        }
         StringBuilder rs = new StringBuilder();
         for (String r : roads) rs.append(rs.length() > 0 ? ", " : "").append(r);
         roadsNow = rs.toString();
@@ -356,6 +396,50 @@ final class Infra {
         updatedAt = now;
         lastError = err;
         gen++;
+    }
+
+    /**
+     * Puntos de la ruta que quedan por delante del carro, cada ~1 km: lat, lon, km desde el carro (por la ruta).
+     */
+    private static double[] routeAhead(Nav.Route rt, double la, double lo) {
+        double[] p = rt.pts;
+        int n = p.length / 2, best = 0;
+        double bd = Double.MAX_VALUE;
+        for (int i = 0; i < n; i++) {
+            double d = fastKm(la, lo, p[i * 2], p[i * 2 + 1]);
+            if (d < bd) { bd = d; best = i; }
+        }
+        List<Double> out = new ArrayList<Double>();
+        double acc = 0, since = 1e9;
+        for (int i = best; i < n; i++) {
+            if (i > best) {
+                double step = fastKm(p[i * 2 - 2], p[i * 2 - 1], p[i * 2], p[i * 2 + 1]);
+                acc += step;
+                since += step;
+            }
+            if (since >= 1 || i == n - 1) { out.add(p[i * 2]); out.add(p[i * 2 + 1]); out.add(acc); since = 0; }
+        }
+        double[] a = new double[out.size()];
+        for (int i = 0; i < a.length; i++) a[i] = out.get(i);
+        return a;
+    }
+
+    /** Distancia aproximada (equirectangular): rápida y precisa a pocos km. */
+    private static double fastKm(double la1, double lo1, double la2, double lo2) {
+        double x = (lo2 - lo1) * Math.cos(Math.toRadians((la1 + la2) / 2)) * 111.32, y = (la2 - la1) * 110.57;
+        return Math.sqrt(x * x + y * y);
+    }
+
+    /** Marca el suceso como «en la ruta» (a menos de 1 km de un punto de la ruta por delante) y a cuántos km. */
+    private static void onRoute(Item it, double[] ahead) {
+        it.routeKm = -1;
+        if (ahead == null) return;
+        double best = 1.0;
+        for (int i = 0; i + 2 < ahead.length; i += 3) {
+            if (Math.abs(ahead[i] - it.lat) > 0.05) continue;
+            double d = fastKm(ahead[i], ahead[i + 1], it.lat, it.lon);
+            if (d < best) { best = d; it.routeKm = (float) ahead[i + 2]; }
+        }
     }
 
     private static void add(List<Item> out, Item it, double la, double lo, double maxKm) {
@@ -520,16 +604,22 @@ final class Infra {
                 else if (t.startsWith("LKW Stellplätze:")) b.append(I18n.f("Lugares para camiones: %s", t.substring(16).trim())).append('\n');
             }
         } else if (it.type == FUEL) {
-            if (!Float.isNaN(it.price)) b.append(fuelLabel(fuelKindNow)).append(": ").append(String.format(I18n.num, "%.3f €", it.price)).append('\n');
-            for (String l : it.desc) b.append(l).append('\n');
-            b.append(I18n.t("Precios: Tankerkönig (MTS-K), CC BY 4.0")).append('\n');
+            b.append(fuelLabel(fuelKindNow)).append(": ").append(Float.isNaN(it.price) ? I18n.t("no lo vende o sin precio")
+                : String.format(I18n.num, "%.3f €", it.price)).append('\n');
+            if (it.closed) b.append(I18n.t("Cerrada ahora")).append('\n');
+            for (String l : it.desc) if (l.length() > 0) b.append(l).append('\n');
+            if (tkAt > 0) b.append(I18n.t("Precios de las")).append(' ')
+                .append(new java.text.SimpleDateFormat("HH:mm", Locale.US).format(new java.util.Date(tkAt))).append('\n');
+            b.append(I18n.t("Precios: Tankerkönig.de, CC BY 4.0, MTS-K")).append('\n');
         } else if (it.type == PARK) {
             if (it.free >= 0) b.append(I18n.f("Libres: %d de %d", it.free, Math.max(it.cap, it.free))).append('\n');
             for (String l : it.desc) b.append(l).append('\n');
+            if (parkAttr != null) b.append(I18n.t("Fuente")).append(": ").append(parkAttr).append(" (InfraNode)").append('\n');
         }
-        if (it.distKm > 0) b.append(I18n.f("A %s km de ti", String.format(I18n.num, "%.1f", it.distKm))).append('\n');
+        if (it.routeKm >= 0) b.append(I18n.f("En tu ruta, a %s km", String.format(I18n.num, "%.0f", it.routeKm))).append('\n');
+        else if (it.distKm > 0) b.append(I18n.f("A %s km de ti", String.format(I18n.num, "%.1f", it.distKm))).append('\n');
         if (it.type <= WORKS || it.type == CHARGE || it.type == REST) {
-            b.append('\n').append(I18n.t("Texto original (alemán), Autobahn GmbH:")).append('\n');
+            b.append('\n').append(I18n.t("Texto original (alemán), Die Autobahn GmbH des Bundes:")).append('\n');
             for (String l : it.desc) if (l.trim().length() > 0) b.append(l.trim()).append('\n');
         }
         return b.toString().trim();
@@ -546,38 +636,139 @@ final class Infra {
 
     // ───────────────────────── InfraNode ─────────────────────────
 
-    private static List<Item> parseFuel(String json, String kind) throws Exception {
+    // ───────────────────────── Tankerkönig ─────────────────────────
+
+    static volatile List<Item> tkItems = Collections.emptyList();
+    static volatile long tkAt;                 // cuándo llegaron los precios (System.currentTimeMillis)
+    private static volatile long tkAsked;      // última consulta (aunque haya fallado)
+    private static double tkLat = Double.NaN, tkLon = Double.NaN;
+    private static String tkKind;
+    static volatile boolean tkBusy;
+    /** Tankerkönig dijo que no (clave mala o bloqueada): no se le pregunta más hasta que cambie la clave. */
+    static volatile String tkRefused;
+    private static String tkRefusedKey;
+
+    static String tkKey(Context c) { return p(c).getString("tk_key", "").trim(); }
+    static boolean tkKeyOk(String k) { return k.matches("[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"); }
+    /** Radio de búsqueda en km (Tankerkönig permite hasta 25). */
+    static int tkRadius(Context c) { return Math.max(1, Math.min(25, p(c).getInt("tk_rad", 10))); }
+
+    /** El botón de precios del mapa: capa encendida, clave puesta y en Alemania. */
+    static boolean fuelButton(Context c) {
+        return on(c) && layer(c, "infra_fuel") && (tkKeyOk(tkKey(c)) && inGermany || demo);
+    }
+
+    /**
+     * Precios alrededor del carro, porque el usuario apretó el botón: una consulta list.php (todas las estaciones del
+     * radio, sin filtrar, ordenadas por distancia). Como mucho una por minuto; si ya hay precios de hace menos de
+     * 5 minutos para el mismo lugar y combustible, se usan esos sin preguntar de nuevo. Devuelve el mensaje para
+     * mostrar (null si todo bien); en otro hilo.
+     */
+    static String requestFuel(Context c, double la, double lo) {
+        String key = tkKey(c);
+        if (!tkKeyOk(key)) return "Escribe tu clave de Tankerkönig en Ajustes › Mapa";
+        if (tkRefused != null && key.equals(tkRefusedKey)) return I18n.t("Tankerkönig rechazó la clave") + ": " + tkRefused;
+        String fk = fuelKind(c);
+        int rad = tkRadius(c);
+        long now = System.currentTimeMillis();
+        boolean near = !Double.isNaN(tkLat) && km(la, lo, tkLat, tkLon) < rad / 3.0;
+        if (near && fk.equals(tkKind) && now - tkAt < 5 * 60000L) { publish(); return null; }
+        if (now - tkAsked < 60000L) return "Tankerkönig permite una consulta por minuto: espera un momento";
+        if (tkBusy) return null;
+        tkBusy = true;
+        tkAsked = now;
+        try {
+            String url = "https://creativecommons.tankerkoenig.de/json/list.php?lat=" + String.format(Locale.US, "%.3f", la)
+                + "&lng=" + String.format(Locale.US, "%.3f", lo) + "&rad=" + rad + "&sort=dist&type=all&apikey=" + key;
+            JSONObject o = new JSONObject(get(url));
+            if (!o.optBoolean("ok", false)) {
+                tkRefused = o.optString("message", "?");
+                tkRefusedKey = key;
+                return I18n.t("Tankerkönig rechazó la clave") + ": " + tkRefused;
+            }
+            tkItems = Collections.unmodifiableList(parseTk(o, fk, la, lo));
+            tkAt = now;
+            tkLat = la; tkLon = lo; tkKind = fk;
+            fuelKindNow = fk;
+            publish();
+            return tkItems.isEmpty() ? I18n.f("No hay gasolineras a %d km", rad) : null;
+        } catch (Throwable e) {
+            // el mensaje nunca lleva la dirección (tiene la clave)
+            String m = e.getMessage() != null ? e.getMessage().replace(key, "***") : e.getClass().getSimpleName();
+            return I18n.t("No se pudieron traer los precios") + ": " + (m.startsWith("http") ? e.getClass().getSimpleName() : m);
+        } finally {
+            tkBusy = false;
+        }
+    }
+
+    /** Pone los precios nuevos en el mapa sin esperar la próxima actualización de tráfico. */
+    private static synchronized void publish() {
         List<Item> out = new ArrayList<Item>();
-        JSONObject pl = new JSONObject(json).getJSONObject("data").optJSONObject("payload");
-        JSONArray st = pl != null ? pl.optJSONArray("stations") : null;
+        for (Item it : items) if (it.type != FUEL) out.add(it);
+        out.addAll(tkItems);
+        items = Collections.unmodifiableList(out);
+        gen++;
+    }
+
+    private static List<Item> parseTk(JSONObject o, String kind, double la, double lo) {
+        List<Item> out = new ArrayList<Item>();
+        JSONArray st = o.optJSONArray("stations");
         if (st == null) return out;
         float min = Float.MAX_VALUE;
         for (int i = 0; i < st.length(); i++) {
             JSONObject s = st.optJSONObject(i);
-            if (s == null || !s.optBoolean("is_open", true)) continue;
-            double pr = s.optDouble(kind, Double.NaN);
-            if (Double.isNaN(pr) || pr < 0.5 || pr > 4) continue;   // precio imposible: no se muestra
+            if (s == null) continue;
             Item it = new Item();
             it.type = FUEL;
-            it.id = "fuel:" + s.optString("station_id", "" + i);
+            it.id = "tk:" + s.optString("id", "" + i);
             it.lat = s.optDouble("lat", Double.NaN);
-            it.lon = s.optDouble("lon", Double.NaN);
-            if (Double.isNaN(it.lat)) continue;
+            it.lon = s.optDouble("lng", Double.NaN);
+            if (Double.isNaN(it.lat) || Double.isNaN(it.lon)) continue;
+            it.closed = !s.optBoolean("isOpen", true);
             String brand = s.optString("brand", "").trim();
-            it.title = brand.length() > 0 && !"null".equals(brand) ? brand : s.optString("name", "");
-            String street = (s.optString("street", "") + " " + s.optString("house_number", "")).replace("null", "").trim();
-            it.desc = new String[]{s.optString("name", ""), (street + ", " + s.optString("place", "")).replace("null", "").trim()};
-            it.price = (float) pr;
-            min = Math.min(min, it.price);
+            String name = s.optString("name", "").trim();
+            it.title = brand.length() > 0 && !"null".equals(brand) ? brand : name;
+            String street = (s.optString("street", "") + " " + s.optString("houseNumber", "")).replace("null", "").trim();
+            String place = (s.optString("postCode", "") + " " + s.optString("place", "")).replace("null", "").trim();
+            it.desc = new String[]{name, street + (place.length() > 0 ? ", " + place : "")};
+            double pr = s.optDouble(kind, Double.NaN);      // false (no lo vende) → NaN
+            if (!Double.isNaN(pr) && pr > 0.5 && pr < 4) it.price = (float) pr;   // precio imposible: sin precio
+            it.distKm = (float) s.optDouble("dist", km(la, lo, it.lat, it.lon));
+            if (!it.closed && !Float.isNaN(it.price)) min = Math.min(min, it.price);
             out.add(it);
         }
-        for (Item it : out) it.cheapest = it.price <= min + 0.0005f;
+        for (Item it : out) it.cheapest = !it.closed && !Float.isNaN(it.price) && it.price <= min + 0.0005f;
         return out;
+    }
+
+    /** Las fuentes de lo que está en el mapa, como piden sus licencias (una línea corta). */
+    static String attribution() {
+        List<Item> list = items;
+        boolean ab = false, tk = false, pk = false;
+        for (Item it : list) {
+            if (it.type <= REST) ab = true;
+            else if (it.type == FUEL) tk = true;
+            else if (it.type == PARK) pk = true;
+        }
+        StringBuilder b = new StringBuilder();
+        if (ab) b.append(I18n.t("Tráfico: Die Autobahn GmbH des Bundes"));
+        if (tk) b.append(b.length() > 0 ? " · " : "").append(I18n.t("Precios: Tankerkönig.de, CC BY 4.0, MTS-K"));
+        if (pk && parkAttr != null) b.append(b.length() > 0 ? " · " : "").append(parkAttr);
+        if (wxEvent != null && wxAttr != null) b.append(b.length() > 0 ? " · " : "").append(wxAttr);
+        return b.toString();
+    }
+
+    private static String attr(JSONObject data) {
+        JSONObject a = data.optJSONObject("attribution");
+        String t = a != null ? a.optString("text", "") : "";
+        return t.length() > 0 ? t : null;
     }
 
     private static List<Item> parsePark(String json) throws Exception {
         List<Item> out = new ArrayList<Item>();
-        JSONObject pl = new JSONObject(json).getJSONObject("data").optJSONObject("payload");
+        JSONObject data = new JSONObject(json).getJSONObject("data");
+        parkAttr = attr(data);
+        JSONObject pl = data.optJSONObject("payload");
         JSONArray fa = pl != null ? pl.optJSONArray("facilities") : null;
         if (fa == null) return out;
         for (int i = 0; i < fa.length(); i++) {
@@ -600,7 +791,9 @@ final class Infra {
     }
 
     private static void parseWx(String json) throws Exception {
-        JSONObject pl = new JSONObject(json).getJSONObject("data").optJSONObject("payload");
+        JSONObject data = new JSONObject(json).getJSONObject("data");
+        wxAttr = attr(data);
+        JSONObject pl = data.optJSONObject("payload");
         JSONArray w = pl != null ? pl.optJSONArray("warnings") : null;
         String best = null;
         int lv = 0;
@@ -670,8 +863,8 @@ final class Infra {
     /** Después de cambiar un ajuste: se vuelve a pedir y a armar todo. */
     static synchronized void reset() {
         ROADS.clear();
-        tFuel = tPark = tWx = 0;
-        fuelCity = parkCity = wxCity = null;
+        tPark = tWx = 0;
+        parkCity = wxCity = null;
         cLat = Double.NaN;
         lastRun = 0;
         items = Collections.<Item>emptyList();

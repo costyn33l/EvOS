@@ -2132,3 +2132,61 @@ Las obras cada 30 min; cargadores y descansos cada 6 h	Lucrările la 30 min; sta
 Autopistas y ciudad que se están mirando	Autostrăzile și orașul urmărite acum
 Cerrado para camiones	Închis pentru camioane
 Hacia	Spre
+SAE J1850 PWM · 41,6 kbaud (Ford)	SAE J1850 PWM · 41,6 kbaud (Ford)
+SAE J1850 VPW · 10,4 kbaud (GM)	SAE J1850 VPW · 10,4 kbaud (GM)
+ISO 9141-2 · línea K, 5 baudios	ISO 9141-2 · linie K, 5 baud
+ISO 14230-4 KWP · inicio lento	ISO 14230-4 KWP · inițializare lentă
+ISO 14230-4 KWP · inicio rápido	ISO 14230-4 KWP · inițializare rapidă
+Buscar escáneres Bluetooth LE (BLE)	Caută scanere Bluetooth LE (BLE)
+Buscando escáneres Bluetooth LE…	Caut scanere Bluetooth LE…
+Los escáneres BLE no se emparejan en los ajustes del equipo: aparecen aquí con el contacto puesto.	Scanerele BLE nu se împerechează din setările dispozitivului: apar aici cu contactul pus.
+Los escáneres Bluetooth LE necesitan Android 4.3 o más nuevo	Scanerele Bluetooth LE au nevoie de Android 4.3 sau mai nou
+No se pudo buscar equipos Bluetooth LE	Nu s-au putut căuta dispozitive Bluetooth LE
+El voltaje en el conector es muy bajo: revisa la batería o el contacto	Tensiunea în conector e prea mică: verifică bateria sau contactul
+El escáner Bluetooth LE se desconectó	Scanerul Bluetooth LE s-a deconectat
+Este equipo Bluetooth LE no parece un escáner OBD (no tiene un puerto serie)	Acest dispozitiv Bluetooth LE nu pare un scaner OBD (nu are port serial)
+No se pudo escuchar al escáner Bluetooth LE	Nu s-au putut primi date de la scanerul Bluetooth LE
+El escáner Bluetooth LE no contesta: ¿está enchufado y cerca?	Scanerul Bluetooth LE nu răspunde: e conectat și aproape?
+No se pudo conectar con el escáner Bluetooth LE	Nu s-a putut conecta scanerul Bluetooth LE
+No se pudo escribir al escáner Bluetooth LE	Nu s-a putut trimite la scanerul Bluetooth LE
+Otras señales estándar (SAE J1979)	Alte valori standard (SAE J1979)
+Fórmulas: OBDb (github.com/OBDb), CC BY-SA 4.0	Formule: OBDb (github.com/OBDb), CC BY-SA 4.0
+Escribe tu clave de Tankerkönig en Ajustes › Mapa	Introdu cheia ta Tankerkönig în Setări › Hartă
+Tankerkönig rechazó la clave	Tankerkönig a respins cheia
+Tankerkönig permite una consulta por minuto: espera un momento	Tankerkönig permite o cerere pe minut: așteaptă puțin
+No hay gasolineras a %d km	Nicio benzinărie pe o rază de %d km
+No se pudieron traer los precios	Prețurile nu au putut fi descărcate
+Tráfico: Die Autobahn GmbH des Bundes	Trafic: Die Autobahn GmbH des Bundes
+Precios: Tankerkönig.de, CC BY 4.0, MTS-K	Prețuri: Tankerkönig.de, CC BY 4.0, MTS-K
+no lo vende o sin precio	nu îl vinde sau fără preț
+Cerrada ahora	Închisă acum
+Precios de las	Prețuri de la ora
+Fuente	Sursă
+En tu ruta, a %s km	Pe traseul tău, la %s km
+Texto original (alemán), Die Autobahn GmbH des Bundes:	Text original (germană), Die Autobahn GmbH des Bundes:
+cerrada	închisă
+En tu ruta	Pe traseu
+Buscando precios…	Caut prețurile…
+%d gasolineras · %s	%d benzinării · %s
+Esperando el GPS…	Aștept GPS-ul…
+Precios de combustible (Tankerkönig)	Prețuri carburant (Tankerkönig)
+Con tu clave gratuita: un botón en el mapa busca las gasolineras de alrededor; la más barata en verde	Cu cheia ta gratuită: un buton pe hartă caută benzinăriile din jur; cea mai ieftină în verde
+Clave de Tankerkönig	Cheie Tankerkönig
+Personal y gratuita: no la compartas. Toca para escribirla	Personală și gratuită: nu o împărtăși. Atinge ca s-o introduci
+Sin clave	Fără cheie
+No es válida	Nu e validă
+Clave de Tankerkönig (API key)	Cheie Tankerkönig (API key)
+La clave tiene la forma 00000000-0000-0000-0000-000000000000	Cheia are forma 00000000-0000-0000-0000-000000000000
+Cómo conseguir la clave	Cum obții cheia
+Reglas de uso de Tankerkönig	Regulile de utilizare Tankerkönig
+Regístrate gratis en onboarding.tankerkoenig.de con tu correo y te mandan una clave personal. Escríbela aquí; no la publiques ni la compartas.\n\nEvOS la usa como piden las reglas de Tankerkönig: los precios se piden solo cuando tocas el botón del surtidor en el mapa, como mucho una vez por minuto, se muestran todas las gasolineras del radio sin filtrar y con la fuente a la vista (Tankerkönig.de, CC BY 4.0, datos de la MTS-K). Los precios no se guardan ni se envían a nadie. Tankerkönig no garantiza que los precios estén al día.	Înregistrează-te gratuit pe onboarding.tankerkoenig.de cu adresa ta de email și primești o cheie personală. Introdu-o aici; nu o publica și nu o împărtăși.\n\nEvOS o folosește cum cer regulile Tankerkönig: prețurile se cer doar când atingi butonul cu pompa de pe hartă, cel mult o dată pe minut, se afișează toate benzinăriile din rază, nefiltrate, cu sursa la vedere (Tankerkönig.de, CC BY 4.0, date de la MTS-K). Prețurile nu se salvează și nu se trimit nimănui. Tankerkönig nu garantează că prețurile sunt la zi.
+Radio de búsqueda	Rază de căutare
+Tankerkönig permite hasta 25 km	Tankerkönig permite cel mult 25 km
+10 km	10 km
+15 km	15 km
+25 km	25 km
+En las autopistas cercanas y, navegando, en toda la ruta	Pe autostrăzile din apropiere și, când navighezi, pe tot traseul
+Un aviso en el mapa al acercarte a un atasco, accidente o cierre; navegando, también lo que hay en la ruta	Un mesaj pe hartă când te apropii de un ambuteiaj, accident sau drum închis; când navighezi, și ce e pe traseu
+Fuentes y licencias	Surse și licențe
+Autobahn GmbH, Tankerkönig, InfraNode, DWD	Autobahn GmbH, Tankerkönig, InfraNode, DWD
+Tráfico de las autopistas: Die Autobahn GmbH des Bundes (verkehr.autobahn.de, datos públicos de la app «Autobahn»). Se piden solo las autopistas de alrededor y de tu ruta, cada pocos minutos.\n\nPrecios de combustible: Tankerkönig.de, CC BY 4.0, datos de la Markttransparenzstelle für Kraftstoffe (MTS-K), con tu clave personal.\n\nEstacionamientos y avisos meteorológicos: InfraNode (infranode.dev), con la fuente de cada dato (por ejemplo «Datenbasis: Deutscher Wetterdienst», «Stadt Köln»).\n\nLos datos se muestran solo en esta pantalla: no se guardan ni se reenvían. Ninguna de las fuentes garantiza que estén completos o al día: lo que manda es la señalización de la vía.	Traficul pe autostrăzi: Die Autobahn GmbH des Bundes (verkehr.autobahn.de, datele publice ale aplicației «Autobahn»). Se cer doar autostrăzile din jur și de pe traseu, la câteva minute.\n\nPrețuri carburant: Tankerkönig.de, CC BY 4.0, date de la Markttransparenzstelle für Kraftstoffe (MTS-K), cu cheia ta personală.\n\nParcări și avertizări meteo: InfraNode (infranode.dev), cu sursa fiecărei date (de exemplu «Datenbasis: Deutscher Wetterdienst», «Stadt Köln»).\n\nDatele se afișează doar pe acest ecran: nu se salvează și nu se trimit mai departe. Niciuna dintre surse nu garantează că sunt complete sau la zi: contează semnalizarea de pe drum.

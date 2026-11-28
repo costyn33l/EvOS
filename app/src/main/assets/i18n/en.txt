@@ -2162,3 +2162,61 @@ Las obras cada 30 min; cargadores y descansos cada 6 h	Roadworks every 30 min; c
 Autopistas y ciudad que se están mirando	Motorways and city being checked
 Cerrado para camiones	Closed to trucks
 Hacia	Towards
+SAE J1850 PWM · 41,6 kbaud (Ford)	SAE J1850 PWM · 41.6 kbaud (Ford)
+SAE J1850 VPW · 10,4 kbaud (GM)	SAE J1850 VPW · 10.4 kbaud (GM)
+ISO 9141-2 · línea K, 5 baudios	ISO 9141-2 · K-line, 5 baud
+ISO 14230-4 KWP · inicio lento	ISO 14230-4 KWP · slow init
+ISO 14230-4 KWP · inicio rápido	ISO 14230-4 KWP · fast init
+Buscar escáneres Bluetooth LE (BLE)	Search for Bluetooth LE (BLE) scanners
+Buscando escáneres Bluetooth LE…	Searching for Bluetooth LE scanners…
+Los escáneres BLE no se emparejan en los ajustes del equipo: aparecen aquí con el contacto puesto.	BLE scanners aren't paired in the device settings: they show up here with the ignition on.
+Los escáneres Bluetooth LE necesitan Android 4.3 o más nuevo	Bluetooth LE scanners need Android 4.3 or newer
+No se pudo buscar equipos Bluetooth LE	Couldn't search for Bluetooth LE devices
+El voltaje en el conector es muy bajo: revisa la batería o el contacto	The voltage at the connector is too low: check the battery or the ignition
+El escáner Bluetooth LE se desconectó	The Bluetooth LE scanner disconnected
+Este equipo Bluetooth LE no parece un escáner OBD (no tiene un puerto serie)	This Bluetooth LE device doesn't look like an OBD scanner (no serial port)
+No se pudo escuchar al escáner Bluetooth LE	Couldn't listen to the Bluetooth LE scanner
+El escáner Bluetooth LE no contesta: ¿está enchufado y cerca?	The Bluetooth LE scanner doesn't answer: is it plugged in and nearby?
+No se pudo conectar con el escáner Bluetooth LE	Couldn't connect to the Bluetooth LE scanner
+No se pudo escribir al escáner Bluetooth LE	Couldn't write to the Bluetooth LE scanner
+Otras señales estándar (SAE J1979)	Other standard signals (SAE J1979)
+Fórmulas: OBDb (github.com/OBDb), CC BY-SA 4.0	Formulas: OBDb (github.com/OBDb), CC BY-SA 4.0
+Escribe tu clave de Tankerkönig en Ajustes › Mapa	Enter your Tankerkönig key in Settings › Map
+Tankerkönig rechazó la clave	Tankerkönig rejected the key
+Tankerkönig permite una consulta por minuto: espera un momento	Tankerkönig allows one request per minute: wait a moment
+No hay gasolineras a %d km	No fuel stations within %d km
+No se pudieron traer los precios	Couldn't fetch the prices
+Tráfico: Die Autobahn GmbH des Bundes	Traffic: Die Autobahn GmbH des Bundes
+Precios: Tankerkönig.de, CC BY 4.0, MTS-K	Prices: Tankerkönig.de, CC BY 4.0, MTS-K
+no lo vende o sin precio	not sold or no price
+Cerrada ahora	Closed now
+Precios de las	Prices from
+Fuente	Source
+En tu ruta, a %s km	On your route, %s km ahead
+Texto original (alemán), Die Autobahn GmbH des Bundes:	Original text (German), Die Autobahn GmbH des Bundes:
+cerrada	closed
+En tu ruta	On your route
+Buscando precios…	Looking up prices…
+%d gasolineras · %s	%d fuel stations · %s
+Esperando el GPS…	Waiting for GPS…
+Precios de combustible (Tankerkönig)	Fuel prices (Tankerkönig)
+Con tu clave gratuita: un botón en el mapa busca las gasolineras de alrededor; la más barata en verde	With your free key: a button on the map finds nearby fuel stations; the cheapest in green
+Clave de Tankerkönig	Tankerkönig key
+Personal y gratuita: no la compartas. Toca para escribirla	Personal and free: don't share it. Tap to enter it
+Sin clave	No key
+No es válida	Not valid
+Clave de Tankerkönig (API key)	Tankerkönig key (API key)
+La clave tiene la forma 00000000-0000-0000-0000-000000000000	The key looks like 00000000-0000-0000-0000-000000000000
+Cómo conseguir la clave	How to get the key
+Reglas de uso de Tankerkönig	Tankerkönig usage rules
+Regístrate gratis en onboarding.tankerkoenig.de con tu correo y te mandan una clave personal. Escríbela aquí; no la publiques ni la compartas.\n\nEvOS la usa como piden las reglas de Tankerkönig: los precios se piden solo cuando tocas el botón del surtidor en el mapa, como mucho una vez por minuto, se muestran todas las gasolineras del radio sin filtrar y con la fuente a la vista (Tankerkönig.de, CC BY 4.0, datos de la MTS-K). Los precios no se guardan ni se envían a nadie. Tankerkönig no garantiza que los precios estén al día.	Register for free at onboarding.tankerkoenig.de with your email and you'll get a personal key. Enter it here; don't publish or share it.\n\nEvOS uses it as Tankerkönig's rules require: prices are requested only when you tap the pump button on the map, at most once a minute, all stations in the radius are shown unfiltered, with the source visible (Tankerkönig.de, CC BY 4.0, data from MTS-K). Prices aren't stored or sent to anyone. Tankerkönig doesn't guarantee the prices are up to date.
+Radio de búsqueda	Search radius
+Tankerkönig permite hasta 25 km	Tankerkönig allows up to 25 km
+10 km	10 km
+15 km	15 km
+25 km	25 km
+En las autopistas cercanas y, navegando, en toda la ruta	On nearby motorways and, while navigating, along the whole route
+Un aviso en el mapa al acercarte a un atasco, accidente o cierre; navegando, también lo que hay en la ruta	A notice on the map when you approach a jam, accident or closure; while navigating, also what's on the route
+Fuentes y licencias	Sources and licences
+Autobahn GmbH, Tankerkönig, InfraNode, DWD	Autobahn GmbH, Tankerkönig, InfraNode, DWD
+Tráfico de las autopistas: Die Autobahn GmbH des Bundes (verkehr.autobahn.de, datos públicos de la app «Autobahn»). Se piden solo las autopistas de alrededor y de tu ruta, cada pocos minutos.\n\nPrecios de combustible: Tankerkönig.de, CC BY 4.0, datos de la Markttransparenzstelle für Kraftstoffe (MTS-K), con tu clave personal.\n\nEstacionamientos y avisos meteorológicos: InfraNode (infranode.dev), con la fuente de cada dato (por ejemplo «Datenbasis: Deutscher Wetterdienst», «Stadt Köln»).\n\nLos datos se muestran solo en esta pantalla: no se guardan ni se reenvían. Ninguna de las fuentes garantiza que estén completos o al día: lo que manda es la señalización de la vía.	Motorway traffic: Die Autobahn GmbH des Bundes (verkehr.autobahn.de, the public data of the «Autobahn» app). Only motorways nearby and on your route are requested, every few minutes.\n\nFuel prices: Tankerkönig.de, CC BY 4.0, data from the Markttransparenzstelle für Kraftstoffe (MTS-K), with your personal key.\n\nCar parks and weather warnings: InfraNode (infranode.dev), with the source of each item (for example «Datenbasis: Deutscher Wetterdienst», «Stadt Köln»).\n\nThe data is shown only on this screen: it isn't stored or passed on. None of the sources guarantees it's complete or current: road signs take precedence.

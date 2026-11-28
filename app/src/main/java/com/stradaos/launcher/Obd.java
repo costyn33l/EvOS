@@ -279,6 +279,29 @@ public class Obd {
 
     /** Todos los demás datos estándar que el auto entrega (PID → bytes), leídos de a poco para no frenar las alertas. */
     static final java.util.TreeMap<Integer, byte[]> extra = new java.util.TreeMap<Integer, byte[]>();
+    /** Cuándo se leyó cada PID de {@link #extra} (elapsedRealtime). */
+    static final java.util.HashMap<Integer, Long> extraTime = new java.util.HashMap<Integer, Long>();
+
+    /**
+     * Las demás señales estándar que entrega el auto, con nombre, unidad y revisadas (SAE J1979 de OBDb): solo las
+     * leídas hace menos de 60 s.
+     */
+    static List<J1979.Val> extraValues() {
+        List<J1979.Val> out = new ArrayList<J1979.Val>();
+        long now = android.os.SystemClock.elapsedRealtime();
+        synchronized (extra) {
+            for (java.util.Map.Entry<Integer, byte[]> e : extra.entrySet()) {
+                Long t = extraTime.get(e.getKey());
+                if (t == null || now - t > 60000) continue;
+                out.addAll(J1979.decode(e.getKey(), e.getValue()));
+            }
+        }
+        return out;
+    }
+
+    private static void putExtra(int pid, byte[] b) {
+        synchronized (extra) { extra.put(pid, b); extraTime.put(pid, android.os.SystemClock.elapsedRealtime()); }
+    }
     /** Respuesta del PID 01 (luz del motor y monitores de emisiones). */
     static volatile byte[] status01;
     /** Datos guardados por el computador en el momento en que se registró el código (modo 02, «freeze frame»). */
@@ -383,7 +406,7 @@ public class Obd {
         fuelType = -1; dpf = false; dpfVag = false; dpfRegen = false;
         synchronized (alerts) { alerts.clear(); }
         dtcs = new ArrayList<String>(); pending = new ArrayList<String>(); mil = false; vin = null;
-        synchronized (extra) { extra.clear(); }
+        synchronized (extra) { extra.clear(); extraTime.clear(); }
         status01 = null; freeze = null; freezeCode = null; freezeDone = false;
         reloadPrefs(app);
         initVoice();
@@ -475,10 +498,15 @@ public class Obd {
             changed();
             elm = new Elm();
             elm.protocol(prefs(app).getString("obd_protocol", "auto"));
+            elm.lastGood(prefs(app).getString("obd_proto_ok_" + addr, null));
+            elm.deepSearch(fails % 5 == 0);    // probar los 9 protocolos uno por uno: al empezar y cada 5 intentos fallidos
+            J1979.load(app);
             try {
                 elm.open(addr);
                 adapterInfo = elm.version + " · " + elm.protocol;
-                log("conectado: " + adapterInfo);
+                log("conectado: " + adapterInfo + " (protocolo " + elm.protoNum + ")");
+                if (elm.protoNum >= '1' && elm.protoNum <= '9')
+                    prefs(app).edit().putString("obd_proto_ok_" + addr, String.valueOf(elm.protoNum)).apply();
                 addrNow = addr;
                 groupFails = 0;
                 groupTimeouts = 0;
@@ -769,14 +797,14 @@ public class Obd {
             int pid = todo.get(extraAt++ % todo.size());
             if (group.contains(pid)) break;
             if (Elm.groupable(pid)) group.add(pid);
-            else { byte[] b = elm.pid(pid); if (b != null) synchronized (extra) { extra.put(pid, b); } }
+            else { byte[] b = elm.pid(pid); if (b != null) putExtra(pid, b); }
         }
         if (group.isEmpty()) return;
         int[] pids = new int[group.size()];
         for (int i = 0; i < pids.length; i++) pids[i] = group.get(i);
         java.util.Map<Integer, byte[]> r = elm.pids(pids);
         if (r.isEmpty()) for (int pid : pids) { byte[] b = elm.pid(pid); if (b != null) r.put(pid, b); }
-        synchronized (extra) { extra.putAll(r); }
+        for (java.util.Map.Entry<Integer, byte[]> e : r.entrySet()) putExtra(e.getKey(), e.getValue());
     }
 
     private static int extraAt;
@@ -793,7 +821,7 @@ public class Obd {
         for (int i = 0; i < 2; i++) {
             int pid = todo.get(extraAt++ % todo.size());
             byte[] b = elm.pid(pid);
-            if (b != null) synchronized (extra) { extra.put(pid, b); }
+            if (b != null) putExtra(pid, b);
         }
     }
 

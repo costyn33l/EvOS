@@ -103,7 +103,7 @@ public class LiveMapView extends View {
     static final long RETURN_MS = 12000;
     Listener exploreListener;
     /** Toque en un aviso, cierre, gasolinera… de la capa de Alemania (Infra). */
-    interface InfraTap { void onItem(Infra.Item it); }
+    interface InfraTap { void onItem(Infra.Item it); void onFuelButton(); }
     InfraTap infraTap;
     private boolean exploring, ownButtons, dragExplores = true;
     /** Centro explorado en coordenadas del mundo (0 a 1 en x y en y, Mercator). */
@@ -737,6 +737,7 @@ public class LiveMapView extends View {
         gd = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
             @Override public boolean onDown(MotionEvent e) { return true; }
             @Override public boolean onSingleTapConfirmed(MotionEvent e) {
+                if (fuelBtnHit(e.getX(), e.getY()) && infraTap != null) { infraTap.onFuelButton(); return true; }
                 Infra.Item it = hitInfra(e.getX(), e.getY());
                 if (it != null && infraTap != null) { infraTap.onItem(it); return true; }
                 if (!exploring) explore();
@@ -1009,7 +1010,19 @@ public class LiveMapView extends View {
                 if (Nav.active == null) ay = 13 * s;
             }
             c.drawText(attr, ax, ay, text);
-            drawInfraBanners(c, w, ay);
+            // fuentes de la capa de Alemania, como piden sus licencias (debajo de la de OpenStreetMap)
+            String ia = Infra.attribution();
+            if (ia.length() > 0) {
+                float iw = text.measureText(ia);
+                text.setColor(0xFF000000);
+                text.setStyle(Paint.Style.STROKE);
+                c.drawText(ia, w - iw - 10 * s, ay + 15 * s, text);
+                text.setStyle(Paint.Style.FILL);
+                text.setColor(0xCCFFFFFF);
+                c.drawText(ia, w - iw - 10 * s, ay + 15 * s, text);
+            }
+            drawInfraBanners(c, w, ay + (ia.length() > 0 ? 16 * s : 0));
+            drawFuelButton(c);
         }
         if (bd) c.drawPath(corners, back);
         else {
@@ -1300,9 +1313,10 @@ public class LiveMapView extends View {
             // etiqueta: precio o lugares libres
             String lab = null;
             int lbg = 0xEE1A1D24;
-            if (it.type == Infra.FUEL && !Float.isNaN(it.price)) {
-                lab = String.format(I18n.num, "%.2f", it.price);
+            if (it.type == Infra.FUEL) {
+                lab = it.closed ? I18n.t("cerrada") : Float.isNaN(it.price) ? "—" : String.format(I18n.num, "%.2f", it.price);
                 if (it.cheapest) lbg = 0xEE1F9D55;
+                else if (it.closed) lbg = 0xCC555A63;
             } else if (it.type == Infra.PARK && it.free >= 0) {
                 lab = "" + it.free;
                 if (it.cap > 0 && it.free < it.cap * 0.1f) lbg = 0xEEC92A2A;
@@ -1321,6 +1335,47 @@ public class LiveMapView extends View {
             hitXY[hitN * 2 + 1] = sy;
             hitN++;
         }
+    }
+
+    /** Botón de precios (Tankerkönig): a la izquierda, a media altura. Solo con la capa, la clave y en Alemania. */
+    private final RectF fuelBtn = new RectF();
+    private boolean fuelBtnShown;
+
+    private void drawFuelButton(Canvas c) {
+        fuelBtnShown = Infra.fuelButton(getContext());
+        if (!fuelBtnShown) return;
+        float r = 24 * s, x = 12 * s + r, y = getHeight() * 0.5f;
+        fuelBtn.set(x - r, y - r, x + r, y + r);
+        ip.setStyle(Paint.Style.FILL);
+        ip.setColor(0x66000000);
+        c.drawCircle(x, y + 2 * s, r + 1 * s, ip);
+        ip.setColor(Infra.tkBusy ? 0xFF3A4150 : 0xF0141619);
+        c.drawCircle(x, y, r, ip);
+        Bitmap g = infraIcon("pump");
+        if (g != null) {
+            ir.set(x - 13 * s, y - 13 * s, x + 13 * s, y + 13 * s);
+            isrc.set(0, 0, g.getWidth(), g.getHeight());
+            c.drawBitmap(g, isrc, ir, ipIcon);
+        }
+        long at = Infra.tkAt;
+        if (at > 0 && System.currentTimeMillis() - at < 30 * 60000L) {
+            String t = new java.text.SimpleDateFormat("HH:mm", java.util.Locale.US).format(new java.util.Date(at));
+            ipText.setFakeBoldText(true);
+            ipText.setTextSize(10.5f * s);
+            float tw = ipText.measureText(t);
+            ir.set(x - tw / 2 - 5 * s, y + r + 3 * s, x + tw / 2 + 5 * s, y + r + 17 * s);
+            ip.setColor(0xE0141619);
+            c.drawRoundRect(ir, 6 * s, 6 * s, ip);
+            ipText.setColor(0xFFFFFFFF);
+            c.drawText(t, x - tw / 2, y + r + 14 * s, ipText);
+        }
+    }
+
+    private boolean fuelBtnHit(float x, float y) {
+        if (!fuelBtnShown) return false;
+        RectF b = new RectF(fuelBtn);
+        b.inset(-8 * s, -8 * s);
+        return b.contains(x, y);
     }
 
     /** La marca más cercana al toque (a menos de 26 dp); null si no hay. */

@@ -865,6 +865,11 @@ public class Main extends Activity {
                 }
                 else if (v.startsWith("tema-ev:")) applyEv(v.substring(8), false);
                 else if ("ev-datos".equals(v)) openEvObd();
+                else if ("ev-datos-fin".equals(v)) {
+                    // «Todos los datos» hasta abajo (las otras señales estándar)
+                    if (evGrid != null) for (View pv = (View) evGrid.getParent(); pv != null; pv = pv.getParent() instanceof View ? (View) pv.getParent() : null)
+                        if (pv instanceof android.widget.ScrollView) { ((android.widget.ScrollView) pv).fullScroll(View.FOCUS_DOWN); break; }
+                }
                 // textos mostrados sin traducción en el idioma de ahora → files/i18n-faltan.txt
                 else if ("i18n-faltan".equals(v)) {
                     StringBuilder sb = new StringBuilder(I18n.lang + "\n");
@@ -3558,6 +3563,8 @@ public class Main extends Activity {
     private String evGridKey = "";
     /** {clave, valor, barra, ancho} */
     private final List<Object[]> evCells = new ArrayList<Object[]>();
+    /** «Otras señales estándar»: clave → texto del valor. */
+    private final java.util.LinkedHashMap<String, TextView> evExtra = new java.util.LinkedHashMap<String, TextView>();
 
     private final Obd.Listener evObdL = new Obd.Listener() { public void onObd() {
         try { refreshEvObd(); } catch (Throwable e) { Guard.log("Datos en vivo: " + e); }
@@ -3640,6 +3647,7 @@ public class Main extends Activity {
         StringBuilder b = new StringBuilder(obdOn() ? "1" : "0").append(Obd.status == Obd.LIVE ? 'L' : '-');
         b.append(TextUtils.join(",", evKeys())).append(Obd.vin).append(Obd.fuelType).append(Obd.dpf).append(Obd.dpfRegen);
         for (Obd.Sensor sn : Obd.ALL) if (obdFresh(sn)) b.append(',').append(sn.key);
+        if (Obd.status == Obd.LIVE) for (J1979.Val v : Obd.extraValues()) b.append(',').append(v.key);
         return b.toString();
     }
 
@@ -3663,6 +3671,12 @@ public class Main extends Activity {
             int w = (int) (frac * (Float) o[3] * s);
             ViewGroup.LayoutParams lp = fill.getLayoutParams();
             if (lp.width != w) { lp.width = w; fill.setLayoutParams(lp); }
+        }
+        if (!evExtra.isEmpty() && Obd.status == Obd.LIVE) for (J1979.Val v : Obd.extraValues()) {
+            TextView tv = evExtra.get(v.key);
+            if (tv == null) continue;
+            String t = J1979.text(v) + (v.unit.length() > 0 ? " " + v.unit : "");
+            if (!t.contentEquals(tv.getText())) tv.setText(t);
         }
     }
 
@@ -3798,6 +3812,43 @@ public class Main extends Activity {
             cell.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {
                 toast(I18n.t("Mantén presionado para ponerlo en la pantalla de inicio"));
             }});
+        }
+        // las demás señales estándar que entrega el auto (SAE J1979, fórmulas de OBDb)
+        evExtra.clear();
+        List<J1979.Val> ext = Obd.status == Obd.LIVE ? Obd.extraValues() : new ArrayList<J1979.Val>();
+        if (!ext.isEmpty()) {
+            TextView eh = tv("Otras señales estándar (SAE J1979)", 15, TEXT, true);
+            LinearLayout.LayoutParams elp = new LinearLayout.LayoutParams(-1, -2);
+            elp.topMargin = (int) (18 * s); elp.bottomMargin = (int) (6 * s);
+            evGrid.addView(eh, elp);
+            LinearLayout box = new LinearLayout(this);
+            box.setOrientation(LinearLayout.VERTICAL);
+            box.setBackground(evTileBg(14));
+            box.setPadding((int) (16 * s), (int) (6 * s), (int) (16 * s), (int) (6 * s));
+            for (int i = 0; i < ext.size(); i++) {
+                J1979.Val v = ext.get(i);
+                LinearLayout r = new LinearLayout(this);
+                r.setGravity(Gravity.CENTER_VERTICAL);
+                r.setPadding(0, (int) (8 * s), 0, (int) (8 * s));
+                TextView n = tv("", 14, SOFT, false);
+                n.setText(v.name);
+                r.addView(n, new LinearLayout.LayoutParams(0, -2, 1));
+                TextView val = tv("", 16, TEXT, true);
+                val.setText(J1979.text(v) + (v.unit.length() > 0 ? " " + v.unit : ""));
+                val.setGravity(Gravity.RIGHT);
+                r.addView(val, new LinearLayout.LayoutParams(-2, -2));
+                box.addView(r);
+                evExtra.put(v.key, val);
+                if (i < ext.size() - 1) {
+                    View hl = new View(this);
+                    hl.setBackgroundColor(0x14FFFFFF);
+                    box.addView(hl, new LinearLayout.LayoutParams(-1, Math.max(1, (int) s)));
+                }
+            }
+            evGrid.addView(box, new LinearLayout.LayoutParams(-1, -2));
+            TextView src = tv("Fórmulas: OBDb (github.com/OBDb), CC BY-SA 4.0", 11, MUTED, false);
+            src.setPadding(0, (int) (6 * s), 0, 0);
+            evGrid.addView(src, new LinearLayout.LayoutParams(-1, -2));
         }
         TextView hint = tv("Mantén presionado un dato para ponerlo en la pantalla de inicio · desliza a la derecha para volver", 12, MUTED, false);
         multiLine(hint);
@@ -5564,11 +5615,18 @@ public class Main extends Activity {
 
     private void infraTick(double la, double lo, float br, float kmh) {
         try {
-            if (Infra.tick(this, la, lo, br, kmh) && Infra.alert != null && Infra.layer(this, "infra_voice"))
-                Nav.speakRaw(this, Infra.alertText(Infra.alert));
+            boolean fresh = Infra.tick(this, la, lo, br, kmh);
+            if (Infra.speakPending) { Infra.speakPending = false; fresh = true; }      // aviso de la ruta (lo dejó la descarga)
+            if (fresh && Infra.alert != null && Infra.layer(this, "infra_voice")) {
+                Infra.Item al = Infra.alert;
+                Nav.speakRaw(this, al.routeKm >= 0 ? I18n.t("En tu ruta") + ": " + Infra.alertText(al) : Infra.alertText(al));
+            }
         } catch (Throwable e) { Guard.log("Infra: " + e); }
         if (liveMap != null) {
-            if (liveMap.infraTap == null) liveMap.infraTap = new LiveMapView.InfraTap() { public void onItem(Infra.Item it) { showInfraItem(it); } };
+            if (liveMap.infraTap == null) liveMap.infraTap = new LiveMapView.InfraTap() {
+                public void onItem(Infra.Item it) { showInfraItem(it); }
+                public void onFuelButton() { askFuelPrices(); }
+            };
             if (infraGen != Infra.gen) { infraGen = Infra.gen; liveMap.invalidate(); }
         }
         // la descarga termina en otro hilo: se mira de nuevo en un rato para dibujar lo que llegó
@@ -5579,6 +5637,24 @@ public class Main extends Activity {
     private final Runnable infraPoll = new Runnable() { public void run() {
         if (liveMap != null && infraGen != Infra.gen) { infraGen = Infra.gen; liveMap.invalidate(); }
     }};
+
+    /** Botón de precios del mapa: el usuario los pide (Tankerkönig solo permite consultas que pide el usuario). */
+    private void askFuelPrices() {
+        final double la = Infra.posLa, lo = Infra.posLo;
+        if (Double.isNaN(la)) { toast("Esperando el GPS…"); return; }
+        if (Infra.tkBusy) return;
+        toast(I18n.t("Buscando precios…"));
+        final Context app = getApplicationContext();
+        new Thread(new Runnable() { public void run() {
+            final String msg = Infra.requestFuel(app, la, lo);
+            h.post(new Runnable() { public void run() {
+                if (msg != null) toast(I18n.t(msg));
+                else toast(I18n.f("%d gasolineras · %s", Infra.tkItems.size(), Infra.fuelLabel(Infra.fuelKindNow)));
+                if (liveMap != null) liveMap.invalidate();
+            }});
+        }}, "tankerkoenig").start();
+        if (liveMap != null) liveMap.invalidate();
+    }
 
     /** Detalle de un aviso, cierre, obra, cargador, área de descanso, gasolinera o estacionamiento tocado en el mapa. */
     private void showInfraItem(final Infra.Item it) {
@@ -5668,18 +5744,39 @@ public class Main extends Activity {
             on, infraCb("infra_on"));
         if (!on) return;
         String[][] layers = {
-            {"infra_warn", "Avisos: atascos, accidentes, peligros", "En las autopistas cercanas y en las de tu ruta"},
+            {"infra_warn", "Avisos: atascos, accidentes, peligros", "En las autopistas cercanas y, navegando, en toda la ruta"},
             {"infra_closed", "Cierres de vías y de salidas", "Tramos cerrados en rojo; las salidas y entradas cerradas, al acercarte"},
             {"infra_works", "Obras en autopistas", "Con el tramo afectado, las fechas y el ancho máximo"},
             {"infra_charge", "Cargadores en autopistas", "Puntos de carga, potencia y operador"},
             {"infra_rest", "Áreas de descanso", "Lugares para autos y camiones, servicios"},
-            {"infra_fuel", "Precios de combustible", "Gasolineras abiertas de la ciudad cercana (Tankerkönig): la más barata en verde"},
+            {"infra_fuel", "Precios de combustible (Tankerkönig)", "Con tu clave gratuita: un botón en el mapa busca las gasolineras de alrededor; la más barata en verde"},
             {"infra_park", "Estacionamientos con lugares libres", "Ocupación en vivo en las ciudades que la publican"},
             {"infra_wx", "Avisos meteorológicos (DWD)", "Helada, niebla, tormentas… de la ciudad cercana, abajo a la izquierda del mapa"},
-            {"infra_alert", "Avisar de lo que viene por delante", "Un aviso en el mapa al acercarte a un atasco, accidente o cierre"},
+            {"infra_alert", "Avisar de lo que viene por delante", "Un aviso en el mapa al acercarte a un atasco, accidente o cierre; navegando, también lo que hay en la ruta"},
         };
         for (String[] l : layers) toggle(g, l[1], l[2], Infra.layer(this, l[0]), infraCb(l[0]));
         if (Infra.layer(this, "infra_fuel")) {
+            String key = Infra.tkKey(this);
+            row(g, "Clave de Tankerkönig", "Personal y gratuita: no la compartas. Toca para escribirla",
+                key.length() == 0 ? I18n.t("Sin clave") : Infra.tkKeyOk(key) ? "••••" + key.substring(key.length() - 4) : I18n.t("No es válida"),
+                new Runnable() { public void run() {
+                    askText(I18n.t("Clave de Tankerkönig (API key)"), Infra.tkKey(Main.this), new TextCb() { public void on(String v) {
+                        v = v.trim();
+                        if (v.length() > 0 && !Infra.tkKeyOk(v)) { toast("La clave tiene la forma 00000000-0000-0000-0000-000000000000"); return; }
+                        prefs.edit().putString("tk_key", v).apply();
+                        showSettings(settingsCat);
+                    }});
+                }});
+            row(g, "Cómo conseguir la clave", "Reglas de uso de Tankerkönig", null, new Runnable() { public void run() {
+                new TB(Main.this, dlg()).setTitle("Clave de Tankerkönig")
+                    .setMessage("Regístrate gratis en onboarding.tankerkoenig.de con tu correo y te mandan una clave personal. Escríbela aquí; no la publiques ni la compartas.\n\nEvOS la usa como piden las reglas de Tankerkönig: los precios se piden solo cuando tocas el botón del surtidor en el mapa, como mucho una vez por minuto, se muestran todas las gasolineras del radio sin filtrar y con la fuente a la vista (Tankerkönig.de, CC BY 4.0, datos de la MTS-K). Los precios no se guardan ni se envían a nadie. Tankerkönig no garantiza que los precios estén al día.")
+                    .setPositiveButton("OK", null).show();
+            }});
+            final int[] rads = {5, 10, 15, 25};
+            int rk = Infra.tkRadius(this);
+            segmented(g, "Radio de búsqueda", "Tankerkönig permite hasta 25 km",
+                new String[]{"5 km", "10 km", "15 km", "25 km"}, rk <= 5 ? 0 : rk <= 10 ? 1 : rk <= 15 ? 2 : 3, new IntCb() { public void on(int i) {
+                    prefs.edit().putInt("tk_rad", rads[i]).apply(); showSettings(settingsCat); }});
             final String[] kinds = {"auto", "diesel", "e5", "e10"};
             String k = prefs.getString("infra_fuel_kind", "auto");
             int sel = 0;
@@ -5701,6 +5798,11 @@ public class Main extends Activity {
         segmented(g, "Actualizar los avisos cada", "Las obras cada 30 min; cargadores y descansos cada 6 h",
             new String[]{"5 min", "10 min", "15 min"}, ev <= 5 ? 0 : ev >= 15 ? 2 : 1, new IntCb() { public void on(int i) {
                 prefs.edit().putInt("infra_every", mins[i]).apply(); Infra.reset(); showSettings(settingsCat); }});
+        row(g, "Fuentes y licencias", "Autobahn GmbH, Tankerkönig, InfraNode, DWD", null, new Runnable() { public void run() {
+            new TB(Main.this, dlg()).setTitle("Fuentes y licencias")
+                .setMessage("Tráfico de las autopistas: Die Autobahn GmbH des Bundes (verkehr.autobahn.de, datos públicos de la app «Autobahn»). Se piden solo las autopistas de alrededor y de tu ruta, cada pocos minutos.\n\nPrecios de combustible: Tankerkönig.de, CC BY 4.0, datos de la Markttransparenzstelle für Kraftstoffe (MTS-K), con tu clave personal.\n\nEstacionamientos y avisos meteorológicos: InfraNode (infranode.dev), con la fuente de cada dato (por ejemplo «Datenbasis: Deutscher Wetterdienst», «Stadt Köln»).\n\nLos datos se muestran solo en esta pantalla: no se guardan ni se reenvían. Ninguna de las fuentes garantiza que estén completos o al día: lo que manda es la señalización de la vía.")
+                .setPositiveButton("OK", null).show();
+        }});
         row(g, "Estado", "Autopistas y ciudad que se están mirando", Infra.inGermany ? I18n.t("En Alemania") : I18n.t("Fuera de Alemania"),
             new Runnable() { public void run() {
                 new TB(Main.this, dlg()).raw().setTitle(I18n.t("Tráfico en Alemania")).setMessage(Infra.status())

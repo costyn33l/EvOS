@@ -35,6 +35,7 @@ public class Elm {
     private static final UUID SPP = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     private BluetoothSocket bt;
+    private BleSerial ble;
     private Socket tcp;
     private UsbSerial usb;
     private InputStream in;
@@ -44,8 +45,12 @@ public class Elm {
     boolean can;
     String protocol = "";
     String version = "";
-    /** Protocolo forzado desde Ajustes: «auto» o el número de ATSP (6 = CAN 11 bits/500 kbps). */
+    /** Protocolo forzado desde Ajustes: «auto» o el número de ATSP (1-9; 6 = CAN 11 bits/500 kbps). */
     private String protocolPref = "auto";
+    /** El protocolo con el que este escáner habló con el auto la última vez (se prueba primero), o null. */
+    private String lastGood;
+    /** Número del protocolo detectado (ATDPN): 1-9; '?' si no se sabe. */
+    char protoNum = '?';
     /** PIDs del modo 01 que el auto dice tener (bit i = PID i). */
     private final boolean[] supported = new boolean[0xE1];
     /** Cuántos computadores dicen tener cada PID (en el Sorento, el 01, 30 y 31 los tienen el motor y la caja). */
@@ -113,6 +118,14 @@ public class Elm {
             out = bt.getOutputStream();
         } else if (addr.startsWith("usb:")) {
             openUsb(addr);
+        } else if (addr.startsWith("ble:")) {
+            // escáneres Bluetooth de bajo consumo (BLE: Vgate iCar Pro BLE, Veepeak BLE, OBDLink CX, vLinker…)
+            if (android.os.Build.VERSION.SDK_INT < 18) throw new IOException("Los escáneres Bluetooth LE necesitan Android 4.3 o más nuevo");
+            android.content.Context c = Obd.ctx();
+            if (c == null) throw new IOException("Sin conexión");
+            ble = BleSerial.open(c, addr.substring(4), 15000);
+            in = ble.in;
+            out = ble.out;
         } else {
             throw new IOException("Dirección no válida: " + addr);
         }
@@ -228,28 +241,61 @@ public class Elm {
         return x.length == 4 && x[0] == t[0] && x[1] == t[1] && x[2] == t[2] ? 1 : 0;
     }
 
-    void protocol(String p) { protocolPref = p != null ? p : "auto"; }
+    void protocol(String p) { protocolPref = p != null && p.matches("[1-9]") ? p : "auto"; }
+    void lastGood(String p) { lastGood = p != null && p.matches("[1-9]") ? p : null; }
+    /** Si la búsqueda automática falla, probar los 9 protocolos uno por uno (tarda hasta ~1 min con el auto apagado). */
+    private boolean deep = true;
+    void deepSearch(boolean d) { deep = d; }
+
+    /**
+     * Los 9 protocolos de OBD-II que entiende un ELM327 (y sus clones, los STN de OBDLink y los vLinker), en el orden
+     * en que se prueban si la búsqueda automática del escáner falla: primero CAN (todos los autos desde 2008 en
+     * Europa / EE. UU.), después la línea K (ISO 9141-2 y KWP2000: europeos y asiáticos hasta ~2008) y al final
+     * J1850 (Ford y GM de EE. UU. hasta ~2007).
+     */
+    static final String[] PROTOCOL_ORDER = {"6", "8", "7", "9", "5", "4", "3", "1", "2"};
 
     private void init() throws IOException {
         String z = cmd("ATZ", 4000);          // reinicio: responde «ELM327 v1.5»
-        version = z.replace("ATZ", "").trim();
+        if (z.length() == 0) z = cmd("ATWS", 3000);   // reinicio suave, para los que se cuelgan con ATZ
+        version = cleanVersion(z);
         cmd("ATE0", 1500);                    // sin eco
         cmd("ATL0", 1500);                    // sin saltos de línea extra
-        cmd("ATS0", 1500);                    // sin espacios
+        cmd("ATS0", 1500);                    // sin espacios (los clones viejos que no lo entienden: se quitan igual)
         cmd("ATH0", 1500);                    // sin encabezados
         cmd("ATAT1", 1500);                   // tiempos de espera adaptativos
-        // protocolo automático o forzado (Kia Sorento 2010: ATSP6 = CAN 11 bits/500 kbps)
-        String sp = "6".equals(protocolPref) ? "ATSP6" : "7".equals(protocolPref) ? "ATSP7"
-            : "8".equals(protocolPref) ? "ATSP8" : "9".equals(protocolPref) ? "ATSP9" : "ATSP0";
-        cmd(sp, 1500);
-        // la primera consulta busca el protocolo del auto (puede tardar varios segundos)
-        String r = cmd("0100", 15000);
-        if (r.contains("UNABLETOCONNECT") || r.contains("NODATA") || r.contains("ERROR"))
-            throw new IOException("El escáner no logra hablar con el auto. ¿Está el contacto puesto?");
-        String dp = cmd("ATDPN", 1500).replace("A", "");
-        can = dp.length() > 0 && dp.charAt(0) >= '6' && dp.charAt(0) <= '9';
-        canShort = dp.length() > 0 && (dp.charAt(0) == '6' || dp.charAt(0) == '8');
-        protocol = cmd("ATDP", 1500);
+        if (version.length() == 0) version = cleanVersion(cmd("ATI", 1500));
+        String r = null;
+        StringBuilder tried = new StringBuilder();
+        if (!"auto".equals(protocolPref)) {
+            // protocolo elegido en Ajustes (Kia Sorento 2010: 6 = CAN 11 bits/500 kbps)
+            cmd("ATSP" + protocolPref, 1500);
+            r = first(protocolPref);
+            tried.append(protocolPref);
+        } else {
+            // automático; si ya se conoce el del auto, se empieza por ese (ATSPA: ese primero y si no, busca)
+            cmd(lastGood != null ? "ATSPA" + lastGood : "ATSP0", 1500);
+            r = first("0");
+            tried.append(lastGood != null ? "A" + lastGood : "0");
+            // la búsqueda automática de algunos clones falla con la línea K o J1850: se prueban uno por uno
+            if (!answered(r) && deep) for (String p : PROTOCOL_ORDER) {
+                if (r != null && isDead(r)) break;
+                cmd("ATSP" + p, 1500);
+                r = first(p);
+                tried.append(',').append(p);
+                if (answered(r)) break;
+            }
+        }
+        if (!answered(r)) {
+            Obd.log("sin respuesta del auto (probados: " + tried + "): " + (r == null ? "-" : r.replace('\r', ' ')));
+            throw new IOException(r != null && r.contains("LVRESET") ? "El voltaje en el conector es muy bajo: revisa la batería o el contacto"
+                : "El escáner no logra hablar con el auto. ¿Está el contacto puesto?");
+        }
+        String dp = cmd("ATDPN", 1500).replace("A", "").trim();
+        protoNum = dp.length() > 0 ? dp.charAt(0) : '?';
+        can = protoNum >= '6' && protoNum <= '9';
+        canShort = protoNum == '6' || protoNum == '8';
+        protocol = cmd("ATDP", 1500).replace("AUTO,", "").trim();
         java.util.Arrays.fill(supported, false);
         java.util.Arrays.fill(responders, 0);
         readSupported(r, 0x00);
@@ -259,6 +305,35 @@ public class Elm {
         }
         multi = can;
         counted = true;
+    }
+
+    /** La primera consulta (0100): con la línea K el despertar del computador (5 baudios) tarda hasta ~8 s. */
+    private String first(String p) throws IOException {
+        int t = "0".equals(p) || "3".equals(p) || "4".equals(p) || "5".equals(p) ? 15000 : 6000;
+        return cmd("0100", t);
+    }
+
+    /** ¿Contestó el auto a la consulta 0100? */
+    static boolean answered(String r) {
+        if (r == null) return false;
+        for (byte[] b : allData(r, 0x41, 0x00)) if (b.length >= 4) return true;
+        return false;
+    }
+
+    /** El escáner perdió la alimentación o no responde: no tiene sentido seguir probando protocolos. */
+    private static boolean isDead(String r) { return r.contains("LVRESET"); }
+
+    /** «ELM327 v1.5», «STN2120 v5.6.19», «vLinker…»: lo que sea que se presente, sin eco ni basura. */
+    static String cleanVersion(String z) {
+        if (z == null) return "";
+        z = z.replaceAll("(ELM327|STN\\d+|OBDLINK\\w*)V(\\d)", "$1 v$2");
+        String best = "";
+        for (String line : z.split("[\r\n]+")) {
+            String l = line.trim();
+            if (l.startsWith("AT")) continue;
+            if (l.matches(".*(ELM|STN|OBD|LINK|V\\d).*") && l.length() > best.length()) best = l;
+        }
+        return best.length() > 0 ? best : z.replace("ATZ", "").replace("ATWS", "").trim();
     }
 
     /**
@@ -352,7 +427,19 @@ public class Elm {
             if (!resync()) throw new IOException("El escáner no responde");
             return null;
         }
-        String s = r.toUpperCase(Locale.US).replace("SEARCHING...", "").replace(" ", "");
+        return clean(r, c);
+    }
+
+    /**
+     * Respuesta en mayúsculas, sin espacios, sin el eco del comando (algunos clones no apagan el eco con ATE0) y sin
+     * los avisos del escáner que no son datos: «SEARCHING...», «BUS INIT: ...OK» (despertar de la línea K).
+     */
+    static String clean(String r, String cmd) {
+        String s = r.toUpperCase(Locale.US).replace("SEARCHING...", "").replace(" ", "").replace("\0", "");
+        s = s.replace("BUSINIT:...OK", "").replace("BUSINIT:OK", "").replace("BUSINIT...OK", "");
+        String c = cmd.toUpperCase(Locale.US).replace(" ", "");
+        String t = s.trim();
+        if (t.startsWith(c)) s = t.substring(c.length());
         if (s.contains("STOPPED")) return "";
         return s.trim();
     }
@@ -627,9 +714,7 @@ public class Elm {
             return "";
         }
         lost = 0;
-        String s = r.toUpperCase(Locale.US).replace("SEARCHING...", "").replace(" ", "");
-        if (s.contains("STOPPED")) return "";
-        return s.trim();
+        return clean(r, c);
     }
 
     /** Respuestas seguidas que no llegaron. */
@@ -675,7 +760,8 @@ public class Elm {
         try { if (bt != null) bt.close(); } catch (Throwable ignored) { }
         try { if (tcp != null) tcp.close(); } catch (Throwable ignored) { }
         try { if (usb != null) usb.close(); } catch (Throwable ignored) { }
-        bt = null; tcp = null; usb = null; in = null; out = null; demo = null;
+        try { if (ble != null) ble.close(); } catch (Throwable ignored) { }
+        bt = null; tcp = null; usb = null; ble = null; in = null; out = null; demo = null;
     }
 
     /**
@@ -698,8 +784,9 @@ public class Elm {
             if (c.equals("0100")) return "4100BE3FA813";
             if (c.equals("0120")) return "4120A003A011";   // + 23 (riel)
             if (c.equals("0140")) return "4140F4008005";   // incluye 51 (combustible), 5E (consumo) y el bloque 61-80
-            if (c.equals("0160")) return "4160E0010051";   // + 61, 62, 63 (par) y 70 (turbo)   // 7A y 7C (DPF) y el bloque 81-A0
-            if (c.equals("0180")) return "418000200000";   // 8B (postratamiento diésel)
+            if (c.equals("0160")) return "4160E0010853";   // + 61, 62, 63 (par) y 70 (turbo)   // 7A y 7C (DPF) y el bloque 81-A0
+            if (c.equals("0180")) return "418000200001";   // 8B y el bloque A1-C0
+            if (c.equals("01A0")) return "41A010000000";   // A4 (marcha engranada)   // 8B (postratamiento diésel)
             if (c.equals("03")) return !cleared && t > 70 ? "43010711" : "4300";
             if (c.equals("07")) return !cleared && t > 55 ? "47010711" : "4700";
             if (c.equals("04")) { cleared = true; return "44"; }
@@ -779,6 +866,14 @@ public class Elm {
                 case 0x70: return "417003" + hex2((101 + climb * 105) * 32) + hex2((100 + climb * 98 + 3 * Math.sin(t)) * 32) + "0000000000";
                 case 0x7A: return "417A01" + hex2((38 + climb * 60 + 4 * Math.sin(t)) * 10) + "00000000";
                 case 0x7C: return "417C03" + hex2((300 + climb * 180 + 40) * 10) + hex2((270 + climb * 160 + 40) * 10) + "00000000";
+                case 0x75: return "41750F" + hex1(18 + 40) + hex1(55 + climb * 60 + 40) + hex2((420 + climb * 280 + 40) * 10) + hex2((360 + climb * 220 + 40) * 10);
+                case 0x7F: return "417F03" + String.format(Locale.US, "%08X%08X%08X", 1234567 + (long) t, 345678 + (long) (t / 3), 0);
+                case 0xA4: {
+                    double kmh = 55 - climb * 20 + 5 * Math.sin(t / 5);
+                    int g = kmh < 15 ? 1 : kmh < 28 ? 2 : kmh < 45 ? 3 : kmh < 60 ? 4 : kmh < 80 ? 5 : 6;
+                    double[] ratio = {0, 3.77, 2.09, 1.32, 0.98, 0.76, 0.62};
+                    return "41A403" + hex1(g << 4) + hex2(ratio[g] * 1000);
+                }
                 case 0x8B: return "418B11" + (t > 150 && t < 200 ? "01" : "00") + hex1(Math.min(100, 46 + t * 0.05) * 2.55) + "00000000";
                 default: return "NODATA";
             }

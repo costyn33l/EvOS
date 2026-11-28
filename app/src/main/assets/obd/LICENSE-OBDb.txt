@@ -1,0 +1,10 @@
+saej1979.json — SAE J1979 standard PIDs, from OBDb (https://github.com/OBDb/SAEJ1979),
+commit 1abdef6ae0c1b9134c8f2a10911a9daa1354649d, copied unmodified.
+j1979_ro.tsv — Romanian names of those signals, translated by EvOS (adaptation).
+
+Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0):
+https://creativecommons.org/licenses/by-sa/4.0/
+Credit: OBDb (https://github.com/OBDb), Clutch Engineering.
+
+OBDb notice: "Shipping a product with OBDb data? Get in touch before you launch:
+email support@clutch.engineering and join the Pelican Discord (https://discord.gg/AdJNJqF5vC)."

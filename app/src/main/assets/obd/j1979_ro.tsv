@@ -1,0 +1,475 @@
+# Nombres en rumano de las señales SAE J1979 de OBDb (github.com/OBDb/SAEJ1979, CC BY-SA 4.0). Traducción: EvOS, misma licencia.
+Absolute Throttle Position G	Poziție absolută clapetă G
+Absolute evap system vapor pressure	Presiune absolută vapori EVAP
+Absolute throttle position C	Poziție absolută clapetă C
+Accelerator pedal position F	Poziție pedală accelerație F
+Actual EGR A duty cycle/position	EGR A: poziție reală
+Actual EGR B duty cycle/position	EGR B: poziție reală
+Actual SCR catalyst A NH3 storage	NH3 stocat în catalizatorul SCR A
+Actual SCR catalyst B NH3 storage	NH3 stocat în catalizatorul SCR B
+Aftertreatment fuel pressure	Presiune combustibil post-tratare
+Alternative fuel rail pressure	Presiune rampă combustibil alternativ
+Alternative fuel rail temperature	Temperatură rampă combustibil alternativ
+Alternative fuel tank pressure	Presiune rezervor combustibil alternativ
+Alternative fuel tank pressure, wide range	Presiune rezervor combustibil alternativ (gamă largă)
+Alternative fuel tank temperature	Temperatură rezervor combustibil alternativ
+Average demanded reagent consumption	Consum mediu cerut de AdBlue
+Average reagent consumption	Consum mediu de AdBlue
+Catalyst temperature A	Temperatură catalizator A
+Catalyst temperature B	Temperatură catalizator B
+Catalyst temperature C	Temperatură catalizator C
+Catalyst temperature D	Temperatură catalizator D
+Catalyst temperature bank 1, sensor 2	Temperatură catalizator, banc 1, senzor 2
+Catalyst temperature bank 2, sensor 2	Temperatură catalizator, banc 2, senzor 2
+Charge air cooler temperature bank 1, sensor 1	Temperatură intercooler, banc 1, senzor 1
+Charge air cooler temperature bank 1, sensor 2	Temperatură intercooler, banc 1, senzor 2
+Charge air cooler temperature bank 2, sensor 1	Temperatură intercooler, banc 2, senzor 1
+Charge air cooler temperature bank 2, sensor 2	Temperatură intercooler, banc 2, senzor 2
+Commanded DEF dosing	Dozare AdBlue comandată
+Commanded EGR A duty cycle/position	EGR A: poziție comandată
+Commanded EGR B duty cycle/position	EGR B: poziție comandată
+Commanded Fuel Rail Pressure A	Presiune comandată rampă combustibil A
+Commanded Fuel Rail Pressure B	Presiune comandată rampă combustibil B
+Commanded Throttle Actuator A Control	Clapetă A: comandă
+Commanded Throttle Actuator B Control	Clapetă B: comandă
+Commanded evaporative purge	Purjare EVAP comandată
+Commanded fresh air flow	Debit de aer proaspăt comandat
+Commanded injection control pressure A	Presiune comandată de control injecție A
+Commanded injection control pressure B	Presiune comandată de control injecție B
+Commanded intake air flow A control	Debit aer admisie A: comandă
+Commanded intake air flow B control	Debit aer admisie B: comandă
+Commanded variable geometry turbo A position	Poziție comandată geometrie variabilă turbo A
+Commanded variable geometry turbo B position	Poziție comandată geometrie variabilă turbo B
+Commanded wastegate A position	Poziție comandată wastegate A
+Commanded wastegate B position	Poziție comandată wastegate B
+Corrected NOx concentration bank 1, sensor 1	Concentrație NOx corectată, banc 1, senzor 1
+Corrected NOx concentration bank 1, sensor 2	Concentrație NOx corectată, banc 1, senzor 2
+Corrected NOx concentration bank 1, sensor 3	Concentrație NOx corectată, banc 1, senzor 3
+Corrected NOx concentration bank 1, sensor 4	Concentrație NOx corectată, banc 1, senzor 4
+Corrected NOx concentration bank 2, sensor 1	Concentrație NOx corectată, banc 2, senzor 1
+Corrected NOx concentration bank 2, sensor 2	Concentrație NOx corectată, banc 2, senzor 2
+Corrected NOx concentration bank 2, sensor 3	Concentrație NOx corectată, banc 2, senzor 3
+Corrected NOx concentration bank 2, sensor 4	Concentrație NOx corectată, banc 2, senzor 4
+Cumulative engine hours with the continuous MI active	Ore de motor cumulate cu martorul aprins continuu
+Cylinder fuel rate	Combustibil pe cilindru
+DEF concentration	Concentrație AdBlue
+DEF doser A dosing mode	Dozator AdBlue A: mod de dozare
+DEF doser A maximum dosing rate	Dozator AdBlue A: debit maxim
+DEF doser B commanded dosing	Dozator AdBlue B: dozare comandată
+DEF doser B dosing mode	Dozator AdBlue B: mod de dozare
+DEF doser B maximum dosing rate	Dozator AdBlue B: debit maxim
+DEF tank level	Nivel AdBlue
+DEF tank temperature	Temperatură rezervor AdBlue
+DEF used in the current driving cycle	AdBlue folosit în ciclul curent
+Distance since module reflash or replacement	Distanță de la reprogramarea sau înlocuirea modulului
+Distance since state of health update	Distanță de la ultima evaluare a stării
+Distance travelled in the current 10,000 km block	Distanță în intervalul curent de 10.000 km
+Distance with SCR inducement active in the 10,000-20,000 km block	Distanță cu restricție SCR activă, intervalul 10.000-20.000 km
+Distance with SCR inducement active in the 20,000-30,000 km block	Distanță cu restricție SCR activă, intervalul 20.000-30.000 km
+Distance with SCR inducement active in the 30,000-40,000 km block	Distanță cu restricție SCR activă, intervalul 30.000-40.000 km
+Distance with SCR inducement active in the current 10,000 km block	Distanță cu restricție SCR activă, intervalul 10.000 km curent
+ECU engine hours with the continuous MI active	Ore de motor (ECU) cu martorul aprins continuu
+EGR A error	Eroare EGR A
+EGR B error	Eroare EGR B
+EGR error	Eroare EGR
+EGR mass flow rate A	Debit masic EGR A
+EGR mass flow rate B	Debit masic EGR B
+Electric motor A speed	Turație motor electric A
+Electric motor A torque	Cuplu motor electric A
+Electric motor B speed	Turație motor electric B
+Electric motor B torque	Cuplu motor electric B
+Electric motor C speed	Turație motor electric C
+Electric motor C torque	Cuplu motor electric C
+Electric motor D speed	Turație motor electric D
+Electric motor D torque	Cuplu motor electric D
+Electric motor E speed	Turație motor electric E
+Electric motor E torque	Cuplu motor electric E
+Electric motor F speed	Turație motor electric F
+Electric motor F torque	Cuplu motor electric F
+Electric motor G speed	Turație motor electric G
+Electric motor G torque	Cuplu motor electric G
+Electric motor H speed	Turație motor electric H
+Electric motor H torque	Cuplu motor electric H
+Engine Friction - Percent Torque	Frecare motor (% din cuplu)
+Engine Percent Torque At Idle, Point 1	Cuplu motor în punctul 1 (%) – ralanti
+Engine Percent Torque At Point 2	Cuplu motor în punctul 2 (%)
+Engine Percent Torque At Point 3	Cuplu motor în punctul 3 (%)
+Engine Percent Torque At Point 4	Cuplu motor în punctul 4 (%)
+Engine Percent Torque At Point 5	Cuplu motor în punctul 5 (%)
+Engine coolant temperature 1	Temperatura antigelului 1
+Engine coolant temperature 2	Temperatura antigelului 2
+Engine exhaust flow rate	Debit gaze de evacuare
+Engine fuel rate (alternate)	Debit combustibil motor (alternativ)
+Engine hours with a NOx control monitoring system fault	Ore de motor cu defect la monitorizarea NOx
+Engine hours with a liquid reagent injection system failure	Ore de motor cu defect la injecția de AdBlue
+Engine hours with a particulate control monitoring system fault	Ore de motor cu defect la monitorizarea particulelor
+Engine hours with an impeded EGR valve	Ore de motor cu supapa EGR blocată
+Engine hours with incorrect reagent consumption	Ore de motor cu consum incorect de AdBlue
+Engine hours with incorrect reagent quality	Ore de motor cu AdBlue de calitate necorespunzătoare
+Engine hours with reagent dosing interrupted	Ore de motor cu dozarea AdBlue întreruptă
+Engine hours with the continuous MI active	Ore de motor cu martorul de motor aprins continuu
+Engine hours with the particulate filter removed or blocked	Ore de motor cu filtrul de particule scos sau blocat
+Engine odometer	Kilometraj motor
+Engine reference torque	Cuplu de referință al motorului
+Engine-out NOx mass emission rate	Emisie NOx la ieșirea din motor
+Evap system purge pressure	Presiune purjare EVAP
+Evap system purge pressure, wide range	Presiune purjare EVAP (gamă largă)
+Evap system vapor pressure	Presiune vapori EVAP
+Evap system vapor pressure (wide)	Presiune vapori EVAP (gamă largă)
+Evap system vapor pressure A	Presiune vapori EVAP A
+Evap system vapor pressure A, wide range	Presiune vapori EVAP A (gamă largă)
+Evap system vapor pressure B	Presiune vapori EVAP B
+Evap system vapor pressure B, wide range	Presiune vapori EVAP B (gamă largă)
+Evap system vapor pressure C	Presiune vapori EVAP C
+Evap system vapor pressure C, wide range	Presiune vapori EVAP C (gamă largă)
+Evap system vapor pressure D	Presiune vapori EVAP D
+Evap system vapor pressure D, wide range	Presiune vapori EVAP D (gamă largă)
+Exhaust Gas Recirculation Temp Sensor A (Bank 1, Sensor 1)	Temperatură EGR A (banc 1, senzor 1)
+Exhaust Gas Recirculation Temp Sensor B (Bank 2, Sensor 1)	Temperatură EGR B (banc 2, senzor 1)
+Exhaust Gas Recirculation Temp Sensor C (Bank 1, Sensor 2)	Temperatură EGR C (banc 1, senzor 2)
+Exhaust Gas Recirculation Temp Sensor D (Bank 2, Sensor 2)	Temperatură EGR D (banc 2, senzor 2)
+Exhaust gas temperature bank 1, sensor 1	Temperatura gazelor de evacuare, banc 1, senzor 1
+Exhaust gas temperature bank 1, sensor 2	Temperatura gazelor de evacuare, banc 1, senzor 2
+Exhaust gas temperature bank 1, sensor 3	Temperatura gazelor de evacuare, banc 1, senzor 3
+Exhaust gas temperature bank 1, sensor 4	Temperatura gazelor de evacuare, banc 1, senzor 4
+Exhaust gas temperature bank 2, sensor 1	Temperatura gazelor de evacuare, banc 2, senzor 1
+Exhaust gas temperature bank 2, sensor 2	Temperatura gazelor de evacuare, banc 2, senzor 2
+Exhaust gas temperature bank 2, sensor 3	Temperatura gazelor de evacuare, banc 2, senzor 3
+Exhaust gas temperature bank 2, sensor 4	Temperatura gazelor de evacuare, banc 2, senzor 4
+Exhaust particulate control diagnostic count	Diagnoze de control particule (număr)
+Exhaust particulate control diagnostic time	Diagnoze de control particule (timp)
+Exhaust pressure bank 1, sensor 1	Presiune evacuare, banc 1, senzor 1
+Exhaust pressure bank 1, sensor 2	Presiune evacuare, banc 1, senzor 2
+Exhaust pressure bank 2, sensor 1	Presiune evacuare, banc 2, senzor 1
+Exhaust pressure bank 2, sensor 2	Presiune evacuare, banc 2, senzor 2
+Fuel Rail Pressure A	Presiune rampă combustibil A
+Fuel Rail Pressure B	Presiune rampă combustibil B
+Fuel Rail Temperature A	Temperatură rampă combustibil A
+Fuel Rail Temperature B	Temperatură rampă combustibil B
+Fuel cell current over the last second	Curent pilă de combustie (ultima secundă)
+Fuel cell fuel consumption	Consum pilă de combustie
+Fuel cell power over the last second	Putere pilă de combustie (ultima secundă)
+Fuel cell system voltage	Tensiune pilă de combustie
+Fuel level input A	Nivel combustibil A
+Fuel level input B	Nivel combustibil B
+Fuel pressure relative to manifold vacuum	Presiune combustibil față de vacuumul din galerie
+Fuel system A use percentage bank 1	Utilizare sistem de combustibil A, banc 1
+Fuel system A use percentage bank 2	Utilizare sistem de combustibil A, banc 2
+Fuel system A use percentage bank 3	Utilizare sistem de combustibil A, banc 3
+Fuel system A use percentage bank 4	Utilizare sistem de combustibil A, banc 4
+Fuel system B use percentage bank 1	Utilizare sistem de combustibil B, banc 1
+Fuel system B use percentage bank 2	Utilizare sistem de combustibil B, banc 2
+Fuel system B use percentage bank 3	Utilizare sistem de combustibil B, banc 3
+Fuel system B use percentage bank 4	Utilizare sistem de combustibil B, banc 4
+HV battery active time since cell balancing	Baterie HV: timp de la echilibrarea celulelor
+HV battery actual charge rate	Baterie HV: rată de încărcare
+HV battery average cell temperature	Baterie HV: temperatura medie a celulelor
+HV battery bus bar temperature	Baterie HV: temperatura barelor
+HV battery calculated usable energy	Baterie HV: energie utilizabilă calculată
+HV battery charging limit	Baterie HV: limită de încărcare
+HV battery charging power	Baterie HV: putere de încărcare
+HV battery continuous charge current limit	Baterie HV: limită curent de încărcare
+HV battery continuous discharge current limit	Baterie HV: limită curent de descărcare
+HV battery continuous rated power available	Baterie HV: putere disponibilă
+HV battery coolant temperature	Baterie HV: temperatura lichidului de răcire
+HV battery cumulative energy in	Baterie HV: energie intrată (cumulat)
+HV battery cumulative energy out	Baterie HV: energie ieșită (cumulat)
+HV battery current	Baterie HV: curent
+HV battery current over the last second	Baterie HV: curent (ultima secundă)
+HV battery discharge energy capacity	Baterie HV: capacitate de descărcare
+HV battery initial reserve energy	Baterie HV: rezervă inițială de energie
+HV battery maximum cell temperature	Baterie HV: temperatura maximă a celulelor
+HV battery maximum cell voltage	Baterie HV: tensiunea maximă a celulelor
+HV battery minimum cell temperature	Baterie HV: temperatura minimă a celulelor
+HV battery minimum cell voltage	Baterie HV: tensiunea minimă a celulelor
+HV battery pack A actual charge rate	Baterie HV, pachet A: rată de încărcare
+HV battery pack A cumulative energy in	Baterie HV, pachet A: energie intrată (cumulat)
+HV battery pack A cumulative energy out	Baterie HV, pachet A: energie ieșită (cumulat)
+HV battery pack A current	Baterie HV, pachet A: curent
+HV battery pack A discharge energy capacity	Baterie HV, pachet A: capacitate de descărcare
+HV battery pack A recommended maximum state of charge	Baterie HV, pachet A: încărcare maximă recomandată
+HV battery pack A recommended minimum state of charge	Baterie HV, pachet A: încărcare minimă recomandată
+HV battery pack A state of health	Baterie HV, pachet A: stare de sănătate
+HV battery pack A temperature	Baterie HV, pachet A: temperatură
+HV battery pack A total energy throughput	Baterie HV, pachet A: energie totală vehiculată
+HV battery pack A voltage	Baterie HV, pachet A: tensiune
+HV battery pack B actual charge rate	Baterie HV, pachet B: rată de încărcare
+HV battery pack B cumulative energy in	Baterie HV, pachet B: energie intrată (cumulat)
+HV battery pack B cumulative energy out	Baterie HV, pachet B: energie ieșită (cumulat)
+HV battery pack B current	Baterie HV, pachet B: curent
+HV battery pack B discharge energy capacity	Baterie HV, pachet B: capacitate de descărcare
+HV battery pack B recommended maximum state of charge	Baterie HV, pachet B: încărcare maximă recomandată
+HV battery pack B recommended minimum state of charge	Baterie HV, pachet B: încărcare minimă recomandată
+HV battery pack B state of health	Baterie HV, pachet B: stare de sănătate
+HV battery pack B temperature	Baterie HV, pachet B: temperatură
+HV battery pack B total energy throughput	Baterie HV, pachet B: energie totală vehiculată
+HV battery pack B voltage	Baterie HV, pachet B: tensiune
+HV battery pack C actual charge rate	Baterie HV, pachet C: rată de încărcare
+HV battery pack C cumulative energy in	Baterie HV, pachet C: energie intrată (cumulat)
+HV battery pack C cumulative energy out	Baterie HV, pachet C: energie ieșită (cumulat)
+HV battery pack C current	Baterie HV, pachet C: curent
+HV battery pack C discharge energy capacity	Baterie HV, pachet C: capacitate de descărcare
+HV battery pack C recommended maximum state of charge	Baterie HV, pachet C: încărcare maximă recomandată
+HV battery pack C recommended minimum state of charge	Baterie HV, pachet C: încărcare minimă recomandată
+HV battery pack C state of health	Baterie HV, pachet C: stare de sănătate
+HV battery pack C temperature	Baterie HV, pachet C: temperatură
+HV battery pack C total energy throughput	Baterie HV, pachet C: energie totală vehiculată
+HV battery pack C voltage	Baterie HV, pachet C: tensiune
+HV battery pack D actual charge rate	Baterie HV, pachet D: rată de încărcare
+HV battery pack D cumulative energy in	Baterie HV, pachet D: energie intrată (cumulat)
+HV battery pack D cumulative energy out	Baterie HV, pachet D: energie ieșită (cumulat)
+HV battery pack D current	Baterie HV, pachet D: curent
+HV battery pack D discharge energy capacity	Baterie HV, pachet D: capacitate de descărcare
+HV battery pack D recommended maximum state of charge	Baterie HV, pachet D: încărcare maximă recomandată
+HV battery pack D recommended minimum state of charge	Baterie HV, pachet D: încărcare minimă recomandată
+HV battery pack D state of health	Baterie HV, pachet D: stare de sănătate
+HV battery pack D temperature	Baterie HV, pachet D: temperatură
+HV battery pack D total energy throughput	Baterie HV, pachet D: energie totală vehiculată
+HV battery pack D voltage	Baterie HV, pachet D: tensiune
+HV battery pack E actual charge rate	Baterie HV, pachet E: rată de încărcare
+HV battery pack E cumulative energy in	Baterie HV, pachet E: energie intrată (cumulat)
+HV battery pack E cumulative energy out	Baterie HV, pachet E: energie ieșită (cumulat)
+HV battery pack E current	Baterie HV, pachet E: curent
+HV battery pack E discharge energy capacity	Baterie HV, pachet E: capacitate de descărcare
+HV battery pack E recommended maximum state of charge	Baterie HV, pachet E: încărcare maximă recomandată
+HV battery pack E recommended minimum state of charge	Baterie HV, pachet E: încărcare minimă recomandată
+HV battery pack E state of health	Baterie HV, pachet E: stare de sănătate
+HV battery pack E temperature	Baterie HV, pachet E: temperatură
+HV battery pack E total energy throughput	Baterie HV, pachet E: energie totală vehiculată
+HV battery pack E voltage	Baterie HV, pachet E: tensiune
+HV battery pack F actual charge rate	Baterie HV, pachet F: rată de încărcare
+HV battery pack F cumulative energy in	Baterie HV, pachet F: energie intrată (cumulat)
+HV battery pack F cumulative energy out	Baterie HV, pachet F: energie ieșită (cumulat)
+HV battery pack F current	Baterie HV, pachet F: curent
+HV battery pack F discharge energy capacity	Baterie HV, pachet F: capacitate de descărcare
+HV battery pack F recommended maximum state of charge	Baterie HV, pachet F: încărcare maximă recomandată
+HV battery pack F recommended minimum state of charge	Baterie HV, pachet F: încărcare minimă recomandată
+HV battery pack F state of health	Baterie HV, pachet F: stare de sănătate
+HV battery pack F temperature	Baterie HV, pachet F: temperatură
+HV battery pack F total energy throughput	Baterie HV, pachet F: energie totală vehiculată
+HV battery pack F voltage	Baterie HV, pachet F: tensiune
+HV battery pack G actual charge rate	Baterie HV, pachet G: rată de încărcare
+HV battery pack G cumulative energy in	Baterie HV, pachet G: energie intrată (cumulat)
+HV battery pack G cumulative energy out	Baterie HV, pachet G: energie ieșită (cumulat)
+HV battery pack G current	Baterie HV, pachet G: curent
+HV battery pack G discharge energy capacity	Baterie HV, pachet G: capacitate de descărcare
+HV battery pack G recommended maximum state of charge	Baterie HV, pachet G: încărcare maximă recomandată
+HV battery pack G recommended minimum state of charge	Baterie HV, pachet G: încărcare minimă recomandată
+HV battery pack G state of health	Baterie HV, pachet G: stare de sănătate
+HV battery pack G temperature	Baterie HV, pachet G: temperatură
+HV battery pack G total energy throughput	Baterie HV, pachet G: energie totală vehiculată
+HV battery pack G voltage	Baterie HV, pachet G: tensiune
+HV battery pack H actual charge rate	Baterie HV, pachet H: rată de încărcare
+HV battery pack H cumulative energy in	Baterie HV, pachet H: energie intrată (cumulat)
+HV battery pack H cumulative energy out	Baterie HV, pachet H: energie ieșită (cumulat)
+HV battery pack H current	Baterie HV, pachet H: curent
+HV battery pack H discharge energy capacity	Baterie HV, pachet H: capacitate de descărcare
+HV battery pack H recommended maximum state of charge	Baterie HV, pachet H: încărcare maximă recomandată
+HV battery pack H recommended minimum state of charge	Baterie HV, pachet H: încărcare minimă recomandată
+HV battery pack H state of health	Baterie HV, pachet H: stare de sănătate
+HV battery pack H temperature	Baterie HV, pachet H: temperatură
+HV battery pack H total energy throughput	Baterie HV, pachet H: energie totală vehiculată
+HV battery pack H voltage	Baterie HV, pachet H: tensiune
+HV battery power over the last second	Baterie HV: putere (ultima secundă)
+HV battery recommended maximum state of charge	Baterie HV: încărcare maximă recomandată
+HV battery recommended minimum state of charge	Baterie HV: încărcare minimă recomandată
+HV battery remaining reserve energy	Baterie HV: rezervă de energie rămasă
+HV battery state of health	Baterie HV: stare de sănătate
+HV battery temperature	Baterie HV: temperatură
+HV battery total energy throughput	Baterie HV: energie totală vehiculată
+HV battery voltage	Baterie HV: tensiune
+Highest ECU class B1 malfunction counter	Contor maxim defecte clasa B1
+Hybrid/EV Battery System Current	Baterie hibrid/electric: curent
+Hybrid/EV Battery System Voltage	Baterie hibrid/electric: tensiune
+Hydrocarbon doser flow rate	Dozator hidrocarburi: debit
+Hydrocarbon doser injector duty cycle	Dozator hidrocarburi: ciclu injector
+Injection control pressure A	Presiune de control injecție A
+Injection control pressure B	Presiune de control injecție B
+Intake air temperature, bank 1, sensor 1	Temperatura aerului de admisie, banc 1, senzor 1
+Intake air temperature, bank 1, sensor 2	Temperatura aerului de admisie, banc 1, senzor 2
+Intake air temperature, bank 1, sensor 3	Temperatura aerului de admisie, banc 1, senzor 3
+Intake air temperature, bank 2, sensor 1	Temperatura aerului de admisie, banc 2, senzor 1
+Intake air temperature, bank 2, sensor 2	Temperatura aerului de admisie, banc 2, senzor 2
+Intake air temperature, bank 2, sensor 3	Temperatura aerului de admisie, banc 2, senzor 3
+Lambda value, Equivalence Ratio Bank 1, Sensor 1	Lambda (raport de echivalență), banc 1, senzor 1
+Lambda value, Equivalence Ratio Bank 1, Sensor 2	Lambda (raport de echivalență), banc 1, senzor 2
+Lambda value, Equivalence Ratio Bank 1, Sensor 3	Lambda (raport de echivalență), banc 1, senzor 3
+Lambda value, Equivalence Ratio Bank 1, Sensor 4	Lambda (raport de echivalență), banc 1, senzor 4
+Lambda value, Equivalence Ratio Bank 2, Sensor 1	Lambda (raport de echivalență), banc 2, senzor 1
+Lambda value, Equivalence Ratio Bank 2, Sensor 2	Lambda (raport de echivalență), banc 2, senzor 2
+Lambda value, Equivalence Ratio Bank 2, Sensor 3	Lambda (raport de echivalență), banc 2, senzor 3
+Lambda value, Equivalence Ratio Bank 2, Sensor 4	Lambda (raport de echivalență), banc 2, senzor 4
+Long term fuel trim (bank 2)	Corecție lungă de combustibil, banc 2
+Long term fuel trim (bank 4)	Corecție lungă de combustibil, banc 4
+Long term fuel trim bank 1, compression ignition	Corecție lungă de combustibil (diesel), banc 1
+Long term fuel trim bank 2, compression ignition	Corecție lungă de combustibil (diesel), banc 2
+Long term secondary O2 sensor fuel trim (bank 1)	Corecție lungă după sonda O2 secundară, banc 1
+Long term secondary O2 sensor fuel trim (bank 2)	Corecție lungă după sonda O2 secundară, banc 2
+Low-pressure fuel pressure A	Presiune combustibil joasă presiune A
+Low-pressure fuel pressure B	Presiune combustibil joasă presiune B
+Manifold surface temperature	Temperatura suprafeței galeriei
+Mass Air Flow Sensor A	Debitmetru aer A
+Mass Air Flow Sensor B	Debitmetru aer B
+Maximum current vehicle speed limit	Limită actuală de viteză a vehiculului
+Maximum value for air flow rate from mass air flow sensor	Valoare maximă debitmetru aer
+Maximum value for equivalence ratio	Valoare maximă raport de echivalență
+Maximum value for intake manifold absolute pressure (MAP)	Valoare maximă presiune galerie (MAP)
+Maximum value for oxygen sensor current	Valoare maximă curent sondă O2
+Maximum value for oxygen sensor voltage	Valoare maximă tensiune sondă O2
+NOx concentration bank 1, sensor 1	Concentrație NOx, banc 1, senzor 1
+NOx concentration bank 1, sensor 2	Concentrație NOx, banc 1, senzor 2
+NOx concentration bank 1, sensor 3	Concentrație NOx, banc 1, senzor 3
+NOx concentration bank 1, sensor 4	Concentrație NOx, banc 1, senzor 4
+NOx concentration bank 2, sensor 1	Concentrație NOx, banc 2, senzor 1
+NOx concentration bank 2, sensor 2	Concentrație NOx, banc 2, senzor 2
+NOx concentration bank 2, sensor 3	Concentrație NOx, banc 2, senzor 3
+NOx concentration bank 2, sensor 4	Concentrație NOx, banc 2, senzor 4
+Number of DTCs stored in this ECU	Coduri de eroare memorate în acest calculator
+O2 concentration bank 1, sensor 1	Concentrație O2, banc 1, senzor 1
+O2 concentration bank 1, sensor 2	Concentrație O2, banc 1, senzor 2
+O2 concentration bank 1, sensor 3	Concentrație O2, banc 1, senzor 3
+O2 concentration bank 1, sensor 4	Concentrație O2, banc 1, senzor 4
+O2 concentration bank 1, sensor 5	Concentrație O2, banc 1, senzor 5
+O2 concentration bank 1, sensor 6	Concentrație O2, banc 1, senzor 6
+O2 concentration bank 2, sensor 1	Concentrație O2, banc 2, senzor 1
+O2 concentration bank 2, sensor 2	Concentrație O2, banc 2, senzor 2
+O2 concentration bank 2, sensor 3	Concentrație O2, banc 2, senzor 3
+O2 concentration bank 2, sensor 4	Concentrație O2, banc 2, senzor 4
+O2 concentration bank 2, sensor 5	Concentrație O2, banc 2, senzor 5
+O2 concentration bank 2, sensor 6	Concentrație O2, banc 2, senzor 6
+O2 sensor lambda bank 1, sensor 1	Lambda sondă O2, banc 1, senzor 1
+O2 sensor lambda bank 1, sensor 2	Lambda sondă O2, banc 1, senzor 2
+O2 sensor lambda bank 1, sensor 3	Lambda sondă O2, banc 1, senzor 3
+O2 sensor lambda bank 1, sensor 4	Lambda sondă O2, banc 1, senzor 4
+O2 sensor lambda bank 1, sensor 5	Lambda sondă O2, banc 1, senzor 5
+O2 sensor lambda bank 1, sensor 6	Lambda sondă O2, banc 1, senzor 6
+O2 sensor lambda bank 2, sensor 1	Lambda sondă O2, banc 2, senzor 1
+O2 sensor lambda bank 2, sensor 2	Lambda sondă O2, banc 2, senzor 2
+O2 sensor lambda bank 2, sensor 3	Lambda sondă O2, banc 2, senzor 3
+O2 sensor lambda bank 2, sensor 4	Lambda sondă O2, banc 2, senzor 4
+O2 sensor lambda bank 2, sensor 5	Lambda sondă O2, banc 2, senzor 5
+O2 sensor lambda bank 2, sensor 6	Lambda sondă O2, banc 2, senzor 6
+O2S Output Voltage Bank 1, Sensor 3	Tensiune sondă O2, banc 1, senzor 3
+O2S Output Voltage Bank 1, Sensor 4	Tensiune sondă O2, banc 1, senzor 4
+O2S Output Voltage Bank 2, Sensor 1	Tensiune sondă O2, banc 2, senzor 1
+O2S Output Voltage Bank 2, Sensor 2	Tensiune sondă O2, banc 2, senzor 2
+O2S Output Voltage Bank 2, Sensor 3	Tensiune sondă O2, banc 2, senzor 3
+O2S Output Voltage Bank 2, Sensor 4	Tensiune sondă O2, banc 2, senzor 4
+PM mass concentration bank 1, sensor 1	Concentrație particule (masă), banc 1, senzor 1
+PM mass concentration bank 2, sensor 1	Concentrație particule (masă), banc 2, senzor 1
+PM sensor normalized output bank 1, sensor 1	Senzor particule (normalizat), banc 1, senzor 1
+PM sensor normalized output bank 2, sensor 1	Senzor particule (normalizat), banc 2, senzor 1
+Particulate filter bank 2 delta pressure	Filtru de particule banc 2: presiune diferențială
+Particulate filter bank 2 inlet pressure	Filtru de particule banc 2: presiune intrare
+Particulate filter bank 2 outlet pressure	Filtru de particule banc 2: presiune ieșire
+Propulsion system active trips since DTCs cleared	Călătorii de la ștergerea codurilor
+Reagent tank level	Nivel rezervor AdBlue
+Relative Throttle A Position	Clapetă A: poziție relativă
+Relative Throttle B Position	Clapetă B: poziție relativă
+Relative intake air flow A position	Debit aer admisie A: poziție relativă
+Relative intake air flow B position	Debit aer admisie B: poziție relativă
+Run time with NOx warning active	Timp cu avertizarea NOx activă
+SHRTFT associated with O2S13	Corecție scurtă asociată sondei O2, banc 1, senzor 3
+SHRTFT associated with O2S14	Corecție scurtă asociată sondei O2, banc 1, senzor 4
+SHRTFT associated with O2S21	Corecție scurtă asociată sondei O2, banc 2, senzor 1
+SHRTFT associated with O2S22	Corecție scurtă asociată sondei O2, banc 2, senzor 2
+SHRTFT associated with O2S23	Corecție scurtă asociată sondei O2, banc 2, senzor 3
+SHRTFT associated with O2S24	Corecție scurtă asociată sondei O2, banc 2, senzor 4
+Short term fuel trim (bank 2)	Corecție scurtă de combustibil, banc 2
+Short term fuel trim (bank 4)	Corecție scurtă de combustibil, banc 4
+Short term fuel trim bank 1, compression ignition	Corecție scurtă de combustibil (diesel), banc 1
+Short term fuel trim bank 2, compression ignition	Corecție scurtă de combustibil (diesel), banc 2
+Short term secondary O2 sensor fuel trim (bank 1)	Corecție scurtă după sonda O2 secundară, banc 1
+Short term secondary O2 sensor fuel trim (bank 2)	Corecție scurtă după sonda O2 secundară, banc 2
+State of certified energy	Stare energie certificată
+State of certified range	Stare autonomie certificată
+Tailpipe NOx mass emission rate	Emisie NOx la eșapament
+Target SCR catalyst A NH3 storage	NH3 țintă în catalizatorul SCR A
+Target SCR catalyst B NH3 storage	NH3 țintă în catalizatorul SCR B
+Total Engine Run Time	Timp total de funcționare a motorului
+Total Idle Run Time	Timp total la ralanti
+Total Run Time With PTO Active	Timp total cu priza de putere activă
+Total run time with EI-AECD #1 timer 1 active	Timp cu EI-AECD #1 activ (temporizator 1)
+Total run time with EI-AECD #1 timer 2 active	Timp cu EI-AECD #1 activ (temporizator 2)
+Total run time with EI-AECD #10 timer 1 active	Timp cu EI-AECD #10 activ (temporizator 1)
+Total run time with EI-AECD #10 timer 2 active	Timp cu EI-AECD #10 activ (temporizator 2)
+Total run time with EI-AECD #11 timer 1 active	Timp cu EI-AECD #11 activ (temporizator 1)
+Total run time with EI-AECD #11 timer 2 active	Timp cu EI-AECD #11 activ (temporizator 2)
+Total run time with EI-AECD #12 timer 1 active	Timp cu EI-AECD #12 activ (temporizator 1)
+Total run time with EI-AECD #12 timer 2 active	Timp cu EI-AECD #12 activ (temporizator 2)
+Total run time with EI-AECD #13 timer 1 active	Timp cu EI-AECD #13 activ (temporizator 1)
+Total run time with EI-AECD #13 timer 2 active	Timp cu EI-AECD #13 activ (temporizator 2)
+Total run time with EI-AECD #14 timer 1 active	Timp cu EI-AECD #14 activ (temporizator 1)
+Total run time with EI-AECD #14 timer 2 active	Timp cu EI-AECD #14 activ (temporizator 2)
+Total run time with EI-AECD #15 timer 1 active	Timp cu EI-AECD #15 activ (temporizator 1)
+Total run time with EI-AECD #15 timer 2 active	Timp cu EI-AECD #15 activ (temporizator 2)
+Total run time with EI-AECD #16 timer 1 active	Timp cu EI-AECD #16 activ (temporizator 1)
+Total run time with EI-AECD #16 timer 2 active	Timp cu EI-AECD #16 activ (temporizator 2)
+Total run time with EI-AECD #17 timer 1 active	Timp cu EI-AECD #17 activ (temporizator 1)
+Total run time with EI-AECD #17 timer 2 active	Timp cu EI-AECD #17 activ (temporizator 2)
+Total run time with EI-AECD #18 timer 1 active	Timp cu EI-AECD #18 activ (temporizator 1)
+Total run time with EI-AECD #18 timer 2 active	Timp cu EI-AECD #18 activ (temporizator 2)
+Total run time with EI-AECD #19 timer 1 active	Timp cu EI-AECD #19 activ (temporizator 1)
+Total run time with EI-AECD #19 timer 2 active	Timp cu EI-AECD #19 activ (temporizator 2)
+Total run time with EI-AECD #2 timer 1 active	Timp cu EI-AECD #2 activ (temporizator 1)
+Total run time with EI-AECD #2 timer 2 active	Timp cu EI-AECD #2 activ (temporizator 2)
+Total run time with EI-AECD #20 timer 1 active	Timp cu EI-AECD #20 activ (temporizator 1)
+Total run time with EI-AECD #20 timer 2 active	Timp cu EI-AECD #20 activ (temporizator 2)
+Total run time with EI-AECD #21 timer 1 active	Timp cu EI-AECD #21 activ (temporizator 1)
+Total run time with EI-AECD #21 timer 2 active	Timp cu EI-AECD #21 activ (temporizator 2)
+Total run time with EI-AECD #22 timer 1 active	Timp cu EI-AECD #22 activ (temporizator 1)
+Total run time with EI-AECD #22 timer 2 active	Timp cu EI-AECD #22 activ (temporizator 2)
+Total run time with EI-AECD #23 timer 1 active	Timp cu EI-AECD #23 activ (temporizator 1)
+Total run time with EI-AECD #23 timer 2 active	Timp cu EI-AECD #23 activ (temporizator 2)
+Total run time with EI-AECD #24 timer 1 active	Timp cu EI-AECD #24 activ (temporizator 1)
+Total run time with EI-AECD #24 timer 2 active	Timp cu EI-AECD #24 activ (temporizator 2)
+Total run time with EI-AECD #25 timer 1 active	Timp cu EI-AECD #25 activ (temporizator 1)
+Total run time with EI-AECD #25 timer 2 active	Timp cu EI-AECD #25 activ (temporizator 2)
+Total run time with EI-AECD #3 timer 1 active	Timp cu EI-AECD #3 activ (temporizator 1)
+Total run time with EI-AECD #3 timer 2 active	Timp cu EI-AECD #3 activ (temporizator 2)
+Total run time with EI-AECD #4 timer 1 active	Timp cu EI-AECD #4 activ (temporizator 1)
+Total run time with EI-AECD #4 timer 2 active	Timp cu EI-AECD #4 activ (temporizator 2)
+Total run time with EI-AECD #5 timer 1 active	Timp cu EI-AECD #5 activ (temporizator 1)
+Total run time with EI-AECD #5 timer 2 active	Timp cu EI-AECD #5 activ (temporizator 2)
+Total run time with EI-AECD #6 timer 1 active	Timp cu EI-AECD #6 activ (temporizator 1)
+Total run time with EI-AECD #6 timer 2 active	Timp cu EI-AECD #6 activ (temporizator 2)
+Total run time with EI-AECD #7 timer 1 active	Timp cu EI-AECD #7 activ (temporizator 1)
+Total run time with EI-AECD #7 timer 2 active	Timp cu EI-AECD #7 activ (temporizator 2)
+Total run time with EI-AECD #8 timer 1 active	Timp cu EI-AECD #8 activ (temporizator 1)
+Total run time with EI-AECD #8 timer 2 active	Timp cu EI-AECD #8 activ (temporizator 2)
+Total run time with EI-AECD #9 timer 1 active	Timp cu EI-AECD #9 activ (temporizator 1)
+Total run time with EI-AECD #9 timer 2 active	Timp cu EI-AECD #9 activ (temporizator 2)
+Traction battery pack State of Health	Baterie de tracțiune: stare de sănătate
+Transmission actual gear	Treapta de viteză actuală
+Transmission actual gear ratio	Raport de transmisie actual
+Turbocharger A compressor inlet temperature	Turbo A: temperatură intrare compresor
+Turbocharger A compressor outlet temperature	Turbo A: temperatură ieșire compresor
+Turbocharger A speed	Turbo A: turație
+Turbocharger A turbine inlet temperature	Turbo A: temperatură intrare turbină
+Turbocharger A turbine outlet temperature	Turbo A: temperatură ieșire turbină
+Turbocharger B compressor inlet temperature	Turbo B: temperatură intrare compresor
+Turbocharger B compressor outlet temperature	Turbo B: temperatură ieșire compresor
+Turbocharger B speed	Turbo B: turație
+Turbocharger B turbine inlet temperature	Turbo B: temperatură intrare turbină
+Turbocharger B turbine outlet temperature	Turbo B: temperatură ieșire turbină
+Variable geometry turbo A position	Poziție geometrie variabilă turbo A
+Variable geometry turbo B position	Poziție geometrie variabilă turbo B
+Vehicle fuel rate	Consum vehicul
+Wastegate A position	Poziție wastegate A
+Wastegate B position	Poziție wastegate B
+Wide Range O2S Current, O2 Sensor Bank 1, Sensor 1	Curent sondă O2 de bandă largă, banc 1, senzor 1
+Wide Range O2S Current, O2 Sensor Bank 1, Sensor 2	Curent sondă O2 de bandă largă, banc 1, senzor 2
+Wide Range O2S Current, O2 Sensor Bank 1, Sensor 3	Curent sondă O2 de bandă largă, banc 1, senzor 3
+Wide Range O2S Current, O2 Sensor Bank 1, Sensor 4	Curent sondă O2 de bandă largă, banc 1, senzor 4
+Wide Range O2S Current, O2 Sensor Bank 2, Sensor 1	Curent sondă O2 de bandă largă, banc 2, senzor 1
+Wide Range O2S Current, O2 Sensor Bank 2, Sensor 2	Curent sondă O2 de bandă largă, banc 2, senzor 2
+Wide Range O2S Current, O2 Sensor Bank 2, Sensor 3	Curent sondă O2 de bandă largă, banc 2, senzor 3
+Wide Range O2S Current, O2 Sensor Bank 2, Sensor 4	Curent sondă O2 de bandă largă, banc 2, senzor 4
+Wide Range O2S Voltage, O2 Sensor Bank 1, Sensor 1	Tensiune sondă O2 de bandă largă, banc 1, senzor 1
+Wide Range O2S Voltage, O2 Sensor Bank 1, Sensor 2	Tensiune sondă O2 de bandă largă, banc 1, senzor 2
+Wide Range O2S Voltage, O2 Sensor Bank 1, Sensor 3	Tensiune sondă O2 de bandă largă, banc 1, senzor 3
+Wide Range O2S Voltage, O2 Sensor Bank 1, Sensor 4	Tensiune sondă O2 de bandă largă, banc 1, senzor 4
+Wide Range O2S Voltage, O2 Sensor Bank 2, Sensor 1	Tensiune sondă O2 de bandă largă, banc 2, senzor 1
+Wide Range O2S Voltage, O2 Sensor Bank 2, Sensor 2	Tensiune sondă O2 de bandă largă, banc 2, senzor 2
+Wide Range O2S Voltage, O2 Sensor Bank 2, Sensor 3	Tensiune sondă O2 de bandă largă, banc 2, senzor 3
+Wide Range O2S Voltage, O2 Sensor Bank 2, Sensor 4	Tensiune sondă O2 de bandă largă, banc 2, senzor 4

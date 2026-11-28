@@ -87,7 +87,7 @@ class ObdDialogs {
         // 2.31 (#51): escáneres por cable USB conectados ahora mismo
         final List<android.hardware.usb.UsbDevice> usbs = UsbSerial.find(a);
         final int nUsb = usbs.size();
-        String[] labels = new String[nBt + nUsb + 4];
+        String[] labels = new String[nBt + nUsb + 5];
         for (int i = 0; i < nBt; i++) labels[i] = "Bluetooth · " + opts.get(i)[1];
         for (int i = 0; i < nUsb; i++) labels[nBt + i] = "USB · " + UsbSerial.label(usbs.get(i));
         final int base = nBt + nUsb;
@@ -95,6 +95,7 @@ class ObdDialogs {
         labels[base + 1] = I18n.t("Escáner por cable USB");
         labels[base + 2] = I18n.t("Escáner Wi-Fi (escribir IP y puerto)");
         labels[base + 3] = I18n.t("Auto simulado (para probar)");
+        labels[base + 4] = I18n.t("Buscar escáneres Bluetooth LE (BLE)");
         tb().raw().wide()
             .setTitle(I18n.t(nBt == 0 && nUsb == 0 ? "No hay escáneres Bluetooth emparejados: emparéjalo en los ajustes del equipo" : "Elige tu escáner"))
             .setItems(labels, new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) {
@@ -102,6 +103,7 @@ class ObdDialogs {
                 else if (w < base) chooseUsb(usbs.get(w - nBt));
                 else if (w == base + 1) pickUsb();
                 else if (w == base) discover();
+                else if (w == base + 4) scanBle();
                 else if (w == base + 2) {
                     String cur = prefs.getString("obd_addr", "");
                     askText(I18n.t("IP y puerto del escáner Wi-Fi"), cur.startsWith("tcp:") ? cur.substring(4) : "192.168.0.10:35000",
@@ -195,7 +197,12 @@ class ObdDialogs {
         showFound(false);
     }
 
+    /** El permiso de ubicación se pidió para la búsqueda BLE (y no para la clásica). */
+    private static boolean bleAfterPermission;
+
     void onPermission(boolean granted) {
+        if (granted && bleAfterPermission) { bleAfterPermission = false; scanBle(); return; }
+        bleAfterPermission = false;
         if (granted) discover();
         else toast("Sin el permiso de ubicación Android no deja buscar equipos Bluetooth");
     }
@@ -239,6 +246,71 @@ class ObdDialogs {
         else b.setMessage(I18n.t("Los escáneres suelen llamarse OBDII, OBD2, V-LINK o Vgate."));
         if (finished) b.setPositiveButton(I18n.t("Buscar de nuevo"), new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) { discover(); } });
         b.setNegativeButton(I18n.t("Cerrar"), new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) { if (pairing == null) stopDiscovery(); } });
+        btDlg = b.show();
+    }
+
+    // ── escáneres Bluetooth LE: no se emparejan, se buscan 10 s y se elige uno ──
+
+    private static final List<String[]> bleFound = new ArrayList<String[]>();   // dirección, nombre
+    private static Object bleCb;
+
+    @android.annotation.TargetApi(18)
+    void scanBle() {
+        if (android.os.Build.VERSION.SDK_INT < 18) { toast("Los escáneres Bluetooth LE necesitan Android 4.3 o más nuevo"); return; }
+        final BluetoothAdapter ad = BluetoothAdapter.getDefaultAdapter();
+        if (ad == null) { toast("Este equipo no tiene Bluetooth"); return; }
+        if (!ad.isEnabled()) {
+            try { a.startActivity(new android.content.Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)); } catch (Throwable e) { toast("El Bluetooth está apagado"); }
+            return;
+        }
+        if (!Modern.hasPermissions(a, android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+            bleAfterPermission = true;
+            Modern.requestPermissions(a, REQ_BT_SCAN, android.Manifest.permission.ACCESS_FINE_LOCATION);
+            return;
+        }
+        stopDiscovery();
+        stopBle();
+        bleFound.clear();
+        final android.os.Handler h = new android.os.Handler(android.os.Looper.getMainLooper());
+        BluetoothAdapter.LeScanCallback cb = new BluetoothAdapter.LeScanCallback() {
+            public void onLeScan(final BluetoothDevice d, int rssi, byte[] rec) {
+                h.post(new Runnable() { public void run() {
+                    for (String[] x : bleFound) if (x[0].equals(d.getAddress())) return;
+                    bleFound.add(new String[]{d.getAddress(), name(d)});
+                    showBle(false);
+                }});
+            }
+        };
+        bleCb = cb;
+        try { ad.startLeScan(cb); } catch (Throwable e) { toast("No se pudo buscar equipos Bluetooth LE"); return; }
+        showBle(false);
+        h.postDelayed(new Runnable() { public void run() { if (bleCb != null) { stopBle(); showBle(true); } } }, 10000);
+    }
+
+    @android.annotation.TargetApi(18)
+    static void stopBle() {
+        if (bleCb == null) return;
+        try { BluetoothAdapter.getDefaultAdapter().stopLeScan((BluetoothAdapter.LeScanCallback) bleCb); } catch (Throwable ignored) { }
+        bleCb = null;
+    }
+
+    private void showBle(final boolean finished) {
+        if (a.isFinishing()) return;
+        try { if (btDlg != null) btDlg.dismiss(); } catch (Throwable ignored) { }
+        final List<String[]> list = new ArrayList<String[]>();
+        for (String[] d : bleFound) { if (looksObd(d[1])) list.add(0, d); else list.add(d); }
+        String[] labels = new String[list.size()];
+        for (int i = 0; i < list.size(); i++) labels[i] = (looksObd(list.get(i)[1]) ? "★ " : "") + list.get(i)[1];
+        TB b = (TB) tb().raw().wide()
+            .setTitle(I18n.t(finished ? (list.isEmpty() ? "No se encontraron equipos. ¿Está el escáner enchufado y el contacto puesto?" : "Elige tu escáner")
+                : "Buscando escáneres Bluetooth LE…"));
+        if (labels.length > 0) b.setItems(labels, new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) {
+            stopBle();
+            choose("ble:" + list.get(w)[0], "BLE · " + list.get(w)[1]);
+        }});
+        else b.setMessage(I18n.t("Los escáneres BLE no se emparejan en los ajustes del equipo: aparecen aquí con el contacto puesto."));
+        if (finished) b.setPositiveButton(I18n.t("Buscar de nuevo"), new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) { scanBle(); } });
+        b.setNegativeButton(I18n.t("Cerrar"), new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) { stopBle(); } });
         btDlg = b.show();
     }
 
@@ -406,6 +478,11 @@ class ObdDialogs {
     // ───────────────────────── motor y protocolo ─────────────────────────
 
     static String protocolName(String p) {
+        if ("1".equals(p)) return I18n.t("SAE J1850 PWM · 41,6 kbaud (Ford)");
+        if ("2".equals(p)) return I18n.t("SAE J1850 VPW · 10,4 kbaud (GM)");
+        if ("3".equals(p)) return I18n.t("ISO 9141-2 · línea K, 5 baudios");
+        if ("4".equals(p)) return I18n.t("ISO 14230-4 KWP · inicio lento");
+        if ("5".equals(p)) return I18n.t("ISO 14230-4 KWP · inicio rápido");
         if ("6".equals(p)) return I18n.t("CAN 11 bits · 500 kbps");
         if ("7".equals(p)) return I18n.t("CAN 29 bits · 500 kbps");
         if ("8".equals(p)) return I18n.t("CAN 11 bits · 250 kbps");
@@ -427,7 +504,7 @@ class ObdDialogs {
     }
 
     void pickProtocol() {
-        final String[] keys = {"auto", "6", "7", "8", "9"};
+        final String[] keys = {"auto", "6", "7", "8", "9", "5", "4", "3", "1", "2"};
         String[] labels = new String[keys.length];
         int cur = 0;
         String v = prefs.getString("obd_protocol", "auto");
