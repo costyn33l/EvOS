@@ -372,7 +372,8 @@ final class Infra {
         if (demo) {
             out.add(demoItem(la, lo));
             // gasolineras inventadas (solo en la prueba: la clave de Tankerkönig no se publica)
-            if (tkItems.isEmpty()) {
+            {   // se rehacen alrededor del carro en cada vuelta (solo en la prueba)
+                out.removeAll(tkItems);
                 List<Item> f = new ArrayList<Item>();
                 float[][] st = {{0.004f, -0.006f, 1.839f}, {-0.006f, 0.004f, 1.799f}, {0.007f, 0.009f, Float.NaN}};
                 for (int i = 0; i < st.length; i++) {

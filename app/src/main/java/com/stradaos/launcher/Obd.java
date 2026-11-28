@@ -776,6 +776,7 @@ public class Obd {
         int got = 0;
         for (int i = 0; i < pids.length; i++) {
             byte[] b = r.get(pids[i]);
+            if (b != null) putExtra(pids[i], b);        // también para las señales que el PID trae además del dato propio
             Float v = b != null ? decode(pids[i], b) : null;
             if (v != null) { group.get(i).push(v); got++; }
         }
@@ -859,6 +860,7 @@ public class Obd {
         }
         if (!elm.supports(s.pid)) return null;
         byte[] b = elm.pid(s.pid);
+        if (b != null) putExtra(s.pid, b);
         // 8B: además del porcentaje trae si la regeneración está en curso (bit 0 de B, si A lo declara)
         if (s.pid == 0x8B && b != null && b.length >= 2 && (b[0] & 1) != 0 && !dpfVag) dpfRegen = (b[1] & 1) != 0;
         return Elm.value(s.pid, b, s.sub);

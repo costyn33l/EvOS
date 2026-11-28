@@ -40,9 +40,17 @@ final class J1979 {
     private static Map<Integer, List<Sig>> byPid;
     private static final Map<String, String> RO = new HashMap<String, String>();
 
+    /** Señales que EvOS ya muestra como dato propio (con alertas, gráfico y emblema): no se repiten. */
+    private static final java.util.Set<String> COVERED = new java.util.HashSet<String>(java.util.Arrays.asList(
+        "LOAD_PCT", "ECT", "SHRTFT1", "LONGFT1", "FP", "MAP", "RPM", "VSS", "SPARKADV", "IAT", "MAF", "TP", "O2S11", "O2S12",
+        "RUNTM", "MIL_DIST", "FRP", "EGR_PCT", "EVAP_PCT", "FLI", "WARM_UPS", "CLR_DIST", "BARO", "CATEMP11", "CATEMP12", "VPWR",
+        "LOAD_ABS", "EQ_RAT", "TP_R", "AAT", "TP_B", "APP_D", "APP_E", "TAC_PCT", "MIL_TIME", "CLR_TIME", "ALCH_PCT", "STSO2FT1",
+        "LGSO2FT1", "FRP_ABS", "APP_R", "BAT_SOC", "EOT", "FUEL_TIMING", "FUEL_RATE", "TQ_DD", "TQ_ACT", "BP_A_ACT", "DPF1_DP",
+        "DPF1_INT", "DPF1_OUTT", "PF_REGEN_PCT", "ODO"));
+
     /** Lo que no es un número para mostrar (indicadores sí/no, códigos, mapas de estados). */
     private static boolean skip(Sig s) {
-        return s.unit == null || s.id.endsWith("_SUP") || "noyes".equals(s.unit) || "yesno".equals(s.unit)
+        return s.unit == null || COVERED.contains(s.id) || s.id.endsWith("_SUP") || "noyes".equals(s.unit) || "yesno".equals(s.unit)
             || "offon".equals(s.unit) || "hex".equals(s.unit);
     }
 

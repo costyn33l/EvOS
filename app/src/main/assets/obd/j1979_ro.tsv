@@ -473,3 +473,65 @@ Wide Range O2S Voltage, O2 Sensor Bank 2, Sensor 1	Tensiune sondă O2 de bandă 
 Wide Range O2S Voltage, O2 Sensor Bank 2, Sensor 2	Tensiune sondă O2 de bandă largă, banc 2, senzor 2
 Wide Range O2S Voltage, O2 Sensor Bank 2, Sensor 3	Tensiune sondă O2 de bandă largă, banc 2, senzor 3
 Wide Range O2S Voltage, O2 Sensor Bank 2, Sensor 4	Tensiune sondă O2 de bandă largă, banc 2, senzor 4
+Calculated engine load	Sarcina calculată a motorului
+Engine coolant temperature	Temperatura antigelului
+Short term fuel trim (bank 1)	Corecție scurtă de combustibil, banc 1
+Long term fuel trim (bank 1)	Corecție lungă de combustibil, banc 1
+Fuel pressure	Presiune combustibil
+Intake manifold absolute pressure	Presiune absolută în galeria de admisie
+Engine RPM	Turație motor
+Vehicle speed	Viteza vehiculului
+Timing advance	Avans la aprindere
+Intake air temperature	Temperatura aerului de admisie
+Air flow rate from mass air flow sensor	Debit de aer (debitmetru)
+Absolute throttle position	Poziție absolută clapetă
+O2S Output Voltage Bank 1, Sensor 1	Tensiune sondă O2, banc 1, senzor 1
+SHRTFT associated with O2S11	Corecție scurtă asociată sondei O2, banc 1, senzor 1
+O2S Output Voltage Bank 1, Sensor 2	Tensiune sondă O2, banc 1, senzor 2
+SHRTFT associated with O2S12	Corecție scurtă asociată sondei O2, banc 1, senzor 2
+Time since engine start	Timp de la pornirea motorului
+Distance traveled while MIL was activated	Distanță cu martorul de motor aprins
+Fuel rail pressure	Presiune rampă combustibil
+Commanded EGR	EGR comandat
+Fuel tank level	Nivel rezervor
+Number of warm-ups since diagnostic trouble codes cleared	Încălziri de la ștergerea codurilor
+Distance traveled since diagnostic trouble codes cleared	Distanță de la ștergerea codurilor
+Barometric pressure	Presiune atmosferică
+Catalyst temperature bank 1, sensor 1	Temperatură catalizator, banc 1, senzor 1
+Catalyst temperature bank 2, sensor 1	Temperatură catalizator, banc 2, senzor 1
+Control module voltage	Tensiunea calculatorului
+Absolute load value	Sarcină absolută
+Commanded equivalence ratio	Raport de echivalență comandat (lambda)
+Relative throttle position	Poziție relativă clapetă
+Ambient air temperature	Temperatura exterioară
+Absolute throttle position B	Poziție absolută clapetă B
+Accelerator pedal position D	Poziție pedală accelerație D
+Accelerator pedal position E	Poziție pedală accelerație E
+Commanded throttle actuator control	Comandă clapetă
+Time run by the engine while MIL was activated	Timp de funcționare cu martorul de motor aprins
+Engine run time since diagnostic trouble codes cleared	Timp de funcționare de la ștergerea codurilor
+Alcohol fuel percentage	Procent de alcool în combustibil
+Fuel rail pressure (absolute)	Presiune absolută rampă combustibil
+Accelerator pedal position (relative)	Poziție relativă pedală accelerație
+Hybrid battery pack remaining charge	Încărcare rămasă baterie hibrid
+Engine oil temperature	Temperatura uleiului
+Fuel injection timing	Avans injecție
+Engine fuel rate	Consum de combustibil al motorului
+Driver's demand engine torque	Cuplu cerut de șofer
+Actual engine torque	Cuplu real al motorului
+Commanded boost pressure A	Presiune turbo comandată A
+Boost pressure sensor A	Presiune turbo A
+Commanded boost pressure B	Presiune turbo comandată B
+Boost pressure sensor B	Presiune turbo B
+Particulate filter bank 1 delta pressure	Filtru de particule banc 1: presiune diferențială
+Particulate filter bank 1 inlet pressure	Filtru de particule banc 1: presiune intrare
+Particulate filter bank 1 outlet pressure	Filtru de particule banc 1: presiune ieșire
+Particulate filter bank 1 inlet temperature	Filtru de particule banc 1: temperatură intrare
+Particulate filter bank 1 outlet temperature	Filtru de particule banc 1: temperatură ieșire
+Particulate filter bank 2 inlet temperature	Filtru de particule banc 2: temperatură intrare
+Particulate filter bank 2 outlet temperature	Filtru de particule banc 2: temperatură ieșire
+Normalized trigger for particulate filter regen	Necesar de regenerare filtru de particule
+Average time between particulate filter regens	Timp mediu între regenerările DPF
+Average distance between particulate filter regens	Distanță medie între regenerările DPF
+Odometer	Kilometraj
+Accelerator pedal position (relative)	Poziție relativă pedală accelerație

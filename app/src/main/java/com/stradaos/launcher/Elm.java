@@ -507,7 +507,7 @@ public class Elm {
         switch (pid) {
             case 0x7A: case 0x7B:     // presión diferencial del DPF: A bit 0 = trae el dato; B-C en centésimas de kPa
                 if ((a & 1) == 0 || b.length < 3) return null;
-                return ((b[1] & 0xFF) << 8 | (b[2] & 0xFF)) / 10f;          // → mbar
+                return (short) ((b[1] & 0xFF) << 8 | (b[2] & 0xFF)) / 10f;  // con signo (SAE J1979 / OBDb) → mbar
             case 0x7C: {              // temperaturas del DPF: A bit 0 entrada, bit 1 salida; décimas de °C + 40
                 int off = 1 + sub * 2;
                 if ((a & (1 << sub)) == 0 || b.length < off + 2) return null;
