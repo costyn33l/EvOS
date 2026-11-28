@@ -690,30 +690,23 @@ final class Show {
             float w = getWidth(), h = getHeight();
             p.setStyle(Paint.Style.STROKE);
             p.setStrokeCap(Paint.Cap.ROUND);
-            if (skin == GLACIER) {
-                float sw = 6 * s, r = Math.min(w, h) / 2 - sw * 2;
-                RectF o = new RectF(w / 2 - r, h / 2 - r, w / 2 + r, h / 2 + r);
-                p.setStrokeWidth(sw);
-                p.setColor(0x1F7DD3FC);
-                c.drawArc(o, 135, 270, false, p);
-                if (frac > 0) {
-                    for (int g = 3; g >= 1; g--) { p.setStrokeWidth(sw + g * 4 * s); p.setColor(alpha(0xFF7DD3FC, 0x18)); c.drawArc(o, 135, 270 * frac, false, p); }
+            // media luna a la derecha del número: se llena de abajo hacia arriba
+            float sw = (skin == GLACIER ? 6 : 9) * s;
+            float r = (h / 2 - sw) / 0.966f;
+            float cx = w - sw - r, cy = h / 2;
+            RectF o = new RectF(cx - r, cy - r, cx + r, cy + r);
+            p.setStrokeCap(Paint.Cap.BUTT);
+            p.setStrokeWidth(sw);
+            p.setColor(skin == GLACIER ? 0x1F7DD3FC : 0x26FFFFFF);
+            c.drawArc(o, -75, 150, false, p);
+            if (frac > 0) {
+                if (skin == GLACIER) {
+                    for (int g = 3; g >= 1; g--) { p.setStrokeWidth(sw + g * 4 * s); p.setColor(alpha(0xFF7DD3FC, 0x18)); c.drawArc(o, 75, -150 * frac, false, p); }
                     p.setStrokeWidth(sw);
                     p.setColor(0xFF7DD3FC);
-                    c.drawArc(o, 135, 270 * frac, false, p);
-                }
-            } else {
-                float sw = 9 * s, r = h * 0.9f;
-                RectF o = new RectF(w - r * 2 + r * 0.25f, h / 2 - r, w + r * 0.25f, h / 2 + r);
-                p.setStrokeCap(Paint.Cap.BUTT);
-                p.setStrokeWidth(sw);
-                p.setColor(0x26FFFFFF);
-                c.drawArc(o, -75, 150, false, p);
-                if (frac > 0) {
-                    p.setShader(new LinearGradient(0, h, 0, 0, 0xFF1E8BFF, 0xFFC026FF, Shader.TileMode.CLAMP));
-                    c.drawArc(o, 75, -150 * frac, false, p);
-                    p.setShader(null);
-                }
+                } else p.setShader(new LinearGradient(0, h, 0, 0, 0xFF1E8BFF, 0xFFC026FF, Shader.TileMode.CLAMP));
+                c.drawArc(o, 75, -150 * frac, false, p);
+                p.setShader(null);
             }
         }
     }

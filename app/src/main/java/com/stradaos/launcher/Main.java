@@ -1688,7 +1688,7 @@ public class Main extends Activity {
         TextView v = tv("", size, color, true);
         v.setText(I18n.t(es).toUpperCase(I18n.loc));
         v.setTypeface(Show.labelFace());
-        if (SDK >= 21) v.setLetterSpacing(0.14f);
+        if (SDK >= 21) v.setLetterSpacing(Show.skin == Show.GLACIER || Show.skin == Show.CYBER ? 0.06f : 0.14f);
         return v;
     }
 
@@ -1931,14 +1931,14 @@ public class Main extends Activity {
                 place(sec, pn, rx - 16, y - 12, 334, 160);
                 if (Show.skin != Show.CIRCUIT) {
                     srArc = new Show.Arc(this, s);
-                    place(sec, srArc, rx + 196, y - 4, 118, 144);
+                    place(sec, srArc, rx + 236, y - 2, 78, 118);
                 }
             }
             srSpeedSrc = srLabel("Velocidad · GPS", 12, MUTED);
             place(sec, srSpeedSrc, rx, y, 260, 16);
             LinearLayout sp = new LinearLayout(this);
             sp.setGravity(Gravity.BOTTOM);
-            srSpeedTv = srNum("--", 132, TEXT);
+            srSpeedTv = srNum("--", skinned ? 96 : 132, TEXT);
             sp.addView(srSpeedTv);
             srSpeedUnit = srLabel(useMph() ? "mph" : "km/h", 20, MUTED);
             srSpeedUnit.setPadding((int) (10 * s), 0, 0, (int) (14 * s));
@@ -1953,7 +1953,8 @@ public class Main extends Activity {
             lb.setStroke((int) (5 * s), 0xFFE5323B);
             srLimitTv.setBackground(lb);
             srLimitTv.setVisibility(View.GONE);
-            place(sec, srLimitTv, skinned && Show.skin != Show.CIRCUIT ? rx + 210 : rx + 260, y + 70, 46, 46);
+            if (skinned) place(sec, srLimitTv, rx + 270, y + 106, 38, 38);
+            else place(sec, srLimitTv, rx + 260, y + 70, 46, 46);
             y += skinned ? 158 : 144;
         } else { srSpeedTv = null; srSpeedSrc = null; srLimitTv = null; }
         boolean obd = obdOn();
