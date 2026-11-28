@@ -1154,7 +1154,8 @@ public class Main extends Activity {
                         .putString("dock_3_name", "Mi app").apply();
                     rebuild();
                 }
-                else if (v.startsWith("obdb:")) chooseObdbModel(v.substring(5));    // p. ej. obdb:Volkswagen-Passat
+                else if (v.startsWith("obdb:")) chooseObdbModel(v.substring(5));
+                else if ("mapa-rapido".equals(v)) openMapQuick();    // p. ej. obdb:Volkswagen-Passat
                 else if ("infra-demo".equals(v)) {
                     // un carro en la A3 cerca de Limburg, hacia Frankfurt (datos reales + un atasco inventado por delante)
                     Infra.demo = true;
@@ -5784,6 +5785,7 @@ public class Main extends Activity {
             if (liveMap.infraTap == null) liveMap.infraTap = new LiveMapView.InfraTap() {
                 public void onItem(Infra.Item it) { showInfraItem(it); }
                 public void onFuelButton() { askFuelPrices(); }
+                public void onLayersButton() { openMapQuick(); }
             };
             if (infraGen != Infra.gen) { infraGen = Infra.gen; liveMap.invalidate(); }
         }
@@ -5922,7 +5924,7 @@ public class Main extends Activity {
                         v = v.trim();
                         if (v.length() > 0 && !Infra.tkKeyOk(v)) { toast("La clave tiene la forma 00000000-0000-0000-0000-000000000000"); return; }
                         prefs.edit().putString("tk_key", v).apply();
-                        showSettings(settingsCat);
+                        infraRedraw();
                     }});
                 }});
             row(g, "Cómo conseguir la clave", "Reglas de uso de Tankerkönig", null, new Runnable() { public void run() {
@@ -5934,28 +5936,28 @@ public class Main extends Activity {
             int rk = Infra.tkRadius(this);
             segmented(g, "Radio de búsqueda", "Tankerkönig permite hasta 25 km",
                 new String[]{"5 km", "10 km", "15 km", "25 km"}, rk <= 5 ? 0 : rk <= 10 ? 1 : rk <= 15 ? 2 : 3, new IntCb() { public void on(int i) {
-                    prefs.edit().putInt("tk_rad", rads[i]).apply(); showSettings(settingsCat); }});
+                    prefs.edit().putInt("tk_rad", rads[i]).apply(); infraRedraw(); }});
             final String[] kinds = {"auto", "diesel", "e5", "e10"};
             String k = prefs.getString("infra_fuel_kind", "auto");
             int sel = 0;
             for (int i = 0; i < kinds.length; i++) if (kinds[i].equals(k)) sel = i;
             segmented(g, "Combustible de los precios", "Automático: el que informa el auto por OBD (diésel o gasolina E5)",
                 new String[]{"Automático", "Diésel", "E5", "E10"}, sel, new IntCb() { public void on(int i) {
-                    prefs.edit().putString("infra_fuel_kind", kinds[i]).apply(); Infra.reset(); showSettings(settingsCat); }});
+                    prefs.edit().putString("infra_fuel_kind", kinds[i]).apply(); Infra.reset(); infraRedraw(); }});
         }
         if (Infra.layer(this, "infra_alert")) {
             final int[] kms = {2, 3, 5};
             int ak = Infra.alertKm(this);
             segmented(g, "Distancia del aviso", "Se avisa una sola vez por cada suceso",
                 new String[]{"2 km", "3 km", "5 km"}, ak <= 2 ? 0 : ak >= 5 ? 2 : 1, new IntCb() { public void on(int i) {
-                    prefs.edit().putInt("infra_alert_km", kms[i]).apply(); showSettings(settingsCat); }});
+                    prefs.edit().putInt("infra_alert_km", kms[i]).apply(); infraRedraw(); }});
             toggle(g, "Aviso hablado", "Lo dice con la voz de navegación", Infra.layer(this, "infra_voice"), infraCb("infra_voice"));
         }
         final int[] mins = {5, 10, 15};
         int ev = Infra.every(this);
         segmented(g, "Actualizar los avisos cada", "Las obras cada 30 min; cargadores y descansos cada 6 h",
             new String[]{"5 min", "10 min", "15 min"}, ev <= 5 ? 0 : ev >= 15 ? 2 : 1, new IntCb() { public void on(int i) {
-                prefs.edit().putInt("infra_every", mins[i]).apply(); Infra.reset(); showSettings(settingsCat); }});
+                prefs.edit().putInt("infra_every", mins[i]).apply(); Infra.reset(); infraRedraw(); }});
         row(g, "Fuentes y licencias", "Autobahn GmbH, Tankerkönig, InfraNode, DWD", null, new Runnable() { public void run() {
             new TB(Main.this, dlg()).setTitle("Fuentes y licencias")
                 .setMessage("Tráfico de las autopistas: Die Autobahn GmbH des Bundes (verkehr.autobahn.de, datos públicos de la app «Autobahn»). Se piden solo las autopistas de alrededor y de tu ruta, cada pocos minutos.\n\nPrecios de combustible: Tankerkönig.de, CC BY 4.0, datos de la Markttransparenzstelle für Kraftstoffe (MTS-K), con tu clave personal.\n\nEstacionamientos y avisos meteorológicos: InfraNode (infranode.dev), con la fuente de cada dato (por ejemplo «Datenbasis: Deutscher Wetterdienst», «Stadt Köln»).\n\nLos datos se muestran solo en esta pantalla: no se guardan ni se reenvían. Ninguna de las fuentes garantiza que estén completos o al día: lo que manda es la señalización de la vía.")
@@ -5973,8 +5975,45 @@ public class Main extends Activity {
             prefs.edit().putBoolean(key, i == 1).apply();
             Infra.reset();
             if (liveMap != null) liveMap.invalidate();
-            showSettings(settingsCat);
+            infraRedraw();
         }};
+    }
+
+    /** Panel rápido del mapa abierto (su contenido), o null. */
+    private LinearLayout mapQuickBody;
+
+    private void infraRedraw() {
+        if (mapQuickBody != null) fillMapQuick(); else showSettings(settingsCat);
+    }
+
+    /** Ajustes rápidos del mapa (botón de capas): tráfico, gasolineras, meteo… sin salir del mapa. */
+    void openMapQuick() {
+        android.widget.ScrollView sc = new android.widget.ScrollView(this);
+        mapQuickBody = new LinearLayout(this);
+        mapQuickBody.setOrientation(LinearLayout.VERTICAL);
+        sc.addView(mapQuickBody, new FrameLayout.LayoutParams(-1, -2));
+        fillMapQuick();
+        FrameLayout wrap = new FrameLayout(this);
+        wrap.addView(sc, new FrameLayout.LayoutParams(-1, (int) Math.min(440 * s, getResources().getDisplayMetrics().heightPixels * 0.62f)));
+        new TB(this, dlg()).raw().wide().setTitle(I18n.t("Mapa: tráfico y gasolineras")).setView(wrap)
+            .setOnCancelListener(new DialogInterface.OnCancelListener() { public void onCancel(DialogInterface d) { mapQuickBody = null; } })
+            .setNeutralButton(I18n.t("Todos los ajustes del mapa"), new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) {
+                mapQuickBody = null; showSettings(C_MAP); } })
+            .setPositiveButton(I18n.t("Listo"), new DialogInterface.OnClickListener() { public void onClick(DialogInterface d, int w) { mapQuickBody = null; } })
+            .show();
+    }
+
+    private void fillMapQuick() {
+        LinearLayout b = mapQuickBody;
+        if (b == null) return;
+        b.removeAllViews();
+        if (Infra.fuelButton(this)) {
+            LinearLayout q = section(b, "Ahora");
+            row(q, "Buscar precios de combustible", Infra.tkAt > 0 ? I18n.t("Precios de las") + " "
+                + new java.text.SimpleDateFormat("HH:mm", java.util.Locale.US).format(new java.util.Date(Infra.tkAt)) : null, null,
+                new Runnable() { public void run() { askFuelPrices(); } });
+        }
+        infraSettings(b);
     }
 
     private void showMapDiag() {

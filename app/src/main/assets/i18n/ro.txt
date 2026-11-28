@@ -2234,3 +2234,6 @@ Airbags	Airbaguri
 Refrigeración	Răcire
 Ventanillas	Geamuri
 Multimedia	Multimedia
+Mapa: tráfico y gasolineras	Hartă: trafic și benzinării
+Todos los ajustes del mapa	Toate setările hărții
+Buscar precios de combustible	Caută prețurile la carburant

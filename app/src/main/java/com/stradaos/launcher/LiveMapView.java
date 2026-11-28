@@ -103,7 +103,7 @@ public class LiveMapView extends View {
     static final long RETURN_MS = 12000;
     Listener exploreListener;
     /** Toque en un aviso, cierre, gasolinera… de la capa de Alemania (Infra). */
-    interface InfraTap { void onItem(Infra.Item it); void onFuelButton(); }
+    interface InfraTap { void onItem(Infra.Item it); void onFuelButton(); void onLayersButton(); }
     InfraTap infraTap;
     private boolean exploring, ownButtons, dragExplores = true;
     /** Centro explorado en coordenadas del mundo (0 a 1 en x y en y, Mercator). */
@@ -738,6 +738,7 @@ public class LiveMapView extends View {
             @Override public boolean onDown(MotionEvent e) { return true; }
             @Override public boolean onSingleTapConfirmed(MotionEvent e) {
                 if (fuelBtnHit(e.getX(), e.getY()) && infraTap != null) { infraTap.onFuelButton(); return true; }
+                if (layersBtnHit(e.getX(), e.getY()) && infraTap != null) { infraTap.onLayersButton(); return true; }
                 Infra.Item it = hitInfra(e.getX(), e.getY());
                 if (it != null && infraTap != null) { infraTap.onItem(it); return true; }
                 if (!exploring) explore();
@@ -1352,8 +1353,42 @@ public class LiveMapView extends View {
     private final RectF fuelBtn = new RectF();
     private boolean fuelBtnShown;
 
+    /** Botón de capas (tráfico, gasolineras, meteo…): abre los ajustes rápidos del mapa. Encima del de precios. */
+    private final RectF layersBtn = new RectF();
+    private boolean layersShown;
+
+    private void drawLayersButton(Canvas c, float y) {
+        layersShown = infraTap != null;
+        if (!layersShown) return;
+        float r = 24 * s, x = 12 * s + r;
+        layersBtn.set(x - r, y - r, x + r, y + r);
+        ip.setStyle(Paint.Style.FILL);
+        ip.setColor(0x66000000);
+        c.drawCircle(x, y + 2 * s, r + 1 * s, ip);
+        ip.setColor(0xF0141619);
+        c.drawCircle(x, y, r, ip);
+        if (Infra.on(getContext())) {          // un punto verde: la capa de Alemania está encendida
+            ip.setColor(Infra.inGermany ? 0xFF3DDC84 : 0xFF8A8F98);
+            c.drawCircle(x + r * 0.62f, y - r * 0.62f, 5 * s, ip);
+        }
+        Bitmap g = infraIcon("layers");
+        if (g != null) {
+            ir.set(x - 13 * s, y - 13 * s, x + 13 * s, y + 13 * s);
+            isrc.set(0, 0, g.getWidth(), g.getHeight());
+            c.drawBitmap(g, isrc, ir, ipIcon);
+        }
+    }
+
+    private boolean layersBtnHit(float x, float y) {
+        if (!layersShown) return false;
+        RectF b = new RectF(layersBtn);
+        b.inset(-8 * s, -8 * s);
+        return b.contains(x, y);
+    }
+
     private void drawFuelButton(Canvas c) {
         fuelBtnShown = Infra.fuelButton(getContext());
+        drawLayersButton(c, getHeight() * 0.5f - (fuelBtnShown ? 62 * s : 0));
         if (!fuelBtnShown) return;
         float r = 24 * s, x = 12 * s + r, y = getHeight() * 0.5f;
         fuelBtn.set(x - r, y - r, x + r, y + r);

@@ -85,6 +85,7 @@ go sr:3:2 6;   shot 87-sr-parametros-sin-obd
 go sr:1 8;     shot 71-sr-mapa
 # tráfico de Alemania (Autobahn, InfraNode): un carro en la A3 cerca de Limburg, datos reales y un atasco de prueba
 go infra-demo 6; go mapa-zoom:14 22; shot 71b-sr-mapa-trafico-de
+go mapa-rapido 4; shot 71c-mapa-ajustes-rapidos; back
 go sr:3:4 6;   shot 77-sr-mantenimiento
 go sr:0 4
 go tema-ev:aero 6

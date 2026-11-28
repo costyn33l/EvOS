@@ -2264,3 +2264,6 @@ Airbags	Airbags
 Refrigeración	Cooling
 Ventanillas	Windows
 Multimedia	Infotainment
+Mapa: tráfico y gasolineras	Map: traffic and fuel stations
+Todos los ajustes del mapa	All map settings
+Buscar precios de combustible	Look up fuel prices
